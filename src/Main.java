@@ -1,6 +1,9 @@
+import GUI.SoftvoperMain;
+
 public class Main {
     public static void main(String[] args)
     {
-        System.out.println("Hello world!");
+        SoftvoperMain UI = new SoftvoperMain();
+        UI.CreateUI();
     }
 }
