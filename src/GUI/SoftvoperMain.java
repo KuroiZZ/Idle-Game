@@ -2,9 +2,13 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import MoneySystem.Money;
 
 public class SoftvoperMain
 {
+    Money money_System = new Money();
+    public static JLabel moneyLabel;
+
     public void CreateUI()
     {
         JFrame window = new JFrame();
@@ -27,6 +31,8 @@ public class SoftvoperMain
         coder.setFocusPainted(false);
         coder.setBorder(null);
         coder.setIcon(coderr);
+        coder.addActionListener(money_System.money_hndler);
+        coder.setActionCommand("computer");
         coderPanel.add(coder);
 
         JPanel counterPanel = new JPanel();
@@ -36,10 +42,9 @@ public class SoftvoperMain
         window.add(counterPanel);
 
         Font font1 = new Font("Comic Sans MS", Font.PLAIN, 32);
-        JLabel moneyLabel = new JLabel("Money : ");
+        moneyLabel = new JLabel("Money: "+money_System.money_cnt);
         moneyLabel.setBackground(Color.white);
         moneyLabel.setFont(font1);
         counterPanel.add(moneyLabel);
-
     }
 }

@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowListener;
+import GUI.SoftvoperMain;
 
 public class Money
 {
-    private int money;
-    MoneyHandler money_hndler = new MoneyHandler();
+    public int money_cnt;
+    public MoneyHandler money_hndler = new MoneyHandler();
 
     public static void main(String[] args)
     {
@@ -17,9 +17,9 @@ public class Money
     }
     public Money()
     {
-        money = 0;
+        money_cnt = 0;
     }
-    public class MoneyHandler extends Frame implements ActionListener
+    public class MoneyHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent event)
         {
@@ -28,7 +28,8 @@ public class Money
             switch (action)
             {
                 case "computer":
-                    money++;
+                    money_cnt++;
+                    SoftvoperMain.moneyLabel.setText("Money: "+money_cnt);
                     break;
                 case "C Developer":
                     break;
