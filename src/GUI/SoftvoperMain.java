@@ -2,14 +2,13 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.security.PublicKey;
 
-import MoneySystem.Money;
+import LOCSystem.LOC;
 
 public class SoftvoperMain
 {
-    Money money_System = new Money();
-    public static JLabel moneyLabel;
+    LOC loc_System = new LOC();
+    public static JLabel LOCLabel;
 
     public void CreateUI()
     {
@@ -44,11 +43,11 @@ public class SoftvoperMain
         CoderPanel.setBackground(Color.green);
 
 
-        Font font1 = new Font("Comic Sans MS", Font.PLAIN, 32);
-        moneyLabel = new JLabel("Money: "+money_System.money_cnt);
-        moneyLabel.setBackground(Color.white);
-        moneyLabel.setFont(font1);
-        CoderPanel.add(moneyLabel);
+        Font font1 = new Font("Comic Sans MS", Font.PLAIN, 22);
+        LOCLabel = new JLabel("Number of LOC: "+loc_System.loc_cnt);
+        LOCLabel.setBackground(Color.white);
+        LOCLabel.setFont(font1);
+        CoderPanel.add(LOCLabel);
 
         ImageIcon coder_image = new ImageIcon(getClass().getClassLoader().getResource("images/coder_image.png"));
 
@@ -57,7 +56,7 @@ public class SoftvoperMain
         coder.setFocusPainted(false);
         coder.setBorder(null);
         coder.setIcon(coder_image);
-        coder.addActionListener(money_System.money_hndler);
+        coder.addActionListener(loc_System.loc_hndler);
         coder.setActionCommand("computer");
         CoderPanel.add(coder);
 

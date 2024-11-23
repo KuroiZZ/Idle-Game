@@ -1,7 +1,5 @@
 package MoneySystem;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import GUI.SoftvoperMain;
@@ -29,7 +27,7 @@ public class Money
             {
                 case "computer":
                     money_cnt++;
-                    SoftvoperMain.moneyLabel.setText("Money: "+money_cnt);
+                    SoftvoperMain.LOCLabel.setText("Money: "+money_cnt);
                     break;
                 case "C Developer":
                     break;
