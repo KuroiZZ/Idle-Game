@@ -6,49 +6,56 @@ public abstract class Developers
     int NofProjectEmp; //Number of employees working on project
     int NofNonProjectEmp; //Number of employees not working on project
     int Price; //price to hire an employee
-    int MSPerLine; //Millisecond per line
+    int LinePerSecond; //Millisecond per line
 
-    public int getNofTotalEmp() {
+    public int getNofTotalEmp()
+    {
         return NofTotalEmp;
     }
 
-    public void setNofTotalEmp(int nofTotalEmp) {
+    public void setNofTotalEmp(int nofTotalEmp)
+    {
         NofTotalEmp = nofTotalEmp;
     }
 
-    public int getNofProjectEmp() {
+    public int getNofProjectEmp()
+    {
         return NofProjectEmp;
     }
 
-    public void setNofProjectEmp(int nofProjectEmp) {
+    public void setNofProjectEmp(int nofProjectEmp)
+    {
         NofProjectEmp = nofProjectEmp;
     }
 
-    public int getNofNonProjectEmp() {
+    public int getNofNonProjectEmp()
+    {
         return NofNonProjectEmp;
     }
 
-    public void setNofNonProjectEmp() {
+    public void setNofNonProjectEmp()
+    {
         NofNonProjectEmp = NofTotalEmp - NofProjectEmp;
     }
 
-    public int getPrice() {
+    public int getPrice()
+    {
         return Price;
     }
 
-    abstract public void setPrice();
+    abstract public void setPrice(int Price);
 
-    public int getMSPerLine() {
-        return MSPerLine;
+    public int getMSPerLine()
+    {
+        return LinePerSecond;
     }
 
-    abstract public void setMSPerLine();
+    abstract public void setMSPerLine(int MSPerLine);
 
     public Developers()
     {
         setNofTotalEmp(0);
         setNofProjectEmp(0);
         setNofNonProjectEmp();
-
     }
 }
