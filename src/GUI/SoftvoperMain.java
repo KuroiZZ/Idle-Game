@@ -7,8 +7,8 @@ import LOCSystem.LOC;
 
 public class SoftvoperMain
 {
-    LOC loc_System = new LOC();
-    public static JLabel LOCLabel;
+    public LOC loc_System = new LOC();
+    public JLabel LOCLabel;
 
     public void CreateUI()
     {
@@ -74,10 +74,16 @@ public class SoftvoperMain
         Beginner_C.addActionListener(loc_System.loc_hndler);
 
         JButton Beginner_CSharp = new JButton("Beginner_CSharp");
+        Beginner_CSharp.setActionCommand("Beginner_CSharp");
+        Beginner_CSharp.addActionListener(loc_System.loc_hndler);
 
         JButton Beginner_Dart = new JButton("Beginner_Dart");
+        Beginner_Dart.setActionCommand("Beginner_Dart");
+        Beginner_Dart.addActionListener(loc_System.loc_hndler);
 
         JButton Beginner_Java = new JButton("Beginner_Java");
+        Beginner_Java.setActionCommand("Beginner_Java");
+        Beginner_Java.addActionListener(loc_System.loc_hndler);
 
 
         StorePanel.add(Beginner_C);
