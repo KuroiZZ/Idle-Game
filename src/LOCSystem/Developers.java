@@ -45,12 +45,12 @@ public abstract class Developers
 
     abstract public void setPrice(int Price);
 
-    public int getMSPerLine()
+    public int getLinePerSecond()
     {
         return LinePerSecond;
     }
 
-    abstract public void setMSPerLine(int MSPerLine);
+    abstract public void setLinePerSecond(int LinePerSecond);
 
     public Developers()
     {

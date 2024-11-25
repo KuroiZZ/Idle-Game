@@ -11,7 +11,7 @@ public class Beginner extends Developers
     }
 
     @Override
-    public void setMSPerLine(int LinePerSecond)
+    public void setLinePerSecond(int LinePerSecond)
     {
         this.LinePerSecond = LinePerSecond;
     }
@@ -20,6 +20,6 @@ public class Beginner extends Developers
     {
         super();
         setPrice(5);
-        setMSPerLine(1000);
+        setLinePerSecond(1000);
     }
 }
