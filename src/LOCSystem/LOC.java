@@ -11,14 +11,10 @@ public class LOC //Line of Code
 {
     public int loc_cnt; //LOC counter
     public LOC.LOCHandler loc_hndler = new LOC.LOCHandler();
-    public Timer autoLOCIncreaser;
-    Beginner C_Beginner = new Beginner();
-
-    public static void main(String[] args)
-    {
-        new LOC(); //creates a new LOC object
-
-    }
+    public Beginner C_Beginner = new Beginner();
+    public Beginner Beginner_CSharp = new Beginner();
+    public Beginner Beginner_Dart = new Beginner();
+    public Beginner Beginner_Java = new Beginner();
 
     public LOC()//constructor
     {
@@ -35,29 +31,21 @@ public class LOC //Line of Code
             {
                 case "computer":
                     loc_cnt++;
-                    SoftvoperMain.LOCLabel.setText("Number of LOC: "+loc_cnt);
-                    break;
-                case "C Developer":
-                    setAutoLOCIncreaser(1000); //1000 millisecond = 1 second
-                    autoLOCIncreaser.start();
                     break;
                 case "C_Beginner":
-                    setAutoLOCIncreaser(C_Beginner.LinePerSecond);
-                    autoLOCIncreaser.start();
+                    C_Beginner.NofTotalEmp++;
+                    break;
+                case "Beginner_CSharp":
+                    Beginner_CSharp.NofTotalEmp++;
+                    break;
+                case "Beginner_Dart":
+                    Beginner_Dart.NofTotalEmp++;
+                    break;
+                case "Beginner_Java":
+                    Beginner_Java.NofTotalEmp++;
+                    break;
+
             }
         }
-    }
-
-    public void setAutoLOCIncreaser(int LinePerSecond)//LOC is increased by 1 every "delayMS" millisecond
-    {
-        autoLOCIncreaser = new Timer(1000, new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                loc_cnt += LinePerSecond;
-                SoftvoperMain.LOCLabel.setText("Number of LOC: "+loc_cnt);
-            }
-        });
     }
 }
