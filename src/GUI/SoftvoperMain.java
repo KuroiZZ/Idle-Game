@@ -39,7 +39,7 @@ public class SoftvoperMain
     public JPanel CreateCoderPanel()
     {
         JPanel CoderPanel = new JPanel();
-        CoderPanel.setPreferredSize(new Dimension(200, 1080));
+        CoderPanel.setPreferredSize(new Dimension(400, 1080));
         CoderPanel.setBackground(Color.green);
 
 
@@ -66,10 +66,27 @@ public class SoftvoperMain
     public JPanel CreateStorePanel()
     {
         JPanel StorePanel = new JPanel();
-
         StorePanel.setPreferredSize(new Dimension(200, 1080));
-
         StorePanel.setBackground(Color.blue);
+
+        JButton Beginner_C = new JButton("Beginner_C");
+        Beginner_C.setActionCommand("C_Beginner");
+        Beginner_C.addActionListener(loc_System.loc_hndler);
+
+        JButton Beginner_CSharp = new JButton("Beginner_CSharp");
+
+        JButton Beginner_Dart = new JButton("Beginner_Dart");
+
+        JButton Beginner_Java = new JButton("Beginner_Java");
+
+
+        StorePanel.add(Beginner_C);
+        StorePanel.add(Beginner_CSharp);
+        StorePanel.add(Beginner_Dart);
+        StorePanel.add(Beginner_Java);
+
+
+
 
         return StorePanel;
     }
