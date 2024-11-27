@@ -2,11 +2,12 @@ package LOCSystem;
 
 public abstract class Developers
 {
-    int NofTotalEmp; //Number of total employees
-    int NofProjectEmp; //Number of employees working on project
-    int NofNonProjectEmp; //Number of employees not working on project
+    int NofTotalEmp; //Number of total employees (NTE)
+    int NofProjectEmp; //Number of employees working on project (NPE)
+    int NofNonProjectEmp; //Number of employees not working on project (NNPE)
     int Price; //price to hire an employee
-    int LinePerSecond; //Millisecond per line
+    int LinePerSecond; //line per second (LPS)
+    int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
 
     public int getNofTotalEmp()
     {
@@ -51,6 +52,31 @@ public abstract class Developers
     }
 
     abstract public void setLinePerSecond(int LinePerSecond);
+
+    public int getNofTotalLOC()
+    {
+        return NofTotalLOC;
+    }
+
+    abstract public void setNofTotalLOC();
+
+    public void setNTEandNNPEandNTL(int nofTotalEmp)
+    {
+        this.NofTotalEmp = nofTotalEmp;
+        setNNPEandNTL();
+    }
+
+    public void setNPEandNNPEandNTL(int nofProjectEmp)
+    {
+        this.NofProjectEmp = nofProjectEmp;
+        setNNPEandNTL();
+    }
+
+    public void setNNPEandNTL()
+    {
+        this.NofNonProjectEmp = this.NofTotalEmp - this.NofProjectEmp;
+        setNofTotalLOC();
+    }
 
     public Developers()
     {

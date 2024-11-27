@@ -16,6 +16,12 @@ public class Beginner extends Developers
         this.LinePerSecond = LinePerSecond;
     }
 
+    @Override
+    public void setNofTotalLOC()
+    {
+        this.NofTotalLOC = this.LinePerSecond * this.NofNonProjectEmp;
+    }
+
     public Beginner()
     {
         super();

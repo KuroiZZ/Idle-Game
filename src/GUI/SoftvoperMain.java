@@ -8,7 +8,7 @@ import LOCSystem.LOC;
 public class SoftvoperMain
 {
     public LOC loc_System = new LOC();
-    public JLabel LOCLabel;
+    public static JLabel LOCLabel;
 
     public void CreateUI()
     {
