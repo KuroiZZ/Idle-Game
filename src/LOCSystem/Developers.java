@@ -44,21 +44,30 @@ public abstract class Developers
         return Price;
     }
 
-    abstract public void setPrice(int Price);
+    public void setPrice(int price)
+    {
+        Price = price;
+    }
 
     public int getLinePerSecond()
     {
         return LinePerSecond;
     }
 
-    abstract public void setLinePerSecond(int LinePerSecond);
+     public void setLinePerSecond(int linePerSecond)
+     {
+         LinePerSecond = linePerSecond;
+     }
 
     public int getNofTotalLOC()
     {
         return NofTotalLOC;
     }
 
-    abstract public void setNofTotalLOC();
+    public void setNofTotalLOC()
+    {
+        this.NofTotalLOC = this.LinePerSecond * this.NofNonProjectEmp;
+    }
 
     public void setNTEandNNPEandNTL(int nofTotalEmp)
     {
