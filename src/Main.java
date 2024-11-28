@@ -1,4 +1,5 @@
 import GUI.SoftvoperMain;
+import LOCSystem.LOC;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,6 @@ public class Main {
         SoftvoperMain UI = new SoftvoperMain();
         UI.CreateUI();
 
-        UI.loc_System.UpdateLOC();
-
+        LOC.UpdateLOC();
     }
 }

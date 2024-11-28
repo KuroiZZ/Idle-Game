@@ -7,7 +7,7 @@ import LOCSystem.LOC;
 
 public class SoftvoperMain
 {
-    public LOC loc_System = new LOC();
+    //public LOC loc_System = new LOC();
     public static JLabel LOCLabel;
 
     public void CreateUI()
@@ -44,7 +44,7 @@ public class SoftvoperMain
 
 
         Font font1 = new Font("Comic Sans MS", Font.PLAIN, 22);
-        LOCLabel = new JLabel("Number of LOC: "+loc_System.loc_cnt);
+        LOCLabel = new JLabel("Number of LOC: "+LOC.loc_cnt);
         LOCLabel.setBackground(Color.white);
         LOCLabel.setFont(font1);
         CoderPanel.add(LOCLabel);
@@ -56,7 +56,7 @@ public class SoftvoperMain
         coder.setFocusPainted(false);
         coder.setBorder(null);
         coder.setIcon(coder_image);
-        coder.addActionListener(loc_System.loc_hndler);
+        coder.addActionListener(LOC.loc_hndler);
         coder.setActionCommand("computer");
         CoderPanel.add(coder);
 
@@ -71,19 +71,19 @@ public class SoftvoperMain
 
         JButton Beginner_C = new JButton("Beginner_C");
         Beginner_C.setActionCommand("C_Beginner");
-        Beginner_C.addActionListener(loc_System.loc_hndler);
+        Beginner_C.addActionListener(LOC.loc_hndler);
 
         JButton Beginner_CSharp = new JButton("Beginner_CSharp");
         Beginner_CSharp.setActionCommand("Beginner_CSharp");
-        Beginner_CSharp.addActionListener(loc_System.loc_hndler);
+        Beginner_CSharp.addActionListener(LOC.loc_hndler);
 
         JButton Beginner_Dart = new JButton("Beginner_Dart");
         Beginner_Dart.setActionCommand("Beginner_Dart");
-        Beginner_Dart.addActionListener(loc_System.loc_hndler);
+        Beginner_Dart.addActionListener(LOC.loc_hndler);
 
         JButton Beginner_Java = new JButton("Beginner_Java");
         Beginner_Java.setActionCommand("Beginner_Java");
-        Beginner_Java.addActionListener(loc_System.loc_hndler);
+        Beginner_Java.addActionListener(LOC.loc_hndler);
 
 
         StorePanel.add(Beginner_C);

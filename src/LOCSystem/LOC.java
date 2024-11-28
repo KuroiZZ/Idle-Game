@@ -9,13 +9,13 @@ import javax.swing.*;
 
 public class LOC //Line of Code
 {
-    public int loc_cnt; //LOC counter
-    public LOC.LOCHandler loc_hndler = new LOC.LOCHandler();
-    public Beginner C_Beginner;
-    public Beginner Beginner_CSharp;
-    public Beginner Beginner_Dart;
-    public Beginner Beginner_Java;
-
+    static public int loc_cnt = 0; //LOC counter
+    static public LOC.LOCHandler loc_hndler = new LOC.LOCHandler();
+    static public Beginner C_Beginner= new Beginner();
+    static public Beginner Beginner_CSharp = new Beginner();
+    static public Beginner Beginner_Dart = new Beginner();
+    static public Beginner Beginner_Java = new Beginner();
+    /*
     public LOC()//constructor
     {
         loc_cnt = 0;
@@ -23,9 +23,9 @@ public class LOC //Line of Code
         Beginner_CSharp = new Beginner();
         Beginner_Dart = new Beginner();
         Beginner_Java = new Beginner();
-    }
+    }*/
 
-    public class LOCHandler implements ActionListener //handles events of LOC objects
+    public static class LOCHandler implements ActionListener //handles events of LOC objects
     {
         public void actionPerformed(ActionEvent event)
         {
@@ -52,7 +52,7 @@ public class LOC //Line of Code
             }
         }
     }
-    public void UpdateLOC()
+    public static void UpdateLOC()
     {
         Timer timer = new Timer(1000, new ActionListener()
         {
