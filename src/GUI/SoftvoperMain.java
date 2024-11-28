@@ -69,6 +69,18 @@ public class SoftvoperMain
         StorePanel.setPreferredSize(new Dimension(200, 1080));
         StorePanel.setBackground(Color.blue);
 
+        JButton amount_1 = new JButton("1");
+        amount_1.setActionCommand("1");
+        amount_1.addActionListener(LOC.buyamount_hndler);
+
+        JButton amount_10 = new JButton("10");
+        amount_10.setActionCommand("10");
+        amount_10.addActionListener(LOC.buyamount_hndler);
+
+        JButton amount_100 = new JButton("100");
+        amount_100.setActionCommand("100");
+        amount_100.addActionListener(LOC.buyamount_hndler);
+
         JButton Beginner_C = new JButton("Beginner_C");
         Beginner_C.setActionCommand("C_Beginner");
         Beginner_C.addActionListener(LOC.loc_hndler);
@@ -85,14 +97,14 @@ public class SoftvoperMain
         Beginner_Java.setActionCommand("Beginner_Java");
         Beginner_Java.addActionListener(LOC.loc_hndler);
 
+        StorePanel.add(amount_1);
+        StorePanel.add(amount_10);
+        StorePanel.add(amount_100);
 
         StorePanel.add(Beginner_C);
         StorePanel.add(Beginner_CSharp);
         StorePanel.add(Beginner_Dart);
         StorePanel.add(Beginner_Java);
-
-
-
 
         return StorePanel;
     }
