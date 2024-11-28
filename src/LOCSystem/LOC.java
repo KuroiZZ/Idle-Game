@@ -11,10 +11,20 @@ public class LOC //Line of Code
 {
     static public int loc_cnt = 0; //LOC counter
     static public LOC.LOCHandler loc_hndler = new LOC.LOCHandler();
-    static public Beginner C_Beginner= new Beginner();
+    static public Beginner Beginner_C= new Beginner();
     static public Beginner Beginner_CSharp = new Beginner();
     static public Beginner Beginner_Dart = new Beginner();
     static public Beginner Beginner_Java = new Beginner();
+
+    static public Intermediate Intermediate_C= new Intermediate();
+    static public Intermediate Intermediate_CSharp = new Intermediate();
+    static public Intermediate Intermediate_Dart = new Intermediate();
+    static public Intermediate Intermediate_Java = new Intermediate();
+
+    static public Advanced Advanced_C= new Advanced();
+    static public Advanced Advanced_CSharp = new Advanced();
+    static public Advanced Advanced_Dart = new Advanced();
+    static public Advanced Advanced_Java = new Advanced();
     /*
     public LOC()//constructor
     {
@@ -36,8 +46,8 @@ public class LOC //Line of Code
                 case "computer":
                     loc_cnt++;
                     break;
-                case "C_Beginner":
-                    C_Beginner.setNTEandNNPEandNTL(C_Beginner.getNofTotalEmp()+1);
+                case "Beginner_C":
+                    Beginner_C.setNTEandNNPEandNTL(Beginner_C.getNofTotalEmp()+1);
                     break;
                 case "Beginner_CSharp":
                     Beginner_CSharp.setNTEandNNPEandNTL(Beginner_CSharp.getNofTotalEmp()+1);
@@ -47,6 +57,30 @@ public class LOC //Line of Code
                     break;
                 case "Beginner_Java":
                     Beginner_Java.setNTEandNNPEandNTL(Beginner_Java.getNofTotalEmp()+1);
+                    break;
+                case "Intermediate_C":
+                    Intermediate_C.setNTEandNNPEandNTL(Intermediate_C.getNofTotalEmp()+1);
+                    break;
+                case "Intermediate_CSharp":
+                    Intermediate_CSharp.setNTEandNNPEandNTL(Intermediate_CSharp.getNofTotalEmp()+1);
+                    break;
+                case "Intermediate_Dart":
+                    Intermediate_Dart.setNTEandNNPEandNTL(Intermediate_Dart.getNofTotalEmp()+1);
+                    break;
+                case "Intermediate_Java":
+                    Intermediate_Java.setNTEandNNPEandNTL(Intermediate_Java.getNofTotalEmp()+1);
+                    break;
+                case "Advanced_C":
+                    Advanced_C.setNTEandNNPEandNTL(Advanced_C.getNofTotalEmp()+1);
+                    break;
+                case "Advanced_CSharp":
+                    Advanced_CSharp.setNTEandNNPEandNTL(Advanced_CSharp.getNofTotalEmp()+1);
+                    break;
+                case "Advanced_Dart":
+                    Advanced_Dart.setNTEandNNPEandNTL(Advanced_Dart.getNofTotalEmp()+1);
+                    break;
+                case "Advanced_Java":
+                    Advanced_Java.setNTEandNNPEandNTL(Advanced_Java.getNofTotalEmp()+1);
                     break;
 
             }
@@ -59,8 +93,12 @@ public class LOC //Line of Code
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                loc_cnt += C_Beginner.getNofTotalLOC() + Beginner_CSharp.getNofTotalLOC();
+                loc_cnt += Beginner_C.getNofTotalLOC() + Beginner_CSharp.getNofTotalLOC();
                 loc_cnt += Beginner_Dart.getNofTotalLOC() + Beginner_Java.getNofTotalLOC();
+                loc_cnt += Intermediate_C.getNofTotalLOC() + Intermediate_CSharp.getNofTotalLOC();
+                loc_cnt += Intermediate_Dart.getNofTotalLOC() + Intermediate_Java.getNofTotalLOC();
+                loc_cnt += Advanced_C.getNofTotalLOC() + Advanced_CSharp.getNofTotalLOC();
+                loc_cnt += Advanced_Dart.getNofTotalLOC() + Advanced_Java.getNofTotalLOC();
 
                 SoftvoperMain.LOCLabel.setText("Number of LOC: "+ loc_cnt);
             }

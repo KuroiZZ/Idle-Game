@@ -70,7 +70,7 @@ public class SoftvoperMain
         StorePanel.setBackground(Color.blue);
 
         JButton Beginner_C = new JButton("Beginner_C");
-        Beginner_C.setActionCommand("C_Beginner");
+        Beginner_C.setActionCommand("Beginner_C");
         Beginner_C.addActionListener(LOC.loc_hndler);
 
         JButton Beginner_CSharp = new JButton("Beginner_CSharp");
@@ -86,13 +86,53 @@ public class SoftvoperMain
         Beginner_Java.addActionListener(LOC.loc_hndler);
 
 
+        JButton Intermediate_C = new JButton("Intermediate_C");
+        Intermediate_C.setActionCommand("Intermediate_C");
+        Intermediate_C.addActionListener(LOC.loc_hndler);
+
+        JButton Intermediate_CSharp = new JButton("Intermediate_CSharp");
+        Intermediate_CSharp.setActionCommand("Intermediate_CSharp");
+        Intermediate_CSharp.addActionListener(LOC.loc_hndler);
+
+        JButton Intermediate_Dart = new JButton("Intermediate_Dart");
+        Intermediate_Dart.setActionCommand("Intermediate_Dart");
+        Intermediate_Dart.addActionListener(LOC.loc_hndler);
+
+        JButton Intermediate_Java = new JButton("Intermediate_Java");
+        Intermediate_Java.setActionCommand("Intermediate_Java");
+        Intermediate_Java.addActionListener(LOC.loc_hndler);
+
+
+
+        JButton Advanced_C = new JButton("Advanced_C");
+        Advanced_C.setActionCommand("Advanced_C");
+        Advanced_C.addActionListener(LOC.loc_hndler);
+
+        JButton Advanced_CSharp = new JButton("Advanced_CSharp");
+        Advanced_CSharp.setActionCommand("Advanced_CSharp");
+        Advanced_CSharp.addActionListener(LOC.loc_hndler);
+
+        JButton Advanced_Dart = new JButton("Advanced_Dart");
+        Advanced_Dart.setActionCommand("Advanced_Dart");
+        Advanced_Dart.addActionListener(LOC.loc_hndler);
+
+        JButton Advanced_Java = new JButton("Advanced_Java");
+        Advanced_Java.setActionCommand("Advanced_Java");
+        Advanced_Java.addActionListener(LOC.loc_hndler);
+
+
         StorePanel.add(Beginner_C);
         StorePanel.add(Beginner_CSharp);
         StorePanel.add(Beginner_Dart);
         StorePanel.add(Beginner_Java);
-
-
-
+        StorePanel.add(Intermediate_C);
+        StorePanel.add(Intermediate_CSharp);
+        StorePanel.add(Intermediate_Dart);
+        StorePanel.add(Intermediate_Java);
+        StorePanel.add(Advanced_C);
+        StorePanel.add(Advanced_CSharp);
+        StorePanel.add(Advanced_Dart);
+        StorePanel.add(Advanced_Java);
 
         return StorePanel;
     }
