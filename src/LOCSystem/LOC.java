@@ -9,6 +9,8 @@ import javax.swing.*;
 
 public class LOC //Line of Code
 {
+    static private int buy_amount = 1;
+    static public LOC.BuyAmountHandler buyamount_hndler = new LOC.BuyAmountHandler();
     static public int loc_cnt = 0; //LOC counter
     static public LOC.LOCHandler loc_hndler = new LOC.LOCHandler();
     static public Beginner Beginner_C= new Beginner();
@@ -86,6 +88,27 @@ public class LOC //Line of Code
             }
         }
     }
+
+    public static class BuyAmountHandler implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+            String action = event.getActionCommand();
+
+            switch (action)
+            {
+                case "1":
+                    buy_amount = 1;
+                    break;
+                case "10":
+                    buy_amount = 10;
+                    break;
+                case "100":
+                    buy_amount = 100;
+                    break;
+            }
+        }
     public static void UpdateLOC()
     {
         Timer timer = new Timer(1000, new ActionListener()
