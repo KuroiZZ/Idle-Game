@@ -97,9 +97,7 @@ public class SoftvoperMain
         Beginner_Java.setActionCommand("Beginner_Java");
         Beginner_Java.addActionListener(LOC.loc_hndler);
 
-        StorePanel.add(amount_1);
-        StorePanel.add(amount_10);
-        StorePanel.add(amount_100);
+
 
         JButton Intermediate_C = new JButton("Intermediate_C");
         Intermediate_C.setActionCommand("Intermediate_C");
@@ -117,8 +115,6 @@ public class SoftvoperMain
         Intermediate_Java.setActionCommand("Intermediate_Java");
         Intermediate_Java.addActionListener(LOC.loc_hndler);
 
-
-
         JButton Advanced_C = new JButton("Advanced_C");
         Advanced_C.setActionCommand("Advanced_C");
         Advanced_C.addActionListener(LOC.loc_hndler);
@@ -135,7 +131,9 @@ public class SoftvoperMain
         Advanced_Java.setActionCommand("Advanced_Java");
         Advanced_Java.addActionListener(LOC.loc_hndler);
 
-
+        StorePanel.add(amount_1);
+        StorePanel.add(amount_10);
+        StorePanel.add(amount_100);
         StorePanel.add(Beginner_C);
         StorePanel.add(Beginner_CSharp);
         StorePanel.add(Beginner_Dart);
@@ -148,6 +146,7 @@ public class SoftvoperMain
         StorePanel.add(Advanced_CSharp);
         StorePanel.add(Advanced_Dart);
         StorePanel.add(Advanced_Java);
+
 
         return StorePanel;
     }

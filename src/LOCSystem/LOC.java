@@ -49,55 +49,52 @@ public class LOC //Line of Code
                     loc_cnt++;
                     break;
                 case "Beginner_C":
-                    Beginner_C.setNTEandNNPEandNTL(Beginner_C.getNofTotalEmp()+1);
+                    Beginner_C.setNTEandNNPEandNTL(Beginner_C.getNofTotalEmp()+buy_amount);
                     break;
                 case "Beginner_CSharp":
-                    Beginner_CSharp.setNTEandNNPEandNTL(Beginner_CSharp.getNofTotalEmp()+1);
+                    Beginner_CSharp.setNTEandNNPEandNTL(Beginner_CSharp.getNofTotalEmp()+buy_amount);
                     break;
                 case "Beginner_Dart":
-                    Beginner_Dart.setNTEandNNPEandNTL(Beginner_Dart.getNofTotalEmp()+1);
+                    Beginner_Dart.setNTEandNNPEandNTL(Beginner_Dart.getNofTotalEmp()+buy_amount);
                     break;
                 case "Beginner_Java":
-                    Beginner_Java.setNTEandNNPEandNTL(Beginner_Java.getNofTotalEmp()+1);
+                    Beginner_Java.setNTEandNNPEandNTL(Beginner_Java.getNofTotalEmp()+buy_amount);
                     break;
                 case "Intermediate_C":
-                    Intermediate_C.setNTEandNNPEandNTL(Intermediate_C.getNofTotalEmp()+1);
+                    Intermediate_C.setNTEandNNPEandNTL(Intermediate_C.getNofTotalEmp()+buy_amount);
                     break;
                 case "Intermediate_CSharp":
-                    Intermediate_CSharp.setNTEandNNPEandNTL(Intermediate_CSharp.getNofTotalEmp()+1);
+                    Intermediate_CSharp.setNTEandNNPEandNTL(Intermediate_CSharp.getNofTotalEmp()+buy_amount);
                     break;
                 case "Intermediate_Dart":
-                    Intermediate_Dart.setNTEandNNPEandNTL(Intermediate_Dart.getNofTotalEmp()+1);
+                    Intermediate_Dart.setNTEandNNPEandNTL(Intermediate_Dart.getNofTotalEmp()+buy_amount);
                     break;
                 case "Intermediate_Java":
-                    Intermediate_Java.setNTEandNNPEandNTL(Intermediate_Java.getNofTotalEmp()+1);
+                    Intermediate_Java.setNTEandNNPEandNTL(Intermediate_Java.getNofTotalEmp()+buy_amount);
                     break;
                 case "Advanced_C":
-                    Advanced_C.setNTEandNNPEandNTL(Advanced_C.getNofTotalEmp()+1);
+                    Advanced_C.setNTEandNNPEandNTL(Advanced_C.getNofTotalEmp()+buy_amount);
                     break;
                 case "Advanced_CSharp":
-                    Advanced_CSharp.setNTEandNNPEandNTL(Advanced_CSharp.getNofTotalEmp()+1);
+                    Advanced_CSharp.setNTEandNNPEandNTL(Advanced_CSharp.getNofTotalEmp()+buy_amount);
                     break;
                 case "Advanced_Dart":
-                    Advanced_Dart.setNTEandNNPEandNTL(Advanced_Dart.getNofTotalEmp()+1);
+                    Advanced_Dart.setNTEandNNPEandNTL(Advanced_Dart.getNofTotalEmp()+buy_amount);
                     break;
                 case "Advanced_Java":
-                    Advanced_Java.setNTEandNNPEandNTL(Advanced_Java.getNofTotalEmp()+1);
+                    Advanced_Java.setNTEandNNPEandNTL(Advanced_Java.getNofTotalEmp()+buy_amount);
                     break;
 
             }
         }
     }
 
-    public static class BuyAmountHandler implements ActionListener
-    {
+    public static class BuyAmountHandler implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent event)
-        {
+        public void actionPerformed(ActionEvent event) {
             String action = event.getActionCommand();
 
-            switch (action)
-            {
+            switch (action) {
                 case "1":
                     buy_amount = 1;
                     break;
@@ -109,6 +106,7 @@ public class LOC //Line of Code
                     break;
             }
         }
+    }
     public static void UpdateLOC()
     {
         Timer timer = new Timer(1000, new ActionListener()
