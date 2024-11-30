@@ -71,7 +71,7 @@ public class SCoin
                     SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Beginner_C_Project":
-                    LOC.Beginner_C.setNPEandNNPEandNTL(Beginner_C_Project.getNecessaryDeveloperCount());
+                    LOC.Beginner_C.setNPEandNNPEandNTL(Beginner_C_Project.getNecessaryDeveloperCount() + LOC.Beginner_C.getNofProjectEmp());
                     LOC.loc_cnt -= Beginner_C_Project.getNecessaryLOC();
                     SoftvoperMain.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
                     Timer timer = new Timer();
