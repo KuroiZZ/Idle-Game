@@ -167,6 +167,10 @@ public class SoftvoperMain
         Temporary_Money.setActionCommand("Temporary_Money");
         Temporary_Money.addActionListener(SCoin.SCoin_hndler);
 
+        DeveloperButton deneme = new DeveloperButton("50","Deneme","100","images/SCoin.png");
+
+
+        StorePanel.add(deneme);
         StorePanel.add(goToAppPanel);
         StorePanel.add(amount_1);
         StorePanel.add(amount_10);
