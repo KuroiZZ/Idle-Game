@@ -4,12 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import GUI.SoftvoperMain;
+import SCoinSystem.SCoin;
 
 import javax.swing.*;
 
 public class LOC //Line of Code
 {
-    static private int buy_amount = 1;
+    static public int buy_amount = 1;
     static public LOC.BuyAmountHandler buyamount_hndler = new LOC.BuyAmountHandler();
     static public int loc_cnt = 0; //LOC counter
     static public LOC.LOCHandler loc_hndler = new LOC.LOCHandler();

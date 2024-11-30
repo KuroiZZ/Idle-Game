@@ -2,13 +2,17 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import LOCSystem.LOC;
+import SCoinSystem.SCoin;
 
 public class SoftvoperMain
 {
     //public LOC loc_System = new LOC();
     public static JLabel LOCLabel;
+    public static JLabel SCoinLabel;
 
     public void CreateUI()
     {
@@ -44,10 +48,16 @@ public class SoftvoperMain
 
 
         Font font1 = new Font("Comic Sans MS", Font.PLAIN, 22);
+
         LOCLabel = new JLabel("Number of LOC: "+LOC.loc_cnt);
         LOCLabel.setBackground(Color.white);
         LOCLabel.setFont(font1);
         CoderPanel.add(LOCLabel);
+
+        SCoinLabel = new JLabel("Number of Coin: "+SCoin.SCoin_count);
+        SCoinLabel.setBackground(Color.white);
+        SCoinLabel.setFont(font1);
+        CoderPanel.add(SCoinLabel);
 
         ImageIcon coder_image = new ImageIcon(getClass().getClassLoader().getResource("images/coder_image.png"));
 
@@ -84,52 +94,66 @@ public class SoftvoperMain
         JButton Beginner_C = new JButton("Beginner_C");
         Beginner_C.setActionCommand("Beginner_C");
         Beginner_C.addActionListener(LOC.loc_hndler);
+        Beginner_C.addActionListener(SCoin.SCoin_hndler);
 
         JButton Beginner_CSharp = new JButton("Beginner_CSharp");
         Beginner_CSharp.setActionCommand("Beginner_CSharp");
         Beginner_CSharp.addActionListener(LOC.loc_hndler);
+        Beginner_CSharp.addActionListener(SCoin.SCoin_hndler);
 
         JButton Beginner_Dart = new JButton("Beginner_Dart");
         Beginner_Dart.setActionCommand("Beginner_Dart");
         Beginner_Dart.addActionListener(LOC.loc_hndler);
+        Beginner_Dart.addActionListener(SCoin.SCoin_hndler);
 
         JButton Beginner_Java = new JButton("Beginner_Java");
         Beginner_Java.setActionCommand("Beginner_Java");
         Beginner_Java.addActionListener(LOC.loc_hndler);
-
-
+        Beginner_Java.addActionListener(SCoin.SCoin_hndler);
 
         JButton Intermediate_C = new JButton("Intermediate_C");
         Intermediate_C.setActionCommand("Intermediate_C");
         Intermediate_C.addActionListener(LOC.loc_hndler);
+        Intermediate_C.addActionListener(SCoin.SCoin_hndler);
 
         JButton Intermediate_CSharp = new JButton("Intermediate_CSharp");
         Intermediate_CSharp.setActionCommand("Intermediate_CSharp");
         Intermediate_CSharp.addActionListener(LOC.loc_hndler);
+        Intermediate_CSharp.addActionListener(SCoin.SCoin_hndler);
 
         JButton Intermediate_Dart = new JButton("Intermediate_Dart");
         Intermediate_Dart.setActionCommand("Intermediate_Dart");
         Intermediate_Dart.addActionListener(LOC.loc_hndler);
+        Intermediate_Dart.addActionListener(SCoin.SCoin_hndler);
 
         JButton Intermediate_Java = new JButton("Intermediate_Java");
         Intermediate_Java.setActionCommand("Intermediate_Java");
         Intermediate_Java.addActionListener(LOC.loc_hndler);
+        Intermediate_Java.addActionListener(SCoin.SCoin_hndler);
 
         JButton Advanced_C = new JButton("Advanced_C");
         Advanced_C.setActionCommand("Advanced_C");
         Advanced_C.addActionListener(LOC.loc_hndler);
+        Advanced_C.addActionListener(SCoin.SCoin_hndler);
 
         JButton Advanced_CSharp = new JButton("Advanced_CSharp");
         Advanced_CSharp.setActionCommand("Advanced_CSharp");
         Advanced_CSharp.addActionListener(LOC.loc_hndler);
+        Advanced_CSharp.addActionListener(SCoin.SCoin_hndler);
 
         JButton Advanced_Dart = new JButton("Advanced_Dart");
         Advanced_Dart.setActionCommand("Advanced_Dart");
         Advanced_Dart.addActionListener(LOC.loc_hndler);
+        Advanced_Dart.addActionListener(SCoin.SCoin_hndler);
 
         JButton Advanced_Java = new JButton("Advanced_Java");
         Advanced_Java.setActionCommand("Advanced_Java");
         Advanced_Java.addActionListener(LOC.loc_hndler);
+        Advanced_Java.addActionListener(SCoin.SCoin_hndler);
+
+        JButton Temporary_Money = new JButton("Temporary_Money");
+        Temporary_Money.setActionCommand("Temporary_Money");
+        Temporary_Money.addActionListener(SCoin.SCoin_hndler);
 
         StorePanel.add(amount_1);
         StorePanel.add(amount_10);
@@ -147,6 +171,43 @@ public class SoftvoperMain
         StorePanel.add(Advanced_Dart);
         StorePanel.add(Advanced_Java);
 
+        StorePanel.add(Temporary_Money);
+
+
+        Timer timer = new Timer(100, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                boolean Beginner_CB = (LOC.Beginner_C.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Beginner_CSharpB = (LOC.Beginner_CSharp.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Beginner_DartB = (LOC.Beginner_Dart.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Beginner_JavaB = (LOC.Beginner_Java.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Intermediate_CB = (LOC.Intermediate_C.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Intermediate_CSharpB = (LOC.Intermediate_CSharp.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Intermediate_DartB = (LOC.Intermediate_Dart.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Intermediate_JavaB = (LOC.Intermediate_Java.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Advanced_CB = (LOC.Advanced_C.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Advanced_CSharpB = (LOC.Advanced_CSharp.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Advanced_DartB = (LOC.Advanced_Dart.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+                boolean Advanced_JavaB = (LOC.Advanced_Java.getPrice()*LOC.buy_amount <= SCoin.SCoin_count) ? true :  false;
+
+                Beginner_C.setEnabled(Beginner_CB);
+                Beginner_CSharp.setEnabled(Beginner_CSharpB);
+                Beginner_Dart.setEnabled(Beginner_DartB);
+                Beginner_Java.setEnabled(Beginner_JavaB);
+                Intermediate_C.setEnabled(Intermediate_CB);
+                Intermediate_CSharp.setEnabled(Intermediate_CSharpB);
+                Intermediate_Dart.setEnabled(Intermediate_DartB);
+                Intermediate_Java.setEnabled(Intermediate_JavaB);
+                Advanced_C.setEnabled(Advanced_CB);
+                Advanced_CSharp.setEnabled(Advanced_CSharpB);
+                Advanced_Dart.setEnabled(Advanced_DartB);
+                Advanced_Java.setEnabled(Advanced_JavaB);
+
+            }
+        });
+        timer.start();
 
         return StorePanel;
     }
