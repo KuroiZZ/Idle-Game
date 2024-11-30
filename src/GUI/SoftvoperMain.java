@@ -13,16 +13,24 @@ public class SoftvoperMain
     //public LOC loc_System = new LOC();
     public static JLabel LOCLabel;
     public static JLabel SCoinLabel;
+    private static JFrame window;
+    private static JPanel CoderPanel;
+    private static JPanel StorePanel;
+    private static JPanel AppPanel;
+    private static GUIHandler GUI_hndler = new GUIHandler();
+
 
     public void CreateUI()
     {
-        JFrame window = CreateMainScreen();
+        window = CreateMainScreen();
 
-        JPanel CoderPanel = CreateCoderPanel();
+        CoderPanel = CreateCoderPanel();
         window.add(CoderPanel, BorderLayout.WEST);
 
-        JPanel StorePanel = CreateStorePanel();
+        StorePanel = CreateStorePanel();
         window.add(StorePanel, BorderLayout.EAST);
+
+        AppPanel = CreateAppPanel();
 
         window.setVisible(true);
     }
@@ -78,6 +86,10 @@ public class SoftvoperMain
         JPanel StorePanel = new JPanel();
         StorePanel.setPreferredSize(new Dimension(200, 1080));
         StorePanel.setBackground(Color.blue);
+
+        JButton goToAppPanel = new JButton("App Store");
+        goToAppPanel.setActionCommand("goToApp");
+        goToAppPanel.addActionListener(GUI_hndler);
 
         JButton amount_1 = new JButton("1");
         amount_1.setActionCommand("1");
@@ -155,6 +167,7 @@ public class SoftvoperMain
         Temporary_Money.setActionCommand("Temporary_Money");
         Temporary_Money.addActionListener(SCoin.SCoin_hndler);
 
+        StorePanel.add(goToAppPanel);
         StorePanel.add(amount_1);
         StorePanel.add(amount_10);
         StorePanel.add(amount_100);
@@ -210,5 +223,43 @@ public class SoftvoperMain
         timer.start();
 
         return StorePanel;
+    }
+
+    public JPanel CreateAppPanel()
+    {
+        JPanel AppPanel = new JPanel();
+        AppPanel.setPreferredSize(new Dimension(200, 1080));
+        AppPanel.setBackground(Color.blue);
+
+        JButton goToStorePanel = new JButton("Store");
+        goToStorePanel.setActionCommand("goToStore");
+        goToStorePanel.addActionListener(GUI_hndler);
+
+        AppPanel.add(goToStorePanel);
+
+        return AppPanel;
+    }
+
+    public static class GUIHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent event)
+        {
+            String action = event.getActionCommand();
+            switch (action)
+            {
+                case "goToApp":
+                    window.remove(StorePanel);
+                    window.add(AppPanel, BorderLayout.EAST);
+                    window.revalidate();
+                    window.repaint();
+                    break;
+                case "goToStore":
+                    window.remove(AppPanel);
+                    window.add(StorePanel, BorderLayout.EAST);
+                    window.revalidate();
+                    window.repaint();
+                    break;
+            }
+        }
     }
 }
