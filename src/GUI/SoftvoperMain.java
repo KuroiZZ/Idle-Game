@@ -252,7 +252,28 @@ public class SoftvoperMain
         goToStorePanel.setActionCommand("goToStore");
         goToStorePanel.addActionListener(GUI_hndler);
 
+        JButton Beginner_C_Project = new JButton("Beginner_C_Project");
+        Beginner_C_Project.setActionCommand("Beginner_C_Project");
+        Beginner_C_Project.addActionListener(SCoin.SCoin_hndler);
+
         AppPanel.add(goToStorePanel);
+        AppPanel.add(Beginner_C_Project);
+
+        Timer timer = new Timer(100, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                boolean Beginner_C_ProjectB = SCoin.Beginner_C_Project.getNecessaryLOC() <= LOC.loc_cnt &&
+                        SCoin.Beginner_C_Project.getNecessaryDeveloperCount() <= LOC.Beginner_C.getNofNonProjectEmp();
+
+
+                Beginner_C_Project.setEnabled(Beginner_C_ProjectB);
+
+            }
+        });
+        timer.start();
 
         return AppPanel;
     }
