@@ -1,5 +1,6 @@
 package SCoinSystem;
 
+import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
 import LOCSystem.LOC;
 
@@ -24,63 +25,67 @@ public class SCoin
             {
                 case "Beginner_C":
                     SCoin_count -= LOC.Beginner_C.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Beginner_CSharp":
                     SCoin_count -= LOC.Beginner_CSharp.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Beginner_Dart":
                     SCoin_count -= LOC.Beginner_Dart.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Beginner_Java":
                     SCoin_count -= LOC.Beginner_Java.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Intermediate_C":
                     SCoin_count -= LOC.Intermediate_C.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Intermediate_CSharp":
                     SCoin_count -= LOC.Intermediate_CSharp.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Intermediate_Dart":
                     SCoin_count -= LOC.Intermediate_Dart.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    break;
+                case "Intermediate_Java":
+                    SCoin_count -= LOC.Intermediate_Java.getPrice()*LOC.buy_amount;
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Advanced_C":
                     SCoin_count -= LOC.Advanced_C.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Advanced_CSharp":
                     SCoin_count -= LOC.Advanced_CSharp.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Advanced_Dart":
                     SCoin_count -= LOC.Advanced_Dart.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Advanced_Java":
                     SCoin_count -= LOC.Advanced_Java.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Temporary_Money":
                     SCoin_count += 10;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Beginner_C_Project":
                     LOC.Beginner_C.setNPEandNNPEandNTL(Beginner_C_Project.getNecessaryDeveloperCount() + LOC.Beginner_C.getNofProjectEmp());
                     LOC.loc_cnt -= Beginner_C_Project.getNecessaryLOC();
-                    SoftvoperMain.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
+                    GUI_Elements.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
                     Timer timer = new Timer();
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run()
                         {
                             SCoin_count += Beginner_C_Project.getSCoinToEarn();
-                            SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                            GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                             LOC.Beginner_C.setNPEandNNPEandNTL(LOC.Beginner_C.getNofProjectEmp() - Beginner_C_Project.getNecessaryDeveloperCount());
                             timer.cancel();
                         }

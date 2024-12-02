@@ -3,6 +3,7 @@ package LOCSystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
 import SCoinSystem.SCoin;
 
@@ -63,6 +64,7 @@ public class LOC //Line of Code
                     break;
                 case "Intermediate_C":
                     Intermediate_C.setNTEandNNPEandNTL(Intermediate_C.getNofTotalEmp()+buy_amount);
+
                     break;
                 case "Intermediate_CSharp":
                     Intermediate_CSharp.setNTEandNNPEandNTL(Intermediate_CSharp.getNofTotalEmp()+buy_amount);
@@ -122,7 +124,7 @@ public class LOC //Line of Code
                 loc_cnt += Advanced_C.getNofTotalLOC() + Advanced_CSharp.getNofTotalLOC();
                 loc_cnt += Advanced_Dart.getNofTotalLOC() + Advanced_Java.getNofTotalLOC();
 
-                SoftvoperMain.LOCLabel.setText("Number of LOC: "+ loc_cnt);
+                GUI_Elements.LOCLabel.setText("Number of LOC: "+ loc_cnt);
             }
         });
         timer.start();
