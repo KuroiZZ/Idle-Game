@@ -3,6 +3,8 @@ package LOCSystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import GUI.DeveloperButton;
+import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
 import SCoinSystem.SCoin;
 
@@ -28,15 +30,12 @@ public class LOC //Line of Code
     static public Advanced Advanced_CSharp = new Advanced();
     static public Advanced Advanced_Dart = new Advanced();
     static public Advanced Advanced_Java = new Advanced();
-    /*
-    public LOC()//constructor
+
+    static public void BuyDeveloper(Developers Developer, DeveloperButton Button)
     {
-        loc_cnt = 0;
-        C_Beginner = new Beginner();
-        Beginner_CSharp = new Beginner();
-        Beginner_Dart = new Beginner();
-        Beginner_Java = new Beginner();
-    }*/
+        Developer.setNTEandNNPEandNTL(Developer.getNofTotalEmp()+buy_amount);
+        Button.setNofDeveloperText(Button.getNofDeveloperText() + buy_amount);
+    }
 
     public static class LOCHandler implements ActionListener //handles events of LOC objects
     {
@@ -50,40 +49,40 @@ public class LOC //Line of Code
                     loc_cnt++;
                     break;
                 case "Beginner_C":
-                    Beginner_C.setNTEandNNPEandNTL(Beginner_C.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Beginner_C, GUI_Elements.Beginner_C);
                     break;
                 case "Beginner_CSharp":
-                    Beginner_CSharp.setNTEandNNPEandNTL(Beginner_CSharp.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Beginner_CSharp, GUI_Elements.Beginner_CSharp);
                     break;
                 case "Beginner_Dart":
-                    Beginner_Dart.setNTEandNNPEandNTL(Beginner_Dart.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Beginner_Dart, GUI_Elements.Beginner_Dart);
                     break;
                 case "Beginner_Java":
-                    Beginner_Java.setNTEandNNPEandNTL(Beginner_Java.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Beginner_Java, GUI_Elements.Beginner_Java);
                     break;
                 case "Intermediate_C":
-                    Intermediate_C.setNTEandNNPEandNTL(Intermediate_C.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Intermediate_C, GUI_Elements.Intermediate_C);
                     break;
                 case "Intermediate_CSharp":
-                    Intermediate_CSharp.setNTEandNNPEandNTL(Intermediate_CSharp.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Intermediate_CSharp, GUI_Elements.Intermediate_CSharp);
                     break;
                 case "Intermediate_Dart":
-                    Intermediate_Dart.setNTEandNNPEandNTL(Intermediate_Dart.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Intermediate_Dart, GUI_Elements.Intermediate_Dart);
                     break;
                 case "Intermediate_Java":
-                    Intermediate_Java.setNTEandNNPEandNTL(Intermediate_Java.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Intermediate_Java, GUI_Elements.Intermediate_Java);
                     break;
                 case "Advanced_C":
-                    Advanced_C.setNTEandNNPEandNTL(Advanced_C.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Advanced_C, GUI_Elements.Advanced_C);
                     break;
                 case "Advanced_CSharp":
-                    Advanced_CSharp.setNTEandNNPEandNTL(Advanced_CSharp.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Advanced_CSharp, GUI_Elements.Advanced_CSharp);
                     break;
                 case "Advanced_Dart":
-                    Advanced_Dart.setNTEandNNPEandNTL(Advanced_Dart.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Advanced_Dart, GUI_Elements.Advanced_Dart);
                     break;
                 case "Advanced_Java":
-                    Advanced_Java.setNTEandNNPEandNTL(Advanced_Java.getNofTotalEmp()+buy_amount);
+                    LOC.BuyDeveloper(Advanced_Java, GUI_Elements.Advanced_Java);
                     break;
 
             }
@@ -122,7 +121,7 @@ public class LOC //Line of Code
                 loc_cnt += Advanced_C.getNofTotalLOC() + Advanced_CSharp.getNofTotalLOC();
                 loc_cnt += Advanced_Dart.getNofTotalLOC() + Advanced_Java.getNofTotalLOC();
 
-                SoftvoperMain.LOCLabel.setText("Number of LOC: "+ loc_cnt);
+                GUI_Elements.LOCLabel.setText("Number of LOC: "+ loc_cnt);
             }
         });
         timer.start();

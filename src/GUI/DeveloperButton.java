@@ -16,6 +16,16 @@ public class DeveloperButton extends JButton
     private Image SCoinImage;
     private JLabel SCoin;
 
+    public int getNofDeveloperText()
+    {
+        return Integer.parseInt(NofDeveloper.getText());
+    }
+
+    public void setNofDeveloperText(int nofDeveloper)
+    {
+        NofDeveloper.setText(Integer.toString(nofDeveloper));
+    }
+
     public DeveloperButton(int price,String name,int nofdeveloper,String LogoImagePath,String Rank)
     {
         super();

@@ -1,7 +1,9 @@
 package SCoinSystem;
 
+import GUI.DeveloperButton;
+import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
-import LOCSystem.LOC;
+import LOCSystem.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,75 +19,80 @@ public class SCoin
     static public SApp Beginner_C_Project = new SApp(100000, 10, 10, "C", "Beginner", 20);
     public static class SCoinHandler implements ActionListener
     {
+        static public void BuyDeveloper(Developers Developer)
+        {
+            SCoin_count -= Developer.getPrice()*LOC.buy_amount;
+            GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+        }
+
+        static public void DevelopApp(Developers Developer, DeveloperButton Button, SApp App)
+        {
+            Developer.setNPEandNNPEandNTL(App.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
+            Button.setNofDeveloperText(Button.getNofDeveloperText() - App.getNecessaryDeveloperCount());
+            LOC.loc_cnt -= App.getNecessaryLOC();
+            GUI_Elements.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run()
+                {
+                    SCoin_count += App.getSCoinToEarn();
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - App.getNecessaryDeveloperCount());
+                    GUI_Elements.Beginner_C.setNofDeveloperText(Button.getNofDeveloperText() + App.getNecessaryDeveloperCount());
+                    timer.cancel();
+                }
+            };
+            timer.schedule(task, App.getTimeSecond()*1000);
+        }
+
         public void actionPerformed(ActionEvent event)
         {
             String action = event.getActionCommand();
             switch (action)
             {
                 case "Beginner_C":
-                    SCoin_count -= LOC.Beginner_C.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Beginner_C);
                     break;
                 case "Beginner_CSharp":
-                    SCoin_count -= LOC.Beginner_CSharp.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Beginner_CSharp);
                     break;
                 case "Beginner_Dart":
-                    SCoin_count -= LOC.Beginner_Dart.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Beginner_Dart);
                     break;
                 case "Beginner_Java":
-                    SCoin_count -= LOC.Beginner_Java.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Beginner_Java);
                     break;
                 case "Intermediate_C":
-                    SCoin_count -= LOC.Intermediate_C.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Intermediate_C);
                     break;
                 case "Intermediate_CSharp":
-                    SCoin_count -= LOC.Intermediate_CSharp.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Intermediate_CSharp);
                     break;
                 case "Intermediate_Dart":
-                    SCoin_count -= LOC.Intermediate_Dart.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Intermediate_Dart);
+                    break;
+                case "Intermediate_Java":
+                    BuyDeveloper(LOC.Intermediate_Java);
                     break;
                 case "Advanced_C":
-                    SCoin_count -= LOC.Advanced_C.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Advanced_C);
                     break;
                 case "Advanced_CSharp":
-                    SCoin_count -= LOC.Advanced_CSharp.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Advanced_CSharp);
                     break;
                 case "Advanced_Dart":
-                    SCoin_count -= LOC.Advanced_Dart.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Advanced_Dart);
                     break;
                 case "Advanced_Java":
-                    SCoin_count -= LOC.Advanced_Java.getPrice()*LOC.buy_amount;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    BuyDeveloper(LOC.Advanced_Java);
                     break;
                 case "Temporary_Money":
                     SCoin_count += 10;
-                    SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     break;
                 case "Beginner_C_Project":
-                    LOC.Beginner_C.setNPEandNNPEandNTL(Beginner_C_Project.getNecessaryDeveloperCount() + LOC.Beginner_C.getNofProjectEmp());
-                    LOC.loc_cnt -= Beginner_C_Project.getNecessaryLOC();
-                    SoftvoperMain.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
-                    Timer timer = new Timer();
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run()
-                        {
-                            SCoin_count += Beginner_C_Project.getSCoinToEarn();
-                            SoftvoperMain.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
-                            LOC.Beginner_C.setNPEandNNPEandNTL(LOC.Beginner_C.getNofProjectEmp() - Beginner_C_Project.getNecessaryDeveloperCount());
-                            timer.cancel();
-                        }
-                    };
-                    timer.schedule(task, Beginner_C_Project.getTimeSecond()*1000);
+                    DevelopApp(LOC.Beginner_C, GUI_Elements.Beginner_C, Beginner_C_Project);
                     break;
             }
         }
