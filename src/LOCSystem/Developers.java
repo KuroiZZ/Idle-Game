@@ -69,25 +69,9 @@ public abstract class Developers
         this.NofTotalLOC = this.LinePerSecond * this.NofNonProjectEmp;
     }
 
-    public void setPriceAfterBuy(int BuyAmount)
-    {
-        for (int i = 0; i<BuyAmount; i++)
-        {
-            setPrice(getPrice()*1.12f);
-        }
-    }
+    abstract public void setPriceAfterBuy(int BuyAmount);
 
-    public float getTotalPrice(int BuyAmount)
-    {
-        float TotalPrice = 0;
-        float ActivePrice = getPrice();
-        for (int i = 0; i<BuyAmount; i++)
-        {
-            TotalPrice += ActivePrice;
-            ActivePrice *= 1.12f;
-        }
-        return TotalPrice;
-    }
+    abstract public float getTotalPrice(int BuyAmount);
 
     public void setNTEandNNPEandNTL(int nofTotalEmp)
     {
