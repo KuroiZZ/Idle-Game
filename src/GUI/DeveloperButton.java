@@ -64,7 +64,8 @@ public class DeveloperButton extends JButton
         this.ButtonContentsPanel.setOpaque(false);
 
         this.LogoImage = new ImageIcon(getClass().getClassLoader().getResource(LogoImagePath));
-        this.Logo = new JLabel(LogoImage); //Initialize logo image
+        Image logoimage = LogoImage.getImage().getScaledInstance(30,36,Image.SCALE_SMOOTH);
+        this.Logo = new JLabel(new ImageIcon(logoimage),SwingConstants.CENTER);
 
         this.SCoinImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
         this.SCoinImage = SCoinImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
@@ -105,22 +106,30 @@ public class DeveloperButton extends JButton
 
     private void setBackgroundImage(String rank)
     {
-        String BackgroundImagePath = "";
-        String DisabledImagePath = "";
+        String BackgroundImagePath;
+        String DisabledImagePath;
+        String RolloverImagePath;
         switch (rank)
         {
             case "Beginner":
                 BackgroundImagePath = "images/DeveloperButton/BeginneButton.png";
                 DisabledImagePath = "images/DeveloperButton/DisabledBeginnerButton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverBeginnerButton.png";
                 break;
             case "Intermediate":
                 BackgroundImagePath = "images/DeveloperButton/IntermediateButton.png";
                 DisabledImagePath = "images/DeveloperButton/DisabledIntermediateButton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverIntermediateButton.png";
                 break;
             case "Advanced":
                 BackgroundImagePath = "images/DeveloperButton/AdvancedButton.png";
                 DisabledImagePath = "images/DeveloperButton/DisabledAdvancedButton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverAdvancedButton.png";
                 break;
+            default:
+                BackgroundImagePath = "";
+                DisabledImagePath = "";
+                RolloverImagePath = "";
         }
         ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
         Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
@@ -128,8 +137,12 @@ public class DeveloperButton extends JButton
         ImageIcon DisabledbackgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(DisabledImagePath));
         Image DisabledbackgroundImage = DisabledbackgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
 
+        ImageIcon RolloverbackgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(RolloverImagePath));
+        Image RolloverbackgroundImage = RolloverbackgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
+
         this.setIcon(new ImageIcon(backgroundImage));
         this.setDisabledIcon(new ImageIcon(DisabledbackgroundImage));
+        this.setRolloverIcon(new ImageIcon(RolloverbackgroundImage));
     }
 
     //sets GridBagLayout's constraints
