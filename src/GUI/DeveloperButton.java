@@ -1,5 +1,7 @@
 package GUI;
 
+import LOCSystem.Developers;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,7 +28,12 @@ public class DeveloperButton extends JButton
         NofDeveloper.setText(Integer.toString(nofDeveloper));
     }
 
-    public DeveloperButton(int price,String name,int nofdeveloper,String LogoImagePath,String Rank)
+    public void setPriceText(float price)
+    {
+        Price.setText(String.valueOf(price));
+    }
+
+    public DeveloperButton(float price,String name,int nofdeveloper,String LogoImagePath,String Rank)
     {
         super();
         setButtonContentsPanel(price,name,nofdeveloper,LogoImagePath);
@@ -39,7 +46,7 @@ public class DeveloperButton extends JButton
     }
 
     //Add contents to ButtonContentsPanel for chosen layout
-    private void setButtonContentsPanel(int price,String name,int nofdeveloper,String LogoImagePath)
+    private void setButtonContentsPanel(float price,String name,int nofdeveloper,String LogoImagePath)
     {
         setButtonContents(price,name,nofdeveloper,LogoImagePath);//contents are initialized here
 
@@ -55,7 +62,7 @@ public class DeveloperButton extends JButton
     }
 
     //Initialize every content that will be added in ButtonContentPanel
-    private void setButtonContents(int price,String name,int nofdeveloper,String LogoImagePath)
+    private void setButtonContents(float price,String name,int nofdeveloper,String LogoImagePath)
     {
         this.PricePanel = new JPanel(); //Initialize panels
         this.PricePanel.setLayout(new BoxLayout(this.PricePanel, BoxLayout.LINE_AXIS));

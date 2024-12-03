@@ -33,8 +33,11 @@ public class LOC //Line of Code
 
     static public void BuyDeveloper(Developers Developer, DeveloperButton Button)
     {
-        Developer.setNTEandNNPEandNTL(Developer.getNofTotalEmp()+buy_amount);
+        Developer.setNTEandNNPEandNTL(Developer.getNofTotalEmp()+ buy_amount);
+        Developer.setPriceAfterBuy(buy_amount);
         Button.setNofDeveloperText(Button.getNofDeveloperText() + buy_amount);
+        Button.setPriceText(Developer.getPrice());
+        SoftvoperMain.ControlButtons();
     }
 
     public static class LOCHandler implements ActionListener //handles events of LOC objects
@@ -97,14 +100,33 @@ public class LOC //Line of Code
             switch (action) {
                 case "1":
                     buy_amount = 1;
+                    SoftvoperMain.ControlButtons();
+
                     break;
                 case "10":
                     buy_amount = 10;
+                    SoftvoperMain.ControlButtons();
                     break;
                 case "100":
                     buy_amount = 100;
+                    SoftvoperMain.ControlButtons();
                     break;
             }
+
+            GUI_Elements.Beginner_C.setPriceText(LOC.Beginner_C.getTotalPrice(buy_amount));
+            GUI_Elements.Beginner_CSharp.setPriceText(LOC.Beginner_CSharp.getTotalPrice(buy_amount));
+            GUI_Elements.Beginner_Dart.setPriceText(LOC.Beginner_Dart.getTotalPrice(buy_amount));
+            GUI_Elements.Beginner_Java.setPriceText(LOC.Beginner_Java.getTotalPrice(buy_amount));
+            GUI_Elements.Intermediate_C.setPriceText(LOC.Intermediate_C.getTotalPrice(buy_amount));
+            GUI_Elements.Intermediate_CSharp.setPriceText(LOC.Intermediate_CSharp.getTotalPrice(buy_amount));
+            GUI_Elements.Intermediate_Dart.setPriceText(LOC.Intermediate_Dart.getTotalPrice(buy_amount));
+            GUI_Elements.Intermediate_Java.setPriceText(LOC.Intermediate_Java.getTotalPrice(buy_amount));
+            GUI_Elements.Advanced_C.setPriceText(LOC.Advanced_C.getTotalPrice(buy_amount));
+            GUI_Elements.Advanced_CSharp.setPriceText(LOC.Advanced_CSharp.getTotalPrice(buy_amount));
+            GUI_Elements.Advanced_Dart.setPriceText(LOC.Advanced_Dart.getTotalPrice(buy_amount));
+            GUI_Elements.Advanced_Java.setPriceText(LOC.Advanced_Java.getTotalPrice(buy_amount));
+
+
         }
     }
     public static void UpdateLOC()

@@ -5,7 +5,7 @@ public abstract class Developers
     int NofTotalEmp; //Number of total employees (NTE)
     int NofProjectEmp; //Number of employees working on project (NPE)
     int NofNonProjectEmp; //Number of employees not working on project (NNPE)
-    int Price; //price to hire an employee
+    float Price; //price to hire an employee
     int LinePerSecond; //line per second (LPS)
     int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
 
@@ -39,12 +39,12 @@ public abstract class Developers
         NofNonProjectEmp = NofTotalEmp - NofProjectEmp;
     }
 
-    public int getPrice()
+    public float getPrice()
     {
         return Price;
     }
 
-    public void setPrice(int price)
+    public void setPrice(float price)
     {
         Price = price;
     }
@@ -67,6 +67,26 @@ public abstract class Developers
     public void setNofTotalLOC()
     {
         this.NofTotalLOC = this.LinePerSecond * this.NofNonProjectEmp;
+    }
+
+    public void setPriceAfterBuy(int BuyAmount)
+    {
+        for (int i = 0; i<BuyAmount; i++)
+        {
+            setPrice(getPrice()*1.12f);
+        }
+    }
+
+    public float getTotalPrice(int BuyAmount)
+    {
+        float TotalPrice = 0;
+        float ActivePrice = getPrice();
+        for (int i = 0; i<BuyAmount; i++)
+        {
+            TotalPrice += ActivePrice;
+            ActivePrice *= 1.12f;
+        }
+        return TotalPrice;
     }
 
     public void setNTEandNNPEandNTL(int nofTotalEmp)
