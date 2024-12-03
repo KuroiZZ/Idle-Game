@@ -21,7 +21,7 @@ public class SCoin
     {
         static public void BuyDeveloper(Developers Developer)
         {
-            SCoin_count -= Developer.getPrice()*LOC.buy_amount;
+            SCoin_count -= Developer.getTotalPrice(LOC.buy_amount);
             GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
         }
 
@@ -40,6 +40,7 @@ public class SCoin
                     GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                     Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - App.getNecessaryDeveloperCount());
                     GUI_Elements.Beginner_C.setNofDeveloperText(Button.getNofDeveloperText() + App.getNecessaryDeveloperCount());
+                    SoftvoperMain.ControlButtons();
                     timer.cancel();
                 }
             };
@@ -90,6 +91,7 @@ public class SCoin
                 case "Temporary_Money":
                     SCoin_count += 10;
                     GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
+                    SoftvoperMain.ControlButtons();
                     break;
                 case "Beginner_C_Project":
                     DevelopApp(LOC.Beginner_C, GUI_Elements.Beginner_C, Beginner_C_Project);
