@@ -33,10 +33,10 @@ public class DeveloperButton extends JButton
         Price.setText(String.valueOf(price));
     }
 
-    public DeveloperButton(float price,String name,int nofdeveloper,String LogoImagePath,String Rank)
+    public DeveloperButton(float price,String name,int nofdeveloper,String LogoName,String Rank)
     {
         super();
-        setButtonContentsPanel(price,name,nofdeveloper,LogoImagePath);
+        setButtonContentsPanel(price,name,nofdeveloper,setLogoImagePath(LogoName));
 
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(250, 50));
@@ -167,5 +167,29 @@ public class DeveloperButton extends JButton
         constraints.gridy = gridy;
 
         return constraints;
+    }
+
+    private String setLogoImagePath(String LogoName)
+    {
+        String LogoImagePath;
+        switch (LogoName)
+        {
+            case "C":
+                LogoImagePath = "images/DeveloperLogo/CLogo.png";
+                break;
+            case "CSharp":
+                LogoImagePath = "images/DeveloperLogo/CSharpLogo.png";
+                break;
+            case "Dart":
+                LogoImagePath = "images/DeveloperLogo/DartLogo.png";
+                break;
+            case "Java":
+                LogoImagePath = "images/DeveloperLogo/JavaLogo.png";
+                break;
+            default:
+                LogoImagePath = "";
+        }
+
+        return LogoImagePath;
     }
 }

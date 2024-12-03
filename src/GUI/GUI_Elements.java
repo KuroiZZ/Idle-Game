@@ -21,25 +21,25 @@ public class GUI_Elements
     public static void InitializeBeginner_Buttons()
     {
         Beginner_C = new DeveloperButton(LOC.Beginner_C.getPrice(),"Beginner C Developer",
-                LOC.Beginner_C.getNofNonProjectEmp(),"images/SCoin.png","Beginner");
+                LOC.Beginner_C.getNofNonProjectEmp(),"C","Beginner");
         Beginner_C.setActionCommand("Beginner_C");
         Beginner_C.addActionListener(LOC.loc_hndler);
         Beginner_C.addActionListener(SCoin.SCoin_hndler);
 
         Beginner_CSharp = new DeveloperButton(LOC.Beginner_CSharp.getPrice(),"Beginner C# Developer",
-                LOC.Beginner_CSharp.getNofNonProjectEmp(),"images/SCoin.png","Beginner");
+                LOC.Beginner_CSharp.getNofNonProjectEmp(),"CSharp","Beginner");
         Beginner_CSharp.setActionCommand("Beginner_CSharp");
         Beginner_CSharp.addActionListener(LOC.loc_hndler);
         Beginner_CSharp.addActionListener(SCoin.SCoin_hndler);
 
         Beginner_Dart = new DeveloperButton(LOC.Beginner_Dart.getPrice(),"Beginner Dart Developer",
-                LOC.Beginner_Dart.getNofNonProjectEmp(),"images/SCoin.png","Beginner");
+                LOC.Beginner_Dart.getNofNonProjectEmp(),"Dart","Beginner");
         Beginner_Dart.setActionCommand("Beginner_Dart");
         Beginner_Dart.addActionListener(LOC.loc_hndler);
         Beginner_Dart.addActionListener(SCoin.SCoin_hndler);
 
         Beginner_Java = new DeveloperButton(LOC.Beginner_Java.getPrice(),"Beginner Java Developer",
-                LOC.Beginner_Java.getNofNonProjectEmp(),"images/SCoin.png","Beginner");
+                LOC.Beginner_Java.getNofNonProjectEmp(),"Java","Beginner");
         Beginner_Java.setActionCommand("Beginner_Java");
         Beginner_Java.addActionListener(LOC.loc_hndler);
         Beginner_Java.addActionListener(SCoin.SCoin_hndler);
@@ -52,25 +52,25 @@ public class GUI_Elements
     public static void InitializeIntermediate_Buttons()
     {
         Intermediate_C = new DeveloperButton(LOC.Intermediate_C.getPrice(),"Intermediate C Developer",
-                LOC.Intermediate_C.getNofNonProjectEmp(),"images/SCoin.png","Intermediate");
+                LOC.Intermediate_C.getNofNonProjectEmp(),"C","Intermediate");
         Intermediate_C.setActionCommand("Intermediate_C");
         Intermediate_C.addActionListener(LOC.loc_hndler);
         Intermediate_C.addActionListener(SCoin.SCoin_hndler);
 
         Intermediate_CSharp = new DeveloperButton(LOC.Intermediate_CSharp.getPrice(),"Intermediate C# Developer",
-                LOC.Intermediate_CSharp.getNofNonProjectEmp(),"images/SCoin.png","Intermediate");
+                LOC.Intermediate_CSharp.getNofNonProjectEmp(),"CSharp","Intermediate");
         Intermediate_CSharp.setActionCommand("Intermediate_CSharp");
         Intermediate_CSharp.addActionListener(LOC.loc_hndler);
         Intermediate_CSharp.addActionListener(SCoin.SCoin_hndler);
 
         Intermediate_Dart = new DeveloperButton(LOC.Intermediate_Dart.getPrice(),"Intermediate Dart Developer",
-                LOC.Intermediate_Dart.getNofNonProjectEmp(),"images/SCoin.png","Intermediate");
+                LOC.Intermediate_Dart.getNofNonProjectEmp(),"Dart","Intermediate");
         Intermediate_Dart.setActionCommand("Intermediate_Dart");
         Intermediate_Dart.addActionListener(LOC.loc_hndler);
         Intermediate_Dart.addActionListener(SCoin.SCoin_hndler);
 
         Intermediate_Java = new DeveloperButton(LOC.Intermediate_Java.getPrice(),"Intermediate Java Developer",
-                LOC.Intermediate_Java.getNofNonProjectEmp(),"images/SCoin.png","Intermediate");
+                LOC.Intermediate_Java.getNofNonProjectEmp(),"Java","Intermediate");
         Intermediate_Java.setActionCommand("Intermediate_Java");
         Intermediate_Java.addActionListener(LOC.loc_hndler);
         Intermediate_Java.addActionListener(SCoin.SCoin_hndler);
@@ -83,25 +83,25 @@ public class GUI_Elements
     public static void InitializeAdvanced_Buttons()
     {
         Advanced_C = new DeveloperButton(LOC.Advanced_C.getPrice(),"Advanced C Developer",
-                LOC.Advanced_C.getNofNonProjectEmp(),"images/SCoin.png","Advanced");
+                LOC.Advanced_C.getNofNonProjectEmp(),"C","Advanced");
         Advanced_C.setActionCommand("Advanced_C");
         Advanced_C.addActionListener(LOC.loc_hndler);
         Advanced_C.addActionListener(SCoin.SCoin_hndler);
 
         Advanced_CSharp = new DeveloperButton(LOC.Advanced_CSharp.getPrice(),"Advanced C# Developer",
-                LOC.Advanced_CSharp.getNofNonProjectEmp(),"images/SCoin.png","Advanced");
+                LOC.Advanced_CSharp.getNofNonProjectEmp(),"CSharp","Advanced");
         Advanced_CSharp.setActionCommand("Advanced_CSharp");
         Advanced_CSharp.addActionListener(LOC.loc_hndler);
         Advanced_CSharp.addActionListener(SCoin.SCoin_hndler);
 
         Advanced_Dart = new DeveloperButton(LOC.Advanced_Dart.getPrice(),"Advanced Dart Developer",
-                LOC.Advanced_Dart.getNofNonProjectEmp(),"images/SCoin.png","Advanced");
+                LOC.Advanced_Dart.getNofNonProjectEmp(),"Dart","Advanced");
         Advanced_Dart.setActionCommand("Advanced_Dart");
         Advanced_Dart.addActionListener(LOC.loc_hndler);
         Advanced_Dart.addActionListener(SCoin.SCoin_hndler);
 
         Advanced_Java = new DeveloperButton(LOC.Advanced_Java.getPrice(),"Advanced Java Developer",
-                LOC.Advanced_Java.getNofNonProjectEmp(),"images/SCoin.png","Advanced");
+                LOC.Advanced_Java.getNofNonProjectEmp(),"Java","Advanced");
         Advanced_Java.setActionCommand("Advanced_Java");
         Advanced_Java.addActionListener(LOC.loc_hndler);
         Advanced_Java.addActionListener(SCoin.SCoin_hndler);
