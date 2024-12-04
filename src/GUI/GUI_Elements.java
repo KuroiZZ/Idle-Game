@@ -211,7 +211,8 @@ public class GUI_Elements
     public static JButton Beginner_C_Project;
     public static void InitializeBeginnerProjects()
     {
-        Beginner_C_Project = new JButton("Beginner_C_Project");
+        Beginner_C_Project = new SAppButton("Beginner_C_Project", SCoin.Beginner_C_Project.getNecessaryLOC(), SCoin.Beginner_C_Project.getLanguageType(),
+                SCoin.Beginner_C_Project.getRankType() ,SCoin.Beginner_C_Project.getNecessaryDeveloperCount(), SCoin.Beginner_C_Project.getTimeSecond());
         Beginner_C_Project.setActionCommand("Beginner_C_Project");
         Beginner_C_Project.addActionListener(SCoin.SCoin_hndler);
     }
@@ -220,7 +221,7 @@ public class GUI_Elements
     public static void InitializeAppPanel()
     {
         AppPanel = new JPanel();
-        AppPanel.setPreferredSize(new Dimension(200, 1080));
+        AppPanel.setPreferredSize(new Dimension(400, 1080));
         AppPanel.setBackground(Color.blue);
 
         JButton goToStorePanel = new JButton("Store");
