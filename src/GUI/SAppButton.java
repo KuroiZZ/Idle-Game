@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.font.TextHitInfo;
+import java.util.Timer;
 
 public class SAppButton extends JButton
 {
@@ -10,29 +11,37 @@ public class SAppButton extends JButton
     private JLabel name;
     private JLabel neededLOC;
     private JLabel neededDeveloper;
-    private JLabel developerType;
-    private JLabel developerRank;
-    private JLabel durationLabel;
-    private JPanel durationPanel;
-    private JPanel checkPanel;
-    private JPanel developerPanel;
-    private JCheckBox testerCheck;
-    private JCheckBox architectureCheck;
-    private JCheckBox managerCheck;
+    private JLabel developerTypeRank;
+    private JProgressBar appProgress;
+    private JPanel neededLOCPanel;
+    private JPanel neededDeveloperPanel;
+    private JLabel LOCImage;
+    private JLabel DeveloperImage;
+
+    public SAppButton(String Name, int NeededLOC,String DeveloperType, String DeveloperRank, int NeededDeveloper , int DurationTime)
+    {
+        super();
+        setbuttonContentsPanel(Name,NeededLOC,DeveloperType, DeveloperRank, NeededDeveloper, DurationTime);
+
+        this.setOpaque(true);
+        this.setPreferredSize(new Dimension(250, 50));
+        this.add(buttonContentsPanel);
+        this.setBorder(null);
+    }
 
     private Font get_Font(String fontName)
     {
         Font font;
         switch (fontName)
         {
-            case "BOLD":
-                font = new Font(Font.SERIF, Font.BOLD,  30);
+            case "ITALIC":
+                font = new Font(Font.SERIF, Font.ITALIC,  14);
                 break;
             case "SMALL":
                 font = new Font(Font.SERIF, Font.BOLD,  14);
                 break;
             case "BAŞLIK":
-                font = new Font(Font.SERIF, Font.PLAIN, 14);
+                font = new Font(Font.SERIF, Font.BOLD, 16);
                 break;
             default:
                 font = new Font(Font.SERIF, Font.PLAIN, 15);
@@ -62,45 +71,37 @@ public class SAppButton extends JButton
         this.buttonContentsPanel = new JPanel(new GridBagLayout());
         this.buttonContentsPanel.setOpaque(false);
 
-        this.checkPanel = new JPanel(new GridLayout(1,3));
-        this.durationPanel = new JPanel();
-        this.developerPanel = new JPanel(new GridLayout(1, 3));
-
+        this.neededLOCPanel = new JPanel();
+        this.neededDeveloperPanel = new JPanel();
+        this.neededLOCPanel.setLayout(new BoxLayout(this.neededLOCPanel, BoxLayout.LINE_AXIS));
+        this.neededDeveloperPanel.setLayout(new BoxLayout(this.neededDeveloperPanel, BoxLayout.LINE_AXIS));
 
         this.name = new JLabel(Name);
-        this.neededLOC = new JLabel("LOC Amount: " + String.valueOf(NeededLOC)); //Initialize price
-        this.developerType = new JLabel("Type: " + DeveloperType);
-        this.developerRank = new JLabel("Rank: " + DeveloperRank);
-        this.neededDeveloper = new JLabel("Amount: " + String.valueOf(NeededDeveloper)); //Initialize number of developer
-        this.testerCheck = new JCheckBox();
-        this.architectureCheck = new JCheckBox();
-        this.managerCheck = new JCheckBox();
-        this.durationLabel = new JLabel(String.valueOf(DurationTime));
+        this.neededLOC = new JLabel(String.valueOf(NeededLOC)); //Initialize price
+        this.developerTypeRank = new JLabel(DeveloperType+" "+DeveloperRank);
+        this.neededDeveloper = new JLabel(String.valueOf(NeededDeveloper)); //Initialize number of developer
 
-        this.developerPanel.add(this.developerType);
-        this.developerPanel.add(this.developerRank);
-        this.developerPanel.add(this.neededDeveloper);
-        this.checkPanel.add(testerCheck);
-        this.checkPanel.add(architectureCheck);
-        this.checkPanel.add(managerCheck);
-        this.durationPanel.add(durationLabel, CENTER);
+        ImageIcon LocImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        Image limage = LocImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
+        LOCImage = new JLabel(new ImageIcon(limage));
 
-        this.name.setFont(get_Font("SMALL"));
+        ImageIcon DeveloperImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        Image dimage = DeveloperImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
+        DeveloperImage = new JLabel(new ImageIcon(dimage));
+
+        this.appProgress = new JProgressBar(0, 100);
+        appProgress.setValue(0);
+        appProgress.setOrientation(JProgressBar.HORIZONTAL);
+
+        this.name.setFont(get_Font("BAŞLIK"));
         this.neededLOC.setFont(get_Font("SMALL"));
         this.neededDeveloper.setFont(get_Font("SMALL"));
+        developerTypeRank.setFont(get_Font("ITALIC"));
 
-        this.name.setBackground(Color.CYAN);
-        this.neededLOC.setBackground(Color.RED);
-        this.developerPanel.setBackground(Color.GREEN);
-        this.checkPanel.setBackground(Color.YELLOW);
-        this.durationPanel.setBackground(Color.YELLOW);
-
-        this.name.setOpaque(true);
-        this.neededLOC.setOpaque(true);
-        this.developerPanel.setOpaque(true);
-        this.checkPanel.setOpaque(true);
-        this.durationPanel.setOpaque(true);
-
+        this.neededDeveloperPanel.add(DeveloperImage);
+        this.neededDeveloperPanel.add(this.neededDeveloper);
+        this.neededLOCPanel.add(LOCImage);
+        this.neededLOCPanel.add(this.neededLOC);
     }
 
     private void setbuttonContentsPanel(String Name, int NeededLOC,String DeveloperType, String DeveloperRank, int NeededDeveloper , int DurationTime)
@@ -108,27 +109,20 @@ public class SAppButton extends JButton
         setbuttonContents(Name,NeededLOC,DeveloperType, DeveloperRank, NeededDeveloper, DurationTime);
 
         GridBagConstraints constraintsname = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,0, 0);
-        GridBagConstraints constraintsneededLOC = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 1);
-        GridBagConstraints constraintsDeveloperPanel = setConstraints(GridBagConstraints.LINE_START, GridBagConstraints.BOTH,1, 1, 0,2);
-        GridBagConstraints constraintcheckPanel = setConstraints(GridBagConstraints.LINE_START, GridBagConstraints.BOTH, 1, 1, 0, 3);
-        GridBagConstraints constraintsdurationPanel = setConstraints(GridBagConstraints.LINE_START,GridBagConstraints.BOTH , 1, 1, 0, 4);
-
+        GridBagConstraints constraintsneededLOCPanel = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 1);
+        GridBagConstraints constraintsDeveloperTypeRank = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,1,0);
+        GridBagConstraints constraintsneededDeveloperPanel = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,1,1);
+        GridBagConstraints constraintsProgressBar = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1,2,0,2);
 
         buttonContentsPanel.add(this.name, constraintsname);
-        buttonContentsPanel.add(this.neededLOC, constraintsneededLOC);
-        buttonContentsPanel.add(this.developerPanel, constraintsDeveloperPanel);
-        buttonContentsPanel.add(this.checkPanel, constraintcheckPanel);
-        buttonContentsPanel.add(this.durationPanel, constraintsdurationPanel);
+        buttonContentsPanel.add(this.neededLOCPanel, constraintsneededLOCPanel);
+        buttonContentsPanel.add(this.developerTypeRank, constraintsDeveloperTypeRank);
+        buttonContentsPanel.add(this.neededDeveloperPanel, constraintsneededDeveloperPanel);
+        //buttonContentsPanel.add(this.appProgress, constraintsProgressBar);
     }
 
-    public SAppButton(String Name, int NeededLOC,String DeveloperType, String DeveloperRank, int NeededDeveloper , int DurationTime)
+    public void setAppProgressValue(int value)
     {
-        super();
-        setbuttonContentsPanel(Name,NeededLOC,DeveloperType, DeveloperRank, NeededDeveloper, DurationTime);
-
-        this.setOpaque(true);
-        this.setPreferredSize(new Dimension(400, 100));
-        this.add(buttonContentsPanel);
-        this.setBorder(null);
+        this.appProgress.setValue(value);
     }
 }
