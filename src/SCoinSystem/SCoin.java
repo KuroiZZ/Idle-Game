@@ -95,6 +95,24 @@ public class SCoin
                     break;
                 case "Beginner_C_Project":
                     DevelopApp(LOC.Beginner_C, GUI_Elements.Beginner_C, Beginner_C_Project);
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask()
+                    {
+                        int counter = 0;
+                        @Override
+                        public void run()
+                        {
+                            if(counter <= 100)
+                            {
+                                GUI_Elements.Beginner_C_Project.setAppProgressValue(counter);
+                                counter++;
+                            }
+                            else
+                            {
+                                timer.cancel();
+                            }
+                        }
+                    },0,100);
                     break;
             }
         }
