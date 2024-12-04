@@ -36,7 +36,7 @@ public class LOC //Line of Code
         Developer.setNTEandNNPEandNTL(Developer.getNofTotalEmp()+ buy_amount);
         Developer.setPriceAfterBuy(buy_amount);
         Button.setNofDeveloperText(Button.getNofDeveloperText() + buy_amount);
-        Button.setPriceText(Developer.getPrice());
+        Button.setPriceText(Developer.getTotalPrice(buy_amount));
         SoftvoperMain.ControlButtons();
     }
 
