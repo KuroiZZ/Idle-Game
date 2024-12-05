@@ -2,6 +2,7 @@ package SCoinSystem;
 
 import GUI.DeveloperButton;
 import GUI.GUI_Elements;
+import GUI.SAppInformation;
 import GUI.SoftvoperMain;
 import LOCSystem.*;
 
@@ -31,6 +32,7 @@ public class SCoin
             Button.setNofDeveloperText(Button.getNofDeveloperText() - App.getNecessaryDeveloperCount());
             LOC.loc_cnt -= App.getNecessaryLOC();
             GUI_Elements.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
+            CreateAppInformation(App);
             Timer timer = new Timer();
             TimerTask task = new TimerTask() {
                 @Override
@@ -45,6 +47,32 @@ public class SCoin
                 }
             };
             timer.schedule(task, App.getTimeSecond()*1000);
+        }
+        static public void CreateAppInformation(SApp App)
+        {
+            SAppInformation Beginner_C_Project_Information = new SAppInformation("League of Losers", App.getSCoinToEarn(), App.getRankType());
+            java.util.Timer timer = new java.util.Timer();
+            timer.scheduleAtFixedRate(new TimerTask()
+            {
+                int counter = 0;
+                @Override
+                public void run()
+                {
+                    if(counter < 100)
+                    {
+                        Beginner_C_Project_Information.setAppProgressValue(counter);
+                        counter++;
+                    }
+                    else
+                    {
+                        GUI_Elements.CoderPanel.remove(Beginner_C_Project_Information);
+                        GUI_Elements.window.revalidate();
+                        GUI_Elements.window.repaint();
+                        timer.cancel();
+                    }
+                }
+            },0,App.getTimeSecond()*10);
+            GUI_Elements.CoderPanel.add(Beginner_C_Project_Information);
         }
 
         public void actionPerformed(ActionEvent event)
@@ -95,24 +123,6 @@ public class SCoin
                     break;
                 case "Beginner_C_Project":
                     DevelopApp(LOC.Beginner_C, GUI_Elements.Beginner_C, Beginner_C_Project);
-                    Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask()
-                    {
-                        int counter = 0;
-                        @Override
-                        public void run()
-                        {
-                            if(counter <= 100)
-                            {
-                                GUI_Elements.Beginner_C_Project.setAppProgressValue(counter);
-                                counter++;
-                            }
-                            else
-                            {
-                                timer.cancel();
-                            }
-                        }
-                    },0,100);
                     break;
             }
         }
