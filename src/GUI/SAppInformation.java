@@ -3,38 +3,58 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-    public class SAppInformation extends JPanel
+public class SAppInformation extends JPanel
 {
     private JLabel name;
     private JProgressBar appProgress;
     private JPanel SCoinPanel;
     private JLabel SCoinToEarn;
     private JLabel SCoinImage;
+    private Image backgroundImage; // Arka plan resmi için değişken
 
     public SAppInformation(String Name, int ScoinToEarn, String DeveloperRank)
     {
-        super();
+        super(new GridBagLayout());
         setPanel(Name,ScoinToEarn);
 
-        this.setOpaque(true);
+        this.setOpaque(false); // Panelin arka planı şeffaf olacak
         this.setPreferredSize(new Dimension(250, 50));
         this.setBorder(null);
-        setBackgroundImage(DeveloperRank);
 
+        // Arka planı yükle
+        loadBackgroundImage(DeveloperRank);
+    }
+
+    // Arka planı yükleyen metot
+    private void loadBackgroundImage(String DeveloperRank)
+    {
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("images/DeveloperButton/BeginneButton.png")); // Arka plan resmi
+        this.backgroundImage = icon.getImage().getScaledInstance(250, 50, Image.SCALE_SMOOTH); // Resmi uygun boyutta ölçekle
+    }
+
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+
+        // Arka plan resmini çiz
+        if (backgroundImage != null)
+        {
+            g.drawImage(backgroundImage, 0, 0, 250, 50, this); // Resmi panelin tamamına çizer
+        }
     }
 
     private void setPanel(String Name, int ScoinToEarn)
     {
         setContents(Name,ScoinToEarn);
 
-        GridBagConstraints constraintsName = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.BOTH, 1, 1, 0 , 0);
-        GridBagConstraints constraintsSCoinToEarn = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.BOTH, 1,1,0,1);
+        GridBagConstraints constraintsName = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 0);
+        GridBagConstraints constraintsSCoinToEarn = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,0,1);
         GridBagConstraints constraintsProgressBar = setConstraints(GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, 1,1,0,2);
 
         this.add(this.name, constraintsName);
         this.add(this.SCoinPanel, constraintsSCoinToEarn);
         this.add(this.appProgress, constraintsProgressBar);
-
     }
 
     private void setContents(String Name, int ScoinToEarn)
@@ -53,42 +73,12 @@ import java.awt.*;
         this.SCoinPanel = new JPanel();
         this.SCoinPanel.add(this.SCoinImage);
         this.SCoinPanel.add(this.SCoinToEarn);
-
     }
 
     public void setAppProgressValue(int value)
     {
         this.appProgress.setValue(value);
     }
-
-
-    private void setBackgroundImage(String rank)
-    {
-        String BackgroundImagePath;
-
-        switch (rank)
-        {
-            case "Beginner":
-                BackgroundImagePath = "images/DeveloperButton/BeginneButton.png";
-                break;
-            case "Intermediate":
-                BackgroundImagePath = "images/DeveloperButton/IntermediateButton.png";
-                break;
-            case "Advanced":
-                BackgroundImagePath = "images/DeveloperButton/AdvancedButton.png";
-                break;
-            default:
-                BackgroundImagePath = "";
-        }
-        ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
-        Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
-
-        JLabel isim = new JLabel(new ImageIcon(backgroundImage));
-
-        this.add(isim);
-    }
-
-
 
     private Font get_Font(String fontName)
     {
