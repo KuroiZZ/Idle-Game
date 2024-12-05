@@ -5,8 +5,6 @@ import SCoinSystem.SCoin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GUI_Elements
 {
@@ -160,21 +158,45 @@ public class GUI_Elements
         StorePanel_Inside.setBackground(Color.blue);
         StorePanel_Inside.setAutoscrolls(true);
 
-        JButton goToAppPanel = new JButton("App Store");
+        ImageIcon ProjectsButtonIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ProjectsButton.png"));
+        ImageIcon RolloverProjectsButtonIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverProjectsButton.png"));
+        JButton goToAppPanel = new JButton(ProjectsButtonIcon);
+        goToAppPanel.setBorder(BorderFactory.createEmptyBorder());
+        goToAppPanel.setRolloverIcon(RolloverProjectsButtonIcon);
         goToAppPanel.setActionCommand("goToApp");
         goToAppPanel.addActionListener(GUI_hndler);
 
-        JButton amount_1 = new JButton("1");
+        JPanel AmountButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15,5));
+        AmountButtonsPanel.setPreferredSize(new Dimension(250,50));
+        AmountButtonsPanel.setOpaque(false);
+
+        ImageIcon icon1 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button1.png"));
+        ImageIcon Rollovericon1 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton1.png"));
+        JButton amount_1 = new JButton(icon1);
+        amount_1.setBorder(BorderFactory.createEmptyBorder());
+        amount_1.setRolloverIcon(Rollovericon1);
         amount_1.setActionCommand("1");
         amount_1.addActionListener(LOC.buyamount_hndler);
 
-        JButton amount_10 = new JButton("10");
+        ImageIcon icon10 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button10.png"));
+        ImageIcon Rollovericon10 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton10.png"));
+        JButton amount_10 = new JButton(icon10);
+        amount_10.setBorder(BorderFactory.createEmptyBorder());
+        amount_10.setRolloverIcon(Rollovericon10);
         amount_10.setActionCommand("10");
         amount_10.addActionListener(LOC.buyamount_hndler);
 
-        JButton amount_100 = new JButton("100");
+        ImageIcon icon100 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button100.png"));
+        ImageIcon Rollovericon100 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton100.png"));
+        JButton amount_100 = new JButton(icon100);
+        amount_100.setBorder(BorderFactory.createEmptyBorder());
+        amount_100.setRolloverIcon(Rollovericon100);
         amount_100.setActionCommand("100");
         amount_100.addActionListener(LOC.buyamount_hndler);
+
+        AmountButtonsPanel.add(amount_1);
+        AmountButtonsPanel.add(amount_10);
+        AmountButtonsPanel.add(amount_100);
 
         GUI_Elements.InitializeBeginner_Buttons();
         GUI_Elements.InitializeIntermediate_Buttons();
@@ -185,9 +207,7 @@ public class GUI_Elements
         Temporary_Money.addActionListener(SCoin.SCoin_hndler);
 
         StorePanel_Inside.add(goToAppPanel);
-        StorePanel_Inside.add(amount_1);
-        StorePanel_Inside.add(amount_10);
-        StorePanel_Inside.add(amount_100);
+        StorePanel_Inside.add(AmountButtonsPanel);
         StorePanel_Inside.add(GUI_Elements.Beginner_C);
         StorePanel_Inside.add(GUI_Elements.Beginner_CSharp);
         StorePanel_Inside.add(GUI_Elements.Beginner_Dart);
