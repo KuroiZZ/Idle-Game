@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class SAppInformation extends JPanel
+public class SProjectInformation extends JPanel
 {
     private JLabel name;
     private JProgressBar appProgress;
@@ -12,7 +12,7 @@ public class SAppInformation extends JPanel
     private JLabel SCoinImage;
     private Image backgroundImage; // Arka plan resmi için değişken
 
-    public SAppInformation(String Name, int ScoinToEarn, String DeveloperRank)
+    public SProjectInformation(String Name, int ScoinToEarn, String DeveloperRank)
     {
         super(new GridBagLayout());
         setPanel(Name,ScoinToEarn);

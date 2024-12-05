@@ -228,10 +228,10 @@ public class GUI_Elements
         StorePanel.getVerticalScrollBar().setUnitIncrement(6);
     }
 
-    public static SAppButton Beginner_C_Project;
+    public static SProjectButton Beginner_C_Project;
     public static void InitializeBeginnerProjects()
     {
-        Beginner_C_Project = new SAppButton("League of Losers", SCoin.Beginner_C_Project.getNecessaryLOC(), SCoin.Beginner_C_Project.getLanguageType(),
+        Beginner_C_Project = new SProjectButton("League of Losers", SCoin.Beginner_C_Project.getNecessaryLOC(), SCoin.Beginner_C_Project.getLanguageType(),
                 SCoin.Beginner_C_Project.getRankType() ,SCoin.Beginner_C_Project.getNecessaryDeveloperCount(), SCoin.Beginner_C_Project.getTimeSecond());
         Beginner_C_Project.setActionCommand("Beginner_C_Project");
         Beginner_C_Project.addActionListener(SCoin.SCoin_hndler);

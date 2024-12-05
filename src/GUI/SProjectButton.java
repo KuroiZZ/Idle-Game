@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.font.TextHitInfo;
 import java.util.Timer;
 
-public class SAppButton extends JButton
+public class SProjectButton extends JButton
 {
     private JPanel buttonContentsPanel;
     private JLabel neededLOC;
@@ -17,7 +17,7 @@ public class SAppButton extends JButton
     private JLabel LOCImage;
     private JLabel DeveloperImage;
 
-    public SAppButton(String Name, int NeededLOC,String DeveloperType, String DeveloperRank, int NeededDeveloper , int DurationTime)
+    public SProjectButton(String Name, int NeededLOC,String DeveloperType, String DeveloperRank, int NeededDeveloper , int DurationTime)
     {
         super();
         setbuttonContentsPanel(Name,NeededLOC,DeveloperType, DeveloperRank, NeededDeveloper, DurationTime);

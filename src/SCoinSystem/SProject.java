@@ -1,6 +1,6 @@
 package SCoinSystem;
 
-public class SApp
+public class SProject
 {
     public int NecessaryLOC;
     public int SCoinToEarn;
@@ -9,7 +9,7 @@ public class SApp
     public String RankType;
     public int NecessaryDeveloperCount;
 
-    public SApp(int necessaryLOC, int SCoinToEarn, int timeSecond, String languageType, String rankType, int necessaryDeveloperCount)
+    public SProject(int necessaryLOC, int SCoinToEarn, int timeSecond, String languageType, String rankType, int necessaryDeveloperCount)
     {
         NecessaryLOC = necessaryLOC;
         this.SCoinToEarn = SCoinToEarn;

@@ -2,7 +2,7 @@ package SCoinSystem;
 
 import GUI.DeveloperButton;
 import GUI.GUI_Elements;
-import GUI.SAppInformation;
+import GUI.SProjectInformation;
 import GUI.SoftvoperMain;
 import LOCSystem.*;
 
@@ -17,7 +17,7 @@ public class SCoin
 {
     static public int SCoin_count = 0;
     static public SCoinHandler SCoin_hndler = new SCoinHandler();
-    static public SApp Beginner_C_Project = new SApp(100000, 10, 10, "C", "Beginner", 20);
+    static public SProject Beginner_C_Project = new SProject(100000, 10, 10, "C", "Beginner", 20);
     public static class SCoinHandler implements ActionListener
     {
         static public void BuyDeveloper(Developers Developer)
@@ -26,31 +26,31 @@ public class SCoin
             GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
         }
 
-        static public void DevelopApp(Developers Developer, DeveloperButton Button, SApp App)
+        static public void DevelopApp(Developers Developer, DeveloperButton Button, SProject Project)
         {
-            Developer.setNPEandNNPEandNTL(App.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
-            Button.setNofDeveloperText(Button.getNofDeveloperText() - App.getNecessaryDeveloperCount());
-            LOC.loc_cnt -= App.getNecessaryLOC();
+            Developer.setNPEandNNPEandNTL(Project.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
+            Button.setNofDeveloperText(Button.getNofDeveloperText() - Project.getNecessaryDeveloperCount());
+            LOC.loc_cnt -= Project.getNecessaryLOC();
             GUI_Elements.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
-            CreateAppInformation(App);
+            CreateAppInformation(Project);
             Timer timer = new Timer();
             TimerTask task = new TimerTask() {
                 @Override
                 public void run()
                 {
-                    SCoin_count += App.getSCoinToEarn();
+                    SCoin_count += Project.getSCoinToEarn();
                     GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
-                    Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - App.getNecessaryDeveloperCount());
-                    GUI_Elements.Beginner_C.setNofDeveloperText(Button.getNofDeveloperText() + App.getNecessaryDeveloperCount());
+                    Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - Project.getNecessaryDeveloperCount());
+                    GUI_Elements.Beginner_C.setNofDeveloperText(Button.getNofDeveloperText() + Project.getNecessaryDeveloperCount());
                     SoftvoperMain.ControlButtons();
                     timer.cancel();
                 }
             };
-            timer.schedule(task, App.getTimeSecond()*1000);
+            timer.schedule(task, Project.getTimeSecond()*1000);
         }
-        static public void CreateAppInformation(SApp App)
+        static public void CreateAppInformation(SProject App)
         {
-            SAppInformation Beginner_C_Project_Information = new SAppInformation("League of Losers", App.getSCoinToEarn(), App.getRankType());
+            SProjectInformation Beginner_C_Project_Information = new SProjectInformation("League of Losers", App.getSCoinToEarn(), App.getRankType());
             java.util.Timer timer = new java.util.Timer();
             timer.scheduleAtFixedRate(new TimerTask()
             {
