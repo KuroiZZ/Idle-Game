@@ -131,17 +131,20 @@ public class LOC //Line of Code
     }
     public static void UpdateLOC()
     {
-        Timer timer = new Timer(1000, new ActionListener()
+        Timer timer = new Timer(62, new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                loc_cnt += Beginner_C.getNofTotalLOC() + Beginner_CSharp.getNofTotalLOC();
-                loc_cnt += Beginner_Dart.getNofTotalLOC() + Beginner_Java.getNofTotalLOC();
-                loc_cnt += Intermediate_C.getNofTotalLOC() + Intermediate_CSharp.getNofTotalLOC();
-                loc_cnt += Intermediate_Dart.getNofTotalLOC() + Intermediate_Java.getNofTotalLOC();
-                loc_cnt += Advanced_C.getNofTotalLOC() + Advanced_CSharp.getNofTotalLOC();
-                loc_cnt += Advanced_Dart.getNofTotalLOC() + Advanced_Java.getNofTotalLOC();
+                int increment = 0;
+                increment += Beginner_C.getNofTotalLOC() + Beginner_CSharp.getNofTotalLOC();
+                increment += Beginner_Dart.getNofTotalLOC() + Beginner_Java.getNofTotalLOC();
+                increment += Intermediate_C.getNofTotalLOC() + Intermediate_CSharp.getNofTotalLOC();
+                increment += Intermediate_Dart.getNofTotalLOC() + Intermediate_Java.getNofTotalLOC();
+                increment += Advanced_C.getNofTotalLOC() + Advanced_CSharp.getNofTotalLOC();
+                increment += Advanced_Dart.getNofTotalLOC() + Advanced_Java.getNofTotalLOC();
+                increment = increment/16;
+                loc_cnt += increment;
 
                 GUI_Elements.LOCLabel.setText("Number of LOC: "+ loc_cnt);
             }
