@@ -49,8 +49,8 @@ public class SAppInformation extends JPanel
         setContents(Name,ScoinToEarn);
 
         GridBagConstraints constraintsName = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 0);
-        GridBagConstraints constraintsSCoinToEarn = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,0,1);
-        GridBagConstraints constraintsProgressBar = setConstraints(GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, 1,1,0,2);
+        GridBagConstraints constraintsSCoinToEarn = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,1,0);
+        GridBagConstraints constraintsProgressBar = setConstraints(GridBagConstraints.PAGE_END, GridBagConstraints.HORIZONTAL, 1,2,0,1);
 
         this.add(this.name, constraintsName);
         this.add(this.SCoinPanel, constraintsSCoinToEarn);
@@ -60,10 +60,12 @@ public class SAppInformation extends JPanel
     private void setContents(String Name, int ScoinToEarn)
     {
         this.name = new JLabel(Name);
+        this.name.setFont(get_Font("BAŞLIK"));
         this.SCoinToEarn = new JLabel(String.valueOf(ScoinToEarn));
+        this.SCoinToEarn.setFont(get_Font("BAŞLIK"));
 
         ImageIcon LocImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
-        Image limage = LocImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
+        Image limage = LocImageIcon.getImage().getScaledInstance(18,18,Image.SCALE_SMOOTH);
         this.SCoinImage = new JLabel(new ImageIcon(limage));
 
         this.appProgress = new JProgressBar(0, 100);
@@ -71,6 +73,8 @@ public class SAppInformation extends JPanel
         appProgress.setOrientation(JProgressBar.HORIZONTAL);
 
         this.SCoinPanel = new JPanel();
+        this.SCoinPanel.setLayout(new BoxLayout(this.SCoinPanel, BoxLayout.LINE_AXIS));
+        this.SCoinPanel.setOpaque(false);
         this.SCoinPanel.add(this.SCoinImage);
         this.SCoinPanel.add(this.SCoinToEarn);
     }
@@ -85,14 +89,11 @@ public class SAppInformation extends JPanel
         Font font;
         switch (fontName)
         {
-            case "ITALIC":
-                font = new Font(Font.SERIF, Font.ITALIC,  14);
-                break;
             case "SMALL":
                 font = new Font(Font.SERIF, Font.BOLD,  14);
                 break;
             case "BAŞLIK":
-                font = new Font(Font.SERIF, Font.BOLD, 16);
+                font = new Font(Font.SERIF, Font.BOLD, 18);
                 break;
             default:
                 font = new Font(Font.SERIF, Font.PLAIN, 15);
