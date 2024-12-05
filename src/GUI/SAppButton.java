@@ -26,6 +26,7 @@ public class SAppButton extends JButton
         this.setPreferredSize(new Dimension(250, 50));
         this.add(buttonContentsPanel);
         this.setBorder(null);
+        setBackgroundImage(DeveloperRank);
     }
 
     private Font get_Font(String fontName)
@@ -97,8 +98,10 @@ public class SAppButton extends JButton
 
         this.neededDeveloperPanel.add(DeveloperImage);
         this.neededDeveloperPanel.add(this.neededDeveloper);
+        this.neededDeveloperPanel.setOpaque(false);
         this.neededLOCPanel.add(LOCImage);
         this.neededLOCPanel.add(this.neededLOC);
+        this.neededLOCPanel.setOpaque(false);
     }
 
     private void setbuttonContentsPanel(String Name, int NeededLOC,String DeveloperType, String DeveloperRank, int NeededDeveloper , int DurationTime)
@@ -118,5 +121,46 @@ public class SAppButton extends JButton
     public void setAppProgressValue(int value)
     {
         this.appProgress.setValue(value);
+    }
+
+    private void setBackgroundImage(String rank)
+    {
+        String BackgroundImagePath;
+        String DisabledImagePath;
+        String RolloverImagePath;
+        switch (rank)
+        {
+            case "Beginner":
+                BackgroundImagePath = "images/DeveloperButton/BeginneButton.png";
+                DisabledImagePath = "images/DeveloperButton/DisabledBeginnerButton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverBeginnerButton.png";
+                break;
+            case "Intermediate":
+                BackgroundImagePath = "images/DeveloperButton/IntermediateButton.png";
+                DisabledImagePath = "images/DeveloperButton/DisabledIntermediateButton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverIntermediateButton.png";
+                break;
+            case "Advanced":
+                BackgroundImagePath = "images/DeveloperButton/AdvancedButton.png";
+                DisabledImagePath = "images/DeveloperButton/DisabledAdvancedButton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverAdvancedButton.png";
+                break;
+            default:
+                BackgroundImagePath = "";
+                DisabledImagePath = "";
+                RolloverImagePath = "";
+        }
+        ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
+        Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
+
+        ImageIcon DisabledbackgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(DisabledImagePath));
+        Image DisabledbackgroundImage = DisabledbackgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
+
+        ImageIcon RolloverbackgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(RolloverImagePath));
+        Image RolloverbackgroundImage = RolloverbackgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
+
+        this.setIcon(new ImageIcon(backgroundImage));
+        this.setDisabledIcon(new ImageIcon(DisabledbackgroundImage));
+        this.setRolloverIcon(new ImageIcon(RolloverbackgroundImage));
     }
 }
