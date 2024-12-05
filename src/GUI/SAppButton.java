@@ -8,7 +8,6 @@ import java.util.Timer;
 public class SAppButton extends JButton
 {
     private JPanel buttonContentsPanel;
-    private JLabel name;
     private JLabel neededLOC;
     private JLabel neededDeveloper;
     private JLabel developerTypeRank;
@@ -76,9 +75,8 @@ public class SAppButton extends JButton
         this.neededLOCPanel.setLayout(new BoxLayout(this.neededLOCPanel, BoxLayout.LINE_AXIS));
         this.neededDeveloperPanel.setLayout(new BoxLayout(this.neededDeveloperPanel, BoxLayout.LINE_AXIS));
 
-        this.name = new JLabel(Name);
         this.neededLOC = new JLabel(String.valueOf(NeededLOC)); //Initialize price
-        this.developerTypeRank = new JLabel(DeveloperType+" "+DeveloperRank);
+        this.developerTypeRank = new JLabel(DeveloperType+" "+DeveloperRank + " Project");
         this.neededDeveloper = new JLabel(String.valueOf(NeededDeveloper)); //Initialize number of developer
 
         ImageIcon LocImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
@@ -93,10 +91,9 @@ public class SAppButton extends JButton
         appProgress.setValue(0);
         appProgress.setOrientation(JProgressBar.HORIZONTAL);
 
-        this.name.setFont(get_Font("BAŞLIK"));
         this.neededLOC.setFont(get_Font("SMALL"));
         this.neededDeveloper.setFont(get_Font("SMALL"));
-        developerTypeRank.setFont(get_Font("ITALIC"));
+        developerTypeRank.setFont(get_Font("BAŞLIK"));
 
         this.neededDeveloperPanel.add(DeveloperImage);
         this.neededDeveloperPanel.add(this.neededDeveloper);
@@ -108,17 +105,14 @@ public class SAppButton extends JButton
     {
         setbuttonContents(Name,NeededLOC,DeveloperType, DeveloperRank, NeededDeveloper, DurationTime);
 
-        GridBagConstraints constraintsname = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,0, 0);
         GridBagConstraints constraintsneededLOCPanel = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 1);
-        GridBagConstraints constraintsDeveloperTypeRank = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,1,0);
+        GridBagConstraints constraintsDeveloperTypeRank = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,2,0,0);
         GridBagConstraints constraintsneededDeveloperPanel = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,1,1);
-        GridBagConstraints constraintsProgressBar = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1,2,0,2);
 
-        buttonContentsPanel.add(this.name, constraintsname);
         buttonContentsPanel.add(this.neededLOCPanel, constraintsneededLOCPanel);
         buttonContentsPanel.add(this.developerTypeRank, constraintsDeveloperTypeRank);
         buttonContentsPanel.add(this.neededDeveloperPanel, constraintsneededDeveloperPanel);
-        //buttonContentsPanel.add(this.appProgress, constraintsProgressBar);
+
     }
 
     public void setAppProgressValue(int value)
