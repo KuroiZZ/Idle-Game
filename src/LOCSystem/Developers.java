@@ -2,13 +2,20 @@ package LOCSystem;
 
 public abstract class Developers
 {
-    int NofTotalEmp; //Number of total employees (NTE)
-    int NofProjectEmp; //Number of employees working on project (NPE)
-    int NofNonProjectEmp; //Number of employees not working on project (NNPE)
-    float Price; //price to hire an employee
-    int LinePerSecond; //line per second (LPS)
-    int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
+    private int NofTotalEmp; //Number of total employees (NTE)
+    private int NofProjectEmp; //Number of employees working on project (NPE)
+    private int NofNonProjectEmp; //Number of employees not working on project (NNPE)
+    private float Price; //price to hire an employee
+    private int LinePerSecond; //line per second (LPS)
+    private int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
 
+    public Developers()
+    {
+        setNofTotalEmp(0);
+        setNofProjectEmp(0);
+        setNofNonProjectEmp();
+    }
+    
     public int getNofTotalEmp()
     {
         return NofTotalEmp;
@@ -54,7 +61,7 @@ public abstract class Developers
         return LinePerSecond;
     }
 
-     public void setLinePerSecond(int linePerSecond)
+    public void setLinePerSecond(int linePerSecond)
      {
          LinePerSecond = linePerSecond;
      }
@@ -68,10 +75,6 @@ public abstract class Developers
     {
         this.NofTotalLOC = this.LinePerSecond * this.NofNonProjectEmp;
     }
-
-    abstract public void setPriceAfterBuy(int BuyAmount);
-
-    abstract public float getTotalPrice(int BuyAmount);
 
     public void setNTEandNNPEandNTL(int nofTotalEmp)
     {
@@ -91,10 +94,7 @@ public abstract class Developers
         setNofTotalLOC();
     }
 
-    public Developers()
-    {
-        setNofTotalEmp(0);
-        setNofProjectEmp(0);
-        setNofNonProjectEmp();
-    }
+    abstract public void setPriceAfterBuy(int BuyAmount);
+
+    abstract public float getTotalPrice(int BuyAmount);
 }
