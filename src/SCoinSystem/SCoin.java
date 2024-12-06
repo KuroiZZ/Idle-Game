@@ -36,7 +36,7 @@ public class SCoin
                 SCoin_count += Project.getSCoinToEarn();
                 GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                 Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - Project.getNecessaryDeveloperCount());
-                GUI_Elements.Beginner_C.setNofDeveloperText(Button.getNofDeveloperText() + Project.getNecessaryDeveloperCount());
+                GUI_Elements.Beginner_C_Button.setNofDeveloperText(Button.getNofDeveloperText() + Project.getNecessaryDeveloperCount());
                 SoftvoperMain.ControlButtons();
                 timer.cancel();
             }

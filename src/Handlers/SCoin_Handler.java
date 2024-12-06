@@ -57,7 +57,7 @@ public class SCoin_Handler implements ActionListener
                 SoftvoperMain.ControlButtons();
                 break;
             case "Beginner_C_Project":
-                SCoin.DevelopApp(LOC.Beginner_C_Developer, GUI_Elements.Beginner_C, SCoin.Beginner_C_Project);
+                SCoin.DevelopApp(LOC.Beginner_C_Developer, GUI_Elements.Beginner_C_Button, SCoin.Beginner_C_Project);
                 break;
         }
     }
