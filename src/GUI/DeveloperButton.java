@@ -1,6 +1,7 @@
 package GUI;
 
 import LOCSystem.Developers;
+import LOCSystem.LOC;
 
 import javax.swing.*;
 import java.awt.*;
@@ -191,5 +192,11 @@ public class DeveloperButton extends JButton
         }
 
         return LogoImagePath;
+    }
+
+
+    public void setEnabledByScoin(Developers developer, int SCoin)
+    {
+        this.setEnabled(developer.getTotalPrice(LOC.buy_amount) <= SCoin);
     }
 }
