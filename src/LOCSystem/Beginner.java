@@ -4,9 +4,9 @@ import javax.sound.sampled.Line;
 
 public class Beginner extends Developers
 {
-    public Beginner()
+    public Beginner(String type, String rank)
     {
-        super();
+        super(type, rank);
         setPrice(5);
         setLinePerSecond(1000);
     }

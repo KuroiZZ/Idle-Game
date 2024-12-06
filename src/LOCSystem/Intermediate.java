@@ -2,9 +2,9 @@ package LOCSystem;
 
 public class Intermediate extends Developers
 {
-    public Intermediate()
+    public Intermediate(String type, String rank)
     {
-        super();
+        super(type, rank);
         setPrice(10);
         setLinePerSecond(5000);
     }

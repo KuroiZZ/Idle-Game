@@ -2,9 +2,9 @@ package LOCSystem;
 
 public class Advanced extends Developers
 {
-    public Advanced()
+    public Advanced(String type, String rank)
     {
-        super();
+        super(type, rank);
         setPrice(20);
         setLinePerSecond(10000);
     }

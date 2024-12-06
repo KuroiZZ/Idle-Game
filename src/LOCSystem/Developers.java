@@ -8,12 +8,16 @@ public abstract class Developers
     private float Price; //price to hire an employee
     private int LinePerSecond; //line per second (LPS)
     private int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
+    private String Type;
+    private String Rank;
 
-    public Developers()
+    public Developers(String type, String rank)
     {
         setNofTotalEmp(0);
         setNofProjectEmp(0);
         setNofNonProjectEmp();
+        Type = type;
+        Rank = rank;
     }
     
     public int getNofTotalEmp()
@@ -74,6 +78,26 @@ public abstract class Developers
     public void setNofTotalLOC()
     {
         this.NofTotalLOC = this.LinePerSecond * this.NofNonProjectEmp;
+    }
+
+    public String getType()
+    {
+        return Type;
+    }
+
+    public void setType(String type)
+    {
+        Type = type;
+    }
+
+    public String getRank()
+    {
+        return Rank;
+    }
+
+    public void setRank(String rank)
+    {
+        Rank = rank;
     }
 
     public void setNTEandNNPEandNTL(int nofTotalEmp)
