@@ -28,18 +28,18 @@ public class SoftvoperMain
 
     static public void ControlButtons()
     {
-        GUI_Elements.Beginner_C.setEnabledByScoin(LOC.Beginner_C, SCoin.SCoin_count);
-        GUI_Elements.Beginner_CSharp.setEnabledByScoin(LOC.Beginner_CSharp, SCoin.SCoin_count);
-        GUI_Elements.Beginner_Dart.setEnabledByScoin(LOC.Beginner_Dart, SCoin.SCoin_count);
-        GUI_Elements.Beginner_Java.setEnabledByScoin(LOC.Beginner_Java, SCoin.SCoin_count);
-        GUI_Elements.Intermediate_C.setEnabledByScoin(LOC.Intermediate_C, SCoin.SCoin_count);
-        GUI_Elements.Intermediate_CSharp.setEnabledByScoin(LOC.Intermediate_CSharp, SCoin.SCoin_count);
-        GUI_Elements.Intermediate_Dart.setEnabledByScoin(LOC.Intermediate_Dart, SCoin.SCoin_count);
-        GUI_Elements.Intermediate_Java.setEnabledByScoin(LOC.Intermediate_Java, SCoin.SCoin_count);
-        GUI_Elements.Advanced_C.setEnabledByScoin(LOC.Advanced_C, SCoin.SCoin_count);
-        GUI_Elements.Advanced_CSharp.setEnabledByScoin(LOC.Advanced_CSharp, SCoin.SCoin_count);
-        GUI_Elements.Advanced_Dart.setEnabledByScoin(LOC.Advanced_Dart, SCoin.SCoin_count);
-        GUI_Elements.Advanced_Java.setEnabledByScoin(LOC.Advanced_Java, SCoin.SCoin_count);
+        GUI_Elements.Beginner_C.setEnabledByScoin(LOC.Beginner_C_Developer, SCoin.SCoin_count);
+        GUI_Elements.Beginner_CSharp.setEnabledByScoin(LOC.Beginner_CSharp_Developer, SCoin.SCoin_count);
+        GUI_Elements.Beginner_Dart.setEnabledByScoin(LOC.Beginner_Dart_Developer, SCoin.SCoin_count);
+        GUI_Elements.Beginner_Java.setEnabledByScoin(LOC.Beginner_Java_Developer, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_C.setEnabledByScoin(LOC.Intermediate_C_Developer, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_CSharp.setEnabledByScoin(LOC.Intermediate_CSharp_Developer, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_Dart.setEnabledByScoin(LOC.Intermediate_Dart_Developer, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_Java.setEnabledByScoin(LOC.Intermediate_Java_Developer, SCoin.SCoin_count);
+        GUI_Elements.Advanced_C.setEnabledByScoin(LOC.Advanced_C_Developer, SCoin.SCoin_count);
+        GUI_Elements.Advanced_CSharp.setEnabledByScoin(LOC.Advanced_CSharp_Developer, SCoin.SCoin_count);
+        GUI_Elements.Advanced_Dart.setEnabledByScoin(LOC.Advanced_Dart_Developer, SCoin.SCoin_count);
+        GUI_Elements.Advanced_Java.setEnabledByScoin(LOC.Advanced_Java_Developer, SCoin.SCoin_count);
 
     }
 
@@ -50,7 +50,7 @@ public class SoftvoperMain
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                GUI_Elements.Beginner_C_Project.setEnabledByLOCandDevelopers(SCoin.Beginner_C_Project, LOC.loc_cnt, LOC.Beginner_C);
+                GUI_Elements.Beginner_C_Project.setEnabledByLOCandDevelopers(SCoin.Beginner_C_Project, LOC.loc_cnt, LOC.Beginner_C_Developer);
             }
         });
         timer.start();

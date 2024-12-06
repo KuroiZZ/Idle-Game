@@ -18,6 +18,7 @@ public class DeveloperButton extends JButton
     private ImageIcon SCoinImageIcon;
     private Image SCoinImage;
     private JLabel SCoin;
+    private Developers Developer;
 
     public int getNofDeveloperText()
     {

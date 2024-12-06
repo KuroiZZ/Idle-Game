@@ -16,40 +16,40 @@ public class SCoin_Handler implements ActionListener
         switch (action)
         {
             case "Beginner_C":
-                SCoin.BuyDeveloper(LOC.Beginner_C);
+                SCoin.BuyDeveloper(LOC.Beginner_C_Developer);
                 break;
             case "Beginner_CSharp":
-                SCoin.BuyDeveloper(LOC.Beginner_CSharp);
+                SCoin.BuyDeveloper(LOC.Beginner_CSharp_Developer);
                 break;
             case "Beginner_Dart":
-                SCoin.BuyDeveloper(LOC.Beginner_Dart);
+                SCoin.BuyDeveloper(LOC.Beginner_Dart_Developer);
                 break;
             case "Beginner_Java":
-                SCoin.BuyDeveloper(LOC.Beginner_Java);
+                SCoin.BuyDeveloper(LOC.Beginner_Java_Developer);
                 break;
             case "Intermediate_C":
-                SCoin.BuyDeveloper(LOC.Intermediate_C);
+                SCoin.BuyDeveloper(LOC.Intermediate_C_Developer);
                 break;
             case "Intermediate_CSharp":
-                SCoin.BuyDeveloper(LOC.Intermediate_CSharp);
+                SCoin.BuyDeveloper(LOC.Intermediate_CSharp_Developer);
                 break;
             case "Intermediate_Dart":
-                SCoin.BuyDeveloper(LOC.Intermediate_Dart);
+                SCoin.BuyDeveloper(LOC.Intermediate_Dart_Developer);
                 break;
             case "Intermediate_Java":
-                SCoin.BuyDeveloper(LOC.Intermediate_Java);
+                SCoin.BuyDeveloper(LOC.Intermediate_Java_Developer);
                 break;
             case "Advanced_C":
-                SCoin.BuyDeveloper(LOC.Advanced_C);
+                SCoin.BuyDeveloper(LOC.Advanced_C_Developer);
                 break;
             case "Advanced_CSharp":
-                SCoin.BuyDeveloper(LOC.Advanced_CSharp);
+                SCoin.BuyDeveloper(LOC.Advanced_CSharp_Developer);
                 break;
             case "Advanced_Dart":
-                SCoin.BuyDeveloper(LOC.Advanced_Dart);
+                SCoin.BuyDeveloper(LOC.Advanced_Dart_Developer);
                 break;
             case "Advanced_Java":
-                SCoin.BuyDeveloper(LOC.Advanced_Java);
+                SCoin.BuyDeveloper(LOC.Advanced_Java_Developer);
                 break;
             case "Temporary_Money":
                 SCoin.SCoin_count += 10;
@@ -57,7 +57,7 @@ public class SCoin_Handler implements ActionListener
                 SoftvoperMain.ControlButtons();
                 break;
             case "Beginner_C_Project":
-                SCoin.DevelopApp(LOC.Beginner_C, GUI_Elements.Beginner_C, SCoin.Beginner_C_Project);
+                SCoin.DevelopApp(LOC.Beginner_C_Developer, GUI_Elements.Beginner_C, SCoin.Beginner_C_Project);
                 break;
         }
     }
