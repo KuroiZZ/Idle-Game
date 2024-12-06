@@ -1,14 +1,11 @@
 package GUI;
 
 import LOCSystem.Developers;
-import LOCSystem.LOC;
-import SCoinSystem.SCoin;
 import SCoinSystem.SProject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.TextHitInfo;
-import java.util.Timer;
+
 
 public class SProjectButton extends JButton
 {
@@ -121,11 +118,6 @@ public class SProjectButton extends JButton
         buttonContentsPanel.add(this.developerTypeRank, constraintsDeveloperTypeRank);
         buttonContentsPanel.add(this.neededDeveloperPanel, constraintsneededDeveloperPanel);
 
-    }
-
-    public void setAppProgressValue(int value)
-    {
-        this.appProgress.setValue(value);
     }
 
     private void setBackgroundImage(String rank)
