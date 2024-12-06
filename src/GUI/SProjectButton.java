@@ -1,5 +1,10 @@
 package GUI;
 
+import LOCSystem.Developers;
+import LOCSystem.LOC;
+import SCoinSystem.SCoin;
+import SCoinSystem.SProject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.font.TextHitInfo;
@@ -162,5 +167,11 @@ public class SProjectButton extends JButton
         this.setIcon(new ImageIcon(backgroundImage));
         this.setDisabledIcon(new ImageIcon(DisabledbackgroundImage));
         this.setRolloverIcon(new ImageIcon(RolloverbackgroundImage));
+    }
+
+    public void setEnabledByLOCandDevelopers(SProject project, int loc_count, Developers developer)
+    {
+        this.setEnabled(project.getNecessaryLOC() <= loc_count &&
+                project.getNecessaryDeveloperCount() <= developer.getNofNonProjectEmp());
     }
 }
