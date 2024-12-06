@@ -5,13 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import LOCSystem.Beginner;
 import LOCSystem.LOC;
 import SCoinSystem.SCoin;
 
 public class SoftvoperMain
 {
-    public void CreateUI()
+    static public void CreateUI()
     {
         GUI_Elements.InitializeMainScreen();
         GUI_Elements.InitializeCoderPanel();
@@ -29,47 +28,29 @@ public class SoftvoperMain
 
     static public void ControlButtons()
     {
-        boolean Beginner_CB = (LOC.Beginner_C.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Beginner_CSharpB = (LOC.Beginner_CSharp.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Beginner_DartB = (LOC.Beginner_Dart.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Beginner_JavaB = (LOC.Beginner_Java.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Intermediate_CB = (LOC.Intermediate_C.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Intermediate_CSharpB = (LOC.Intermediate_CSharp.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Intermediate_DartB = (LOC.Intermediate_Dart.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Intermediate_JavaB = (LOC.Intermediate_Java.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Advanced_CB = (LOC.Advanced_C.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Advanced_CSharpB = (LOC.Advanced_CSharp.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Advanced_DartB = (LOC.Advanced_Dart.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
-        boolean Advanced_JavaB = (LOC.Advanced_Java.getTotalPrice(LOC.buy_amount) <= SCoin.SCoin_count) ? true :  false;
+        GUI_Elements.Beginner_C.setEnabledByScoin(LOC.Beginner_C, SCoin.SCoin_count);
+        GUI_Elements.Beginner_CSharp.setEnabledByScoin(LOC.Beginner_CSharp, SCoin.SCoin_count);
+        GUI_Elements.Beginner_Dart.setEnabledByScoin(LOC.Beginner_Dart, SCoin.SCoin_count);
+        GUI_Elements.Beginner_Java.setEnabledByScoin(LOC.Beginner_Java, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_C.setEnabledByScoin(LOC.Intermediate_C, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_CSharp.setEnabledByScoin(LOC.Intermediate_CSharp, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_Dart.setEnabledByScoin(LOC.Intermediate_Dart, SCoin.SCoin_count);
+        GUI_Elements.Intermediate_Java.setEnabledByScoin(LOC.Intermediate_Java, SCoin.SCoin_count);
+        GUI_Elements.Advanced_C.setEnabledByScoin(LOC.Advanced_C, SCoin.SCoin_count);
+        GUI_Elements.Advanced_CSharp.setEnabledByScoin(LOC.Advanced_CSharp, SCoin.SCoin_count);
+        GUI_Elements.Advanced_Dart.setEnabledByScoin(LOC.Advanced_Dart, SCoin.SCoin_count);
+        GUI_Elements.Advanced_Java.setEnabledByScoin(LOC.Advanced_Java, SCoin.SCoin_count);
 
-        GUI_Elements.Beginner_C.setEnabled(Beginner_CB);
-        GUI_Elements.Beginner_CSharp.setEnabled(Beginner_CSharpB);
-        GUI_Elements.Beginner_Dart.setEnabled(Beginner_DartB);
-        GUI_Elements.Beginner_Java.setEnabled(Beginner_JavaB);
-        GUI_Elements.Intermediate_C.setEnabled(Intermediate_CB);
-        GUI_Elements.Intermediate_CSharp.setEnabled(Intermediate_CSharpB);
-        GUI_Elements.Intermediate_Dart.setEnabled(Intermediate_DartB);
-        GUI_Elements.Intermediate_Java.setEnabled(Intermediate_JavaB);
-        GUI_Elements.Advanced_C.setEnabled(Advanced_CB);
-        GUI_Elements.Advanced_CSharp.setEnabled(Advanced_CSharpB);
-        GUI_Elements.Advanced_Dart.setEnabled(Advanced_DartB);
-        GUI_Elements.Advanced_Java.setEnabled(Advanced_JavaB);
     }
 
-    public void ControlProjects()
+    static public void ControlProjects()
     {
         Timer timer = new Timer(100, new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-
-                boolean Beginner_C_ProjectB = SCoin.Beginner_C_Project.getNecessaryLOC() <= LOC.loc_cnt &&
-                        SCoin.Beginner_C_Project.getNecessaryDeveloperCount() <= LOC.Beginner_C.getNofNonProjectEmp();
-
-
-                GUI_Elements.Beginner_C_Project.setEnabled(Beginner_C_ProjectB);
-
+                GUI_Elements.Beginner_C_Project.setEnabledByLOCandDevelopers(SCoin.Beginner_C_Project, LOC.loc_cnt, LOC.Beginner_C);
             }
         });
         timer.start();
