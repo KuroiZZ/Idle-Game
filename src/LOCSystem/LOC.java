@@ -14,27 +14,27 @@ public class LOC //Line of Code
     static public int buy_amount = 1;
     static public int loc_cnt = 0; //LOC counter
 
-    static public Beginner Beginner_C_Developer= new Beginner();
-    static public Beginner Beginner_CSharp_Developer = new Beginner();
-    static public Beginner Beginner_Dart_Developer = new Beginner();
-    static public Beginner Beginner_Java_Developer = new Beginner();
+    static public Beginner Beginner_C_Developer= new Beginner("C", "Beginner");
+    static public Beginner Beginner_CSharp_Developer = new Beginner("CSharp", "Beginner");
+    static public Beginner Beginner_Dart_Developer = new Beginner("Dart", "Beginner");
+    static public Beginner Beginner_Java_Developer = new Beginner("Java", "Beginner");
 
-    static public Intermediate Intermediate_C_Developer= new Intermediate();
-    static public Intermediate Intermediate_CSharp_Developer = new Intermediate();
-    static public Intermediate Intermediate_Dart_Developer = new Intermediate();
-    static public Intermediate Intermediate_Java_Developer = new Intermediate();
+    static public Intermediate Intermediate_C_Developer= new Intermediate("C", "Intermediate");
+    static public Intermediate Intermediate_CSharp_Developer = new Intermediate("CSharp", "Intermediate");
+    static public Intermediate Intermediate_Dart_Developer = new Intermediate("Dart", "Intermediate");
+    static public Intermediate Intermediate_Java_Developer = new Intermediate("Java", "Intermediate");
 
-    static public Advanced Advanced_C_Developer= new Advanced();
-    static public Advanced Advanced_CSharp_Developer = new Advanced();
-    static public Advanced Advanced_Dart_Developer = new Advanced();
-    static public Advanced Advanced_Java_Developer = new Advanced();
+    static public Advanced Advanced_C_Developer= new Advanced("C", "Advanced");
+    static public Advanced Advanced_CSharp_Developer = new Advanced("CSharp", "Advanced");
+    static public Advanced Advanced_Dart_Developer = new Advanced("Dart", "Advanced");
+    static public Advanced Advanced_Java_Developer = new Advanced("Java", "Advanced");
 
     static public void BuyDeveloper(Developers Developer, DeveloperButton Button)
     {
         Developer.setNTEandNNPEandNTL(Developer.getNofTotalEmp()+ buy_amount);
         Developer.setPriceAfterBuy(buy_amount);
-        Button.setNofDeveloperText(Button.getNofDeveloperText() + buy_amount);
-        Button.setPriceText(Developer.getTotalPrice(buy_amount));
+        Button.setNofDeveloperText();
+        Button.setPriceText();
         SoftvoperMain.ControlButtons();
     }
 

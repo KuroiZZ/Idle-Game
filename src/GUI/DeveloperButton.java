@@ -20,37 +20,38 @@ public class DeveloperButton extends JButton
     private JLabel SCoin;
     private Developers Developer;
 
+    public DeveloperButton(Developers developer,String name)
+    {
+        super();
+
+        this.Developer = developer;
+        setButtonContentsPanel(name,setLogoImagePath(Developer.getType()));
+        this.setOpaque(true);
+        this.setPreferredSize(new Dimension(250, 50));
+        this.add(ButtonContentsPanel);
+        this.setBorder(null);
+        setBackgroundImage(Developer.getRank());
+    }
+
     public int getNofDeveloperText()
     {
         return Integer.parseInt(NofDeveloper.getText());
     }
 
-    public void setNofDeveloperText(int nofDeveloper)
+    public void setNofDeveloperText()
     {
-        NofDeveloper.setText(Integer.toString(nofDeveloper));
+        NofDeveloper.setText(String.valueOf(Developer.getNofNonProjectEmp()));
     }
 
-    public void setPriceText(float price)
+    public void setPriceText()
     {
-        Price.setText(String.valueOf(price));
-    }
-
-    public DeveloperButton(float price,String name,int nofdeveloper,String LogoName,String Rank)
-    {
-        super();
-        setButtonContentsPanel(price,name,nofdeveloper,setLogoImagePath(LogoName));
-
-        this.setOpaque(true);
-        this.setPreferredSize(new Dimension(250, 50));
-        this.add(ButtonContentsPanel);
-        this.setBorder(null);
-        setBackgroundImage(Rank);
+        Price.setText(String.valueOf(Developer.getTotalPrice(LOC.buy_amount)));
     }
 
     //Add contents to ButtonContentsPanel for chosen layout
-    private void setButtonContentsPanel(float price,String name,int nofdeveloper,String LogoImagePath)
+    private void setButtonContentsPanel(String name,String LogoImagePath)
     {
-        setButtonContents(price,name,nofdeveloper,LogoImagePath);//contents are initialized here
+        setButtonContents(name,LogoImagePath);//contents are initialized here
 
         GridBagConstraints constraintsLogo = setConstraints(GridBagConstraints.CENTER,2,0,0);
         GridBagConstraints constraintsName = setConstraints(GridBagConstraints.LINE_START,1,1,0);
@@ -64,7 +65,7 @@ public class DeveloperButton extends JButton
     }
 
     //Initialize every content that will be added in ButtonContentPanel
-    private void setButtonContents(float price,String name,int nofdeveloper,String LogoImagePath)
+    private void setButtonContents(String name,String LogoImagePath)
     {
         this.PricePanel = new JPanel(); //Initialize panels
         this.PricePanel.setLayout(new BoxLayout(this.PricePanel, BoxLayout.LINE_AXIS));
@@ -80,9 +81,9 @@ public class DeveloperButton extends JButton
         this.SCoinImage = SCoinImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
         this.SCoin = new JLabel(new ImageIcon(SCoinImage),SwingConstants.CENTER); //Initialize coin image
 
-        this.Price = new JLabel(String.valueOf(price)); //Initialize price
+        this.Price = new JLabel(String.valueOf(Developer.getPrice())); //Initialize price
         this.Name = new JLabel(name); //Initialize name
-        this.NofDeveloper = new JLabel(String.valueOf(nofdeveloper)); //Initialize number of developer
+        this.NofDeveloper = new JLabel(String.valueOf(Developer.getNofNonProjectEmp())); //Initialize number of developer
 
         this.Price.setFont(get_Font("SMALL"));
         this.Name.setFont(get_Font("BAŞLIK"));
@@ -195,9 +196,8 @@ public class DeveloperButton extends JButton
         return LogoImagePath;
     }
 
-
-    public void setEnabledByScoin(Developers developer, int SCoin)
+    public void setEnabledByScoin(int SCoin)
     {
-        this.setEnabled(developer.getTotalPrice(LOC.buy_amount) <= SCoin);
+        this.setEnabled(Developer.getTotalPrice(LOC.buy_amount) <= SCoin);
     }
 }

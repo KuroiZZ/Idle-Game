@@ -25,26 +25,22 @@ public class GUI_Elements
     static public DeveloperButton Beginner_Java_Button;
     public static void InitializeBeginner_Buttons()
     {
-        Beginner_C_Button = new DeveloperButton(LOC.Beginner_C_Developer.getPrice(),"Beginner C Developer",
-                LOC.Beginner_C_Developer.getNofNonProjectEmp(),"C","Beginner");
+        Beginner_C_Button = new DeveloperButton(LOC.Beginner_C_Developer, "Beginner C Developer");
         Beginner_C_Button.setActionCommand("Beginner_C");
         Beginner_C_Button.addActionListener(LOC_handler);
         Beginner_C_Button.addActionListener(SCoin_handler);
 
-        Beginner_CSharp_Button = new DeveloperButton(LOC.Beginner_CSharp_Developer.getPrice(),"Beginner C# Developer",
-                LOC.Beginner_CSharp_Developer.getNofNonProjectEmp(),"CSharp","Beginner");
+        Beginner_CSharp_Button = new DeveloperButton(LOC.Beginner_CSharp_Developer, "Beginner CSharp Developer");
         Beginner_CSharp_Button.setActionCommand("Beginner_CSharp");
         Beginner_CSharp_Button.addActionListener(LOC_handler);
         Beginner_CSharp_Button.addActionListener(SCoin_handler);
 
-        Beginner_Dart_Button = new DeveloperButton(LOC.Beginner_Dart_Developer.getPrice(),"Beginner Dart Developer",
-                LOC.Beginner_Dart_Developer.getNofNonProjectEmp(),"Dart","Beginner");
+        Beginner_Dart_Button = new DeveloperButton(LOC.Beginner_Dart_Developer, "Beginner Dart Developer");
         Beginner_Dart_Button.setActionCommand("Beginner_Dart");
         Beginner_Dart_Button.addActionListener(LOC_handler);
         Beginner_Dart_Button.addActionListener(SCoin_handler);
 
-        Beginner_Java_Button = new DeveloperButton(LOC.Beginner_Java_Developer.getPrice(),"Beginner Java Developer",
-                LOC.Beginner_Java_Developer.getNofNonProjectEmp(),"Java","Beginner");
+        Beginner_Java_Button = new DeveloperButton(LOC.Beginner_Java_Developer, "Beginner Java Developer");
         Beginner_Java_Button.setActionCommand("Beginner_Java");
         Beginner_Java_Button.addActionListener(LOC_handler);
         Beginner_Java_Button.addActionListener(SCoin_handler);
@@ -56,26 +52,22 @@ public class GUI_Elements
     static public DeveloperButton Intermediate_Java_Button;
     public static void InitializeIntermediate_Buttons()
     {
-        Intermediate_C_Button = new DeveloperButton(LOC.Intermediate_C_Developer.getPrice(),"Intermediate C Developer",
-                LOC.Intermediate_C_Developer.getNofNonProjectEmp(),"C","Intermediate");
+        Intermediate_C_Button = new DeveloperButton(LOC.Intermediate_C_Developer, "Intermediate C Developer");
         Intermediate_C_Button.setActionCommand("Intermediate_C");
         Intermediate_C_Button.addActionListener(LOC_handler);
         Intermediate_C_Button.addActionListener(SCoin_handler);
 
-        Intermediate_CSharp_Button = new DeveloperButton(LOC.Intermediate_CSharp_Developer.getPrice(),"Intermediate C# Developer",
-                LOC.Intermediate_CSharp_Developer.getNofNonProjectEmp(),"CSharp","Intermediate");
+        Intermediate_CSharp_Button = new DeveloperButton(LOC.Intermediate_CSharp_Developer, "Intermediate CSharp Developer");
         Intermediate_CSharp_Button.setActionCommand("Intermediate_CSharp");
         Intermediate_CSharp_Button.addActionListener(LOC_handler);
         Intermediate_CSharp_Button.addActionListener(SCoin_handler);
 
-        Intermediate_Dart_Button = new DeveloperButton(LOC.Intermediate_Dart_Developer.getPrice(),"Intermediate Dart Developer",
-                LOC.Intermediate_Dart_Developer.getNofNonProjectEmp(),"Dart","Intermediate");
+        Intermediate_Dart_Button = new DeveloperButton(LOC.Intermediate_Dart_Developer, "Intermediate Dart Developer");
         Intermediate_Dart_Button.setActionCommand("Intermediate_Dart");
         Intermediate_Dart_Button.addActionListener(LOC_handler);
         Intermediate_Dart_Button.addActionListener(SCoin_handler);
 
-        Intermediate_Java_Button = new DeveloperButton(LOC.Intermediate_Java_Developer.getPrice(),"Intermediate Java Developer",
-                LOC.Intermediate_Java_Developer.getNofNonProjectEmp(),"Java","Intermediate");
+        Intermediate_Java_Button = new DeveloperButton(LOC.Intermediate_Java_Developer, "Intermediate Java Developer");
         Intermediate_Java_Button.setActionCommand("Intermediate_Java");
         Intermediate_Java_Button.addActionListener(LOC_handler);
         Intermediate_Java_Button.addActionListener(SCoin_handler);
@@ -87,26 +79,22 @@ public class GUI_Elements
     static public DeveloperButton Advanced_Java_Button;
     public static void InitializeAdvanced_Buttons()
     {
-        Advanced_C_Button = new DeveloperButton(LOC.Advanced_C_Developer.getPrice(),"Advanced C Developer",
-                LOC.Advanced_C_Developer.getNofNonProjectEmp(),"C","Advanced");
+        Advanced_C_Button = new DeveloperButton(LOC.Advanced_C_Developer,"Advanced C Developer");
         Advanced_C_Button.setActionCommand("Advanced_C");
         Advanced_C_Button.addActionListener(LOC_handler);
         Advanced_C_Button.addActionListener(SCoin_handler);
 
-        Advanced_CSharp_Button = new DeveloperButton(LOC.Advanced_CSharp_Developer.getPrice(),"Advanced C# Developer",
-                LOC.Advanced_CSharp_Developer.getNofNonProjectEmp(),"CSharp","Advanced");
+        Advanced_CSharp_Button = new DeveloperButton(LOC.Advanced_CSharp_Developer, "Advanced CSharp Developer");
         Advanced_CSharp_Button.setActionCommand("Advanced_CSharp");
         Advanced_CSharp_Button.addActionListener(LOC_handler);
         Advanced_CSharp_Button.addActionListener(SCoin_handler);
 
-        Advanced_Dart_Button = new DeveloperButton(LOC.Advanced_Dart_Developer.getPrice(),"Advanced Dart Developer",
-                LOC.Advanced_Dart_Developer.getNofNonProjectEmp(),"Dart","Advanced");
+        Advanced_Dart_Button = new DeveloperButton(LOC.Advanced_Dart_Developer, "Advanced Dart Developer");
         Advanced_Dart_Button.setActionCommand("Advanced_Dart");
         Advanced_Dart_Button.addActionListener(LOC_handler);
         Advanced_Dart_Button.addActionListener(SCoin_handler);
 
-        Advanced_Java_Button = new DeveloperButton(LOC.Advanced_Java_Developer.getPrice(),"Advanced Java Developer",
-                LOC.Advanced_Java_Developer.getNofNonProjectEmp(),"Java","Advanced");
+        Advanced_Java_Button = new DeveloperButton(LOC.Advanced_Java_Developer, "Advanced Java Developer");
         Advanced_Java_Button.setActionCommand("Advanced_Java");
         Advanced_Java_Button.addActionListener(LOC_handler);
         Advanced_Java_Button.addActionListener(SCoin_handler);

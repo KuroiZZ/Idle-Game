@@ -24,7 +24,7 @@ public class SCoin
     static public void DevelopApp(Developers Developer, DeveloperButton Button, SProject Project)
     {
         Developer.setNPEandNNPEandNTL(Project.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
-        Button.setNofDeveloperText(Button.getNofDeveloperText() - Project.getNecessaryDeveloperCount());
+        Button.setNofDeveloperText();
         LOC.loc_cnt -= Project.getNecessaryLOC();
         GUI_Elements.LOCLabel.setText("Number of LOC: "+ LOC.loc_cnt);
         CreateAppInformation(Project);
@@ -36,7 +36,7 @@ public class SCoin
                 SCoin_count += Project.getSCoinToEarn();
                 GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin_count);
                 Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - Project.getNecessaryDeveloperCount());
-                GUI_Elements.Beginner_C_Button.setNofDeveloperText(Button.getNofDeveloperText() + Project.getNecessaryDeveloperCount());
+                GUI_Elements.Beginner_C_Button.setNofDeveloperText();
                 SoftvoperMain.ControlButtons();
                 timer.cancel();
             }
