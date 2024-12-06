@@ -1,8 +1,9 @@
-package GUI;
+package Handlers;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import GUI.GUI_Elements;
 
 public class GUI_Handler implements ActionListener
 {
