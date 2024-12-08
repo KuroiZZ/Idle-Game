@@ -104,19 +104,19 @@ public class GUI_Elements
     public static void InitializeMainScreen()
     {
         window = new JFrame();
-        window.setSize(960, 540);
+        window.setSize(1920, 1080);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setUndecorated(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
-        window.setLayout(new BorderLayout());
+        window.setLayout(new FlowLayout());
     }
 
     public static JPanel CoderPanel;
     public static void InitializeCoderPanel()
     {
         CoderPanel = new JPanel();
-        CoderPanel.setPreferredSize(new Dimension(400, 1080));
+        CoderPanel.setPreferredSize(new Dimension(920, 1080));
         CoderPanel.setBackground(Color.green);
 
         Font font1 = new Font("Comic Sans MS", Font.PLAIN, 22);
@@ -246,6 +246,14 @@ public class GUI_Elements
         AppPanel.add(goToStorePanel);
         AppPanel.add(Beginner_C_Project);
 
+    }
+
+    public static JPanel ProjectInfoPanel;
+    public static void InitializeProjectInfoPanel()
+    {
+        ProjectInfoPanel = new JPanel();
+        ProjectInfoPanel.setPreferredSize(new Dimension(250, 1080));
+        ProjectInfoPanel.setBackground(Color.MAGENTA);
     }
 }
 

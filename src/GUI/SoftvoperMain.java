@@ -16,9 +16,11 @@ public class SoftvoperMain
         GUI_Elements.InitializeCoderPanel();
         GUI_Elements.InitializeStorePanel();
         GUI_Elements.InitializeAppPanel();
+        GUI_Elements.InitializeProjectInfoPanel();
 
-        GUI_Elements.window.add(GUI_Elements.CoderPanel, BorderLayout.WEST);
-        GUI_Elements.window.add(GUI_Elements.StorePanel, BorderLayout.EAST);
+        GUI_Elements.window.add(GUI_Elements.ProjectInfoPanel);
+        GUI_Elements.window.add(GUI_Elements.CoderPanel);
+        GUI_Elements.window.add(GUI_Elements.StorePanel);
 
         GUI_Elements.window.setVisible(true);
 

@@ -61,14 +61,14 @@ public class SCoin
                 }
                 else
                 {
-                    GUI_Elements.CoderPanel.remove(Beginner_C_Project_Information);
+                    GUI_Elements.ProjectInfoPanel.remove(Beginner_C_Project_Information);
                     GUI_Elements.window.revalidate();
                     GUI_Elements.window.repaint();
                     timer.cancel();
                 }
             }
         },0,App.getTimeSecond()*10);
-        GUI_Elements.CoderPanel.add(Beginner_C_Project_Information);
+        GUI_Elements.ProjectInfoPanel.add(Beginner_C_Project_Information);
     }
 
 }
