@@ -55,7 +55,7 @@ public class LOC //Line of Code
                 increment = increment/16;
                 loc_cnt += increment;
 
-                GUI_Elements.LOCLabel.setText("Number of LOC: "+ loc_cnt);
+                GUI_Elements.LOCLabel.setText(String.valueOf(loc_cnt));
             }
         });
         timer.start();

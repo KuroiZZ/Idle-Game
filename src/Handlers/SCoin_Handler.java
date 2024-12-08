@@ -53,7 +53,7 @@ public class SCoin_Handler implements ActionListener
                 break;
             case "Temporary_Money":
                 SCoin.SCoin_count += 10;
-                GUI_Elements.SCoinLabel.setText("Number of Coin: "+ SCoin.SCoin_count);
+                GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin.SCoin_count));
                 SoftvoperMain.ControlButtons();
                 break;
             case "Beginner_C_Project":

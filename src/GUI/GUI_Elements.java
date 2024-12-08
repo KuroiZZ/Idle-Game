@@ -112,31 +112,60 @@ public class GUI_Elements
         window.setLayout(new FlowLayout());
     }
 
+    private static JLabel SCoinImage;
+    private static JLabel LOCImage;
+    private void CreateScoinAndLOCImage()
+    {
+        ImageIcon LOCImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/LOC.png"));
+        Image LOCScaledImage = LOCImageIcon.getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
+        LOCImage = new JLabel(new ImageIcon(LOCScaledImage),SwingConstants.CENTER);
+
+        ImageIcon SCoinImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        Image SCoinScaledImage = SCoinImageIcon.getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
+        SCoinImage = new JLabel(new ImageIcon(SCoinScaledImage),SwingConstants.CENTER);
+    }
+
     public static JPanel CoderPanel;
     public static void InitializeCoderPanel()
     {
         CoderPanel = new JPanel();
         CoderPanel.setPreferredSize(new Dimension(920, 1080));
-        CoderPanel.setBackground(Color.green);
+        CoderPanel.setBackground(Color.getHSBColor(0,0,0.10f));
 
-        Font font1 = new Font("Comic Sans MS", Font.PLAIN, 22);
+        Font font1 = new Font(Font.SANS_SERIF, Font.BOLD, 40);
+        GUI_Elements pictures = new GUI_Elements();
+        pictures.CreateScoinAndLOCImage(); //ucube oldu burası
 
-        LOCLabel = new JLabel("Number of LOC: "+LOC.loc_cnt);
-        LOCLabel.setBackground(Color.white);
+        JPanel LOCPanel = new JPanel();
+        LOCPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        LOCPanel.setPreferredSize(new Dimension(910,60));
+        LOCPanel.setBackground(Color.getHSBColor(0,0,0.25f));
+        LOCPanel.setOpaque(true);
+        LOCLabel = new JLabel(String.valueOf(LOC.loc_cnt));
+        LOCLabel.setForeground(Color.white);
         LOCLabel.setFont(font1);
-        CoderPanel.add(LOCLabel);
+        LOCPanel.add(LOCImage);
+        LOCPanel.add(LOCLabel);
+        CoderPanel.add(LOCPanel);
 
-        SCoinLabel = new JLabel("Number of Coin: "+SCoin.SCoin_count);
-        SCoinLabel.setBackground(Color.white);
+        JPanel SCoinPanel = new JPanel();
+        SCoinPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        SCoinPanel.setPreferredSize(new Dimension(910,60));
+        SCoinPanel.setBackground(Color.getHSBColor(0,0,0.25f));
+        SCoinPanel.setOpaque(true);
+        SCoinLabel = new JLabel(String.valueOf(SCoin.SCoin_count));
+        SCoinLabel.setForeground(Color.white);
         SCoinLabel.setFont(font1);
-        CoderPanel.add(SCoinLabel);
+        SCoinPanel.add(SCoinImage);
+        SCoinPanel.add(SCoinLabel);
+        CoderPanel.add(SCoinPanel);
 
-        ImageIcon coder_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/coder_image.png"));
+        ImageIcon coder_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/PCPaintedBackground.png"));
 
         JButton coder = new JButton();
-        coder.setBackground(Color.black);
         coder.setFocusPainted(false);
-        coder.setBorder(null);
+        coder.setBackground(Color.getHSBColor(0,0,0.10f));
+        coder.setBorder(BorderFactory.createEmptyBorder());
         coder.setIcon(coder_image);
         coder.addActionListener(LOC_handler);
         coder.setActionCommand("computer");
