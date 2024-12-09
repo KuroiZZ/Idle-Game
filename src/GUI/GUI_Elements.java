@@ -109,7 +109,7 @@ public class GUI_Elements
         window.setUndecorated(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
-        window.setLayout(new FlowLayout());
+        window.setLayout(new BorderLayout());
     }
 
     private static JLabel SCoinImage;
@@ -128,9 +128,19 @@ public class GUI_Elements
     public static JPanel CoderPanel;
     public static void InitializeCoderPanel()
     {
-        CoderPanel = new JPanel();
+        CoderPanel = new JPanel(new GridBagLayout());
         CoderPanel.setPreferredSize(new Dimension(920, 1080));
         CoderPanel.setBackground(Color.getHSBColor(0,0,0.10f));
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.weightx = 0.5;
+        constraints.weighty = 0.5;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
 
         Font font1 = new Font(Font.SANS_SERIF, Font.BOLD, 40);
         GUI_Elements pictures = new GUI_Elements();
@@ -146,7 +156,11 @@ public class GUI_Elements
         LOCLabel.setFont(font1);
         LOCPanel.add(LOCImage);
         LOCPanel.add(LOCLabel);
-        CoderPanel.add(LOCPanel);
+        CoderPanel.add(LOCPanel,constraints);
+        constraints.anchor = GridBagConstraints.PAGE_START;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.gridy = 1;
 
         JPanel SCoinPanel = new JPanel();
         SCoinPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -158,7 +172,8 @@ public class GUI_Elements
         SCoinLabel.setFont(font1);
         SCoinPanel.add(SCoinImage);
         SCoinPanel.add(SCoinLabel);
-        CoderPanel.add(SCoinPanel);
+        CoderPanel.add(SCoinPanel,constraints);
+        constraints.gridy = 2;
 
         ImageIcon coder_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/PCPaintedBackground.png"));
 
@@ -169,7 +184,7 @@ public class GUI_Elements
         coder.setIcon(coder_image);
         coder.addActionListener(LOC_handler);
         coder.setActionCommand("computer");
-        CoderPanel.add(coder);
+        CoderPanel.add(coder,constraints);
 
     }
 
@@ -178,7 +193,7 @@ public class GUI_Elements
     {
         JPanel StorePanel_Inside = new JPanel();
         StorePanel_Inside.setPreferredSize(new Dimension(250, 1080));
-        StorePanel_Inside.setBackground(Color.blue);
+        StorePanel_Inside.setBackground(Color.getHSBColor(0,0,0.40f));
         StorePanel_Inside.setAutoscrolls(true);
 
         ImageIcon ProjectsButtonIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ProjectsButton.png"));
@@ -264,9 +279,14 @@ public class GUI_Elements
     {
         AppPanel = new JPanel();
         AppPanel.setPreferredSize(new Dimension(250, 1080));
-        AppPanel.setBackground(Color.blue);
+        AppPanel.setBackground(Color.getHSBColor(0,0,0.40f));
 
-        JButton goToStorePanel = new JButton("Store");
+        ImageIcon StoreButtonIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/StoreButton.png"));
+        ImageIcon RolloverStoreButtonIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverStoreButton.png"));
+
+        JButton goToStorePanel = new JButton(StoreButtonIcon);
+        goToStorePanel.setBorder(BorderFactory.createEmptyBorder());
+        goToStorePanel.setRolloverIcon(RolloverStoreButtonIcon);
         goToStorePanel.setActionCommand("goToStore");
         goToStorePanel.addActionListener(GUI_handler);
 
@@ -282,7 +302,7 @@ public class GUI_Elements
     {
         ProjectInfoPanel = new JPanel();
         ProjectInfoPanel.setPreferredSize(new Dimension(250, 1080));
-        ProjectInfoPanel.setBackground(Color.MAGENTA);
+        ProjectInfoPanel.setBackground(Color.getHSBColor(0,0,0.60f));
     }
 }
 
