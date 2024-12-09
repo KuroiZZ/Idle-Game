@@ -188,6 +188,10 @@ public class GUI_Elements
 
     }
 
+
+    public static JButton amount_1;
+    public static JButton amount_10;
+    public static JButton amount_100;
     public static JScrollPane StorePanel;
     public static void InitializeStorePanel()
     {
@@ -210,7 +214,7 @@ public class GUI_Elements
 
         ImageIcon icon1 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button1.png"));
         ImageIcon Rollovericon1 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton1.png"));
-        JButton amount_1 = new JButton(icon1);
+        amount_1 = new JButton(Rollovericon1);
         amount_1.setBorder(BorderFactory.createEmptyBorder());
         amount_1.setRolloverIcon(Rollovericon1);
         amount_1.setActionCommand("1");
@@ -218,7 +222,7 @@ public class GUI_Elements
 
         ImageIcon icon10 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button10.png"));
         ImageIcon Rollovericon10 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton10.png"));
-        JButton amount_10 = new JButton(icon10);
+        amount_10 = new JButton(icon10);
         amount_10.setBorder(BorderFactory.createEmptyBorder());
         amount_10.setRolloverIcon(Rollovericon10);
         amount_10.setActionCommand("10");
@@ -226,7 +230,7 @@ public class GUI_Elements
 
         ImageIcon icon100 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button100.png"));
         ImageIcon Rollovericon100 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton100.png"));
-        JButton amount_100 = new JButton(icon100);
+        amount_100 = new JButton(icon100);
         amount_100.setBorder(BorderFactory.createEmptyBorder());
         amount_100.setRolloverIcon(Rollovericon100);
         amount_100.setActionCommand("100");
