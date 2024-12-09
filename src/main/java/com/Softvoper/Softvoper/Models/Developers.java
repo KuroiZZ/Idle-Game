@@ -12,7 +12,7 @@ public class Developers
     private int NofTotalEmp; //Number of total employees (NTE)
     private int NofProjectEmp; //Number of employees working on project (NPE)
     private int NofNonProjectEmp; //Number of employees not working on project (NNPE)
-    private float Price; //price to hire an employee
+    public float Price; //price to hire an employee
     private int LinePerSecond; //line per second (LPS)
     private int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
     private String Type;
@@ -53,5 +53,10 @@ public class Developers
                                 .append("Rank", this.Rank);
 
         return BSONObject;
+    }
+
+    public ObjectId getSaveID()
+    {
+        return SaveID;
     }
 }
