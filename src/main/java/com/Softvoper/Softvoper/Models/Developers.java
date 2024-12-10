@@ -2,61 +2,54 @@ package com.Softvoper.Softvoper.Models;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.springframework.boot.jackson.JsonComponent;
 
-import javax.sound.sampled.Line;
-
+/** Developers class' purpose is to validate the developers data coming from save data.
+ *  A developers object must have at least 7 field.
+ */
 public class Developers
 {
+    /**
+        SaveID is a ObjectId typed ID of Save in database. */
     private ObjectId SaveID;
-    private int NofTotalEmp; //Number of total employees (NTE)
-    private int NofProjectEmp; //Number of employees working on project (NPE)
-    private int NofNonProjectEmp; //Number of employees not working on project (NNPE)
-    public float Price; //price to hire an employee
-    private int LinePerSecond; //line per second (LPS)
-    private int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
+
+    /**
+        NofTotalEmp is an int typed number of total employees. */
+    private int NofTotalEmp;
+
+    /**
+        NofProjectEmp is an int typed number of employees working on project. */
+    private int NofProjectEmp;
+
+    /**
+        Price is a double typed price to hire an employee. */
+    private double Price;
+
+    /**
+        LinePerSecond is an int typed line written by employee per second. */
+    private int LinePerSecond;
+
+    /**
+        Type is a string typed type of programming language employee works with.*/
     private String Type;
+
+    /**
+        Rank is a string typed rank that shows experiences of employees*/
     private String Rank;
 
-    public Developers(ObjectId SaveID, int NofTotalEmp, int NofProjectEmp, float Price, int LinePerSecond, String Type, String Rank)
+    /** Constructs from given Document object.
+     *
+     * @param DeveloperDocument is a Document type Developer contents.
+     */
+    public Developers(Document DeveloperDocument)
     {
-        this.SaveID = SaveID;
-        this.NofTotalEmp = NofTotalEmp;
-        this.NofProjectEmp = NofProjectEmp;
-        this.NofNonProjectEmp = NofTotalEmp - NofProjectEmp;
-        this.Price = Price;
-        this.LinePerSecond = LinePerSecond;
-        this.NofTotalLOC = NofNonProjectEmp * LinePerSecond;
-        this.Type = Type;
-        this.Rank = Rank;
+        this.SaveID = DeveloperDocument.get("SaveID", ObjectId.class);
+        this.NofTotalEmp = DeveloperDocument.get("nofTotalEmp", Integer.class);
+        this.NofProjectEmp = DeveloperDocument.get("nofProjectEmp", Integer.class);
+        this.Price = DeveloperDocument.get("price", Double.class);
+        this.LinePerSecond = DeveloperDocument.get("linePerSecond", Integer.class);
+        this.Type = DeveloperDocument.get("type", String.class);
+        this.Rank = DeveloperDocument.get("rank", String.class);
     }
 
-    public Developers(Document BSONObject)
-    {
-        this.SaveID = BSONObject.get("SaveID", ObjectId.class);
-        this.NofTotalEmp = BSONObject.get("NofTotalEmp", Integer.class);
-        this.NofProjectEmp = BSONObject.get("NofProjectEmp", Integer.class);
-        this.Price = BSONObject.get("Price", Float.class);
-        this.LinePerSecond = BSONObject.get("LinePerSecond", Integer.class);
-        this.Type = BSONObject.get("Type", String.class);
-        this.Rank = BSONObject.get("Rank", String.class);
-    }
 
-    public Document toBSON()
-    {
-        Document BSONObject = new Document("SaveID", this.SaveID)
-                                .append("NofTotalEmp",this.NofTotalEmp)
-                                .append("NofProjectEmp", this.NofProjectEmp)
-                                .append("Price", this.Price)
-                                .append("LinePerSecond", this.LinePerSecond)
-                                .append("Type", this.Type)
-                                .append("Rank", this.Rank);
-
-        return BSONObject;
-    }
-
-    public ObjectId getSaveID()
-    {
-        return SaveID;
-    }
 }

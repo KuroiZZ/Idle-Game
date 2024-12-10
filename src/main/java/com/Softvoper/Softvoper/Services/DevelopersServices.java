@@ -1,49 +1,65 @@
 package com.Softvoper.Softvoper.Services;
-
 import com.Softvoper.Softvoper.Models.Developers;
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.result.InsertOneResult;
-import org.bson.Document;
+import com.mongodb.client.result.InsertManyResult;
 
-import com.Softvoper.Softvoper.Services.Client;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/** DevelopersServices contains functions to deal with Developers model.
+ *  Doesn't include any variables and all functions are static.
+ */
 public class DevelopersServices
 {
-    public static void Main()
-    {
-
-    }
-    public static void InsertDeveloper(Developers developers)
-    {
-        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
-        {
-            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
-            MongoCollection<Document> collection = database.getCollection("Developers");
-
-            Document DeveloperDocument = developers.toBSON();
-
-            collection.insertOne(DeveloperDocument);
-        }
-    }
-    public static void InsertDeveloperList(List<Developers> DeveloperList)
+    /** Inserts developers to database from given save document.
+     *
+     * @param SaveDoc is a Document typed save.
+     * @param SaveID is a ObjectId typed Id of save from database.
+     */
+    public static void InsertDeveloper(Document SaveDoc, ObjectId SaveID)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
         {
             MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
             MongoCollection<Document> collection = database.getCollection("Developers");
 
-            for (Developers developer : DeveloperList) {
-                Document DeveloperDocument = developer.toBSON();
-                collection.insertOne(DeveloperDocument);
+
+            List<Document> DeveloperDocLisT = GetDeveloperDocumentList(SaveDoc);
+            AddSaveIDtoDevelopers(DeveloperDocLisT, SaveID);
+            try
+            {
+                for(Document DocDeveloper: DeveloperDocLisT)
+                {
+                    List<Developers> ListDevelopers = new ArrayList<Developers>();
+                    System.out.println(DocDeveloper);
+                    Developers developer = new Developers(DocDeveloper);
+                    ListDevelopers.add(developer);
+                }
+            }
+            catch (IllegalArgumentException e)
+            {
+                e.printStackTrace();
+            }
+
+            InsertManyResult rs = collection.insertMany(DeveloperDocLisT);
+            if(rs != null)
+            {
+                System.out.println("Developers başarıyla eklendi.");
+            }
+            else
+            {
+                System.out.println("Developers ekleme işleminde bir sorun oluştu.");
             }
         }
     }
+
     public static void FindDeveloper(ObjectId SaveID)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
@@ -62,5 +78,34 @@ public class DevelopersServices
                 System.out.println("No matching documents found.");
             }
         }
+    }
+
+    /** Gets developer's Document typed list from given save document.
+     *
+     * @param SaveDoc is a Document typed save.
+     * @return developer's Document typed list that it finds.
+     */
+    private static List<Document> GetDeveloperDocumentList(Document SaveDoc)
+    {
+        List<Document> DeveloperDocumentList = SaveDoc.getList("Developers", Document.class);
+
+        return DeveloperDocumentList;
+    }
+
+
+    /** Add save id to received developers.
+     *
+     * @param DeveloperDocumentList is Document typed list of received developers.
+     * @param SaveID is a ObjectId typed Id of save from database.
+     * @return save id added version of received developers.
+     */
+    private static List<Document> AddSaveIDtoDevelopers(List<Document> DeveloperDocumentList, ObjectId SaveID)
+    {
+        for(Document developerDocument: DeveloperDocumentList)
+        {
+            developerDocument.append("SaveID", SaveID);
+        }
+
+        return DeveloperDocumentList;
     }
 }
