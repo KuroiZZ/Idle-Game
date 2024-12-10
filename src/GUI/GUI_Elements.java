@@ -308,5 +308,22 @@ public class GUI_Elements
         ProjectInfoPanel.setPreferredSize(new Dimension(250, 1080));
         ProjectInfoPanel.setBackground(Color.getHSBColor(0,0,0.60f));
     }
+
+    public static JFrame main_window;
+    public static void InitializeMainWindow()
+    {
+        main_window = new JFrame();
+        main_window.setSize(1920, 1080);
+        main_window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        main_window.setUndecorated(false);
+        main_window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        main_window.getContentPane().setBackground(Color.BLACK);
+        main_window.setLayout(new BorderLayout());
+
+        JButton buton1 = new JButton("Git");
+        buton1.addActionListener(GUI_handler);
+        buton1.setActionCommand("goToGame");
+        main_window.add(buton1);
+    }
 }
 

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import GUI.GUI_Elements;
+import GUI.SoftvoperMain;
 
 public class GUI_Handler implements ActionListener
 {
@@ -22,6 +23,10 @@ public class GUI_Handler implements ActionListener
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 break;
+            case "goToGame":
+                SoftvoperMain.CreateUI();
+                GUI_Elements.main_window.setVisible(false);
+
         }
     }
 

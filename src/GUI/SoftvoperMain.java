@@ -10,6 +10,12 @@ import SCoinSystem.SCoin;
 
 public class SoftvoperMain
 {
+    static public void CreateMainMenu()
+    {
+        GUI_Elements.InitializeMainWindow();
+        GUI_Elements.main_window.setVisible(true);
+    }
+
     static public void CreateUI()
     {
         GUI_Elements.InitializeMainScreen();
@@ -26,6 +32,7 @@ public class SoftvoperMain
 
         ControlButtons();
         ControlProjects();
+
     }
 
     static public void ControlButtons()
