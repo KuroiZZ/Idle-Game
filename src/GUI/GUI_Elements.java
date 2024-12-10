@@ -16,7 +16,7 @@ public class GUI_Elements
     public static BuyAmount_Handler Buyamount_handler = new BuyAmount_Handler();
     public static LOC_Handler LOC_handler = new LOC_Handler();
     public static SCoin_Handler SCoin_handler = new SCoin_Handler();
-    public static JLabel LOCLabel;
+    public static JLabel LOCLabel = new JLabel();
     public static JLabel SCoinLabel;
 
     static public DeveloperButton Beginner_C_Button;
@@ -187,7 +187,6 @@ public class GUI_Elements
         CoderPanel.add(coder,constraints);
 
     }
-
 
     public static JButton amount_1;
     public static JButton amount_10;

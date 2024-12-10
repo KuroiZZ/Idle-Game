@@ -24,9 +24,9 @@ public class GUI_Handler implements ActionListener
                 GUI_Elements.window.repaint();
                 break;
             case "goToGame":
-                SoftvoperMain.CreateUI();
                 GUI_Elements.main_window.setVisible(false);
-
+                SoftvoperMain.CreateUI();
+                break;
         }
     }
 
