@@ -5,21 +5,45 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.InsertOneResult;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.json.JsonObject;
 import org.bson.types.ObjectId;
 
 public class SaveSevices
 {
-    public static void InsertSave(Save save)
+    public static void InsertSave(String save)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
         {
             MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
             MongoCollection<Document> collection = database.getCollection("Save");
 
-            Document SaveDocument = save.toBSON();
+            Document WholeSaveDoc = Document.parse(save);
 
-            collection.insertOne(SaveDocument);
+            try { Save save1 = new Save(WholeSaveDoc); }
+            catch (IllegalArgumentException e)
+            {
+                e.printStackTrace();
+            }
+
+            Document EditedSaveDoc = WholeSaveDoc;
+            EditedSaveDoc.remove("developers");
+
+            InsertOneResult rs = collection.insertOne(EditedSaveDoc);
+            if(rs != null)
+            {
+                System.out.println("Save başarıyla eklendi.");
+            }
+            else
+            {
+                System.out.println("Save ekleme işleminde bir sorun oluştu.");
+            }
+
+            System.out.println(rs.getInsertedId());
+
+            //DevelopersServices.InsertDeveloper(WholeSaveDoc);
         }
     }
     public static void FindSave(ObjectId objectId)
