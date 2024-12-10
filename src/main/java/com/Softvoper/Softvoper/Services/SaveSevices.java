@@ -6,13 +6,20 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.InsertOneResult;
-import org.bson.BsonDocument;
+
 import org.bson.Document;
-import org.bson.json.JsonObject;
 import org.bson.types.ObjectId;
 
+
+/** SaveServices contains functions to deal with save model.
+ *  Doesn't include any variables and all functions are static.
+ */
 public class SaveSevices
 {
+    /** Inserts saves to database from given save string.
+     *
+     * @param save is a string typed save of game.
+     */
     public static void InsertSave(String save)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
@@ -28,8 +35,8 @@ public class SaveSevices
                 e.printStackTrace();
             }
 
-            Document EditedSaveDoc = WholeSaveDoc;
-            EditedSaveDoc.remove("developers");
+            Document EditedSaveDoc = new Document(WholeSaveDoc);
+            EditedSaveDoc.remove("Developers");
 
             InsertOneResult rs = collection.insertOne(EditedSaveDoc);
             if(rs != null)
@@ -40,12 +47,11 @@ public class SaveSevices
             {
                 System.out.println("Save ekleme işleminde bir sorun oluştu.");
             }
-
-            System.out.println(rs.getInsertedId());
-
-            //DevelopersServices.InsertDeveloper(WholeSaveDoc);
+            ObjectId SaveID = rs.getInsertedId().asObjectId().getValue();
+            DevelopersServices.InsertDeveloper(WholeSaveDoc, SaveID);
         }
     }
+
     public static void FindSave(ObjectId objectId)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
