@@ -9,8 +9,8 @@ import org.bson.types.ObjectId;
 public class Developers
 {
     /**
-        SaveID is a ObjectId typed ID of Save in database. */
-    private ObjectId SaveID;
+        SaveID is a String typed ID of Save in database. */
+    private String SaveID;
 
     /**
         NofTotalEmp is an int typed number of total employees. */
@@ -42,7 +42,7 @@ public class Developers
      */
     public Developers(Document DeveloperDocument)
     {
-        this.SaveID = DeveloperDocument.get("SaveID", ObjectId.class);
+        this.SaveID = DeveloperDocument.get("SaveID", String.class);
         this.NofTotalEmp = DeveloperDocument.get("nofTotalEmp", Integer.class);
         this.NofProjectEmp = DeveloperDocument.get("nofProjectEmp", Integer.class);
         this.Price = DeveloperDocument.get("price", Double.class);
