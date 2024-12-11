@@ -19,6 +19,153 @@ public class GUI_Elements
     public static JLabel LOCLabel = new JLabel();
     public static JLabel SCoinLabel;
 
+    public static JFrame window = new JFrame();
+    public static void InitializeMainScreen()
+    {
+        window.setSize(1920, 1080);
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.getContentPane().setBackground(Color.BLACK);
+        window.setLayout(new GridBagLayout());
+
+        GridBagConstraints Title_Constraint = new GridBagConstraints();
+
+        Title_Constraint.fill = GridBagConstraints.NONE;
+        Title_Constraint.anchor = GridBagConstraints.CENTER;
+        Title_Constraint.weightx = 0.5;
+        Title_Constraint.weighty = 0.5;
+        Title_Constraint.gridwidth = 2;
+        Title_Constraint.gridheight = 1;
+        Title_Constraint.gridx = 1;
+        Title_Constraint.gridy = 0;
+
+        JLabel Game_Title = new JLabel("Softvoper Idle Game");
+        Game_Title.setFont(new Font(Font.SERIF, Font.BOLD, 70));
+        Game_Title.setForeground(Color.GREEN);
+        window.add(Game_Title, Title_Constraint);
+
+        GridBagConstraints New_Game_Constraint = new GridBagConstraints();
+
+        New_Game_Constraint.fill = GridBagConstraints.NONE;
+        New_Game_Constraint.anchor = GridBagConstraints.PAGE_START;
+        New_Game_Constraint.weightx = 0.5;
+        New_Game_Constraint.weighty = 0.5;
+        New_Game_Constraint.gridwidth = 2;
+        New_Game_Constraint.gridheight = 1;
+        New_Game_Constraint.gridx = 1;
+        New_Game_Constraint.gridy = 1;
+
+        JButton New_Game = new JButton("New Game");
+        New_Game.addActionListener(GUI_handler);
+        New_Game.setActionCommand("New_Game");
+        New_Game.setPreferredSize(new Dimension(500, 100));
+        window.add(New_Game, New_Game_Constraint);
+
+        GridBagConstraints Load_Game_Constraint = new GridBagConstraints();
+
+        Load_Game_Constraint.fill = GridBagConstraints.NONE;
+        Load_Game_Constraint.anchor = GridBagConstraints.PAGE_START;
+        Load_Game_Constraint.weightx = 0.5;
+        Load_Game_Constraint.weighty = 0.5;
+        Load_Game_Constraint.gridwidth = 2;
+        Load_Game_Constraint.gridheight = 1;
+        Load_Game_Constraint.gridx = 1;
+        Load_Game_Constraint.gridy = 2;
+
+        JButton Load_Game = new JButton("Load Game");
+        Load_Game.addActionListener(GUI_handler);
+        Load_Game.setActionCommand("Load_Game");
+        Load_Game.setPreferredSize(new Dimension(500, 100));
+        window.add(Load_Game, Load_Game_Constraint);
+
+    }
+
+    public static void InitializeGameScreen()
+    {
+        window.setLayout(new BorderLayout());
+    }
+
+    public static void InitializeSaveScreen()
+    {
+        window.setLayout(new GridBagLayout());
+    }
+
+    private static JLabel SCoinImage;
+    private static JLabel LOCImage;
+    private void CreateScoinAndLOCImage()
+    {
+        ImageIcon LOCImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/LOC.png"));
+        Image LOCScaledImage = LOCImageIcon.getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
+        LOCImage = new JLabel(new ImageIcon(LOCScaledImage),SwingConstants.CENTER);
+
+        ImageIcon SCoinImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        Image SCoinScaledImage = SCoinImageIcon.getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
+        SCoinImage = new JLabel(new ImageIcon(SCoinScaledImage),SwingConstants.CENTER);
+    }
+
+    public static JPanel CoderPanel;
+    public static void InitializeCoderPanel()
+    {
+        CoderPanel = new JPanel(new GridBagLayout());
+        CoderPanel.setPreferredSize(new Dimension(920, 1080));
+        CoderPanel.setBackground(Color.getHSBColor(0,0,0.10f));
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.weightx = 0.5;
+        constraints.weighty = 0.5;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+
+        Font font1 = new Font(Font.SANS_SERIF, Font.BOLD, 40);
+        GUI_Elements pictures = new GUI_Elements();
+        pictures.CreateScoinAndLOCImage(); //ucube oldu burası
+
+        JPanel LOCPanel = new JPanel();
+        LOCPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        LOCPanel.setPreferredSize(new Dimension(910,60));
+        LOCPanel.setBackground(Color.getHSBColor(0,0,0.25f));
+        LOCPanel.setOpaque(true);
+        LOCLabel = new JLabel(String.valueOf(LOC.loc_cnt));
+        LOCLabel.setForeground(Color.white);
+        LOCLabel.setFont(font1);
+        LOCPanel.add(LOCImage);
+        LOCPanel.add(LOCLabel);
+        CoderPanel.add(LOCPanel,constraints);
+        constraints.anchor = GridBagConstraints.PAGE_START;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.gridy = 1;
+
+        JPanel SCoinPanel = new JPanel();
+        SCoinPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        SCoinPanel.setPreferredSize(new Dimension(910,60));
+        SCoinPanel.setBackground(Color.getHSBColor(0,0,0.25f));
+        SCoinPanel.setOpaque(true);
+        SCoinLabel = new JLabel(String.valueOf(SCoin.SCoin_count));
+        SCoinLabel.setForeground(Color.white);
+        SCoinLabel.setFont(font1);
+        SCoinPanel.add(SCoinImage);
+        SCoinPanel.add(SCoinLabel);
+        CoderPanel.add(SCoinPanel,constraints);
+        constraints.gridy = 2;
+
+        ImageIcon coder_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/PCPaintedBackground.png"));
+
+        JButton coder = new JButton();
+        coder.setFocusPainted(false);
+        coder.setBackground(Color.getHSBColor(0,0,0.10f));
+        coder.setBorder(BorderFactory.createEmptyBorder());
+        coder.setIcon(coder_image);
+        coder.addActionListener(LOC_handler);
+        coder.setActionCommand("computer");
+        CoderPanel.add(coder,constraints);
+
+    }
+
     static public DeveloperButton Beginner_C_Button;
     static public DeveloperButton Beginner_CSharp_Button;
     static public DeveloperButton Beginner_Dart_Button;
@@ -98,94 +245,6 @@ public class GUI_Elements
         Advanced_Java_Button.setActionCommand("Advanced_Java");
         Advanced_Java_Button.addActionListener(LOC_handler);
         Advanced_Java_Button.addActionListener(SCoin_handler);
-    }
-
-    public static JFrame window;
-    public static void InitializeMainScreen()
-    {
-        window = new JFrame();
-        window.setSize(1920, 1080);
-        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        window.setUndecorated(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.BLACK);
-        window.setLayout(new BorderLayout());
-    }
-
-    private static JLabel SCoinImage;
-    private static JLabel LOCImage;
-    private void CreateScoinAndLOCImage()
-    {
-        ImageIcon LOCImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/LOC.png"));
-        Image LOCScaledImage = LOCImageIcon.getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
-        LOCImage = new JLabel(new ImageIcon(LOCScaledImage),SwingConstants.CENTER);
-
-        ImageIcon SCoinImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
-        Image SCoinScaledImage = SCoinImageIcon.getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
-        SCoinImage = new JLabel(new ImageIcon(SCoinScaledImage),SwingConstants.CENTER);
-    }
-
-    public static JPanel CoderPanel;
-    public static void InitializeCoderPanel()
-    {
-        CoderPanel = new JPanel(new GridBagLayout());
-        CoderPanel.setPreferredSize(new Dimension(920, 1080));
-        CoderPanel.setBackground(Color.getHSBColor(0,0,0.10f));
-
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.weightx = 0.5;
-        constraints.weighty = 0.5;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-
-        Font font1 = new Font(Font.SANS_SERIF, Font.BOLD, 40);
-        GUI_Elements pictures = new GUI_Elements();
-        pictures.CreateScoinAndLOCImage(); //ucube oldu burası
-
-        JPanel LOCPanel = new JPanel();
-        LOCPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        LOCPanel.setPreferredSize(new Dimension(910,60));
-        LOCPanel.setBackground(Color.getHSBColor(0,0,0.25f));
-        LOCPanel.setOpaque(true);
-        LOCLabel = new JLabel(String.valueOf(LOC.loc_cnt));
-        LOCLabel.setForeground(Color.white);
-        LOCLabel.setFont(font1);
-        LOCPanel.add(LOCImage);
-        LOCPanel.add(LOCLabel);
-        CoderPanel.add(LOCPanel,constraints);
-        constraints.anchor = GridBagConstraints.PAGE_START;
-        constraints.weightx = 1;
-        constraints.weighty = 1;
-        constraints.gridy = 1;
-
-        JPanel SCoinPanel = new JPanel();
-        SCoinPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        SCoinPanel.setPreferredSize(new Dimension(910,60));
-        SCoinPanel.setBackground(Color.getHSBColor(0,0,0.25f));
-        SCoinPanel.setOpaque(true);
-        SCoinLabel = new JLabel(String.valueOf(SCoin.SCoin_count));
-        SCoinLabel.setForeground(Color.white);
-        SCoinLabel.setFont(font1);
-        SCoinPanel.add(SCoinImage);
-        SCoinPanel.add(SCoinLabel);
-        CoderPanel.add(SCoinPanel,constraints);
-        constraints.gridy = 2;
-
-        ImageIcon coder_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/PCPaintedBackground.png"));
-
-        JButton coder = new JButton();
-        coder.setFocusPainted(false);
-        coder.setBackground(Color.getHSBColor(0,0,0.10f));
-        coder.setBorder(BorderFactory.createEmptyBorder());
-        coder.setIcon(coder_image);
-        coder.addActionListener(LOC_handler);
-        coder.setActionCommand("computer");
-        CoderPanel.add(coder,constraints);
-
     }
 
     public static JButton amount_1;
@@ -277,12 +336,12 @@ public class GUI_Elements
         Beginner_C_Project.addActionListener(SCoin_handler);
     }
 
-    public static JPanel AppPanel;
-    public static void InitializeAppPanel()
+    public static JPanel ProjectPanel;
+    public static void InitializeProjectPanel()
     {
-        AppPanel = new JPanel();
-        AppPanel.setPreferredSize(new Dimension(250, 1080));
-        AppPanel.setBackground(Color.getHSBColor(0,0,0.40f));
+        ProjectPanel = new JPanel();
+        ProjectPanel.setPreferredSize(new Dimension(250, 1080));
+        ProjectPanel.setBackground(Color.getHSBColor(0,0,0.40f));
 
         ImageIcon StoreButtonIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/StoreButton.png"));
         ImageIcon RolloverStoreButtonIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverStoreButton.png"));
@@ -295,8 +354,8 @@ public class GUI_Elements
 
         InitializeBeginnerProjects();
 
-        AppPanel.add(goToStorePanel);
-        AppPanel.add(Beginner_C_Project);
+        ProjectPanel.add(goToStorePanel);
+        ProjectPanel.add(Beginner_C_Project);
 
     }
 
@@ -308,21 +367,8 @@ public class GUI_Elements
         ProjectInfoPanel.setBackground(Color.getHSBColor(0,0,0.60f));
     }
 
-    public static JFrame main_window;
-    public static void InitializeMainWindow()
-    {
-        main_window = new JFrame();
-        main_window.setSize(1920, 1080);
-        main_window.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        main_window.setUndecorated(false);
-        main_window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main_window.getContentPane().setBackground(Color.BLACK);
-        main_window.setLayout(new BorderLayout());
 
-        JButton buton1 = new JButton("Git");
-        buton1.addActionListener(GUI_handler);
-        buton1.setActionCommand("goToGame");
-        main_window.add(buton1);
-    }
+
+
 }
 

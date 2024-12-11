@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Save
 {
+    public String _id;
     public int loc_count_js;
     public int scoin_count_js;
     public List<Developers> developers;

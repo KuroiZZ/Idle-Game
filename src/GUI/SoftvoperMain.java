@@ -12,27 +12,28 @@ public class SoftvoperMain
 {
     static public void CreateMainMenu()
     {
-        GUI_Elements.InitializeMainWindow();
-        GUI_Elements.main_window.setVisible(true);
+        GUI_Elements.InitializeMainScreen();
     }
 
-    static public void CreateUI()
+    static public void CreateGameMenu()
     {
-        GUI_Elements.InitializeMainScreen();
+        GUI_Elements.InitializeGameScreen();
         GUI_Elements.InitializeCoderPanel();
         GUI_Elements.InitializeStorePanel();
-        GUI_Elements.InitializeAppPanel();
+        GUI_Elements.InitializeProjectPanel();
         GUI_Elements.InitializeProjectInfoPanel();
 
         GUI_Elements.window.add(GUI_Elements.ProjectInfoPanel, BorderLayout.WEST);
         GUI_Elements.window.add(GUI_Elements.CoderPanel, BorderLayout.CENTER);
         GUI_Elements.window.add(GUI_Elements.StorePanel, BorderLayout.EAST);
 
-        GUI_Elements.window.setVisible(true);
-
         ControlButtons();
         ControlProjects();
+    }
 
+    static public void CreateSaveMenu()
+    {
+        GUI_Elements.InitializeSaveScreen();
     }
 
     static public void ControlButtons()
