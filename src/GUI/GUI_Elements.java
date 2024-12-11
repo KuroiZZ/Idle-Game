@@ -87,7 +87,19 @@ public class GUI_Elements
 
     public static void InitializeSaveScreen()
     {
-        window.setLayout(new GridBagLayout());
+        window.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 100));
+
+        SavePanel save1 = new SavePanel();
+        SavePanel save2 = new SavePanel();
+        SavePanel save3 = new SavePanel();
+        SavePanel save4 = new SavePanel();
+        SavePanel save5 = new SavePanel();
+
+        window.add(save1);
+        window.add(save2);
+        window.add(save3);
+        window.add(save4);
+        window.add(save5);
     }
 
     private static JLabel SCoinImage;
