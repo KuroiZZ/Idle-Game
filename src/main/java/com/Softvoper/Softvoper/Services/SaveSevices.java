@@ -5,7 +5,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
+import static com.mongodb.client.model.Filters.eq;
 
 import org.bson.Document;
 
@@ -61,7 +63,7 @@ public class SaveSevices
     }
 
     /**
-     * Gets saves from database. Saves don't have developers' information yet.
+     * Gets save from database. Saves don't have developers' information yet.
      * @param Id Save's id in database.
      * @return Unfinished saved state of the game.
      */
@@ -81,6 +83,7 @@ public class SaveSevices
             else
             {
                 System.out.println("No matching documents found.");
+                throw new NullPointerException();
             }
         }
         catch (Exception e)
@@ -91,7 +94,7 @@ public class SaveSevices
     }
 
     /**
-     * Gets saves from database. Developers' information are now added to Save.
+     * Gets save from database. Developers' information are now added to Save.
      * @param Id Id of the Save in database.
      * @return Finished saved state of the game.
      */
@@ -100,13 +103,48 @@ public class SaveSevices
         Document unfinishedSave = GetSaveWithoutDevelopers(Id);
         Document DevelopersDoc = DevelopersServices.GetDeveloper(Id);
 
-        unfinishedSave.append("developers", DevelopersDoc);
-        String Save = unfinishedSave.toJson();
-        return Save;
+        if((unfinishedSave != null) && (DevelopersDoc != null))
+        {
+            unfinishedSave.append("developers", DevelopersDoc);
+            String Save = unfinishedSave.toJson();
+            return Save;
+        }
+        else
+        {
+            System.out.println("No matching documents found.");
+            throw new NullPointerException();
+        }
     }
 
-    public static void DeleteSave()
+    /**
+     * Deletes save and developers from database.
+     * @param Id Id of the Save to deleted in database.
+     */
+    public static void DeleteSave(String Id)
     {
+        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
+        {
+            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
+            MongoCollection<Document> collection = database.getCollection("Save");
 
+            if( GetSaveWithoutDevelopers(Id) != null ) {
+                DeleteResult dr = collection.deleteOne(eq("_id", Id));
+
+                if (dr != null) {
+                    System.out.println("Save başarıyla silindi.");
+                    DevelopersServices.DeleteDeveloper(Id);
+                } else {
+                    System.out.println("Save silinirken bir sorunla karşılaşıldı.");
+                }
+            }
+            else
+            {
+                System.out.println("Bu id'ye sahip save bulunmamaktadır.");
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

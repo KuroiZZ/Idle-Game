@@ -5,7 +5,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertManyResult;
+import static com.mongodb.client.model.Filters.eq;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -89,6 +91,33 @@ public class DevelopersServices
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * Deletes Developers from database. 
+     * @param SaveID Save's Id of the developer.
+     */
+    public static void DeleteDeveloper(String SaveID)
+    {
+        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
+        {
+            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
+            MongoCollection<Document> collection = database.getCollection("Developers");
+
+            DeleteResult dr = collection.deleteMany(eq("SaveID", SaveID));
+
+            if(dr != null)
+            {
+                System.out.println("Developers başarıyla silindi.");
+            }
+            else
+            {
+                System.out.println("Developers silinirken bir sorunla karşılaşıldı.");
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /** Gets developer's Document typed list from given save document.
