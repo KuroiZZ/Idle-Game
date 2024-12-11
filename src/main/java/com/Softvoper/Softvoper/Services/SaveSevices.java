@@ -1,15 +1,14 @@
 package com.Softvoper.Softvoper.Services;
 
 import com.Softvoper.Softvoper.Models.Save;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import static com.mongodb.client.model.Filters.eq;
 
 import org.bson.Document;
+
+import java.util.List;
 
 
 /**
@@ -83,7 +82,7 @@ public class SaveSevices
             else
             {
                 System.out.println("No matching documents found.");
-                throw new NullPointerException();
+
             }
         }
         catch (Exception e)
@@ -101,7 +100,7 @@ public class SaveSevices
     public static String GetSave(String Id)
     {
         Document unfinishedSave = GetSaveWithoutDevelopers(Id);
-        Document DevelopersDoc = DevelopersServices.GetDeveloper(Id);
+        List<Document> DevelopersDoc = DevelopersServices.GetDeveloper(Id);
 
         if((unfinishedSave != null) && (DevelopersDoc != null))
         {
@@ -133,7 +132,8 @@ public class SaveSevices
                 if (dr != null) {
                     System.out.println("Save başarıyla silindi.");
                     DevelopersServices.DeleteDeveloper(Id);
-                } else {
+                }
+                else {
                     System.out.println("Save silinirken bir sorunla karşılaşıldı.");
                 }
             }
