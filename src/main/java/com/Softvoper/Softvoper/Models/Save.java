@@ -10,6 +10,14 @@ import java.util.List;
 public class Save
 {
     /**
+        Save's String typed id in database. */
+    private String Id;
+
+    /**
+        Save's String typed name. */
+    private String Name;
+
+    /**
         DeveloperList is a Document type list of developers from game */
     private List<Document> DeveloperList;
 
@@ -27,6 +35,8 @@ public class Save
      */
     public Save(Document SaveDocument)
     {
+        this.Id = SaveDocument.get("_id", String.class);
+        this.Name = SaveDocument.get("name", String.class);
         this.LOCCount = SaveDocument.get("loc_count_js", Integer.class);
         this.SCoinCount = SaveDocument.get("scoin_count_js", Integer.class);
         this.DeveloperList = SaveDocument.getList("developer", Document.class);
