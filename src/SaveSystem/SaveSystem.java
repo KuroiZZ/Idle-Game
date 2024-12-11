@@ -6,6 +6,16 @@ import LOCSystem.LOC;
 import SCoinSystem.SCoin;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +39,39 @@ public class SaveSystem
         developers.add(LOC.Advanced_Java_Developer);
         Save new_Save = new Save(instant_loc_count, instant_scoin_count, developers);
         return new_Save.CreateJSON();
+    }
+
+    static public void SendSave()
+    {
+        URI url = URI.create("http://localhost:8080/save/insert");
+        String save = null;
+
+        try
+        {
+            save = TakeSave();
+        }
+        catch (JsonProcessingException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(url)
+                .POST(HttpRequest.BodyPublishers.ofString(save))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = null;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("HTTP Status Code: " + response.statusCode());
+        System.out.println("Response Body: " + response.body());
     }
 }
