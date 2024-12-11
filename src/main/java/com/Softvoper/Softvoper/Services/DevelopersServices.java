@@ -23,7 +23,7 @@ public class DevelopersServices
      * @param SaveDoc is a Document typed save.
      * @param SaveID is a ObjectId typed Id of save from database.
      */
-    public static void InsertDeveloper(Document SaveDoc, ObjectId SaveID)
+    public static void InsertDeveloper(Document SaveDoc, String SaveID)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
         {
@@ -60,7 +60,12 @@ public class DevelopersServices
         }
     }
 
-    public static void FindDeveloper(ObjectId SaveID)
+    /** Gets Document typed developers from database by Save ID.
+     *
+     * @param SaveID Save's Id of the developer.
+     * @return developers
+     */
+    public static Document GetDeveloper(String SaveID)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
         {
@@ -72,12 +77,18 @@ public class DevelopersServices
             if (doc != null)
             {
                 System.out.println(doc.toJson());
+                return doc;
             }
             else
             {
                 System.out.println("No matching documents found.");
             }
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /** Gets developer's Document typed list from given save document.
@@ -87,7 +98,7 @@ public class DevelopersServices
      */
     private static List<Document> GetDeveloperDocumentList(Document SaveDoc)
     {
-        List<Document> DeveloperDocumentList = SaveDoc.getList("Developers", Document.class);
+        List<Document> DeveloperDocumentList = SaveDoc.getList("developers", Document.class);
 
         return DeveloperDocumentList;
     }
@@ -99,7 +110,7 @@ public class DevelopersServices
      * @param SaveID is a ObjectId typed Id of save from database.
      * @return save id added version of received developers.
      */
-    private static List<Document> AddSaveIDtoDevelopers(List<Document> DeveloperDocumentList, ObjectId SaveID)
+    private static List<Document> AddSaveIDtoDevelopers(List<Document> DeveloperDocumentList, String SaveID)
     {
         for(Document developerDocument: DeveloperDocumentList)
         {
