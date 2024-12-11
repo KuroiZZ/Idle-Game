@@ -1,10 +1,7 @@
 package com.Softvoper.Softvoper.Services;
 import com.Softvoper.Softvoper.Models.Developers;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertManyResult;
 import static com.mongodb.client.model.Filters.eq;
@@ -67,7 +64,7 @@ public class DevelopersServices
      * @param SaveID Save's Id of the developer.
      * @return developers
      */
-    public static Document GetDeveloper(String SaveID)
+    public static List<Document> GetDeveloper(String SaveID)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
         {
@@ -75,11 +72,15 @@ public class DevelopersServices
             MongoCollection<Document> collection = database.getCollection("Developers");
 
             Document filter = new Document("SaveID", SaveID);
-            Document doc = collection.find(filter).first();
+            FindIterable<Document> doc = collection.find(filter);
+            List<Document> DeveloperDocList = new ArrayList<Document>();
             if (doc != null)
             {
-                System.out.println(doc.toJson());
-                return doc;
+                for(Document developer: doc)
+                {
+                    DeveloperDocList.add(developer);
+                }
+                return DeveloperDocList;
             }
             else
             {
@@ -94,7 +95,7 @@ public class DevelopersServices
     }
 
     /**
-     * Deletes Developers from database. 
+     * Deletes Developers from database.
      * @param SaveID Save's Id of the developer.
      */
     public static void DeleteDeveloper(String SaveID)
@@ -114,7 +115,8 @@ public class DevelopersServices
             {
                 System.out.println("Developers silinirken bir sorunla karşılaşıldı.");
             }
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
         }
