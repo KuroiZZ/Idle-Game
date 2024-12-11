@@ -2,24 +2,21 @@ package LOCSystem;
 
 public abstract class Developers
 {
-    private int NofTotalEmp; //Number of total employees (NTE)
-    private int NofProjectEmp; //Number of employees working on project (NPE)
-    private int NofNonProjectEmp; //Number of employees not working on project (NNPE)
-    private float Price; //price to hire an employee
-    private int LinePerSecond; //line per second (LPS)
-    private int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
-    private String Type;
-    private String Rank;
+    protected int NofTotalEmp; //Number of total employees (NTE)
+    protected int NofProjectEmp; //Number of employees working on project (NPE)
+    protected int NofNonProjectEmp; //Number of employees not working on project (NNPE)
+    protected float Price; //price to hire an employee
+    protected int LinePerSecond; //line per second (LPS)
+    protected int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
+    protected String Type;
+    protected String Rank;
 
     public Developers(String type, String rank)
     {
-        setNofTotalEmp(0);
-        setNofProjectEmp(0);
-        setNofNonProjectEmp();
         Type = type;
         Rank = rank;
     }
-    
+
     public int getNofTotalEmp()
     {
         return NofTotalEmp;
