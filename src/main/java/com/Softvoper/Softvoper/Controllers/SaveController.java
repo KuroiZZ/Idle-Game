@@ -9,15 +9,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/save")
 public class SaveController
 {
-    @PostMapping(value = "/insert/{save}")
-    public void Insert(@PathVariable String save)
+    @PostMapping(value = "/insert")
+    @ResponseBody
+    public String Insert(@RequestBody String save)
     {
         SaveSevices.InsertSave(save);
+        return "başarılı";
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/get")
     @ResponseBody
-    public String Get(@PathVariable String id)
+    public String Get(@RequestBody String id)
     {
         return SaveSevices.GetSave(id);
     }
