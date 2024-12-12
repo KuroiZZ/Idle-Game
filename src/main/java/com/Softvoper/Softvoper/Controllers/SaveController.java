@@ -30,4 +30,20 @@ public class SaveController
     {
         return SaveSevices.GetAllSaves();
     }
+
+    @DeleteMapping(value = "/delete")
+    @ResponseBody
+    public String Delete(@RequestBody String id)
+    {
+        SaveSevices.DeleteSave(id);
+        return "başarılı";
+    }
+
+    @PutMapping(value = "/update")
+    @ResponseBody
+    public String Update(@RequestBody String UpdatedSave)
+    {
+        SaveSevices.UpdateSave(UpdatedSave);
+        return "başarılı";
+    }
 }
