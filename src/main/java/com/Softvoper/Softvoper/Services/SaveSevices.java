@@ -108,7 +108,6 @@ public class SaveSevices
         {
             unfinishedSave.append("developers", DevelopersDoc);
             String Save = unfinishedSave.toJson();
-            System.out.println(Save);
             return Save;
         }
         else
@@ -175,7 +174,7 @@ public class SaveSevices
             if( GetSaveWithoutDevelopers(UpdatedSaveId) != null )
             {
                 Document EditedUpdatedSaveDoc = new Document(WholeUpdatedSaveDoc);
-                EditedUpdatedSaveDoc.remove("Developers");
+                EditedUpdatedSaveDoc.remove("developers");
 
                 Bson filter = eq("_id", UpdatedSaveId);
                 Bson update = new Document("$set", EditedUpdatedSaveDoc);
