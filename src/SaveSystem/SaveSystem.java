@@ -21,11 +21,9 @@ public class SaveSystem
 {
     static public Save instant_save;
 
-    static public void TakeSave()
+    static public ArrayList<Developers> CreateDeveloperList()
     {
-        int instant_loc_count = LOC.loc_cnt;
-        int instant_scoin_count = SCoin.SCoin_count;
-        List<Developers> developers = new ArrayList<Developers>(12);
+        ArrayList<Developers> developers = new ArrayList<Developers>(12);
         developers.add(LOC.Beginner_C_Developer);
         developers.add(LOC.Beginner_CSharp_Developer);
         developers.add(LOC.Beginner_Dart_Developer);
@@ -38,13 +36,23 @@ public class SaveSystem
         developers.add(LOC.Advanced_CSharp_Developer);
         developers.add(LOC.Advanced_Dart_Developer);
         developers.add(LOC.Advanced_Java_Developer);
+
+        return developers;
+    }
+
+    static public void UpdateInstantSave()
+    {
+        int instant_loc_count = LOC.loc_cnt;
+        int instant_scoin_count = SCoin.SCoin_count;
+
+        ArrayList<Developers> developers = CreateDeveloperList();
+
         instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers);
     }
 
     static public void SendSave(String save)
     {
         URI url = URI.create("http://localhost:8080/save/insert");
-
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
@@ -69,7 +77,6 @@ public class SaveSystem
     static public String GetSave(String Id)
     {
         URI url = URI.create("http://localhost:8080/save/get/" + Id);
-
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)

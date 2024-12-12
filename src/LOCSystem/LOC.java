@@ -8,6 +8,7 @@ import java.util.List;
 import GUI.DeveloperButton;
 import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
+import SaveSystem.SaveSystem;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -50,23 +51,8 @@ public class LOC //Line of Code
         Advanced_Dart_Developer = new Advanced("Dart", "Advanced");
         Advanced_Java_Developer = new Advanced("Java", "Advanced");
 
-        List<Developers> developers = new ArrayList<Developers>(12);
-        developers.add(LOC.Beginner_C_Developer);
-        developers.add(LOC.Beginner_CSharp_Developer);
-        developers.add(LOC.Beginner_Dart_Developer);
-        developers.add(LOC.Beginner_Java_Developer);
-        developers.add(LOC.Intermediate_C_Developer);
-        developers.add(LOC.Intermediate_CSharp_Developer);
-        developers.add(LOC.Intermediate_Dart_Developer);
-        developers.add(LOC.Intermediate_Java_Developer);
-        developers.add(LOC.Advanced_C_Developer);
-        developers.add(LOC.Advanced_CSharp_Developer);
-        developers.add(LOC.Advanced_Dart_Developer);
-        developers.add(LOC.Advanced_Java_Developer);
-
-        return developers;
+        return SaveSystem.CreateDeveloperList();
     }
-
 
     static public List<Developers> CreateSavedDevelopers(ArrayList<String> Developers)
     {
@@ -93,23 +79,8 @@ public class LOC //Line of Code
             throw new RuntimeException(e);
         }
 
-        List<Developers> developers = new ArrayList<Developers>(12);
-        developers.add(LOC.Beginner_C_Developer);
-        developers.add(LOC.Beginner_CSharp_Developer);
-        developers.add(LOC.Beginner_Dart_Developer);
-        developers.add(LOC.Beginner_Java_Developer);
-        developers.add(LOC.Intermediate_C_Developer);
-        developers.add(LOC.Intermediate_CSharp_Developer);
-        developers.add(LOC.Intermediate_Dart_Developer);
-        developers.add(LOC.Intermediate_Java_Developer);
-        developers.add(LOC.Advanced_C_Developer);
-        developers.add(LOC.Advanced_CSharp_Developer);
-        developers.add(LOC.Advanced_Dart_Developer);
-        developers.add(LOC.Advanced_Java_Developer);
-
-        return developers;
+        return SaveSystem.CreateDeveloperList();
     }
-
 
     static public void BuyDeveloper(Developers Developer, DeveloperButton Button)
     {

@@ -99,7 +99,7 @@ public class GUI_Handler implements ActionListener
             case "Save":
                 try
                 {
-                    SaveSystem.TakeSave();
+                    SaveSystem.UpdateInstantSave();
                     SaveSystem.ModifySave(SaveSystem.instant_save.CreateJSON());
                 }
                 catch (JsonProcessingException e)
