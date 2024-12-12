@@ -42,7 +42,7 @@ public class SavePanel extends JButton
 
         this.ContentPanel.add(new_game);
 
-        this.setActionCommand("CreateGame");
+        this.setActionCommand("CreateGame_New");
         this.addActionListener(GUI_Elements.GUI_handler);
     }
 
@@ -68,6 +68,9 @@ public class SavePanel extends JButton
         ContentPanel.add(this.Title, constraintsTitle);
         ContentPanel.add(this.LOC_Panel, constraintsLOC);
         ContentPanel.add(this.SCoin_Panel, constraintsSCoin);
+
+        this.setActionCommand("CreateGame_Old");
+        this.addActionListener(GUI_Elements.GUI_handler);
     }
 
     public void setContents(String title, String loc_count, String scoin_count)
