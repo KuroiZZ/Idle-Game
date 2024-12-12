@@ -31,9 +31,9 @@ public class SoftvoperMain
         ControlProjects();
     }
 
-    static public void CreateSaveMenu()
+    static public void CreateSaveMenu(String LoadOrNew)
     {
-        GUI_Elements.InitializeSaveScreen();
+        GUI_Elements.InitializeSaveScreen(LoadOrNew);
     }
 
     static public void ControlButtons()
