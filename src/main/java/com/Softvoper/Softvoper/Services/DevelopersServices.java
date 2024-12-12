@@ -80,6 +80,7 @@ public class DevelopersServices
             {
                 for(Document developer: doc)
                 {
+                    developer.remove("_id");
                     developer.remove("SaveID");
                     DeveloperDocList.add(developer);
                 }
