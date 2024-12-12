@@ -3,9 +3,7 @@ package com.Softvoper.Softvoper.Controllers;
 import com.Softvoper.Softvoper.Models.Save;
 import com.Softvoper.Softvoper.Services.SaveSevices;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/save")
@@ -15,5 +13,12 @@ public class SaveController
     public void Insert(@PathVariable String save)
     {
         SaveSevices.InsertSave(save);
+    }
+
+    @GetMapping(value = "/get/{id}")
+    @ResponseBody
+    public String Get(@PathVariable String id)
+    {
+        return SaveSevices.GetSave(id);
     }
 }
