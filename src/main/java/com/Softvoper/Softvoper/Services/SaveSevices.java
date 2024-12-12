@@ -118,6 +118,39 @@ public class SaveSevices
     }
 
     /**
+     * Gets all documents (in this case Save documents) in a collection from database.
+     * @return A string contains all saved states of the games that have been recorded so far.
+     */
+    public static String GetAllSaves()
+    {
+        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
+        {
+            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
+            MongoCollection<Document> collection = database.getCollection("Save");
+
+            if(collection != null)
+            {
+                String allSaves = "";
+                for(Document document: collection.find())
+                {
+                    allSaves += document.toJson() + ", ";
+                }
+
+                return allSaves;
+            }
+            else
+            {
+                System.out.println("There is no save");
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * Deletes a certain save and its developers from database.
      * @param Id Id of the Save to deleted in database.
      */

@@ -23,4 +23,11 @@ public class SaveController
     {
         return SaveSevices.GetSave(id);
     }
+
+    @GetMapping(value = "/getall")
+    @ResponseBody
+    public String GetAll()
+    {
+        return SaveSevices.GetAllSaves();
+    }
 }
