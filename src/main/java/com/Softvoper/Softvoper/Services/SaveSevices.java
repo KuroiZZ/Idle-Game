@@ -119,7 +119,7 @@ public class SaveSevices
     }
 
     /**
-     * Deletes save and developers from database.
+     * Deletes a certain save and its developers from database.
      * @param Id Id of the Save to deleted in database.
      */
     public static void DeleteSave(String Id)
@@ -148,6 +148,54 @@ public class SaveSevices
         catch (Exception e)
         {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Updates a certain save and its developers from database.
+     * @param UpdatedSave Updated Saved statement of the game.
+     */
+    public static void UpdateSave(String UpdatedSave)
+    {
+        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
+        {
+            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
+            MongoCollection<Document> collection = database.getCollection("Save");
+
+            Document WholeUpdatedSaveDoc = Document.parse(UpdatedSave);
+
+            try { Save save1 = new Save(WholeUpdatedSaveDoc); }
+            catch (IllegalArgumentException e)
+            {
+                e.printStackTrace();
+            }
+
+            String UpdatedSaveId = WholeUpdatedSaveDoc.get("_id", String.class);
+
+            if( GetSaveWithoutDevelopers(UpdatedSaveId) != null )
+            {
+                Document EditedUpdatedSaveDoc = new Document(WholeUpdatedSaveDoc);
+                EditedUpdatedSaveDoc.remove("Developers");
+
+                Bson filter = eq("_id", UpdatedSaveId);
+                Bson update = new Document("$set", EditedUpdatedSaveDoc);
+                UpdateResult rs = collection.updateOne(filter, update);
+
+                if(rs != null)
+                {
+                    System.out.println("Save başarıyla güncellendi.");
+
+                    DevelopersServices.UpdateDeveloper(WholeUpdatedSaveDoc);
+                }
+                else
+                {
+                    System.out.println("Save güncelleme işleminde bir sorun oluştu.");
+                }
+            }
+            else
+            {
+                System.out.println("Bu Id'e sahip save bulunmamaktadır.");
+            }
         }
     }
 }

@@ -124,7 +124,43 @@ public class DevelopersServices
             e.printStackTrace();
         }
     }
-    
+
+    /**
+     * Updates developers that belongs to one specific save from database.
+     * @param DeveloperDoc Updated new developers of the save.
+     */
+    public static void UpdateDeveloper(Document DeveloperDoc)
+    {
+        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
+        {
+            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
+            MongoCollection<Document> collection = database.getCollection("Developers");
+
+            String SaveID = DeveloperDoc.get("SaveID", String.class);
+
+            List<Document> DeveloperDocLisT = GetDeveloperDocumentList(DeveloperDoc);
+            List<Document> NewDeveloperDocLisT = AddSaveIDtoDevelopers(DeveloperDocLisT, SaveID);
+            try
+            {
+                for(Document DocDeveloper: NewDeveloperDocLisT)
+                {
+                    List<Developers> ListDevelopers = new ArrayList<Developers>();
+                    System.out.println(DocDeveloper);
+                    Developers developer = new Developers(DocDeveloper);
+                    ListDevelopers.add(developer);
+                }
+            }
+            catch (IllegalArgumentException e)
+            {
+                e.printStackTrace();
+            }
+
+            DeleteDeveloper(SaveID);
+            InsertDeveloper(DeveloperDoc, SaveID);
+
+        }
+    }
+
     /** Gets developer's Document typed list from given save document.
      *
      * @param SaveDoc is a Document typed save.
