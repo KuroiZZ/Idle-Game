@@ -6,7 +6,9 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import static com.mongodb.client.model.Filters.eq;
 
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class SaveSevices
             if( GetSaveWithoutDevelopers(WholeSaveDoc.get("_id", String.class)) == null )
             {
                 Document EditedSaveDoc = new Document(WholeSaveDoc);
-                EditedSaveDoc.remove("Developers");
+                EditedSaveDoc.remove("developers");
 
                 InsertOneResult rs = collection.insertOne(EditedSaveDoc);
                 if(rs != null)
@@ -106,6 +108,7 @@ public class SaveSevices
         {
             unfinishedSave.append("developers", DevelopersDoc);
             String Save = unfinishedSave.toJson();
+            System.out.println(Save);
             return Save;
         }
         else
