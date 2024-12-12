@@ -6,9 +6,16 @@ import Handlers.GUI_Handler;
 import Handlers.SCoin_Handler;
 import LOCSystem.LOC;
 import SCoinSystem.SCoin;
+import SaveSystem.SaveSystem;
+import SaveSystem.Save;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class GUI_Elements
 {
@@ -85,21 +92,37 @@ public class GUI_Elements
         window.setLayout(new BorderLayout());
     }
 
-    public static void InitializeSaveScreen()
+    public static void InitializeSaveScreen(String LoadOrNew)
     {
         window.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 100));
 
-        SavePanel save1 = new SavePanel();
-        SavePanel save2 = new SavePanel();
-        SavePanel save3 = new SavePanel();
-        SavePanel save4 = new SavePanel();
-        SavePanel save5 = new SavePanel();
+        ArrayList<SavePanel> SavePanels = new ArrayList<SavePanel>() ;
 
-        window.add(save1);
-        window.add(save2);
-        window.add(save3);
-        window.add(save4);
-        window.add(save5);
+        if (Objects.equals(LoadOrNew, "Load"))
+        {
+            String All_Save_Strings = SaveSystem.GetAllSaves();
+            List<String> SaveString_List = SaveSystem.ParseJsonStringAllSaves(All_Save_Strings);
+            for (String Save_String : SaveString_List)
+            {
+                ObjectMapper mapper = new ObjectMapper();
+                Save new_save;
+                try
+                {
+                    new_save = mapper.readValue(Save_String, Save.class);
+                }
+                catch (JsonProcessingException e)
+                {
+                    throw new RuntimeException(e);
+                }
+                SavePanels.add(new SavePanel(new_save));
+            }
+        }
+
+        for (SavePanel savePanel : SavePanels)
+        {
+            window.add(savePanel);
+        }
+
     }
 
     private static JLabel SCoinImage;
