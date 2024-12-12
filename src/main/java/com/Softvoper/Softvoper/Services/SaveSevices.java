@@ -131,9 +131,18 @@ public class SaveSevices
             if(collection != null)
             {
                 String allSaves = "[";
+                int index = 0;
                 for(Document document: collection.find())
                 {
-                    allSaves += document.toJson() + ",";
+                    if(index != collection.countDocuments() - 1)
+                    {
+                        allSaves += document.toJson() + ",";
+                    }
+                    else
+                    {
+                        allSaves += document.toJson();
+                    }
+                    index++;
                 }
                 allSaves += "]";
                 return allSaves;
