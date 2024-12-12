@@ -20,6 +20,8 @@ import java.util.List;
 
 public class SaveSystem
 {
+    static public Save instant_save;
+
     static public Save TakeSave() throws JsonProcessingException {
         int instant_loc_count = LOC.loc_cnt;
         int instant_scoin_count = SCoin.SCoin_count;
@@ -98,11 +100,31 @@ public class SaveSystem
         System.out.println("Response Body: " + response.body());
     }
 
-    static public String GetSave()
+    static public String GetSave(String Id)
     {
-        String save = "";
+        URI url = URI.create("http://localhost:8080/save/get/" + Id);
 
-        return save;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(url)
+                .GET()
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = null;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("HTTP Status Code: " + response.statusCode());
+        System.out.println("Response Body: " + response.body());
+
+        return response.body();
     }
 
     static public String[] ParseJsonString(String jsonString)
