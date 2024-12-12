@@ -130,12 +130,12 @@ public class SaveSevices
 
             if(collection != null)
             {
-                String allSaves = "";
+                String allSaves = "[";
                 for(Document document: collection.find())
                 {
-                    allSaves += document.toJson() + ", ";
+                    allSaves += document.toJson() + ",";
                 }
-
+                allSaves += "]";
                 return allSaves;
             }
             else
