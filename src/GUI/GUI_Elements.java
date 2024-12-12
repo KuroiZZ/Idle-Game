@@ -119,8 +119,8 @@ public class GUI_Elements
         }
         else if (Objects.equals(LoadOrNew, "New"))
         {
-            SavePanel a = new SavePanel();
-            window.add(a);
+            SavePanel new_game_panel = new SavePanel();
+            window.add(new_game_panel);
 
         }
         for (SavePanel savePanel : SavePanels)
@@ -215,6 +215,8 @@ public class GUI_Elements
         Save.setFocusPainted(false);
         Save.setPreferredSize(new Dimension(100,50));
         Save.setRolloverIcon(saveRollover_image);
+        Save.addActionListener(GUI_handler);
+        Save.setActionCommand("Save");
         CoderPanel.add(Save, constraints);
     }
 
