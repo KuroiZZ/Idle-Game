@@ -17,9 +17,9 @@ public class SaveController
         return "başarılı";
     }
 
-    @GetMapping(value = "/get")
+    @GetMapping(value = "/get/{id}")
     @ResponseBody
-    public String Get(@RequestBody String id)
+    public String Get(@PathVariable String id)
     {
         return SaveSevices.GetSave(id);
     }
