@@ -18,6 +18,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class GUI_Handler implements ActionListener
 {
+    private Save currentSave;
+
+    public void setCurrentSave(Save save)
+    {
+        this.currentSave = save;
+    }
     public void actionPerformed(ActionEvent event) {
         String action = event.getActionCommand();
         switch (action)
@@ -36,13 +42,13 @@ public class GUI_Handler implements ActionListener
                 break;
             case "New_Game":
                 GUI_Elements.window.getContentPane().removeAll();
-                SoftvoperMain.CreateSaveMenu();
+                SoftvoperMain.CreateSaveMenu("New");
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 break;
             case "Load_Game":
                 GUI_Elements.window.getContentPane().removeAll();
-                SoftvoperMain.CreateSaveMenu();
+                SoftvoperMain.CreateSaveMenu("Load");
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 break;
@@ -67,8 +73,8 @@ public class GUI_Handler implements ActionListener
                 break;
             case "CreateGame_Old":
                 GUI_Elements.window.getContentPane().removeAll();
-                String saveJson = SaveSystem.GetSave(SaveSystem.instant_save._id);
-                String[] contents = SaveSystem.ParseJsonString(saveJson);
+                String saveJson = SaveSystem.GetSave(currentSave._id);
+                String[] contents = SaveSystem.ParseJsonStringOneSave(saveJson);
 
                 Pattern pattern = Pattern.compile("\\{[^}]*\\}");
                 Matcher matcher = pattern.matcher(contents[4]);
@@ -82,7 +88,7 @@ public class GUI_Handler implements ActionListener
 
                 List<Developers> developers = LOC.CreateSavedDevelopers(developer_strings);
                 SoftvoperMain.CreateGameMenu();
-                Save save_new = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers);
+                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers);
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 LOC.UpdateLOC();
