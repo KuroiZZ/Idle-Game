@@ -6,7 +6,9 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertManyResult;
 import static com.mongodb.client.model.Filters.eq;
 
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -78,6 +80,7 @@ public class DevelopersServices
             {
                 for(Document developer: doc)
                 {
+                    developer.remove("SaveID");
                     DeveloperDocList.add(developer);
                 }
                 return DeveloperDocList;
@@ -121,7 +124,7 @@ public class DevelopersServices
             e.printStackTrace();
         }
     }
-
+    
     /** Gets developer's Document typed list from given save document.
      *
      * @param SaveDoc is a Document typed save.
