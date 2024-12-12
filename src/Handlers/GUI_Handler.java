@@ -51,10 +51,10 @@ public class GUI_Handler implements ActionListener
 
                 List<Developers> Developers = LOC.CreateEmptyDevelopers();
                 SoftvoperMain.CreateGameMenu();
-                Save save = new Save("Araba", Developers);
+                SaveSystem.instant_save = new Save("Araba", Developers);
                 try
                 {
-                    SaveSystem.SendSave(save.CreateJSON());
+                    SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
                 }
                 catch (JsonProcessingException e)
                 {
@@ -67,7 +67,7 @@ public class GUI_Handler implements ActionListener
                 break;
             case "CreateGame_Old":
                 GUI_Elements.window.getContentPane().removeAll();
-                String saveJson = SaveSystem.GetSave();
+                String saveJson = SaveSystem.GetSave(SaveSystem.instant_save._id);
                 String[] contents = SaveSystem.ParseJsonString(saveJson);
 
                 Pattern pattern = Pattern.compile("\\{[^}]*\\}");
@@ -86,6 +86,7 @@ public class GUI_Handler implements ActionListener
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 LOC.UpdateLOC();
+                break;
 
         }
     }
