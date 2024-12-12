@@ -21,7 +21,8 @@ public class SaveSystem
 {
     static public Save instant_save;
 
-    static public Save TakeSave() throws JsonProcessingException {
+    static public void TakeSave()
+    {
         int instant_loc_count = LOC.loc_cnt;
         int instant_scoin_count = SCoin.SCoin_count;
         List<Developers> developers = new ArrayList<Developers>(12);
@@ -37,7 +38,7 @@ public class SaveSystem
         developers.add(LOC.Advanced_CSharp_Developer);
         developers.add(LOC.Advanced_Dart_Developer);
         developers.add(LOC.Advanced_Java_Developer);
-        return new Save("Araba","1", instant_loc_count, instant_scoin_count, developers);
+        instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers);
     }
 
     static public void SendSave(String save)
@@ -117,6 +118,32 @@ public class SaveSystem
         System.out.println("Response Body: " + response.body());
 
         return response.body();
+    }
+
+    static public void ModifySave(String save)
+    {
+        URI url = URI.create("http://localhost:8080/save/update");
+
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(url)
+                .PUT(HttpRequest.BodyPublishers.ofString(save))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = null;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("HTTP Status Code: " + response.statusCode());
+        System.out.println("Response Body: " + response.body());
+
     }
 
     static public String[] ParseJsonStringOneSave(String jsonString)
