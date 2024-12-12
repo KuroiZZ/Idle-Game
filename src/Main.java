@@ -1,6 +1,5 @@
 import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
-import LOCSystem.LOC;
 
 public class Main {
     public static void main(String[] args)
@@ -8,7 +7,5 @@ public class Main {
         GUI_Elements.window.setVisible(true);
 
         SoftvoperMain.CreateMainMenu();
-
-        LOC.UpdateLOC();
     }
 }
