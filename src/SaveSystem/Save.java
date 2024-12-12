@@ -1,6 +1,8 @@
 package SaveSystem;
 
 import LOCSystem.Developers;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,6 +33,17 @@ public class Save
         this.loc_count_js = 0;
         this.scoin_count_js = 0;
         this.developers = developers;
+    }
+
+    @JsonCreator
+    public Save(@JsonProperty("id") String id, @JsonProperty("name") String name,
+                @JsonProperty("loc_count_js") int loc_count, @JsonProperty("scoin_count_js") int scoin_count)
+    {
+        this.name = name;
+        this._id = id;
+        this.loc_count_js = loc_count;
+        this.scoin_count_js = scoin_count;
+        this.developers = null;
     }
 
     public String CreateJSON() throws JsonProcessingException
