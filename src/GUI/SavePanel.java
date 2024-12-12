@@ -4,8 +4,8 @@ import SaveSystem.Save;
 
 import javax.swing.*;
 import java.awt.*;
-
-import GUI.GUI_Elements;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SavePanel extends JButton
 {
@@ -43,7 +43,16 @@ public class SavePanel extends JButton
         this.ContentPanel.add(new_game);
 
         this.setActionCommand("CreateGame_New");
-        this.addActionListener(GUI_Elements.GUI_handler);
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                GUI_Elements.GUI_handler.setCurrentSave(save);
+
+                GUI_Elements.GUI_handler.actionPerformed(e);
+            }
+        });
     }
 
     public SavePanel(Save save)
@@ -70,7 +79,16 @@ public class SavePanel extends JButton
         ContentPanel.add(this.SCoin_Panel, constraintsSCoin);
 
         this.setActionCommand("CreateGame_Old");
-        this.addActionListener(GUI_Elements.GUI_handler);
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                GUI_Elements.GUI_handler.setCurrentSave(save);
+
+                GUI_Elements.GUI_handler.actionPerformed(e);
+            }
+        });
     }
 
     public void setContents(String title, String loc_count, String scoin_count)
