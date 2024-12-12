@@ -117,7 +117,12 @@ public class GUI_Elements
                 SavePanels.add(new SavePanel(new_save));
             }
         }
+        else if (Objects.equals(LoadOrNew, "New"))
+        {
+            SavePanel a = new SavePanel();
+            window.add(a);
 
+        }
         for (SavePanel savePanel : SavePanels)
         {
             window.add(savePanel);
@@ -171,6 +176,7 @@ public class GUI_Elements
         LOCPanel.add(LOCLabel);
         CoderPanel.add(LOCPanel,constraints);
         constraints.anchor = GridBagConstraints.PAGE_START;
+
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.gridy = 1;
@@ -186,6 +192,7 @@ public class GUI_Elements
         SCoinPanel.add(SCoinImage);
         SCoinPanel.add(SCoinLabel);
         CoderPanel.add(SCoinPanel,constraints);
+
         constraints.gridy = 2;
 
         ImageIcon coder_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/PCPaintedBackground.png"));
@@ -199,6 +206,16 @@ public class GUI_Elements
         coder.setActionCommand("computer");
         CoderPanel.add(coder,constraints);
 
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.gridy = 3;
+
+        ImageIcon save_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Save.png"));
+        ImageIcon saveRollover_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/RolloverSave.png"));
+        JButton Save = new JButton(save_image);
+        Save.setFocusPainted(false);
+        Save.setPreferredSize(new Dimension(100,50));
+        Save.setRolloverIcon(saveRollover_image);
+        CoderPanel.add(Save, constraints);
     }
 
     static public DeveloperButton Beginner_C_Button;
