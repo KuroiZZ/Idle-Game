@@ -1,6 +1,5 @@
 package SaveSystem;
 
-
 import LOCSystem.Developers;
 import LOCSystem.LOC;
 import SCoinSystem.SCoin;
@@ -39,40 +38,6 @@ public class SaveSystem
         developers.add(LOC.Advanced_Dart_Developer);
         developers.add(LOC.Advanced_Java_Developer);
         return new Save("Araba","1", instant_loc_count, instant_scoin_count, developers);
-    }
-
-    static public void SendSave()
-    {
-        URI url = URI.create("http://localhost:8080/save/insert");
-        String save = null;
-
-        try
-        {
-            save = TakeSave().CreateJSON();
-        }
-        catch (JsonProcessingException e)
-        {
-            throw new RuntimeException(e);
-        }
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(url)
-                .POST(HttpRequest.BodyPublishers.ofString(save))
-                .build();
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = null;
-        try
-        {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        }
-        catch (IOException | InterruptedException e)
-        {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println("HTTP Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
     }
 
     static public void SendSave(String save)
@@ -127,7 +92,34 @@ public class SaveSystem
         return response.body();
     }
 
-    static public String[] ParseJsonString(String jsonString)
+    static public String GetAllSaves()
+    {
+        URI url = URI.create("http://localhost:8080/save/getall");
+
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(url)
+                .GET()
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = null;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("HTTP Status Code: " + response.statusCode());
+        System.out.println("Response Body: " + response.body());
+
+        return response.body();
+    }
+
+    static public String[] ParseJsonStringOneSave(String jsonString)
     {
         String[] Contents = new String[5];
         ObjectMapper mapper = new ObjectMapper();
@@ -155,5 +147,27 @@ public class SaveSystem
         Contents[4] = Devs.toString();
 
         return Contents;
+    }
+
+    static public List<String> ParseJsonStringAllSaves(String jsonString)
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonNode;
+        try
+        {
+            jsonNode = mapper.readTree(jsonString);
+        }
+        catch (JsonProcessingException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        ArrayList<String> Saves = new ArrayList<String>();
+        for(JsonNode save : jsonNode)
+        {
+            Saves.add(save.toString());
+        }
+
+        return Saves;
     }
 }
