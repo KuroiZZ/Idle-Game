@@ -4,8 +4,9 @@ import org.bson.Document;
 
 import java.util.List;
 
-/** Save class' purpose is to validate the save data coming from game.
- *  A save object must have 3 field.
+/**
+ * Save class' purpose is to validate the save data coming from game.
+ * A save object must have 3 field.
  */
 public class Save
 {
@@ -29,8 +30,8 @@ public class Save
         SCoinCount is an int type counter of SCoin*/
     private int SCoinCount;
 
-    /** Constructs from given Document object.
-     *
+    /**
+     * Constructs from given Document object.
      * @param SaveDocument is a Document type Save contents.
      */
     public Save(Document SaveDocument)

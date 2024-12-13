@@ -14,8 +14,9 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
 
-/** DevelopersServices contains functions to deal with Developers model.
- *  Doesn't include any variables and all functions are static.
+/**
+ * DevelopersServices contains functions to deal with Developers model.
+ * Doesn't include any variables and all functions are static.
  */
 public class DevelopersServices
 {
@@ -61,8 +62,8 @@ public class DevelopersServices
         }
     }
 
-    /** Gets Document typed developers from database by Save ID.
-     *
+    /**
+     * Gets Document typed developers from database by Save ID.
      * @param SaveID Save's Id of the developer.
      * @return developers
      */
@@ -162,8 +163,8 @@ public class DevelopersServices
         }
     }
 
-    /** Gets developer's Document typed list from given save document.
-     *
+    /**
+     * Gets developer's Document typed list from given save document.
      * @param SaveDoc is a Document typed save.
      * @return developer's Document typed list that it finds.
      */
@@ -175,8 +176,8 @@ public class DevelopersServices
     }
 
 
-    /** Add save id to received developers.
-     *
+    /**
+     * Add save id to received developers.
      * @param DeveloperDocumentList is Document typed list of received developers.
      * @param SaveID is a ObjectId typed Id of save from database.
      * @return save id added version of received developers.
