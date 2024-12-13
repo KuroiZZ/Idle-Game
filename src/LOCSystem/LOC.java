@@ -32,8 +32,18 @@ public class LOC //Line of Code
     static public Advanced Advanced_C_Developer;
     static public Advanced Advanced_CSharp_Developer;
     static public Advanced Advanced_Dart_Developer;
-    static public Advanced Advanced_Java_Developer;//LOC counter
+    static public Advanced Advanced_Java_Developer;
 
+    static public Supporter Tester;
+    static public Supporter Architect;
+    static public Supporter ProjectManager;
+
+    static public void InitializeSupporters()
+    {
+        Tester = new Supporter("Tester", 8);
+        Architect = new Supporter("Architect", 8);
+        ProjectManager = new Supporter("ProjectManager", 8);
+    }
     static public List<Developers> CreateEmptyDevelopers()
     {
         Beginner_C_Developer= new Beginner("C", "Beginner");

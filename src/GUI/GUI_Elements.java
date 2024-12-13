@@ -301,6 +301,16 @@ public class GUI_Elements
         Advanced_Java_Button.addActionListener(SCoin_handler);
     }
 
+    public static DeveloperButton Tester_Button;
+    public static DeveloperButton Architect_Button;
+    public static DeveloperButton ProjectManager_Button;
+    public static void InitializeSupporter_Buttons()
+    {
+        Tester_Button = new DeveloperButton(LOC.Tester, "Tester");
+        Architect_Button = new DeveloperButton(LOC.Architect, "Architect");
+        ProjectManager_Button = new DeveloperButton(LOC.ProjectManager, "ProjectManager");
+    }
+
     public static JButton amount_1;
     public static JButton amount_10;
     public static JButton amount_100;
@@ -355,6 +365,7 @@ public class GUI_Elements
         GUI_Elements.InitializeBeginner_Buttons();
         GUI_Elements.InitializeIntermediate_Buttons();
         GUI_Elements.InitializeAdvanced_Buttons();
+        GUI_Elements.InitializeSupporter_Buttons();
 
         JButton Temporary_Money = new JButton("Temporary_Money");
         Temporary_Money.setActionCommand("Temporary_Money");
@@ -374,6 +385,9 @@ public class GUI_Elements
         StorePanel_Inside.add(GUI_Elements.Advanced_CSharp_Button);
         StorePanel_Inside.add(GUI_Elements.Advanced_Dart_Button);
         StorePanel_Inside.add(GUI_Elements.Advanced_Java_Button);
+        StorePanel_Inside.add(GUI_Elements.Tester_Button);
+        StorePanel_Inside.add(GUI_Elements.Architect_Button);
+        StorePanel_Inside.add(GUI_Elements.ProjectManager_Button);
         StorePanel_Inside.add(Temporary_Money);
 
         StorePanel = new JScrollPane(StorePanel_Inside);

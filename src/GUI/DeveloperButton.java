@@ -1,6 +1,7 @@
 package GUI;
 
 import LOCSystem.Developers;
+import LOCSystem.Employee;
 import LOCSystem.LOC;
 
 import javax.swing.*;
@@ -19,11 +20,13 @@ public class DeveloperButton extends JButton
     private Image SCoinImage;
     private JLabel SCoin;
     private Developers Developer;
+    private Employee Employee;
 
     public DeveloperButton(Developers developer,String name)
     {
         super();
 
+        this.Employee = developer;
         this.Developer = developer;
         setButtonContentsPanel(name,setLogoImagePath(Developer.getType()));
         this.setOpaque(true);
@@ -33,6 +36,20 @@ public class DeveloperButton extends JButton
         setBackgroundImage(Developer.getRank());
     }
 
+    public DeveloperButton(Employee employee, String name)
+    {
+        super();
+
+        this.Employee = employee;
+        System.out.println(this.Employee);
+        setButtonContentsPanel(name,setLogoImagePath("Dart"));
+        this.setOpaque(true);
+        this.setPreferredSize(new Dimension(250,50));
+        this.add(ButtonContentsPanel);
+        this.setBorder(null);
+        setBackgroundImage("Intermediate");
+    }
+
     public int getNofDeveloperText()
     {
         return Integer.parseInt(NofDeveloper.getText());
@@ -40,12 +57,12 @@ public class DeveloperButton extends JButton
 
     public void setNofDeveloperText()
     {
-        NofDeveloper.setText(String.valueOf(Developer.getNofNonProjectEmp()));
+        NofDeveloper.setText(String.valueOf(Employee.getNofNonProjectEmp()));
     }
 
     public void setPriceText()
     {
-        Price.setText(String.valueOf(Developer.getTotalPrice(LOC.buy_amount)));
+        Price.setText(String.valueOf(Employee.getTotalPrice(LOC.buy_amount)));
     }
 
     //Add contents to ButtonContentsPanel for chosen layout
@@ -81,9 +98,9 @@ public class DeveloperButton extends JButton
         this.SCoinImage = SCoinImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
         this.SCoin = new JLabel(new ImageIcon(SCoinImage),SwingConstants.CENTER); //Initialize coin image
 
-        this.Price = new JLabel(String.valueOf(Developer.getPrice())); //Initialize price
+        this.Price = new JLabel(String.valueOf(Employee.getPrice())); //Initialize price
         this.Name = new JLabel(name); //Initialize name
-        this.NofDeveloper = new JLabel(String.valueOf(Developer.getNofNonProjectEmp())); //Initialize number of developer
+        this.NofDeveloper = new JLabel(String.valueOf(Employee.getNofNonProjectEmp())); //Initialize number of developer
 
         this.Price.setFont(get_Font("SMALL"));
         this.Name.setFont(get_Font("BAŞLIK"));
@@ -198,6 +215,6 @@ public class DeveloperButton extends JButton
 
     public void setEnabledByScoin(int SCoin)
     {
-        this.setEnabled(Developer.getTotalPrice(LOC.buy_amount) <= SCoin);
+        this.setEnabled(Employee.getTotalPrice(LOC.buy_amount) <= SCoin);
     }
 }
