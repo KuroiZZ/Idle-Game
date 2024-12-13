@@ -62,7 +62,10 @@ public class GUI_Elements
         New_Game_Constraint.gridx = 1;
         New_Game_Constraint.gridy = 1;
 
-        JButton New_Game = new JButton("New Game");
+        ImageIcon NewGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/NewGame.png"));
+        ImageIcon RolloverNewGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverNewGame.png"));
+        JButton New_Game = new JButton(NewGameIcon);
+        New_Game.setRolloverIcon(RolloverNewGameIcon);
         New_Game.addActionListener(GUI_handler);
         New_Game.setActionCommand("New_Game");
         New_Game.setPreferredSize(new Dimension(500, 100));
@@ -79,7 +82,10 @@ public class GUI_Elements
         Load_Game_Constraint.gridx = 1;
         Load_Game_Constraint.gridy = 2;
 
-        JButton Load_Game = new JButton("Load Game");
+        ImageIcon LoadGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/LoadGame.png"));
+        ImageIcon RolloverLoadGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverLoadGame.png"));
+        JButton Load_Game = new JButton(LoadGameIcon);
+        Load_Game.setRolloverIcon(RolloverLoadGameIcon);
         Load_Game.addActionListener(GUI_handler);
         Load_Game.setActionCommand("Load_Game");
         Load_Game.setPreferredSize(new Dimension(500, 100));
