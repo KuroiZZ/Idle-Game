@@ -91,6 +91,7 @@ public class GUI_Elements
         Load_Game.setPreferredSize(new Dimension(500, 100));
         window.add(Load_Game, Load_Game_Constraint);
 
+        GUI_Elements.window.setVisible(true);
     }
 
     public static void InitializeGameScreen()
@@ -326,8 +327,6 @@ public class GUI_Elements
         ProjectManager_Button.setActionCommand("ProjectManager");
         ProjectManager_Button.addActionListener(LOC_handler);
         ProjectManager_Button.addActionListener(SCoin_handler);
-
-
 
     }
 
