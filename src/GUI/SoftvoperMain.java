@@ -50,6 +50,9 @@ public class SoftvoperMain
         GUI_Elements.Advanced_CSharp_Button.setEnabledByScoin(SCoin.SCoin_count);
         GUI_Elements.Advanced_Dart_Button.setEnabledByScoin(SCoin.SCoin_count);
         GUI_Elements.Advanced_Java_Button.setEnabledByScoin(SCoin.SCoin_count);
+        GUI_Elements.Tester_Button.setEnabledByScoin(SCoin.SCoin_count);
+        GUI_Elements.Architect_Button.setEnabledByScoin(SCoin.SCoin_count);
+        GUI_Elements.ProjectManager_Button.setEnabledByScoin(SCoin.SCoin_count);
     }
 
     static public void ControlProjects()
