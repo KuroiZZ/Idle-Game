@@ -42,6 +42,7 @@ public class SaveSevices
             {
                 Document EditedSaveDoc = new Document(WholeSaveDoc);
                 EditedSaveDoc.remove("developers");
+                EditedSaveDoc.remove("supporter");
 
                 InsertOneResult rs = collection.insertOne(EditedSaveDoc);
                 if(rs != null)
@@ -50,6 +51,7 @@ public class SaveSevices
 
                     String SaveID = rs.getInsertedId().asString().getValue();
                     DevelopersServices.InsertDeveloper(WholeSaveDoc, SaveID);
+                    SupporterServices.InsertSupporter(WholeSaveDoc);
                 }
                 else
                 {
@@ -103,10 +105,12 @@ public class SaveSevices
     {
         Document unfinishedSave = GetSaveWithoutDevelopers(Id);
         List<Document> DevelopersDoc = DevelopersServices.GetDeveloper(Id);
+        List<Document> SupporterDoc = SupporterServices.GetSupporter(Id);
 
-        if((unfinishedSave != null) && (DevelopersDoc != null))
+        if((unfinishedSave != null) && (DevelopersDoc != null) && (SupporterDoc != null))
         {
             unfinishedSave.append("developers", DevelopersDoc);
+            unfinishedSave.append("supporter", SupporterDoc);
             String Save = unfinishedSave.toJson();
             return Save;
         }
@@ -176,6 +180,7 @@ public class SaveSevices
                 if (dr != null) {
                     System.out.println("Save başarıyla silindi.");
                     DevelopersServices.DeleteDeveloper(Id);
+                    SupporterServices.DeleteSupporter(Id);
                 }
                 else {
                     System.out.println("Save silinirken bir sorunla karşılaşıldı.");
@@ -217,6 +222,7 @@ public class SaveSevices
             {
                 Document EditedUpdatedSaveDoc = new Document(WholeUpdatedSaveDoc);
                 EditedUpdatedSaveDoc.remove("developers");
+                EditedUpdatedSaveDoc.remove("supporter");
 
                 Bson filter = eq("_id", UpdatedSaveId);
                 Bson update = new Document("$set", EditedUpdatedSaveDoc);
@@ -227,6 +233,7 @@ public class SaveSevices
                     System.out.println("Save başarıyla güncellendi.");
 
                     DevelopersServices.UpdateDeveloper(WholeUpdatedSaveDoc);
+                    SupporterServices.UpdateSupporter(WholeUpdatedSaveDoc);
                 }
                 else
                 {

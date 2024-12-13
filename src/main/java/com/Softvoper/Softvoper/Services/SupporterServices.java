@@ -128,7 +128,7 @@ public class SupporterServices
      * Updates supporter that belongs to one specific save from database.
      * @param SupporterDoc Document of updated new supporter of the save.
      */
-    public static void UpdateDeveloper(Document SupporterDoc)
+    public static void UpdateSupporter(Document SupporterDoc)
     {
         try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
         {
