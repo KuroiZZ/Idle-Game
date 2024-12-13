@@ -12,6 +12,7 @@ import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
 import LOCSystem.Developers;
 import LOCSystem.LOC;
+import LOCSystem.Supporter;
 import SCoinSystem.SCoin;
 import SaveSystem.Save;
 import SaveSystem.SaveSystem;
@@ -56,12 +57,13 @@ public class GUI_Handler implements ActionListener
             case "CreateGame_New":
                 GUI_Elements.window.getContentPane().removeAll();
 
-                LOC.InitializeSupporters();
-                List<Developers> Developers = LOC.CreateEmptyDevelopers();
+                ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
+                ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
                 SoftvoperMain.CreateGameMenu();
-                SaveSystem.instant_save = new Save("Araba", Developers);
+                SaveSystem.instant_save = new Save("Araba", Developers, Supporters);
                 try
                 {
+                    System.out.println(SaveSystem.instant_save.CreateJSON());
                     SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
                 }
                 catch (JsonProcessingException e)
@@ -77,23 +79,34 @@ public class GUI_Handler implements ActionListener
                 GUI_Elements.window.getContentPane().removeAll();
                 LOC.InitializeSupporters();
                 String saveJson = SaveSystem.GetSave(currentSave._id);
+                System.out.println(saveJson);
                 String[] contents = SaveSystem.ParseJsonStringOneSave(saveJson);
 
+                System.out.println(contents[4]);
+                System.out.println(contents[5]);
+
                 Pattern pattern = Pattern.compile("\\{[^}]*\\}");
-                Matcher matcher = pattern.matcher(contents[4]);
+                Matcher matcherD = pattern.matcher(contents[4]);
+                Matcher matcherS = pattern.matcher(contents[5]);
 
                 ArrayList<String> developer_strings = new ArrayList<>();
+                ArrayList<String> supporter_strings = new ArrayList<>();
 
-                while (matcher.find())
+                while (matcherD.find())
                 {
-                    developer_strings.add(matcher.group());
+                    developer_strings.add(matcherD.group());
+                }
+                while (matcherS.find())
+                {
+                    supporter_strings.add(matcherS.group());
                 }
 
-                List<Developers> developers = LOC.CreateSavedDevelopers(developer_strings);
+                ArrayList<Developers> developers = LOC.CreateSavedDevelopers(developer_strings);
+                ArrayList<Supporter> supporters = LOC.CreateSavedSupporters(supporter_strings);
                 LOC.loc_cnt = Integer.parseInt(contents[2]);
                 SCoin.SCoin_count = Integer.parseInt(contents[3]);
                 SoftvoperMain.CreateGameMenu();
-                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers);
+                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers, supporters);
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 LOC.UpdateLOC();
