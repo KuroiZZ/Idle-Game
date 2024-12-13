@@ -1,20 +1,15 @@
 package LOCSystem;
 
-public abstract class Developers
+public abstract class Developers extends Employee
 {
-    protected int NofTotalEmp; //Number of total employees (NTE)
-    protected int NofProjectEmp; //Number of employees working on project (NPE)
-    protected int NofNonProjectEmp; //Number of employees not working on project (NNPE)
-    protected float Price; //price to hire an employee
     protected int LinePerSecond; //line per second (LPS)
     protected int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
-    protected String Type;
     protected String Rank;
 
     public Developers(String type, String rank)
     {
-        Type = type;
-        Rank = rank;
+        super(type);
+        setRank(rank);
     }
 
     public int getNofTotalEmp()
