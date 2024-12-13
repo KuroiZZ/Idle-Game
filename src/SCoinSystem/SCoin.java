@@ -15,9 +15,9 @@ public class SCoin
     static public int SCoin_count = 0;
     static public SProject Beginner_C_Project = new SProject(100000, 10, 10, "C", "Beginner", 20);
 
-    static public void BuyDeveloper(Developers Developer)
+    static public void BuyEmployee(Employee Employee)
     {
-        SCoin_count -= Developer.getTotalPrice(LOC.buy_amount);
+        SCoin_count -= Employee.getTotalPrice(LOC.buy_amount);
         GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
     }
 

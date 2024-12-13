@@ -313,8 +313,22 @@ public class GUI_Elements
     public static void InitializeSupporter_Buttons()
     {
         Tester_Button = new DeveloperButton(LOC.Tester, "Tester");
+        Tester_Button.setActionCommand("Tester");
+        Tester_Button.addActionListener(LOC_handler);
+        Tester_Button.addActionListener(SCoin_handler);
+
         Architect_Button = new DeveloperButton(LOC.Architect, "Architect");
+        Architect_Button.setActionCommand("Architect");
+        Architect_Button.addActionListener(LOC_handler);
+        Architect_Button.addActionListener(SCoin_handler);
+
         ProjectManager_Button = new DeveloperButton(LOC.ProjectManager, "ProjectManager");
+        ProjectManager_Button.setActionCommand("ProjectManager");
+        ProjectManager_Button.addActionListener(LOC_handler);
+        ProjectManager_Button.addActionListener(SCoin_handler);
+
+
+
     }
 
     public static JButton amount_1;

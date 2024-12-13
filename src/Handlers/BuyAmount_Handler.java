@@ -57,6 +57,9 @@ public class BuyAmount_Handler implements ActionListener
         GUI_Elements.Advanced_CSharp_Button.setPriceText();
         GUI_Elements.Advanced_Dart_Button.setPriceText();
         GUI_Elements.Advanced_Java_Button.setPriceText();
+        GUI_Elements.Tester_Button.setPriceText();
+        GUI_Elements.Architect_Button.setPriceText();
+        GUI_Elements.ProjectManager_Button.setPriceText();
 
     }
 }

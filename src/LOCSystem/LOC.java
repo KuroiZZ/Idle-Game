@@ -3,7 +3,6 @@ package LOCSystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import GUI.DeveloperButton;
 import GUI.GUI_Elements;
@@ -44,7 +43,7 @@ public class LOC //Line of Code
         Architect = new Supporter("Architect", 8);
         ProjectManager = new Supporter("ProjectManager", 8);
     }
-    static public List<Developers> CreateEmptyDevelopers()
+    static public ArrayList<Developers> CreateEmptyDevelopers()
     {
         Beginner_C_Developer= new Beginner("C", "Beginner");
         Beginner_CSharp_Developer = new Beginner("CSharp", "Beginner");
@@ -64,7 +63,7 @@ public class LOC //Line of Code
         return SaveSystem.CreateDeveloperList();
     }
 
-    static public List<Developers> CreateSavedDevelopers(ArrayList<String> Developers)
+    static public ArrayList<Developers> CreateSavedDevelopers(ArrayList<String> Developers)
     {
         ObjectMapper map = new ObjectMapper();
         try
@@ -92,10 +91,46 @@ public class LOC //Line of Code
         return SaveSystem.CreateDeveloperList();
     }
 
+    static public ArrayList<Supporter> CreateEmptySupporters()
+    {
+        Tester = new Supporter("Tester", 40);
+        Architect = new Supporter("Architect", 40);
+        ProjectManager = new Supporter("ProjectManager", 40);
+
+        return SaveSystem.CreateSupporterList();
+    }
+
+    static public ArrayList<Supporter> CreateSavedSupporters(ArrayList<String> Supporters)
+    {
+        ObjectMapper map = new ObjectMapper();
+        try
+        {
+            Tester = map.readValue(Supporters.get(0), Supporter.class);
+            Architect = map.readValue(Supporters.get(1), Supporter.class);
+            ProjectManager = map.readValue(Supporters.get(2), Supporter.class);
+        }
+        catch (JsonProcessingException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+
+        return SaveSystem.CreateSupporterList();
+    }
+
     static public void BuyDeveloper(Developers Developer, DeveloperButton Button)
     {
         Developer.setNTEandNNPEandNTL(Developer.getNofTotalEmp()+ buy_amount);
         Developer.setPriceAfterBuy(buy_amount);
+        Button.setNofDeveloperText();
+        Button.setPriceText();
+        SoftvoperMain.ControlButtons();
+    }
+
+    static public void BuySupporter(Supporter Supporter, DeveloperButton Button)
+    {
+        Supporter.setNTEandNNPE(Supporter.getNofTotalEmp() + buy_amount);
+        Supporter.setPriceAfterBuy(buy_amount);
         Button.setNofDeveloperText();
         Button.setPriceText();
         SoftvoperMain.ControlButtons();

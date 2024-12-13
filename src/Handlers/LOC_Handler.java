@@ -53,6 +53,15 @@ public class LOC_Handler implements ActionListener
             case "Advanced_Java":
                 LOC.BuyDeveloper(LOC.Advanced_Java_Developer, GUI_Elements.Advanced_Java_Button);
                 break;
+            case "Tester":
+                LOC.BuySupporter(LOC.Tester, GUI_Elements.Tester_Button);
+                break;
+            case "Architect":
+                LOC.BuySupporter(LOC.Architect, GUI_Elements.Architect_Button);
+                break;
+            case "ProjectManager":
+                LOC.BuySupporter(LOC.ProjectManager, GUI_Elements.ProjectManager_Button);
+                break;
 
         }
     }

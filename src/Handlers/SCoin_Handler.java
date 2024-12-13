@@ -16,40 +16,49 @@ public class SCoin_Handler implements ActionListener
         switch (action)
         {
             case "Beginner_C":
-                SCoin.BuyDeveloper(LOC.Beginner_C_Developer);
+                SCoin.BuyEmployee(LOC.Beginner_C_Developer);
                 break;
             case "Beginner_CSharp":
-                SCoin.BuyDeveloper(LOC.Beginner_CSharp_Developer);
+                SCoin.BuyEmployee(LOC.Beginner_CSharp_Developer);
                 break;
             case "Beginner_Dart":
-                SCoin.BuyDeveloper(LOC.Beginner_Dart_Developer);
+                SCoin.BuyEmployee(LOC.Beginner_Dart_Developer);
                 break;
             case "Beginner_Java":
-                SCoin.BuyDeveloper(LOC.Beginner_Java_Developer);
+                SCoin.BuyEmployee(LOC.Beginner_Java_Developer);
                 break;
             case "Intermediate_C":
-                SCoin.BuyDeveloper(LOC.Intermediate_C_Developer);
+                SCoin.BuyEmployee(LOC.Intermediate_C_Developer);
                 break;
             case "Intermediate_CSharp":
-                SCoin.BuyDeveloper(LOC.Intermediate_CSharp_Developer);
+                SCoin.BuyEmployee(LOC.Intermediate_CSharp_Developer);
                 break;
             case "Intermediate_Dart":
-                SCoin.BuyDeveloper(LOC.Intermediate_Dart_Developer);
+                SCoin.BuyEmployee(LOC.Intermediate_Dart_Developer);
                 break;
             case "Intermediate_Java":
-                SCoin.BuyDeveloper(LOC.Intermediate_Java_Developer);
+                SCoin.BuyEmployee(LOC.Intermediate_Java_Developer);
                 break;
             case "Advanced_C":
-                SCoin.BuyDeveloper(LOC.Advanced_C_Developer);
+                SCoin.BuyEmployee(LOC.Advanced_C_Developer);
                 break;
             case "Advanced_CSharp":
-                SCoin.BuyDeveloper(LOC.Advanced_CSharp_Developer);
+                SCoin.BuyEmployee(LOC.Advanced_CSharp_Developer);
                 break;
             case "Advanced_Dart":
-                SCoin.BuyDeveloper(LOC.Advanced_Dart_Developer);
+                SCoin.BuyEmployee(LOC.Advanced_Dart_Developer);
                 break;
             case "Advanced_Java":
-                SCoin.BuyDeveloper(LOC.Advanced_Java_Developer);
+                SCoin.BuyEmployee(LOC.Advanced_Java_Developer);
+                break;
+            case "Tester":
+                SCoin.BuyEmployee(LOC.Tester);
+                break;
+            case "Architect":
+                SCoin.BuyEmployee(LOC.Architect);
+                break;
+            case "ProjectManager":
+                SCoin.BuyEmployee(LOC.ProjectManager);
                 break;
             case "Temporary_Money":
                 SCoin.SCoin_count += 10;
