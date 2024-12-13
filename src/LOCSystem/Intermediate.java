@@ -15,9 +15,9 @@ public class Intermediate extends Developers
     }
 
     public Intermediate(@JsonProperty("rank") String Rank, @JsonProperty("price") float Price, @JsonProperty("type") String Type,
-                    @JsonProperty("nofNonProjectEmp") int NofNonProjectEmp, @JsonProperty("linePerSecond") int LinePerSecond,
-                    @JsonProperty("nofTotalEmp") int NofTotalEmp, @JsonProperty("nofProjectEmp") int NofProjectEmp,
-                    @JsonProperty("nofTotalLOC") int NofTotalLOC)
+                        @JsonProperty("nofNonProjectEmp") int NofNonProjectEmp, @JsonProperty("linePerSecond") int LinePerSecond,
+                        @JsonProperty("nofTotalEmp") int NofTotalEmp, @JsonProperty("nofProjectEmp") int NofProjectEmp,
+                        @JsonProperty("nofTotalLOC") int NofTotalLOC)
     {
         super(Type, Rank);
         this.NofTotalEmp = NofTotalEmp;

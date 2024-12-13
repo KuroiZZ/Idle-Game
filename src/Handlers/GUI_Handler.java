@@ -12,6 +12,7 @@ import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
 import LOCSystem.Developers;
 import LOCSystem.LOC;
+import SCoinSystem.SCoin;
 import SaveSystem.Save;
 import SaveSystem.SaveSystem;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -89,12 +90,25 @@ public class GUI_Handler implements ActionListener
                 }
 
                 List<Developers> developers = LOC.CreateSavedDevelopers(developer_strings);
+                LOC.loc_cnt = Integer.parseInt(contents[2]);
+                SCoin.SCoin_count = Integer.parseInt(contents[3]);
                 SoftvoperMain.CreateGameMenu();
                 SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers);
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 LOC.UpdateLOC();
                 break;
+            case "Save":
+                try
+                {
+                    SaveSystem.UpdateInstantSave();
+                    SaveSystem.ModifySave(SaveSystem.instant_save.CreateJSON());
+                }
+                catch (JsonProcessingException e)
+                {
+                    throw new RuntimeException(e);
+                }
+
 
         }
     }
