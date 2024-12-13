@@ -2,6 +2,7 @@ package SaveSystem;
 
 import LOCSystem.Developers;
 import LOCSystem.LOC;
+import LOCSystem.Supporter;
 import SCoinSystem.SCoin;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -40,14 +41,25 @@ public class SaveSystem
         return developers;
     }
 
+    static public ArrayList<Supporter> CreateSupporterList()
+    {
+        ArrayList<Supporter> supporters = new ArrayList<>(3);
+        supporters.add(LOC.Tester);
+        supporters.add(LOC.Architect);
+        supporters.add(LOC.ProjectManager);
+
+        return supporters;
+    }
+
     static public void UpdateInstantSave()
     {
         int instant_loc_count = LOC.loc_cnt;
         int instant_scoin_count = SCoin.SCoin_count;
 
         ArrayList<Developers> developers = CreateDeveloperList();
+        ArrayList<Supporter> supporters = CreateSupporterList();
 
-        instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers);
+        instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers, supporters);
     }
 
     static public void SendSave(String save)
@@ -155,7 +167,7 @@ public class SaveSystem
 
     static public String[] ParseJsonStringOneSave(String jsonString)
     {
-        String[] Contents = new String[5];
+        String[] Contents = new String[6];
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode;
         try
@@ -172,13 +184,21 @@ public class SaveSystem
         Contents[2] = jsonNode.get("loc_count_js").asText();
         Contents[3] = jsonNode.get("scoin_count_js").asText();
 
-        List<String> Devs = new ArrayList<String>();
+        ArrayList<String> Devs = new ArrayList<String>();
         JsonNode DeveloperNode = jsonNode.get("developers");
         for(JsonNode developer : DeveloperNode)
         {
             Devs.add(developer.toString());
         }
         Contents[4] = Devs.toString();
+
+        ArrayList<String> Sups = new ArrayList<String>();
+        JsonNode SupporterNode = jsonNode.get("supporter");
+        for(JsonNode supporter : SupporterNode)
+        {
+            Sups.add(supporter.toString());
+        }
+        Contents[5] = Sups.toString();
 
         return Contents;
     }
