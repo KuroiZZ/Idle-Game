@@ -44,9 +44,9 @@ public class Supporter
     public Supporter(Document SupporterDocument)
     {
         this.SaveID = SupporterDocument.get("SaveID", String.class);
-        this.NofTotalEmp = SupporterDocument.get("noftotalemp", Integer.class);
-        this.NofProjectEmp = SupporterDocument.get("nofprojectemp", Integer.class);
-        this.NofNonProjectEmp = SupporterDocument.get("nofnonprojectemp", Integer.class);
+        this.NofTotalEmp = SupporterDocument.get("nofTotalEmp", Integer.class);
+        this.NofProjectEmp = SupporterDocument.get("nofProjectEmp", Integer.class);
+        this.NofNonProjectEmp = SupporterDocument.get("nofNonProjectEmp", Integer.class);
         this.Price = SupporterDocument.get("price", Float.class);
         this.Type = SupporterDocument.get("type", String.class);
     }
