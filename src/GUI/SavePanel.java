@@ -22,39 +22,6 @@ public class SavePanel extends JButton
     private JLabel SCoin_Image;
     private JLabel SCoin_Count;
 
-    public SavePanel()
-    {
-        setContentPanelEmpty();
-
-        this.setOpaque(true);
-        this.setPreferredSize(new Dimension(350, 810));
-        this.add(ContentPanel);
-        this.setBorder(null);
-    }
-
-    public void setContentPanelEmpty()
-    {
-        this.ContentPanel = new JPanel(new GridBagLayout());
-        this.ContentPanel.setBackground(Color.GRAY);
-
-        JLabel new_game = new JLabel("New Game");
-        new_game.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 40));
-
-        this.ContentPanel.add(new_game);
-
-        this.setActionCommand("CreateGame_New");
-        this.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-
-                GUI_Elements.GUI_handler.setCurrentSave(save);
-
-                GUI_Elements.GUI_handler.actionPerformed(e);
-            }
-        });
-    }
-
     public SavePanel(Save save)
     {
         this.save = save;

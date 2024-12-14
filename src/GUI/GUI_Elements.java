@@ -4,7 +4,9 @@ import Handlers.BuyAmount_Handler;
 import Handlers.LOC_Handler;
 import Handlers.GUI_Handler;
 import Handlers.SCoin_Handler;
+import LOCSystem.Developers;
 import LOCSystem.LOC;
+import LOCSystem.Supporter;
 import SCoinSystem.SCoin;
 import SaveSystem.SaveSystem;
 import SaveSystem.Save;
@@ -13,6 +15,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -67,7 +71,7 @@ public class GUI_Elements
         JButton New_Game = new JButton(NewGameIcon);
         New_Game.setRolloverIcon(RolloverNewGameIcon);
         New_Game.addActionListener(GUI_handler);
-        New_Game.setActionCommand("New_Game");
+        New_Game.setActionCommand("CreateGame_New");
         New_Game.setPreferredSize(new Dimension(500, 100));
         window.add(New_Game, New_Game_Constraint);
 
@@ -91,6 +95,7 @@ public class GUI_Elements
         Load_Game.setPreferredSize(new Dimension(500, 100));
         window.add(Load_Game, Load_Game_Constraint);
 
+        GUI_Elements.window.setVisible(true);
     }
 
     public static void InitializeGameScreen()
@@ -104,36 +109,84 @@ public class GUI_Elements
 
         ArrayList<SavePanel> SavePanels = new ArrayList<SavePanel>() ;
 
-        if (Objects.equals(LoadOrNew, "Load"))
+        String All_Save_Strings = SaveSystem.GetAllSaves();
+        List<String> SaveString_List = SaveSystem.ParseJsonStringAllSaves(All_Save_Strings);
+        for (String Save_String : SaveString_List)
         {
-            String All_Save_Strings = SaveSystem.GetAllSaves();
-            List<String> SaveString_List = SaveSystem.ParseJsonStringAllSaves(All_Save_Strings);
-            for (String Save_String : SaveString_List)
+            ObjectMapper mapper = new ObjectMapper();
+            Save new_save;
+            try
             {
-                ObjectMapper mapper = new ObjectMapper();
-                Save new_save;
-                try
-                {
-                    new_save = mapper.readValue(Save_String, Save.class);
-                }
-                catch (JsonProcessingException e)
-                {
-                    throw new RuntimeException(e);
-                }
-                SavePanels.add(new SavePanel(new_save));
+                new_save = mapper.readValue(Save_String, Save.class);
             }
+            catch (JsonProcessingException e)
+            {
+                throw new RuntimeException(e);
+            }
+            SavePanels.add(new SavePanel(new_save));
         }
-        else if (Objects.equals(LoadOrNew, "New"))
-        {
-            SavePanel new_game_panel = new SavePanel();
-            window.add(new_game_panel);
 
-        }
         for (SavePanel savePanel : SavePanels)
         {
             window.add(savePanel);
         }
 
+    }
+
+    public static JFrame InputFrame;
+    public static void InitializeInputFrame()
+    {
+
+
+        InputFrame = new JFrame();
+        InputFrame.setSize(new Dimension(300, 100));
+        InputFrame.setLayout(new FlowLayout());
+
+        JTextField input_field = new JTextField(15);
+        JButton validate_button = new JButton("Create");
+
+        validate_button.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (input_field.getText().length() > 1)
+                {
+                    GUI_Handler.save_name = input_field.getText();
+                    GUI_Elements.window.setEnabled(true);
+
+                    InputFrame.dispose();
+
+                    GUI_Elements.window.getContentPane().removeAll();
+
+                    ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
+                    ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
+                    SoftvoperMain.CreateGameMenu();
+                    SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters);
+                    try
+                    {
+                        System.out.println(SaveSystem.instant_save.CreateJSON());
+                        SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
+                    }
+                    catch (JsonProcessingException ex)
+                    {
+                        throw new RuntimeException(ex);
+                    }
+
+                    GUI_Elements.window.revalidate();
+                    GUI_Elements.window.repaint();
+                    LOC.UpdateLOC();
+                }
+                else
+                {
+                    System.out.println("A");
+                }
+            }
+        });
+        InputFrame.add(input_field);
+        InputFrame.add(validate_button);
+        InputFrame.setLocationRelativeTo(GUI_Elements.window);
+        InputFrame.setVisible(true);
     }
 
     private static JLabel SCoinImage;
@@ -326,8 +379,6 @@ public class GUI_Elements
         ProjectManager_Button.setActionCommand("ProjectManager");
         ProjectManager_Button.addActionListener(LOC_handler);
         ProjectManager_Button.addActionListener(SCoin_handler);
-
-
 
     }
 
