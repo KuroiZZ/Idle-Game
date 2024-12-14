@@ -30,7 +30,7 @@ public class Supporter
     /**
      * Price to hire an employee.
      */
-    private float Price;
+    private double Price;
 
     /**
      * Type of the support employee.
@@ -47,7 +47,7 @@ public class Supporter
         this.NofTotalEmp = SupporterDocument.get("nofTotalEmp", Integer.class);
         this.NofProjectEmp = SupporterDocument.get("nofProjectEmp", Integer.class);
         this.NofNonProjectEmp = SupporterDocument.get("nofNonProjectEmp", Integer.class);
-        this.Price = SupporterDocument.get("price", Float.class);
+        this.Price = SupporterDocument.get("price", Double.class);
         this.Type = SupporterDocument.get("type", String.class);
     }
 }
