@@ -30,14 +30,17 @@ public class GUI_Elements
     public static JLabel SCoinLabel;
 
     public static JFrame window = new JFrame();
-    public static void InitializeMainScreen()
+    public static void InitializeWindowProperties()
     {
         window.setSize(1920, 1080);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
-        window.setLayout(new GridBagLayout());
+    }
 
+    public static void InitializeMainScreen()
+    {
+        window.setLayout(new GridBagLayout());
         GridBagConstraints Title_Constraint = new GridBagConstraints();
 
         Title_Constraint.fill = GridBagConstraints.NONE;

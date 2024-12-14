@@ -105,11 +105,15 @@ public class GUI_Handler implements ActionListener
                 SaveSystem.DeleteSave(currentSave._id);
                 GUI_Elements.window.getContentPane().removeAll();
                 SoftvoperMain.CreateMainMenu();
+                GUI_Elements.window.revalidate();
+                GUI_Elements.window.repaint();
                 break;
             case "Main_Menu":
                 GUI_Elements.window.getContentPane().removeAll();
                 SoftvoperMain.CreateMainMenu();
                 SaveSystem.instant_save = null;
+                GUI_Elements.window.revalidate();
+                GUI_Elements.window.repaint();
                 break;
 
 
