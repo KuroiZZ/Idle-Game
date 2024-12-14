@@ -53,4 +53,10 @@ public class Supporter extends Employee
         setNofNonProjectEmp();
     }
 
+    public void setNPEandNNPE(int nofProjectEmp)
+    {
+        this.NofProjectEmp = nofProjectEmp;
+        NofNonProjectEmp = NofTotalEmp - NofProjectEmp;
+    }
+
 }
