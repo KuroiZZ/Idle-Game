@@ -17,26 +17,26 @@ public class Save
     public int loc_count_js;
     public int scoin_count_js;
     public ArrayList<Developers> developers;
-    public ArrayList<Supporter> supporters;
+    public ArrayList<Supporter> supporter;
 
-    public Save(String name,String id,  int loc_count, int scoin_count, ArrayList<Developers> developers, ArrayList<Supporter> supporters)
+    public Save(String name,String id,  int loc_count, int scoin_count, ArrayList<Developers> developers, ArrayList<Supporter> supporter)
     {
         this.name = name;
         this._id = id;
         this.loc_count_js = loc_count;
         this.scoin_count_js = scoin_count;
         this.developers = developers;
-        this.supporters = supporters;
+        this.supporter = supporter;
     }
 
-    public Save(String name, ArrayList<Developers> developers, ArrayList<Supporter> supporters)
+    public Save(String name, ArrayList<Developers> developers, ArrayList<Supporter> supporter)
     {
         this.name = name;
         this._id = UUID.randomUUID().toString();
         this.loc_count_js = 0;
         this.scoin_count_js = 0;
         this.developers = developers;
-        this.supporters = supporters;
+        this.supporter = supporter;
     }
 
     @JsonCreator

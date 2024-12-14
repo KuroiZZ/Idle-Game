@@ -57,9 +57,9 @@ public class SaveSystem
         int instant_scoin_count = SCoin.SCoin_count;
 
         ArrayList<Developers> developers = CreateDeveloperList();
-        ArrayList<Supporter> supporters = CreateSupporterList();
+        ArrayList<Supporter> supporter = CreateSupporterList();
 
-        instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers, supporters);
+        instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers, supporter);
     }
 
     static public void SendSave(String save)

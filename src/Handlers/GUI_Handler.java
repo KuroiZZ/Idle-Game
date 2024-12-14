@@ -57,10 +57,10 @@ public class GUI_Handler implements ActionListener
             case "CreateGame_New":
                 GUI_Elements.window.getContentPane().removeAll();
 
-                ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
-                ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
+                ArrayList<Developers> developers = LOC.CreateEmptyDevelopers();
+                ArrayList<Supporter> supporter = LOC.CreateEmptySupporters();
                 SoftvoperMain.CreateGameMenu();
-                SaveSystem.instant_save = new Save("Araba", Developers, Supporters);
+                SaveSystem.instant_save = new Save("Araba", developers, supporter);
                 try
                 {
                     System.out.println(SaveSystem.instant_save.CreateJSON());
@@ -101,12 +101,12 @@ public class GUI_Handler implements ActionListener
                     supporter_strings.add(matcherS.group());
                 }
 
-                ArrayList<Developers> developers = LOC.CreateSavedDevelopers(developer_strings);
-                ArrayList<Supporter> supporters = LOC.CreateSavedSupporters(supporter_strings);
+                developers = LOC.CreateSavedDevelopers(developer_strings);
+                supporter = LOC.CreateSavedSupporters(supporter_strings);
                 LOC.loc_cnt = Integer.parseInt(contents[2]);
                 SCoin.SCoin_count = Integer.parseInt(contents[3]);
                 SoftvoperMain.CreateGameMenu();
-                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers, supporters);
+                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers, supporter);
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 LOC.UpdateLOC();
