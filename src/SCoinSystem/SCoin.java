@@ -29,10 +29,28 @@ public class SCoin
         newProject.setHasArchitect(SupporterCheckbox_Handler.is_Architect_Selected);
         newProject.setHasProjectManager(SupporterCheckbox_Handler.is_ProjectManager_Selected);
 
+        if(newProject.HasTester())
+        {
+            LOC.Tester.setNPEandNNPE(1 + LOC.Tester.getNofProjectEmp());
+            GUI_Elements.Tester_Button.setNofDeveloperText();
+        }
+        if(newProject.HasArchitect())
+        {
+            LOC.Architect.setNPEandNNPE(1 + LOC.Architect.getNofProjectEmp());
+            GUI_Elements.Architect_Button.setNofDeveloperText();
+        }
+        if(newProject.HasProjectManager())
+        {
+            LOC.ProjectManager.setNPEandNNPE(1 + LOC.ProjectManager.getNofProjectEmp());
+            GUI_Elements.ProjectManager_Button.setNofDeveloperText();
+        }
+
         Developer.setNPEandNNPEandNTL(newProject.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
         Button.setNofDeveloperText();
+
         LOC.loc_cnt -= newProject.getNecessaryLOC();
         GUI_Elements.LOCLabel.setText(String.valueOf(LOC.loc_cnt));
+
         CreateAppInformation(newProject);
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -41,8 +59,26 @@ public class SCoin
             {
                 SCoin_count += newProject.getSCoinToEarn();
                 GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
+
+                if(newProject.HasTester())
+                {
+                    LOC.Tester.setNPEandNNPE(LOC.Tester.getNofProjectEmp() - 1);
+                    GUI_Elements.Tester_Button.setNofDeveloperText();
+                }
+                if(newProject.HasArchitect())
+                {
+                    LOC.Architect.setNPEandNNPE(LOC.Architect.getNofProjectEmp() - 1);
+                    GUI_Elements.Architect_Button.setNofDeveloperText();
+                }
+                if(newProject.HasProjectManager())
+                {
+                    LOC.ProjectManager.setNPEandNNPE(LOC.ProjectManager.getNofProjectEmp() - 1);
+                    GUI_Elements.ProjectManager_Button.setNofDeveloperText();
+                }
+
                 Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
                 GUI_Elements.Beginner_C_Button.setNofDeveloperText();
+
                 SoftvoperMain.ControlButtons();
                 timer.cancel();
             }
