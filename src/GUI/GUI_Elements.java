@@ -4,7 +4,9 @@ import Handlers.BuyAmount_Handler;
 import Handlers.LOC_Handler;
 import Handlers.GUI_Handler;
 import Handlers.SCoin_Handler;
+import LOCSystem.Developers;
 import LOCSystem.LOC;
+import LOCSystem.Supporter;
 import SCoinSystem.SCoin;
 import SaveSystem.SaveSystem;
 import SaveSystem.Save;
@@ -13,6 +15,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -127,6 +131,62 @@ public class GUI_Elements
             window.add(savePanel);
         }
 
+    }
+
+    public static JFrame InputFrame;
+    public static void InitializeInputFrame()
+    {
+
+
+        InputFrame = new JFrame();
+        InputFrame.setSize(new Dimension(300, 100));
+        InputFrame.setLayout(new FlowLayout());
+
+        JTextField input_field = new JTextField(15);
+        JButton validate_button = new JButton("Create");
+
+        validate_button.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (input_field.getText().length() > 1)
+                {
+                    GUI_Handler.save_name = input_field.getText();
+                    GUI_Elements.window.setEnabled(true);
+
+                    InputFrame.dispose();
+
+                    GUI_Elements.window.getContentPane().removeAll();
+
+                    ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
+                    ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
+                    SoftvoperMain.CreateGameMenu();
+                    SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters);
+                    try
+                    {
+                        System.out.println(SaveSystem.instant_save.CreateJSON());
+                        SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
+                    }
+                    catch (JsonProcessingException ex)
+                    {
+                        throw new RuntimeException(ex);
+                    }
+
+                    GUI_Elements.window.revalidate();
+                    GUI_Elements.window.repaint();
+                    LOC.UpdateLOC();
+                }
+                else
+                {
+                    System.out.println("A");
+                }
+            }
+        });
+        InputFrame.add(input_field);
+        InputFrame.add(validate_button);
+        InputFrame.setLocationRelativeTo(GUI_Elements.window);
+        InputFrame.setVisible(true);
     }
 
     private static JLabel SCoinImage;

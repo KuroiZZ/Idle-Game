@@ -18,9 +18,12 @@ import SaveSystem.Save;
 import SaveSystem.SaveSystem;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import javax.swing.*;
+
 public class GUI_Handler implements ActionListener
 {
     private Save currentSave;
+    public static String save_name;
 
     public void setCurrentSave(Save save)
     {
@@ -49,25 +52,9 @@ public class GUI_Handler implements ActionListener
                 GUI_Elements.window.repaint();
                 break;
             case "CreateGame_New":
-                GUI_Elements.window.getContentPane().removeAll();
+                GUI_Elements.window.setEnabled(false);
 
-                ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
-                ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
-                SoftvoperMain.CreateGameMenu();
-                SaveSystem.instant_save = new Save("Araba", Developers, Supporters);
-                try
-                {
-                    System.out.println(SaveSystem.instant_save.CreateJSON());
-                    SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
-                }
-                catch (JsonProcessingException e)
-                {
-                    throw new RuntimeException(e);
-                }
-
-                GUI_Elements.window.revalidate();
-                GUI_Elements.window.repaint();
-                LOC.UpdateLOC();
+                GUI_Elements.InitializeInputFrame();
                 break;
             case "CreateGame_Old":
                 GUI_Elements.window.getContentPane().removeAll();
