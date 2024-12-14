@@ -4,6 +4,7 @@ import GUI.DeveloperButton;
 import GUI.GUI_Elements;
 import GUI.SProjectInformation;
 import GUI.SoftvoperMain;
+import Handlers.SupporterCheckbox_Handler;
 import LOCSystem.*;
 
 import java.util.TimerTask;
@@ -13,7 +14,7 @@ import java.util.Timer;
 public class SCoin
 {
     static public int SCoin_count = 0;
-    static public SProject Beginner_C_Project = new SProject(100000, 10, 10, "C", "Beginner", 20);
+    static public SProject Beginner_C_Project = new SProject(100000, 10, 10, "C", "Beginner", 20,false,false,false);
 
     static public void BuyEmployee(Employee Employee)
     {
@@ -23,25 +24,30 @@ public class SCoin
 
     static public void DevelopApp(Developers Developer, DeveloperButton Button, SProject Project)
     {
-        Developer.setNPEandNNPEandNTL(Project.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
+        SProject newProject = new SProject(Project);
+        newProject.setHasTester(SupporterCheckbox_Handler.is_Tester_Selected);
+        newProject.setHasArchitect(SupporterCheckbox_Handler.is_Architect_Selected);
+        newProject.setHasProjectManager(SupporterCheckbox_Handler.is_ProjectManager_Selected);
+
+        Developer.setNPEandNNPEandNTL(newProject.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
         Button.setNofDeveloperText();
-        LOC.loc_cnt -= Project.getNecessaryLOC();
+        LOC.loc_cnt -= newProject.getNecessaryLOC();
         GUI_Elements.LOCLabel.setText(String.valueOf(LOC.loc_cnt));
-        CreateAppInformation(Project);
+        CreateAppInformation(newProject);
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run()
             {
-                SCoin_count += Project.getSCoinToEarn();
+                SCoin_count += newProject.getSCoinToEarn();
                 GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
-                Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - Project.getNecessaryDeveloperCount());
+                Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
                 GUI_Elements.Beginner_C_Button.setNofDeveloperText();
                 SoftvoperMain.ControlButtons();
                 timer.cancel();
             }
         };
-        timer.schedule(task, Project.getTimeSecond()*1000);
+        timer.schedule(task, newProject.getTimeSecond()*1000);
     }
 
     static public void CreateAppInformation(SProject App)

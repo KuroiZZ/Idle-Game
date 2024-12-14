@@ -1,9 +1,6 @@
 package GUI;
 
-import Handlers.BuyAmount_Handler;
-import Handlers.LOC_Handler;
-import Handlers.GUI_Handler;
-import Handlers.SCoin_Handler;
+import Handlers.*;
 import LOCSystem.Developers;
 import LOCSystem.LOC;
 import LOCSystem.Supporter;
@@ -27,6 +24,8 @@ public class GUI_Elements
     public static BuyAmount_Handler Buyamount_handler = new BuyAmount_Handler();
     public static LOC_Handler LOC_handler = new LOC_Handler();
     public static SCoin_Handler SCoin_handler = new SCoin_Handler();
+    public static SupporterCheckbox_Handler SupporterCheckbox_handler = new SupporterCheckbox_Handler();
+
     public static JLabel LOCLabel = new JLabel();
     public static JLabel SCoinLabel;
 
@@ -475,6 +474,9 @@ public class GUI_Elements
         Beginner_C_Project.addActionListener(SCoin_handler);
     }
 
+    public static JButton Tester_CheckButton;
+    public static JButton Architect_CheckButton;
+    public static JButton ProjectManager_CheckButton;
     public static JPanel ProjectPanel;
     public static void InitializeProjectPanel()
     {
@@ -491,9 +493,42 @@ public class GUI_Elements
         goToStorePanel.setActionCommand("goToStore");
         goToStorePanel.addActionListener(GUI_handler);
 
+        JPanel SupporterButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15,5));
+        SupporterButtonsPanel.setPreferredSize(new Dimension(250,50));
+        SupporterButtonsPanel.setOpaque(false);
+
+        ImageIcon iconTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button1.png"));
+        ImageIcon RollovericonTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton1.png"));
+        Tester_CheckButton = new JButton(iconTester);
+        Tester_CheckButton.setBorder(BorderFactory.createEmptyBorder());
+        Tester_CheckButton.setRolloverIcon(RollovericonTester);
+        Tester_CheckButton.setActionCommand("Tester");
+        Tester_CheckButton.addActionListener(SupporterCheckbox_handler);
+
+        ImageIcon iconArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button10.png"));
+        ImageIcon RollovericonArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton10.png"));
+        Architect_CheckButton = new JButton(iconArchitect);
+        Architect_CheckButton.setBorder(BorderFactory.createEmptyBorder());
+        Architect_CheckButton.setRolloverIcon(RollovericonArchitect);
+        Architect_CheckButton.setActionCommand("Architect");
+        Architect_CheckButton.addActionListener(SupporterCheckbox_handler);
+
+        ImageIcon iconProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button100.png"));
+        ImageIcon RollovericonProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton100.png"));
+        ProjectManager_CheckButton = new JButton(iconProjectManager);
+        ProjectManager_CheckButton.setBorder(BorderFactory.createEmptyBorder());
+        ProjectManager_CheckButton.setRolloverIcon(RollovericonProjectManager);
+        ProjectManager_CheckButton.setActionCommand("ProjectManager");
+        ProjectManager_CheckButton.addActionListener(SupporterCheckbox_handler);
+
+        SupporterButtonsPanel.add(Tester_CheckButton);
+        SupporterButtonsPanel.add(Architect_CheckButton);
+        SupporterButtonsPanel.add(ProjectManager_CheckButton);
+
         InitializeBeginnerProjects();
 
         ProjectPanel.add(goToStorePanel);
+        ProjectPanel.add(SupporterButtonsPanel);
         ProjectPanel.add(Beginner_C_Project);
 
     }
