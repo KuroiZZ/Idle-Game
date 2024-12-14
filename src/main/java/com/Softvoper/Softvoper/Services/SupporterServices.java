@@ -165,7 +165,7 @@ public class SupporterServices
      */
     private static List<Document> GetSupporterDocumentList(Document SaveDoc)
     {
-        List<Document> SupporterDocumentList = SaveDoc.getList("supporters", Document.class);
+        List<Document> SupporterDocumentList = SaveDoc.getList("supporter", Document.class);
 
         return SupporterDocumentList;
     }
