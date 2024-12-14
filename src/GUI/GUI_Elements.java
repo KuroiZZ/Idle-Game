@@ -267,6 +267,8 @@ public class GUI_Elements
         constraints.anchor = GridBagConstraints.CENTER;
         constraints.gridy = 3;
 
+        JPanel ButonPanels = new JPanel(new GridLayout(1,2));
+
         ImageIcon save_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Save.png"));
         ImageIcon saveRollover_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/RolloverSave.png"));
         JButton Save = new JButton(save_image);
@@ -275,7 +277,16 @@ public class GUI_Elements
         Save.setRolloverIcon(saveRollover_image);
         Save.addActionListener(GUI_handler);
         Save.setActionCommand("Save");
-        CoderPanel.add(Save, constraints);
+        ButonPanels.add(Save);
+
+        JButton MainMenu = new JButton("Main Menu");
+        MainMenu.setFocusPainted(false);
+        MainMenu.setPreferredSize(new Dimension(100,50));
+        MainMenu.addActionListener(GUI_handler);
+        MainMenu.setActionCommand("Main_Menu");
+        ButonPanels.add(MainMenu);
+
+        CoderPanel.add(ButonPanels, constraints);
     }
 
     static public DeveloperButton Beginner_C_Button;
