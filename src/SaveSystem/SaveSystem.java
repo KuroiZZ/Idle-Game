@@ -165,6 +165,31 @@ public class SaveSystem
 
     }
 
+    static public void DeleteSave(String id)
+    {
+        URI url = URI.create("http://localhost:8080/save/delete/" + id);
+
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(url)
+                .DELETE()
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = null;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("HTTP Status Code: " + response.statusCode());
+        System.out.println("Response Body: " + response.body());
+    }
+
     static public String[] ParseJsonStringOneSave(String jsonString)
     {
         String[] Contents = new String[6];

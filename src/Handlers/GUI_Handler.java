@@ -100,7 +100,10 @@ public class GUI_Handler implements ActionListener
                 {
                     throw new RuntimeException(e);
                 }
-
+            case "Delete":
+                SaveSystem.DeleteSave(currentSave._id);
+                GUI_Elements.window.getContentPane().removeAll();
+                SoftvoperMain.CreateMainMenu();
 
         }
     }
