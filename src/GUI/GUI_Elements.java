@@ -115,7 +115,9 @@ public class GUI_Elements
         backToMainMenuPanel.setOpaque(false);
         JButton backToMainMenu = new JButton(BacktoMainMenuIcon);
         backToMainMenu.setRolloverIcon(RolloverBacktoMainMenuIcon);
-        backToMainMenu.setPreferredSize(new Dimension(100,40));
+        backToMainMenu.addActionListener(GUI_handler);
+        backToMainMenu.setActionCommand("Main_Menu");
+        backToMainMenu.setPreferredSize(new Dimension(100,50));
         backToMainMenuPanel.add(backToMainMenu, BorderLayout.EAST);
         window.setLayout(new BorderLayout());
         window.add(backToMainMenuPanel, BorderLayout.NORTH);
@@ -174,8 +176,11 @@ public class GUI_Elements
 
                     ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
                     ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
-                    SoftvoperMain.CreateGameMenu();
                     SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters, null);
+                    LOC.loc_cnt = 0;
+                    SCoin.SCoin_count = 0;
+                    SoftvoperMain.CreateGameMenu();
+
                     try
                     {
                         SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
@@ -292,7 +297,10 @@ public class GUI_Elements
         Save.setActionCommand("Save");
         ButonPanels.add(Save);
 
-        JButton MainMenu = new JButton("Main Menu");
+        ImageIcon BacktoMainMenuIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/BacktoMain.png"));
+        ImageIcon RolloverBacktoMainMenuIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverBacktoMain.png"));
+        JButton MainMenu = new JButton(BacktoMainMenuIcon);
+        MainMenu.setRolloverIcon(RolloverBacktoMainMenuIcon);
         MainMenu.setFocusPainted(false);
         MainMenu.setPreferredSize(new Dimension(100,50));
         MainMenu.addActionListener(GUI_handler);
