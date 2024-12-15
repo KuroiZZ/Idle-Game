@@ -43,6 +43,7 @@ public class SaveSevices
                 Document EditedSaveDoc = new Document(WholeSaveDoc);
                 EditedSaveDoc.remove("developers");
                 EditedSaveDoc.remove("supporter");
+                EditedSaveDoc.remove("project");
 
                 InsertOneResult rs = collection.insertOne(EditedSaveDoc);
                 if(rs != null)
@@ -52,6 +53,7 @@ public class SaveSevices
                     String SaveID = rs.getInsertedId().asString().getValue();
                     DevelopersServices.InsertDeveloper(WholeSaveDoc, SaveID);
                     SupporterServices.InsertSupporter(WholeSaveDoc);
+                    ProjectServices.InsertProject(WholeSaveDoc);
                 }
                 else
                 {
@@ -106,11 +108,16 @@ public class SaveSevices
         Document unfinishedSave = GetSaveWithoutDevelopers(Id);
         List<Document> DevelopersDoc = DevelopersServices.GetDeveloper(Id);
         List<Document> SupporterDoc = SupporterServices.GetSupporter(Id);
+        List<Document> ProjectDoc = ProjectServices.GetProject(Id);
 
-        if((unfinishedSave != null) && (DevelopersDoc != null) && (SupporterDoc != null))
+        if((unfinishedSave != null) && (DevelopersDoc != null) && (SupporterDoc != null))// These docs can't be null.
         {
             unfinishedSave.append("developers", DevelopersDoc);
             unfinishedSave.append("supporter", SupporterDoc);
+            if(ProjectDoc != null)// While ProjectDoc can be null.
+            {
+                unfinishedSave.append("project", ProjectDoc);
+            }
             String Save = unfinishedSave.toJson();
             return Save;
         }
@@ -174,13 +181,15 @@ public class SaveSevices
             MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
             MongoCollection<Document> collection = database.getCollection("Save");
 
-            if( GetSaveWithoutDevelopers(Id) != null ) {
+            if( GetSaveWithoutDevelopers(Id) != null )
+            {
                 DeleteResult dr = collection.deleteOne(eq("_id", Id));
 
                 if (dr != null) {
                     System.out.println("Save başarıyla silindi.");
                     DevelopersServices.DeleteDeveloper(Id);
                     SupporterServices.DeleteSupporter(Id);
+                    ProjectServices.DeleteProject(Id);
                 }
                 else {
                     System.out.println("Save silinirken bir sorunla karşılaşıldı.");
@@ -223,6 +232,7 @@ public class SaveSevices
                 Document EditedUpdatedSaveDoc = new Document(WholeUpdatedSaveDoc);
                 EditedUpdatedSaveDoc.remove("developers");
                 EditedUpdatedSaveDoc.remove("supporter");
+                EditedUpdatedSaveDoc.remove("project");
 
                 Bson filter = eq("_id", UpdatedSaveId);
                 Bson update = new Document("$set", EditedUpdatedSaveDoc);
@@ -234,6 +244,7 @@ public class SaveSevices
 
                     DevelopersServices.UpdateDeveloper(WholeUpdatedSaveDoc);
                     SupporterServices.UpdateSupporter(WholeUpdatedSaveDoc);
+                    ProjectServices.UpdateProject(WholeUpdatedSaveDoc);
                 }
                 else
                 {
