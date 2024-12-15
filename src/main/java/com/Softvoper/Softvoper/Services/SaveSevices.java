@@ -53,7 +53,10 @@ public class SaveSevices
                     String SaveID = rs.getInsertedId().asString().getValue();
                     DevelopersServices.InsertDeveloper(WholeSaveDoc, SaveID);
                     SupporterServices.InsertSupporter(WholeSaveDoc);
-                    ProjectServices.InsertProject(WholeSaveDoc);
+                    if(WholeSaveDoc.get("project", Document.class) != null)
+                    {
+                        ProjectServices.InsertProject(WholeSaveDoc);
+                    }
                 }
                 else
                 {
