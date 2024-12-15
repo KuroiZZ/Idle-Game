@@ -3,8 +3,7 @@ package SaveSystem;
 import LOCSystem.Developers;
 import LOCSystem.Supporter;
 import SCoinSystem.SProject;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -59,6 +58,7 @@ public class Save
     public String CreateJSON() throws JsonProcessingException
     {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.PUBLIC_ONLY);
 
         return mapper.writeValueAsString(this);
     }

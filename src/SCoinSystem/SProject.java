@@ -12,9 +12,9 @@ public class SProject
     private String LanguageType;
     private String RankType;
     private int NecessaryDeveloperCount;
-    private boolean hasTester;
-    private boolean hasArchitect;
-    private boolean hasProjectManager;
+    public boolean hasTester;
+    public boolean hasArchitect;
+    public boolean hasProjectManager;
     private int progressValue;
 
     public SProject(int necessaryLOC, int ScoinToEarn, int timeSecond, String languageType, String rankType,

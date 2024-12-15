@@ -113,6 +113,23 @@ public class SCoin
                 {
                     SCoin_count += newProject.getSCoinToEarn();
                     GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
+
+                    if(newProject.HasTester())
+                    {
+                        LOC.Tester.setNPEandNNPE(LOC.Tester.getNofProjectEmp() - 1);
+                        GUI_Elements.Tester_Button.setNofDeveloperText();
+                    }
+                    if(newProject.HasArchitect())
+                    {
+                        LOC.Architect.setNPEandNNPE(LOC.Architect.getNofProjectEmp() - 1);
+                        GUI_Elements.Architect_Button.setNofDeveloperText();
+                    }
+                    if(newProject.HasProjectManager())
+                    {
+                        LOC.ProjectManager.setNPEandNNPE(LOC.ProjectManager.getNofProjectEmp() - 1);
+                        GUI_Elements.ProjectManager_Button.setNofDeveloperText();
+                    }
+
                     Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount()); // seçilen düzgün gelmeli
                     Button.setNofDeveloperText(); //Seçilen düzgün gelmeli
                     SoftvoperMain.ControlButtons();
