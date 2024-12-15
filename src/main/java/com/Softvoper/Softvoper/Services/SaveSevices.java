@@ -235,8 +235,10 @@ public class SaveSevices
                 Document EditedUpdatedSaveDoc = new Document(WholeUpdatedSaveDoc);
                 EditedUpdatedSaveDoc.remove("developers");
                 EditedUpdatedSaveDoc.remove("supporter");
-                EditedUpdatedSaveDoc.remove("project");
-
+                if(EditedUpdatedSaveDoc.getList("project", Document.class) != null)
+                {
+                    EditedUpdatedSaveDoc.remove("project");
+                }
                 Bson filter = eq("_id", UpdatedSaveId);
                 Bson update = new Document("$set", EditedUpdatedSaveDoc);
                 UpdateResult rs = collection.updateOne(filter, update);
@@ -247,7 +249,10 @@ public class SaveSevices
 
                     DevelopersServices.UpdateDeveloper(WholeUpdatedSaveDoc);
                     SupporterServices.UpdateSupporter(WholeUpdatedSaveDoc);
-                    ProjectServices.UpdateProject(WholeUpdatedSaveDoc);
+                    if(WholeUpdatedSaveDoc.getList("project", Document.class) != null)
+                    {
+                        ProjectServices.UpdateProject(WholeUpdatedSaveDoc);
+                    }
                 }
                 else
                 {
