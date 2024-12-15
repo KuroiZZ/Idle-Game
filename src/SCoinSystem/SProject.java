@@ -1,6 +1,8 @@
 package SCoinSystem;
 
 import Handlers.SupporterCheckbox_Handler;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SProject
 {
@@ -10,9 +12,10 @@ public class SProject
     private String LanguageType;
     private String RankType;
     private int NecessaryDeveloperCount;
-    private boolean hasTester;
-    private boolean hasArchitect;
-    private boolean hasProjectManager;
+    public boolean hasTester;
+    public boolean hasArchitect;
+    public boolean hasProjectManager;
+    private int progressValue;
 
     public SProject(int necessaryLOC, int ScoinToEarn, int timeSecond, String languageType, String rankType,
                     int necessaryDeveloperCount, boolean hasTester, boolean hasArchitect, boolean hasProjectManager)
@@ -26,6 +29,26 @@ public class SProject
         this.hasTester = hasTester;
         this.hasArchitect = hasArchitect;
         this.hasProjectManager = hasProjectManager;
+        this.progressValue = 0;
+    }
+
+    @JsonCreator
+    public SProject(@JsonProperty("necessaryLOC") int necessaryLOC, @JsonProperty("scoinToEarn") int ScoinToEarn,
+                    @JsonProperty("timeSecond") int timeSecond, @JsonProperty("languageType") String languageType,
+                    @JsonProperty("rankType")String rankType, @JsonProperty("necessaryDeveloperCount") int necessaryDeveloperCount,
+                    @JsonProperty("hasTester") boolean hasTester, @JsonProperty("hasArchitect") boolean hasArchitect,
+                    @JsonProperty("hasProjectManager") boolean hasProjectManager, @JsonProperty("progressValue") int progressValue)
+    {
+        NecessaryLOC = necessaryLOC;
+        SCoinToEarn = ScoinToEarn;
+        TimeSecond = timeSecond;
+        LanguageType = languageType;
+        RankType = rankType;
+        NecessaryDeveloperCount = necessaryDeveloperCount;
+        this.hasTester = hasTester;
+        this.hasArchitect = hasArchitect;
+        this.hasProjectManager = hasProjectManager;
+        this.progressValue = progressValue;
     }
 
     public SProject(SProject sProject)
@@ -39,6 +62,21 @@ public class SProject
         LanguageType = sProject.getLanguageType();;
         RankType = sProject.getRankType();
         NecessaryDeveloperCount = sProject.getNecessaryDeveloperCount();
+        this.progressValue = sProject.getProgressValue();
+    }
+
+    public SProject(SProject sProject, int progressValue)
+    {
+        this.hasTester = sProject.HasTester();
+        this.hasArchitect = sProject.HasArchitect();
+        this.hasProjectManager = sProject.HasProjectManager();
+        NecessaryLOC = sProject.NecessaryLOC;
+        SCoinToEarn = sProject.SCoinToEarn;
+        TimeSecond = sProject.TimeSecond;
+        LanguageType = sProject.getLanguageType();;
+        RankType = sProject.getRankType();
+        NecessaryDeveloperCount = sProject.getNecessaryDeveloperCount();
+        this.progressValue = progressValue;
     }
 
     public int getNecessaryLOC()
@@ -120,5 +158,15 @@ public class SProject
     public void setHasTester(boolean hasTester)
     {
         this.hasTester = hasTester;
+    }
+
+    public int getProgressValue()
+    {
+        return progressValue;
+    }
+
+    public void setProgressValue(int progressValue)
+    {
+        this.progressValue = progressValue;
     }
 }

@@ -41,7 +41,6 @@ public class DeveloperButton extends JButton
         super();
 
         this.Employee = employee;
-        System.out.println(this.Employee);
         setButtonContentsPanel(name,setLogoImagePath("Dart"));
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(250,50));

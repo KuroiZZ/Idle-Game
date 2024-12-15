@@ -3,10 +3,12 @@ package LOCSystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import GUI.DeveloperButton;
 import GUI.GUI_Elements;
 import GUI.SoftvoperMain;
+import SCoinSystem.SProject;
 import SaveSystem.SaveSystem;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -116,6 +118,156 @@ public class LOC //Line of Code
 
 
         return SaveSystem.CreateSupporterList();
+    }
+
+    static public ArrayList<SProject> CreateSavedProjects(ArrayList<String> Projects)
+    {
+        ArrayList<SProject> projects = new ArrayList<SProject>();
+        ObjectMapper map = new ObjectMapper();
+        try
+        {
+            for (int i = 0; i<Projects.size(); i++)
+            {
+                SProject project = map.readValue(Projects.get(i), SProject.class);
+                projects.add(project);
+            }
+        }
+        catch (JsonProcessingException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        return projects;
+    }
+
+    static public Developers ChooseDeveloper(String Type, String Rank)
+    {
+        if (Objects.equals(Type, "C"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return LOC.Beginner_C_Developer;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return LOC.Intermediate_C_Developer;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return LOC.Advanced_C_Developer;
+            }
+        }
+        else if (Objects.equals(Type, "CSharp"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return LOC.Beginner_CSharp_Developer;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return LOC.Intermediate_CSharp_Developer;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return LOC.Advanced_CSharp_Developer;
+            }
+        }
+        else if (Objects.equals(Type, "Dart"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return LOC.Beginner_Dart_Developer;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return LOC.Intermediate_Dart_Developer;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return LOC.Advanced_Dart_Developer;
+            }
+        }
+        else if (Objects.equals(Type, "Java"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return LOC.Beginner_Java_Developer;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return LOC.Intermediate_Java_Developer;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return LOC.Advanced_Dart_Developer;
+            }
+        }
+        return null;
+    }
+
+    static public DeveloperButton ChooseDeveloperButton(String Type, String Rank)
+    {
+        if (Objects.equals(Type, "C"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return GUI_Elements.Beginner_C_Button;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return GUI_Elements.Intermediate_C_Button;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return GUI_Elements.Advanced_C_Button;
+            }
+        }
+        else if (Objects.equals(Type, "CSharp"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return GUI_Elements.Beginner_CSharp_Button;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return GUI_Elements.Intermediate_CSharp_Button;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return GUI_Elements.Advanced_CSharp_Button;
+            }
+        }
+        else if (Objects.equals(Type, "Dart"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return GUI_Elements.Beginner_Dart_Button;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return GUI_Elements.Intermediate_Dart_Button;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return GUI_Elements.Advanced_Dart_Button;
+            }
+        }
+        else if (Objects.equals(Type, "Java"))
+        {
+            if (Objects.equals(Rank, "Beginner"))
+            {
+                return GUI_Elements.Beginner_Java_Button;
+            }
+            else if (Objects.equals(Rank, "Intermediate"))
+            {
+                return GUI_Elements.Intermediate_Java_Button;
+            }
+            else if (Objects.equals(Rank, "Advanced"))
+            {
+                return GUI_Elements.Advanced_Java_Button;
+            }
+        }
+        return null;
     }
 
     static public void BuyDeveloper(Developers Developer, DeveloperButton Button)

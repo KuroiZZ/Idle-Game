@@ -22,6 +22,8 @@ public class SavePanel extends JButton
     private JLabel SCoin_Image;
     private JLabel SCoin_Count;
 
+    private JButton Delete_Button;
+
     public SavePanel(Save save)
     {
         this.save = save;
@@ -40,10 +42,12 @@ public class SavePanel extends JButton
         GridBagConstraints constraintsTitle = setConstraints(GridBagConstraints.CENTER,1,1, 0,0);
         GridBagConstraints constraintsLOC = setConstraints(GridBagConstraints.CENTER,1,1, 0, 1);
         GridBagConstraints constraintsSCoin = setConstraints(GridBagConstraints.CENTER,1,1, 0, 2);
+        GridBagConstraints constraintsDeleteButton = setConstraints(GridBagConstraints.CENTER,1,1, 0, 3);
 
         ContentPanel.add(this.Title, constraintsTitle);
         ContentPanel.add(this.LOC_Panel, constraintsLOC);
         ContentPanel.add(this.SCoin_Panel, constraintsSCoin);
+        ContentPanel.add(this.Delete_Button, constraintsDeleteButton);
 
         this.setActionCommand("CreateGame_Old");
         this.addActionListener(new ActionListener() {
@@ -97,6 +101,19 @@ public class SavePanel extends JButton
 
         this.SCoin_Panel.add(this.SCoin_Image);
         this.SCoin_Panel.add(this.SCoin_Count);
+
+        this.Delete_Button = new JButton("Delete Save");
+        this.Delete_Button.setActionCommand("Delete");
+        this.Delete_Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                GUI_Elements.GUI_handler.setCurrentSave(save);
+
+                GUI_Elements.GUI_handler.actionPerformed(e);
+            }
+        });
     }
 
     private GridBagConstraints setConstraints(int anchor,  int gridheight, int gridwidth, int gridx, int gridy)

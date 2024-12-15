@@ -30,14 +30,17 @@ public class GUI_Elements
     public static JLabel SCoinLabel;
 
     public static JFrame window = new JFrame();
-    public static void InitializeMainScreen()
+    public static void InitializeWindowProperties()
     {
         window.setSize(1920, 1080);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
-        window.setLayout(new GridBagLayout());
+    }
 
+    public static void InitializeMainScreen()
+    {
+        window.setLayout(new GridBagLayout());
         GridBagConstraints Title_Constraint = new GridBagConstraints();
 
         Title_Constraint.fill = GridBagConstraints.NONE;
@@ -148,8 +151,6 @@ public class GUI_Elements
     public static JFrame InputFrame;
     public static void InitializeInputFrame()
     {
-
-
         InputFrame = new JFrame();
         InputFrame.setSize(new Dimension(300, 100));
         InputFrame.setLayout(new FlowLayout());
@@ -174,10 +175,9 @@ public class GUI_Elements
                     ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
                     ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
                     SoftvoperMain.CreateGameMenu();
-                    SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters);
+                    SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters, null);
                     try
                     {
-                        System.out.println(SaveSystem.instant_save.CreateJSON());
                         SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
                     }
                     catch (JsonProcessingException ex)
@@ -280,6 +280,8 @@ public class GUI_Elements
         constraints.anchor = GridBagConstraints.CENTER;
         constraints.gridy = 3;
 
+        JPanel ButonPanels = new JPanel(new GridLayout(1,2));
+
         ImageIcon save_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Save.png"));
         ImageIcon saveRollover_image = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/RolloverSave.png"));
         JButton Save = new JButton(save_image);
@@ -288,7 +290,16 @@ public class GUI_Elements
         Save.setRolloverIcon(saveRollover_image);
         Save.addActionListener(GUI_handler);
         Save.setActionCommand("Save");
-        CoderPanel.add(Save, constraints);
+        ButonPanels.add(Save);
+
+        JButton MainMenu = new JButton("Main Menu");
+        MainMenu.setFocusPainted(false);
+        MainMenu.setPreferredSize(new Dimension(100,50));
+        MainMenu.addActionListener(GUI_handler);
+        MainMenu.setActionCommand("Main_Menu");
+        ButonPanels.add(MainMenu);
+
+        CoderPanel.add(ButonPanels, constraints);
     }
 
     static public DeveloperButton Beginner_C_Button;

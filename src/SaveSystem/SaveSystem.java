@@ -4,6 +4,7 @@ import LOCSystem.Developers;
 import LOCSystem.LOC;
 import LOCSystem.Supporter;
 import SCoinSystem.SCoin;
+import SCoinSystem.SProject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,6 +52,17 @@ public class SaveSystem
         return supporters;
     }
 
+    static public ArrayList<SProject> CreateProjectList()
+    {
+        ArrayList<SProject> project = new ArrayList<>(5);
+        for (int i = 0; i<SCoin.ActiveProject.size(); i++)
+        {
+            project.add(new SProject(SCoin.ActiveProject.get(i), SCoin.ActiveProjectInformations.get(i).appProgress.getValue()));
+        }
+
+        return project;
+    }
+
     static public void UpdateInstantSave()
     {
         int instant_loc_count = LOC.loc_cnt;
@@ -58,8 +70,9 @@ public class SaveSystem
 
         ArrayList<Developers> developers = CreateDeveloperList();
         ArrayList<Supporter> supporter = CreateSupporterList();
+        ArrayList<SProject> project = CreateProjectList();
 
-        instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers, supporter);
+        instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers, supporter, project);
     }
 
     static public void SendSave(String save)
@@ -165,9 +178,34 @@ public class SaveSystem
 
     }
 
+    static public void DeleteSave(String id)
+    {
+        URI url = URI.create("http://localhost:8080/save/delete/" + id);
+
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(url)
+                .DELETE()
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = null;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("HTTP Status Code: " + response.statusCode());
+        System.out.println("Response Body: " + response.body());
+    }
+
     static public String[] ParseJsonStringOneSave(String jsonString)
     {
-        String[] Contents = new String[6];
+        String[] Contents = new String[7];
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode;
         try
@@ -179,13 +217,18 @@ public class SaveSystem
             throw new RuntimeException(e);
         }
 
+
         Contents[0] = jsonNode.get("name").asText();
+
         Contents[1] = jsonNode.get("_id").asText();
+
         Contents[2] = jsonNode.get("loc_count_js").asText();
+
         Contents[3] = jsonNode.get("scoin_count_js").asText();
 
+
         ArrayList<String> Devs = new ArrayList<String>();
-        JsonNode DeveloperNode = jsonNode.get("developers");
+        JsonNode DeveloperNode = jsonNode.get("developers").deepCopy();
         for(JsonNode developer : DeveloperNode)
         {
             Devs.add(developer.toString());
@@ -193,12 +236,21 @@ public class SaveSystem
         Contents[4] = Devs.toString();
 
         ArrayList<String> Sups = new ArrayList<String>();
-        JsonNode SupporterNode = jsonNode.get("supporter");
+        JsonNode SupporterNode = jsonNode.get("supporter").deepCopy();
         for(JsonNode supporter : SupporterNode)
         {
             Sups.add(supporter.toString());
         }
         Contents[5] = Sups.toString();
+
+        ArrayList<String> projects = new ArrayList<String>();
+        JsonNode ProjectNode = jsonNode.get("project").deepCopy(); // Make sure this is correct
+        for (JsonNode project : ProjectNode)
+        {
+            projects.add(project.toString()); // Add project content as string
+        }
+        Contents[6] = projects.toString();
+
 
         return Contents;
     }
