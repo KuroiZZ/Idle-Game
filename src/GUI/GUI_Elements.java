@@ -104,8 +104,21 @@ public class GUI_Elements
 
     public static void InitializeSaveScreen(String LoadOrNew)
     {
-        window.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 100));
+        //window.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 100));
+        ImageIcon BacktoMainMenuIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/BacktoMain.png"));
+        ImageIcon RolloverBacktoMainMenuIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverBacktoMain.png"));
 
+        JPanel backToMainMenuPanel = new JPanel(new BorderLayout());
+        backToMainMenuPanel.setOpaque(false);
+        JButton backToMainMenu = new JButton(BacktoMainMenuIcon);
+        backToMainMenu.setRolloverIcon(RolloverBacktoMainMenuIcon);
+        backToMainMenu.setPreferredSize(new Dimension(100,40));
+        backToMainMenuPanel.add(backToMainMenu, BorderLayout.EAST);
+        window.setLayout(new BorderLayout());
+        window.add(backToMainMenuPanel, BorderLayout.NORTH);
+
+        JPanel saveListPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        saveListPanel.setOpaque(false);
         ArrayList<SavePanel> SavePanels = new ArrayList<SavePanel>() ;
 
         String All_Save_Strings = SaveSystem.GetAllSaves();
@@ -127,9 +140,9 @@ public class GUI_Elements
 
         for (SavePanel savePanel : SavePanels)
         {
-            window.add(savePanel);
+            saveListPanel.add(savePanel);
         }
-
+        window.add(saveListPanel, BorderLayout.CENTER);
     }
 
     public static JFrame InputFrame;
