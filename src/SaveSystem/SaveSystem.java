@@ -229,7 +229,6 @@ public class SaveSystem
 
         ArrayList<String> Devs = new ArrayList<String>();
         JsonNode DeveloperNode = jsonNode.get("developers").deepCopy();
-        System.out.println("DeveloperNode" + DeveloperNode);
         for(JsonNode developer : DeveloperNode)
         {
             Devs.add(developer.toString());
@@ -238,7 +237,6 @@ public class SaveSystem
 
         ArrayList<String> Sups = new ArrayList<String>();
         JsonNode SupporterNode = jsonNode.get("supporter").deepCopy();
-        System.out.println("SupporterNode" + SupporterNode);
         for(JsonNode supporter : SupporterNode)
         {
             Sups.add(supporter.toString());
@@ -247,7 +245,6 @@ public class SaveSystem
 
         ArrayList<String> projects = new ArrayList<String>();
         JsonNode ProjectNode = jsonNode.get("project").deepCopy(); // Make sure this is correct
-        System.out.println("Project Node: " + ProjectNode); // Check the contents of the node
         for (JsonNode project : ProjectNode)
         {
             projects.add(project.toString()); // Add project content as string

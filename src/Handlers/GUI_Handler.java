@@ -59,11 +59,7 @@ public class GUI_Handler implements ActionListener
                 GUI_Elements.window.getContentPane().removeAll();
                 LOC.InitializeSupporters();
                 String saveJson = SaveSystem.GetSave(currentSave._id);
-                System.out.println(saveJson);
                 String[] contents = SaveSystem.ParseJsonStringOneSave(saveJson);
-
-                System.out.println(contents[4]);
-                System.out.println(contents[5]);
 
                 Pattern pattern = Pattern.compile("\\{[^}]*\\}");
                 Matcher matcherD = pattern.matcher(contents[4]);

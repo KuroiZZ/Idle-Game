@@ -144,11 +144,8 @@ public class LOC //Line of Code
     {
         if (Objects.equals(Type, "C"))
         {
-            System.out.println("C kontrolüne girdi");
             if (Objects.equals(Rank, "Beginner"))
             {
-                System.out.println("Beginner kontrolüne girdi");
-                System.out.println("Bne Develop" + LOC.Beginner_C_Developer);
                 return LOC.Beginner_C_Developer;
             }
             else if (Objects.equals(Rank, "Intermediate"))
