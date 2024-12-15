@@ -2,6 +2,9 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class SProjectInformation extends JPanel
 {
@@ -12,10 +15,11 @@ public class SProjectInformation extends JPanel
     private JLabel SCoinImage;
     private Image backgroundImage; // Arka plan resmi için değişken
 
-    public SProjectInformation(String Name, int ScoinToEarn, String DeveloperRank, int progressValue)
+
+    public SProjectInformation(int ScoinToEarn, String DeveloperRank, int progressValue)
     {
         super(new GridBagLayout());
-        setPanel(Name,ScoinToEarn, progressValue);
+        setPanel(ScoinToEarn, progressValue);
 
         this.setOpaque(false); // Panelin arka planı şeffaf olacak
         this.setPreferredSize(new Dimension(250, 50));
@@ -44,9 +48,9 @@ public class SProjectInformation extends JPanel
         }
     }
 
-    private void setPanel(String Name, int ScoinToEarn, int progressValue)
+    private void setPanel(int ScoinToEarn, int progressValue)
     {
-        setContents(Name,ScoinToEarn, progressValue);
+        setContents(ScoinToEarn, progressValue);
 
         GridBagConstraints constraintsName = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 0);
         GridBagConstraints constraintsSCoinToEarn = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,1,0);
@@ -57,10 +61,10 @@ public class SProjectInformation extends JPanel
         this.add(this.appProgress, constraintsProgressBar);
     }
 
-    private void setContents(String Name, int ScoinToEarn, int progressValue)
+    private void setContents(int ScoinToEarn, int progressValue)
     {
-        this.name = new JLabel(Name);
-        this.name.setFont(get_Font("BAŞLIK"));
+        this.name = new JLabel(createName());
+        this.name.setFont(get_Font("SMALL"));
         this.SCoinToEarn = new JLabel(String.valueOf(ScoinToEarn));
         this.SCoinToEarn.setFont(get_Font("BAŞLIK"));
 
@@ -118,5 +122,25 @@ public class SProjectInformation extends JPanel
         constraints.gridy = gridy;
 
         return constraints;
+    }
+
+    private String createName()
+    {
+        List<String> TitleNames = new ArrayList<String>(Arrays.asList(
+                "Whitebank ","ThinkyDink ","Giggle ","Snackademic ","Splatify ","Niyetflix ",
+                "Cha-Ching ", "PUB6 ", "Kıble ", "UStube ", "Close ", "Kiwiter ", "Osman ",
+                "Metin3 ", "Sugma ", "Glegro ", "Abode "));
+        List<String> TypeNames = new ArrayList<String>(Arrays.asList(
+                "Browser","Notebook","Calculator","C Library","AI","Game", "OS", "Message", "Music",
+                "Videoplayer","App","Photo Editor"));
+
+        int randomTitleIndex = ThreadLocalRandom.current().nextInt(TitleNames.size());
+        String randomTitleElement = TitleNames.get(randomTitleIndex);
+
+        int randomTypeIndex = ThreadLocalRandom.current().nextInt(TypeNames.size());
+        String randomTypeElement = TypeNames.get(randomTypeIndex);
+
+        String FinalName = randomTitleElement + randomTypeElement;
+        return FinalName;
     }
 }
