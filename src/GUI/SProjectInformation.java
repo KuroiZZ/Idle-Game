@@ -5,33 +5,82 @@ import java.awt.*;
 
 public class SProjectInformation extends JPanel
 {
+    /**
+     * Label for project's name
+     */
     private JLabel name;
+    /**
+     * Label for projects progress state
+     */
     public JProgressBar appProgress;
+    /**
+     * Panel to hold SCoinToEarn label and SCoinImage label
+     */
     private JPanel SCoinPanel;
+    /**
+     * Label for projects Scoin create amount
+     */
     private JLabel SCoinToEarn;
+    /**
+     * Label for SCoin's image
+     */
     private JLabel SCoinImage;
-    private Image backgroundImage; // Arka plan resmi için değişken
+    /**
+     * Image for background of information panel
+     */
+    private Image backgroundImage;
 
+    /**
+     * This constructor, cosntruct SProjectInformation panel for new projects.
+     * @param Name
+     * @param ScoinToEarn
+     * @param DeveloperRank
+     * @param progressValue
+     */
     public SProjectInformation(String Name, int ScoinToEarn, String DeveloperRank, int progressValue)
     {
         super(new GridBagLayout());
         setPanel(Name,ScoinToEarn, progressValue);
 
-        this.setOpaque(false); // Panelin arka planı şeffaf olacak
+        this.setOpaque(false);
         this.setPreferredSize(new Dimension(250, 50));
         this.setBorder(null);
 
-        // Arka planı yükle
         loadBackgroundImage(DeveloperRank);
     }
 
-    // Arka planı yükleyen metot
+    /**
+     * Select and set background image by DeveloperRank
+     * @param DeveloperRank
+     */
     private void loadBackgroundImage(String DeveloperRank)
     {
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("images/DeveloperButton/BeginneButton.png")); // Arka plan resmi
-        this.backgroundImage = icon.getImage().getScaledInstance(250, 50, Image.SCALE_SMOOTH); // Resmi uygun boyutta ölçekle
+        String BackgroundImagePath;
+        switch (DeveloperRank)
+        {
+            case "Beginner":
+                BackgroundImagePath = "images/DeveloperButton/BeginneButton.png";
+                break;
+            case "Intermediate":
+                BackgroundImagePath = "images/DeveloperButton/IntermediateButton.png";
+                break;
+            case "Advanced":
+                BackgroundImagePath = "images/DeveloperButton/AdvancedButton.png";
+;
+                break;
+            default:
+                BackgroundImagePath = "";
+        }
+        ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
+        Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
+
+        this.backgroundImage = backgroundImage;
     }
 
+    /**
+     * Paint background with selected image.
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g)
     {
@@ -44,6 +93,12 @@ public class SProjectInformation extends JPanel
         }
     }
 
+    /**
+     * Add contents to SProjectInformation with constraints.
+     * @param Name
+     * @param ScoinToEarn
+     * @param progressValue
+     */
     private void setPanel(String Name, int ScoinToEarn, int progressValue)
     {
         setContents(Name,ScoinToEarn, progressValue);
@@ -57,6 +112,12 @@ public class SProjectInformation extends JPanel
         this.add(this.appProgress, constraintsProgressBar);
     }
 
+    /**
+     * Set SProjectInformation's contents.
+     * @param Name
+     * @param ScoinToEarn
+     * @param progressValue
+     */
     private void setContents(String Name, int ScoinToEarn, int progressValue)
     {
         this.name = new JLabel(Name);
@@ -86,6 +147,11 @@ public class SProjectInformation extends JPanel
         this.appProgress.setValue(value);
     }
 
+    /**
+     * Font selector for labels
+     * @param fontName
+     * @return
+     */
     private Font get_Font(String fontName)
     {
         Font font;
@@ -104,6 +170,16 @@ public class SProjectInformation extends JPanel
         return font;
     }
 
+    /**
+     * Set constraints for GridBagLayout
+     * @param anchor
+     * @param fill
+     * @param gridheight
+     * @param gridwidth
+     * @param gridx
+     * @param gridy
+     * @return
+     */
     private GridBagConstraints setConstraints(int anchor,int fill,  int gridheight, int gridwidth, int gridx, int gridy)
     {
         GridBagConstraints constraints = new GridBagConstraints();

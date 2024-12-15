@@ -17,9 +17,11 @@ import javax.swing.*;
 
 public class LOC //Line of Code
 {
+    //
     static public int buy_amount = 1;
     static public int loc_cnt = 0;
 
+    //Define all employees in game.
     static public Beginner Beginner_C_Developer;
     static public Beginner Beginner_CSharp_Developer;
     static public Beginner Beginner_Dart_Developer;
@@ -39,12 +41,10 @@ public class LOC //Line of Code
     static public Supporter Architect;
     static public Supporter ProjectManager;
 
-    static public void InitializeSupporters()
-    {
-        Tester = new Supporter("Tester", 8);
-        Architect = new Supporter("Architect", 8);
-        ProjectManager = new Supporter("ProjectManager", 8);
-    }
+    /**
+     * Initialize Developers with empty input for new game.
+     * @return
+     */
     static public ArrayList<Developers> CreateEmptyDevelopers()
     {
         Beginner_C_Developer= new Beginner("C", "Beginner");
@@ -65,6 +65,11 @@ public class LOC //Line of Code
         return SaveSystem.CreateDeveloperList();
     }
 
+    /**
+     * Initialize Developers with saved game's developer jsonstring list.
+     * @param Developers
+     * @return
+     */
     static public ArrayList<Developers> CreateSavedDevelopers(ArrayList<String> Developers)
     {
         ObjectMapper map = new ObjectMapper();
@@ -93,6 +98,10 @@ public class LOC //Line of Code
         return SaveSystem.CreateDeveloperList();
     }
 
+    /**
+     * Initialize Supporters with empty input for new game.
+     * @return
+     */
     static public ArrayList<Supporter> CreateEmptySupporters()
     {
         Tester = new Supporter("Tester", 40);
@@ -102,6 +111,11 @@ public class LOC //Line of Code
         return SaveSystem.CreateSupporterList();
     }
 
+    /**
+     * Initialize Supporters with saved game's supporter jsonstring list.
+     * @param Supporters
+     * @return
+     */
     static public ArrayList<Supporter> CreateSavedSupporters(ArrayList<String> Supporters)
     {
         ObjectMapper map = new ObjectMapper();
@@ -120,6 +134,11 @@ public class LOC //Line of Code
         return SaveSystem.CreateSupporterList();
     }
 
+    /**
+     * Initialize Projects with saved game's project jsonstring list
+     * @param Projects
+     * @return
+     */
     static public ArrayList<SProject> CreateSavedProjects(ArrayList<String> Projects)
     {
         ArrayList<SProject> projects = new ArrayList<SProject>();
@@ -140,6 +159,12 @@ public class LOC //Line of Code
         return projects;
     }
 
+    /**
+     * Returns choosed Developer linked to Type and Rank paramaters
+     * @param Type
+     * @param Rank
+     * @return
+     */
     static public Developers ChooseDeveloper(String Type, String Rank)
     {
         if (Objects.equals(Type, "C"))
@@ -205,6 +230,12 @@ public class LOC //Line of Code
         return null;
     }
 
+    /**
+     * Returns choosed DeveloperButton linked to Type and Rank paramaters
+     * @param Type
+     * @param Rank
+     * @return
+     */
     static public DeveloperButton ChooseDeveloperButton(String Type, String Rank)
     {
         if (Objects.equals(Type, "C"))
@@ -270,6 +301,12 @@ public class LOC //Line of Code
         return null;
     }
 
+    /**
+     * Changes Developer's Total, Project , NonProject employees number and Number of Total LOC.
+     * Changes Developer button's Developer count and price text.
+     * @param Developer
+     * @param Button
+     */
     static public void BuyDeveloper(Developers Developer, DeveloperButton Button)
     {
         Developer.setNTEandNNPEandNTL(Developer.getNofTotalEmp()+ buy_amount);
@@ -279,6 +316,12 @@ public class LOC //Line of Code
         SoftvoperMain.ControlButtons();
     }
 
+    /**
+     * Changes Supporter's Total, Project and NonProject employees number.
+     * Changes Supporter button's Supporter count and price text.
+     * @param Supporter
+     * @param Button
+     */
     static public void BuySupporter(Supporter Supporter, DeveloperButton Button)
     {
         Supporter.setNTEandNNPE(Supporter.getNofTotalEmp() + buy_amount);
@@ -288,6 +331,10 @@ public class LOC //Line of Code
         SoftvoperMain.ControlButtons();
     }
 
+
+    /**
+     * Creates process which update loc_count's value with Developer's Number of Total LOC.
+     */
     public static void UpdateLOC()
     {
         Timer timer = new Timer(62, new ActionListener()

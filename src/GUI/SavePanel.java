@@ -9,21 +9,54 @@ import java.awt.event.ActionListener;
 
 public class SavePanel extends JButton
 {
+    /**
+     * Content panel to hold SavePanel button's content
+     */
     private JPanel ContentPanel;
+    /**
+     *
+     */
     private Save save;
 
+    /**
+     * Label for save's title
+     */
     private JLabel Title;
 
+    /**
+     * Panel to hold LOC_Image and LOC_Count
+     */
     private JPanel LOC_Panel;
+    /**
+     * Label for LOC_Image
+     */
     private JLabel LOC_Image;
+    /**
+     * Label for LOC_Count
+     */
     private JLabel LOC_Count;
 
+    /**
+     * Panel to hold SCoin_Image and SCoin_Count
+     */
     private JPanel SCoin_Panel;
+    /**
+     * Label for SCoin_Image
+     */
     private JLabel SCoin_Image;
+    /**
+     * Label for Scoin_Count
+     */
     private JLabel SCoin_Count;
-
+    /**
+     * Button to delete save
+     */
     private JButton Delete_Button;
 
+    /**
+     * This constructor, construct Save panel for saved games.
+     * @param save
+     */
     public SavePanel(Save save)
     {
         this.save = save;
@@ -35,6 +68,12 @@ public class SavePanel extends JButton
         this.setBorder(null);
     }
 
+    /**
+     * Add contents to ContentPanel with constraints.
+     * @param title
+     * @param loc_count
+     * @param scoin_count
+     */
     public void setContentPanel(String title, String loc_count, String scoin_count)
     {
         setContents(title, loc_count, scoin_count);
@@ -62,6 +101,12 @@ public class SavePanel extends JButton
         });
     }
 
+    /**
+     * Set SavePanel's contents.
+     * @param title
+     * @param loc_count
+     * @param scoin_count
+     */
     public void setContents(String title, String loc_count, String scoin_count)
     {
         this.ContentPanel = new JPanel(new GridBagLayout());
@@ -108,7 +153,6 @@ public class SavePanel extends JButton
             @Override
             public void actionPerformed(ActionEvent e)
             {
-
                 GUI_Elements.GUI_handler.setCurrentSave(save);
 
                 GUI_Elements.GUI_handler.actionPerformed(e);
@@ -116,6 +160,15 @@ public class SavePanel extends JButton
         });
     }
 
+    /**
+     * Set constraints for GridBagLayout
+     * @param anchor
+     * @param gridheight
+     * @param gridwidth
+     * @param gridx
+     * @param gridy
+     * @return
+     */
     private GridBagConstraints setConstraints(int anchor,  int gridheight, int gridwidth, int gridx, int gridy)
     {
         GridBagConstraints constraints = new GridBagConstraints();

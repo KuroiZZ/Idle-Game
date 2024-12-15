@@ -17,21 +17,19 @@ public class SProject
     public boolean hasProjectManager;
     private int progressValue;
 
-    public SProject(int necessaryLOC, int ScoinToEarn, int timeSecond, String languageType, String rankType,
-                    int necessaryDeveloperCount, boolean hasTester, boolean hasArchitect, boolean hasProjectManager)
-    {
-        NecessaryLOC = necessaryLOC;
-        SCoinToEarn = ScoinToEarn;
-        TimeSecond = timeSecond;
-        LanguageType = languageType;
-        RankType = rankType;
-        NecessaryDeveloperCount = necessaryDeveloperCount;
-        this.hasTester = hasTester;
-        this.hasArchitect = hasArchitect;
-        this.hasProjectManager = hasProjectManager;
-        this.progressValue = 0;
-    }
-
+    /**
+     *  Consturcts SProject object with jsonString.
+     * @param necessaryLOC
+     * @param ScoinToEarn
+     * @param timeSecond
+     * @param languageType
+     * @param rankType
+     * @param necessaryDeveloperCount
+     * @param hasTester
+     * @param hasArchitect
+     * @param hasProjectManager
+     * @param progressValue
+     */
     @JsonCreator
     public SProject(@JsonProperty("necessaryLOC") int necessaryLOC, @JsonProperty("scoinToEarn") int ScoinToEarn,
                     @JsonProperty("timeSecond") int timeSecond, @JsonProperty("languageType") String languageType,
@@ -51,6 +49,10 @@ public class SProject
         this.progressValue = progressValue;
     }
 
+    /**
+     * This consturctor construct SProject object when craeting or loading into game.
+     * @param sProject
+     */
     public SProject(SProject sProject)
     {
         this.hasTester = sProject.HasTester();
@@ -65,6 +67,11 @@ public class SProject
         this.progressValue = sProject.getProgressValue();
     }
 
+    /**
+     * This contructor construct SProject object when saving game.
+     * @param sProject
+     * @param progressValue
+     */
     public SProject(SProject sProject, int progressValue)
     {
         this.hasTester = sProject.HasTester();

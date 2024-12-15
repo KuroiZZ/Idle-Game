@@ -8,6 +8,10 @@ import SCoinSystem.SCoin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Controls actions to change SCoin and Employee's parameters
+ */
 public class SCoin_Handler implements ActionListener
 {
     public void actionPerformed(ActionEvent event)

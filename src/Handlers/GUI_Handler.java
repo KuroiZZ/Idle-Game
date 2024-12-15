@@ -57,7 +57,6 @@ public class GUI_Handler implements ActionListener
                 break;
             case "CreateGame_Old":
                 GUI_Elements.window.getContentPane().removeAll();
-                LOC.InitializeSupporters();
                 String saveJson = SaveSystem.GetSave(currentSave._id);
                 String[] contents = SaveSystem.ParseJsonStringOneSave(saveJson);
 

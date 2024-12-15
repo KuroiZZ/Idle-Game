@@ -2,8 +2,17 @@ package LOCSystem;
 
 public abstract class Developers extends Employee
 {
-    protected int LinePerSecond; //line per second (LPS)
-    protected int NofTotalLOC; //Number of total loc written by NonProject employee (NTL)
+    /**
+     * Developer's LOC create amount in one second (LPS)
+     */
+    protected int LinePerSecond;
+    /**
+     * Number of total loc written by NonProject employee (NTL)
+     */
+    protected int NofTotalLOC;
+    /**
+     * Rank of Developer
+     */
     protected String Rank;
 
     public Developers(String type, String rank)
@@ -92,24 +101,37 @@ public abstract class Developers extends Employee
         Rank = rank;
     }
 
+    /**
+     * Set Developer's Number of Total Employee , Number of non Project Employee and Number of Total LOC
+     * @param nofTotalEmp
+     */
     public void setNTEandNNPEandNTL(int nofTotalEmp)
     {
         this.NofTotalEmp = nofTotalEmp;
         setNNPEandNTL();
     }
 
+    /**
+     * Set Developer's Number of Project Employee , Number of non Project Employee and Number of Total LOC
+     * @param nofProjectEmp
+     */
     public void setNPEandNNPEandNTL(int nofProjectEmp)
     {
         this.NofProjectEmp = nofProjectEmp;
         setNNPEandNTL();
     }
 
+    /**
+     * Set Developer's Number of Non Project Employee and Number of Total LOC
+     */
     public void setNNPEandNTL()
     {
         this.NofNonProjectEmp = this.NofTotalEmp - this.NofProjectEmp;
         setNofTotalLOC();
     }
 
+
+    //Set abstract functions for child functions.
     abstract public void setPriceAfterBuy(int BuyAmount);
 
     abstract public float getTotalPrice(int BuyAmount);

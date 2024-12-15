@@ -6,6 +6,9 @@ import LOCSystem.LOC;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controls actions to change LOC and Employee's parameters
+ */
 public class LOC_Handler implements ActionListener
 {
     public void actionPerformed(ActionEvent event)

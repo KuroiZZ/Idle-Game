@@ -4,6 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Intermediate extends Developers
 {
+    /**
+     * This constructor, constructs Intermediate developer objects when creating empty intermediate developer.
+     * @param type
+     * @param rank
+     */
     public Intermediate(String type, String rank)
     {
         super(type, rank);
@@ -14,6 +19,17 @@ public class Intermediate extends Developers
         setLinePerSecond(5000);
     }
 
+    /**
+     * This constructor, construct Intermediate developer object when creating object with json string in LOC.CreateSavedDevelopers
+     * @param Rank
+     * @param Price
+     * @param Type
+     * @param NofNonProjectEmp
+     * @param LinePerSecond
+     * @param NofTotalEmp
+     * @param NofProjectEmp
+     * @param NofTotalLOC
+     */
     public Intermediate(@JsonProperty("rank") String Rank, @JsonProperty("price") float Price, @JsonProperty("type") String Type,
                         @JsonProperty("nofNonProjectEmp") int NofNonProjectEmp, @JsonProperty("linePerSecond") int LinePerSecond,
                         @JsonProperty("nofTotalEmp") int NofTotalEmp, @JsonProperty("nofProjectEmp") int NofProjectEmp,
@@ -28,6 +44,10 @@ public class Intermediate extends Developers
         this.NofTotalLOC = NofTotalLOC;
     }
 
+    /**
+     * Changes Intermediate developer's price after buying.
+     * @param BuyAmount
+     */
     @Override
     public void setPriceAfterBuy(int BuyAmount)
     {
@@ -37,6 +57,11 @@ public class Intermediate extends Developers
         }
     }
 
+    /**
+     * Get Intermediate developer's buying price with buyamount paramater.
+     * @param BuyAmount
+     * @return
+     */
     @Override
     public float getTotalPrice(int BuyAmount)
     {
