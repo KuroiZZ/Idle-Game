@@ -123,7 +123,9 @@ public class GUI_Elements
         window.add(backToMainMenuPanel, BorderLayout.NORTH);
 
         JPanel saveListPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        saveListPanel.setOpaque(false);
+        saveListPanel.setOpaque(true);
+        saveListPanel.setBackground(Color.BLACK);
+        saveListPanel.setBorder(BorderFactory.createEmptyBorder());
         ArrayList<SavePanel> SavePanels = new ArrayList<SavePanel>() ;
 
         String All_Save_Strings = SaveSystem.GetAllSaves();
@@ -147,7 +149,14 @@ public class GUI_Elements
         {
             saveListPanel.add(savePanel);
         }
-        window.add(saveListPanel, BorderLayout.CENTER);
+        JScrollPane scrollablePanel = new JScrollPane(saveListPanel, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollablePanel.setOpaque(false);
+        scrollablePanel.setBorder(BorderFactory.createEmptyBorder());
+        scrollablePanel.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
+        scrollablePanel.getHorizontalScrollBar().setUnitIncrement(16);
+
+        window.add(scrollablePanel, BorderLayout.CENTER);
     }
 
     public static JFrame InputFrame;
