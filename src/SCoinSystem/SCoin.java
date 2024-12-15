@@ -145,7 +145,7 @@ public class SCoin
 
     static public SProjectInformation CreateAppInformation(SProject App)
     {
-        SProjectInformation Beginner_C_Project_Information = new SProjectInformation("League of Losers", App.getSCoinToEarn(), App.getRankType(), App.getProgressValue());
+        SProjectInformation Beginner_C_Project_Information = new SProjectInformation(App.getSCoinToEarn(), App.getRankType(), App.getProgressValue());
         java.util.Timer timer = new java.util.Timer();
         timer.scheduleAtFixedRate(new TimerTask()
         {
