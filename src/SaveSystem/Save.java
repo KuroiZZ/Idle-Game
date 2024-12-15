@@ -2,6 +2,7 @@ package SaveSystem;
 
 import LOCSystem.Developers;
 import LOCSystem.Supporter;
+import SCoinSystem.SProject;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,8 +19,9 @@ public class Save
     public int scoin_count_js;
     public ArrayList<Developers> developers;
     public ArrayList<Supporter> supporter;
+    public ArrayList<SProject> project;
 
-    public Save(String name,String id,  int loc_count, int scoin_count, ArrayList<Developers> developers, ArrayList<Supporter> supporter)
+    public Save(String name,String id,  int loc_count, int scoin_count, ArrayList<Developers> developers, ArrayList<Supporter> supporter, ArrayList<SProject> project)
     {
         this.name = name;
         this._id = id;
@@ -27,9 +29,10 @@ public class Save
         this.scoin_count_js = scoin_count;
         this.developers = developers;
         this.supporter = supporter;
+        this.project = project;
     }
 
-    public Save(String name, ArrayList<Developers> developers, ArrayList<Supporter> supporter)
+    public Save(String name, ArrayList<Developers> developers, ArrayList<Supporter> supporter, ArrayList<SProject> project)
     {
         this.name = name;
         this._id = UUID.randomUUID().toString();
@@ -37,6 +40,7 @@ public class Save
         this.scoin_count_js = 0;
         this.developers = developers;
         this.supporter = supporter;
+        this.project = project;
     }
 
     @JsonCreator
@@ -48,6 +52,8 @@ public class Save
         this.loc_count_js = loc_count;
         this.scoin_count_js = scoin_count;
         this.developers = null;
+        this.supporter = null;
+        this.project = null;
     }
 
     public String CreateJSON() throws JsonProcessingException
