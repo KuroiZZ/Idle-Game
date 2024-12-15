@@ -4,16 +4,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import GUI.GUI_Elements;
+import GUI.SProjectInformation;
 import GUI.SoftvoperMain;
 import LOCSystem.Developers;
 import LOCSystem.LOC;
 import LOCSystem.Supporter;
 import SCoinSystem.SCoin;
+import SCoinSystem.SProject;
 import SaveSystem.Save;
 import SaveSystem.SaveSystem;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -67,9 +68,11 @@ public class GUI_Handler implements ActionListener
                 Pattern pattern = Pattern.compile("\\{[^}]*\\}");
                 Matcher matcherD = pattern.matcher(contents[4]);
                 Matcher matcherS = pattern.matcher(contents[5]);
+                Matcher matcherP = pattern.matcher(contents[6]);
 
-                ArrayList<String> developer_strings = new ArrayList<>();
-                ArrayList<String> supporter_strings = new ArrayList<>();
+                ArrayList<String> developer_strings = new ArrayList<String>();
+                ArrayList<String> supporter_strings = new ArrayList<String>();
+                ArrayList<String> project_strings = new ArrayList<String>();
 
                 while (matcherD.find())
                 {
@@ -79,13 +82,19 @@ public class GUI_Handler implements ActionListener
                 {
                     supporter_strings.add(matcherS.group());
                 }
+                while (matcherP.find())
+                {
+                    project_strings.add(matcherP.group());
+                }
 
                 ArrayList<Developers> developers = LOC.CreateSavedDevelopers(developer_strings);
                 ArrayList<Supporter> supporter = LOC.CreateSavedSupporters(supporter_strings);
+                ArrayList<SProject> project = LOC.CreateSavedProjects(project_strings);
                 LOC.loc_cnt = Integer.parseInt(contents[2]);
                 SCoin.SCoin_count = Integer.parseInt(contents[3]);
+                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers, supporter, project);
                 SoftvoperMain.CreateGameMenu();
-                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers, supporter);
+                SCoin.DevelopSavedApp(SaveSystem.instant_save.project);
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 LOC.UpdateLOC();
