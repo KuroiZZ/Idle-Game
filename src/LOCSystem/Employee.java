@@ -2,10 +2,25 @@ package LOCSystem;
 
 public abstract class Employee
 {
-    protected int NofTotalEmp; //Number of total employees (NTE)
-    protected int NofProjectEmp; //Number of employees working on project (NPE)
-    protected int NofNonProjectEmp; //Number of employees not working on project (NNPE)
-    protected float Price; //price to hire an employee
+    /**
+     * Number of total employees (NTE)
+     */
+    protected int NofTotalEmp;
+    /**
+     * Number of employees working on project (NPE)
+     */
+    protected int NofProjectEmp;
+    /**
+     * Number of employees not working on project (NNPE)
+     */
+    protected int NofNonProjectEmp;
+    /**
+     * Price to hire an employee
+     */
+    protected float Price;
+    /**
+     * Type of Employee
+     */
     protected String Type;
 
     public Employee(String Type, float Price)

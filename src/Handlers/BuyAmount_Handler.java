@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Control action to change Buy amount and reset price paramater's of employee's
+ */
 public class BuyAmount_Handler implements ActionListener
 {
     public void actionPerformed(ActionEvent event) {

@@ -64,7 +64,6 @@ public class DeveloperButton extends JButton
         Price.setText(String.valueOf(Employee.getTotalPrice(LOC.buy_amount)));
     }
 
-    //Add contents to ButtonContentsPanel for chosen layout
     private void setButtonContentsPanel(String name,String LogoImagePath)
     {
         setButtonContents(name,LogoImagePath);//contents are initialized here
@@ -80,7 +79,6 @@ public class DeveloperButton extends JButton
         ButtonContentsPanel.add(this.NofDeveloper, constraintsNofDeveloper);
     }
 
-    //Initialize every content that will be added in ButtonContentPanel
     private void setButtonContents(String name,String LogoImagePath)
     {
         this.PricePanel = new JPanel(); //Initialize panels
@@ -171,7 +169,6 @@ public class DeveloperButton extends JButton
         this.setRolloverIcon(new ImageIcon(RolloverbackgroundImage));
     }
 
-    //sets GridBagLayout's constraints
     private GridBagConstraints setConstraints(int anchor, int gridheight, int gridx, int gridy)
     {
         GridBagConstraints constraints = new GridBagConstraints();

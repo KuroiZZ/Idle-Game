@@ -11,16 +11,48 @@ import java.awt.*;
 
 public class SProjectButton extends JButton
 {
+    /**
+     * Panel for button contents.
+     */
     private JPanel buttonContentsPanel;
-    private JLabel neededLOC;
-    private JLabel neededDeveloper;
-    private JLabel developerTypeRank;
+    /**
+     * Panel to hold neededLOC label and LOCImage label
+     */
     private JPanel neededLOCPanel;
-    private JPanel neededDeveloperPanel;
+    /**
+     * Label for needed LOC to develop project
+     */
+    private JLabel neededLOC;
+    /**
+     * Label for LOC image
+     */
     private JLabel LOCImage;
+    /**
+     * Panel to hold neededDeveloper, developerTypeRank, DeveloperImage
+     */
+    private JPanel neededDeveloperPanel;
+    /**
+     * Label for needed Developer to develop project
+     */
+    private JLabel neededDeveloper;
+    /**
+     * Label for needed Developer's type and rank to develop project
+     */
+    private JLabel developerTypeRank;
+    /**
+     * Label for Developer image
+     */
     private JLabel DeveloperImage;
+    /**
+     *  Project to get Button's parameter
+     */
     private SProject Project;
 
+    /**
+     * This constructor, construct SProjectButton for new projects.
+     * @param Name
+     * @param project
+     */
     public SProjectButton(String Name, SProject project)
     {
         super();
@@ -34,7 +66,10 @@ public class SProjectButton extends JButton
         setBackgroundImage(this.Project.getRankType());
     }
 
-
+    /**
+     * Set buttonContentsPanel's contents.
+     * @param Name
+     */
     private void setbuttonContents(String Name)
     {
         this.buttonContentsPanel = new JPanel(new GridBagLayout());
@@ -69,6 +104,10 @@ public class SProjectButton extends JButton
         this.neededLOCPanel.setOpaque(false);
     }
 
+    /**
+     * Add contents to buttonContentsPanel with constraints.
+     * @param Name
+     */
     private void setbuttonContentsPanel(String Name)
     {
         setbuttonContents(Name);
@@ -83,6 +122,10 @@ public class SProjectButton extends JButton
 
     }
 
+    /**
+     * Select and set background image by rank
+     * @param rank
+     */
     private void setBackgroundImage(String rank)
     {
         String BackgroundImagePath;
@@ -124,6 +167,12 @@ public class SProjectButton extends JButton
         this.setRolloverIcon(new ImageIcon(RolloverbackgroundImage));
     }
 
+    /**
+     * Set buttons enable state with given parameters
+     * @param project
+     * @param loc_count
+     * @param developer
+     */
     public void setEnabledByLOCandDevelopers(SProject project, int loc_count, Developers developer)
     {
         boolean isTesterEnough = true;
@@ -157,6 +206,11 @@ public class SProjectButton extends JButton
         }
     }
 
+    /**
+     * Font selector for labels
+     * @param fontName
+     * @return
+     */
     private Font get_Font(String fontName)
     {
         Font font;
@@ -178,6 +232,16 @@ public class SProjectButton extends JButton
         return font;
     }
 
+    /**
+     * Set constraints for GridBagLayout
+     * @param anchor
+     * @param fill
+     * @param gridheight
+     * @param gridwidth
+     * @param gridx
+     * @param gridy
+     * @return
+     */
     private GridBagConstraints setConstraints(int anchor,int fill,  int gridheight, int gridwidth, int gridx, int gridy)
     {
         GridBagConstraints constraints = new GridBagConstraints();

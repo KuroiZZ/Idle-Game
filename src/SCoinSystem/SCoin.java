@@ -14,17 +14,35 @@ import java.util.Timer;
 
 public class SCoin
 {
+    //Creating ActiveProject and ActiveProjectInformation list for saving game
+    //This need because we want to know all the projects at that time.
     static public ArrayList<SProjectInformation> ActiveProjectInformations = new ArrayList<SProjectInformation>(10);
     static public ArrayList<SProject> ActiveProject = new ArrayList<SProject>();
+    //Global SCoin_count variable defined.
     static public int SCoin_count = 0;
+    //Projects Created.
     static public SProject Beginner_C_Project = new SProject(100000, 10, 10, "C", "Beginner", 20,false,false,false, 0);
 
+    /**
+     * When buying employee this function decreases the SCoin_count and set label to new value
+     * @param Employee
+     */
     static public void BuyEmployee(Employee Employee)
     {
         SCoin_count -= Employee.getTotalPrice(LOC.buy_amount);
         GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
     }
 
+    /**
+     * Creates Project, ProjectInformation panel,
+     * Decreases the used employees count and texts, decreases LOC count and text.
+     * Activates project and when it finishes reassign employees
+     * When project finishes increase SCoin_Count
+     * This function used for create new project.
+     * @param Developer
+     * @param Button
+     * @param Project
+     */
     static public void DevelopApp(Developers Developer, DeveloperButton Button, SProject Project)
     {
         SProject newProject = new SProject(Project);
@@ -81,7 +99,7 @@ public class SCoin
                 }
 
                 Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
-                GUI_Elements.Beginner_C_Button.setNofDeveloperText();
+                Button.setNofDeveloperText();
 
                 SoftvoperMain.ControlButtons();
                 ActiveProjectInformations.remove(Project_Information);
@@ -93,6 +111,15 @@ public class SCoin
         timer.schedule(task, ((100 - newProject.getProgressValue())*newProject.getTimeSecond())*10);
     }
 
+
+    /**
+     * Creates Project, ProjectInformation panel,
+     * Decreases the used employees count and texts, decreases LOC count and text.
+     * Activates project and when it finishes reassign employees
+     * When project finishes increase SCoin_Count
+     * This function used for load saved projects.
+     * @param Project
+     */
     static public void DevelopSavedApp(ArrayList<SProject> Project)
     {
         for (SProject project : Project)
@@ -130,8 +157,8 @@ public class SCoin
                         GUI_Elements.ProjectManager_Button.setNofDeveloperText();
                     }
 
-                    Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount()); // seçilen düzgün gelmeli
-                    Button.setNofDeveloperText(); //Seçilen düzgün gelmeli
+                    Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
+                    Button.setNofDeveloperText();
                     SoftvoperMain.ControlButtons();
                     ActiveProjectInformations.remove(Project_Information);
                     ActiveProject.remove(newProject);
@@ -143,33 +170,40 @@ public class SCoin
         }
     }
 
-    static public SProjectInformation CreateAppInformation(SProject App)
+    /**
+     * Creates information panel for activated project.
+     * Creates progressBar with selected projects time value.
+     * Increases progressBar with periods.
+     * @param Project
+     * @return
+     */
+    static public SProjectInformation CreateAppInformation(SProject Project)
     {
-        SProjectInformation Beginner_C_Project_Information = new SProjectInformation(App.getSCoinToEarn(), App.getRankType(), App.getProgressValue());
+        SProjectInformation Project_Information = new SProjectInformation(Project.getSCoinToEarn(), Project.getRankType(), Project.getProgressValue());
         java.util.Timer timer = new java.util.Timer();
         timer.scheduleAtFixedRate(new TimerTask()
         {
-            int counter = App.getProgressValue();
+            int counter = Project.getProgressValue();
             @Override
             public void run()
             {
                 if(counter < 100)
                 {
-                    Beginner_C_Project_Information.setAppProgressValue(counter);
+                    Project_Information.setAppProgressValue(counter);
                     counter++;
                 }
                 else
                 {
-                    GUI_Elements.ProjectInfoPanel.remove(Beginner_C_Project_Information);
+                    GUI_Elements.ProjectInfoPanel.remove(Project_Information);
                     GUI_Elements.window.revalidate();
                     GUI_Elements.window.repaint();
                     timer.cancel();
                 }
             }
-        },0,App.getTimeSecond()*10);
-        GUI_Elements.ProjectInfoPanel.add(Beginner_C_Project_Information);
+        },0,Project.getTimeSecond()*10);
+        GUI_Elements.ProjectInfoPanel.add(Project_Information);
 
-        return Beginner_C_Project_Information;
+        return Project_Information;
     }
 
 }

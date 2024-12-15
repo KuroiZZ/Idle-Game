@@ -15,14 +15,18 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class SaveSystem
 {
+    //Creates instant_save variable for game to know which save is using right now.
     static public Save instant_save;
 
+    /**
+     * Creates developers list that the game currently has
+     * @return
+     */
     static public ArrayList<Developers> CreateDeveloperList()
     {
         ArrayList<Developers> developers = new ArrayList<Developers>(12);
@@ -42,6 +46,10 @@ public class SaveSystem
         return developers;
     }
 
+    /**
+     * Creates supporters list that the game currently has
+     * @return
+     */
     static public ArrayList<Supporter> CreateSupporterList()
     {
         ArrayList<Supporter> supporters = new ArrayList<>(3);
@@ -52,6 +60,10 @@ public class SaveSystem
         return supporters;
     }
 
+    /**
+     * Creates projects list that the game currently has
+     * @return
+     */
     static public ArrayList<SProject> CreateProjectList()
     {
         ArrayList<SProject> project = new ArrayList<>(5);
@@ -63,6 +75,9 @@ public class SaveSystem
         return project;
     }
 
+    /**
+     * Updates instant save that game currently has
+     */
     static public void UpdateInstantSave()
     {
         int instant_loc_count = LOC.loc_cnt;
@@ -75,6 +90,10 @@ public class SaveSystem
         instant_save = new Save(instant_save.name,instant_save._id, instant_loc_count, instant_scoin_count, developers, supporter, project);
     }
 
+    /**
+     * Send save data to API
+     * @param save
+     */
     static public void SendSave(String save)
     {
         URI url = URI.create("http://localhost:8080/save/insert");
@@ -99,6 +118,11 @@ public class SaveSystem
         System.out.println("Response Body: " + response.body());
     }
 
+    /**
+     * Get save from API with desired id
+     * @param Id
+     * @return
+     */
     static public String GetSave(String Id)
     {
         URI url = URI.create("http://localhost:8080/save/get/" + Id);
@@ -119,12 +143,13 @@ public class SaveSystem
             throw new RuntimeException(e);
         }
 
-        System.out.println("HTTP Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
-
         return response.body();
     }
 
+    /**
+     * Get all saves from API
+     * @return
+     */
     static public String GetAllSaves()
     {
         URI url = URI.create("http://localhost:8080/save/getall");
@@ -146,12 +171,13 @@ public class SaveSystem
             throw new RuntimeException(e);
         }
 
-        System.out.println("HTTP Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
-
         return response.body();
     }
 
+    /**
+     * Modify save with API
+     * @param save
+     */
     static public void ModifySave(String save)
     {
         URI url = URI.create("http://localhost:8080/save/update");
@@ -173,13 +199,13 @@ public class SaveSystem
             throw new RuntimeException(e);
         }
 
-        System.out.println("HTTP Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
-
     }
 
-    static public void DeleteSave(String id)
-    {
+    /**
+     * Delete saves from database with desired id
+     * @param id
+     */
+    static public void DeleteSave(String id) {
         URI url = URI.create("http://localhost:8080/save/delete/" + id);
 
 
@@ -190,19 +216,18 @@ public class SaveSystem
 
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response = null;
-        try
-        {
+        try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        }
-        catch (IOException | InterruptedException e)
-        {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println("HTTP Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
     }
 
+    /**
+     * Parse save json String coming from API
+     * @param jsonString
+     * @return
+     */
     static public String[] ParseJsonStringOneSave(String jsonString)
     {
         String[] Contents = new String[7];
@@ -244,17 +269,21 @@ public class SaveSystem
         Contents[5] = Sups.toString();
 
         ArrayList<String> projects = new ArrayList<String>();
-        JsonNode ProjectNode = jsonNode.get("project").deepCopy(); // Make sure this is correct
+        JsonNode ProjectNode = jsonNode.get("project").deepCopy();
         for (JsonNode project : ProjectNode)
         {
-            projects.add(project.toString()); // Add project content as string
+            projects.add(project.toString());
         }
         Contents[6] = projects.toString();
-
 
         return Contents;
     }
 
+    /**
+     * Parse allSaves json String coming from API
+     * @param jsonString
+     * @return
+     */
     static public List<String> ParseJsonStringAllSaves(String jsonString)
     {
         ObjectMapper mapper = new ObjectMapper();

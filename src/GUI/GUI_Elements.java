@@ -189,7 +189,7 @@ public class GUI_Elements
                     LOC.loc_cnt = 0;
                     SCoin.SCoin_count = 0;
                     SoftvoperMain.CreateGameMenu();
-
+                    SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters, null);
                     try
                     {
                         SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
