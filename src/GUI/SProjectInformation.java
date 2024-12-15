@@ -6,16 +6,16 @@ import java.awt.*;
 public class SProjectInformation extends JPanel
 {
     private JLabel name;
-    private JProgressBar appProgress;
+    public JProgressBar appProgress;
     private JPanel SCoinPanel;
     private JLabel SCoinToEarn;
     private JLabel SCoinImage;
     private Image backgroundImage; // Arka plan resmi için değişken
 
-    public SProjectInformation(String Name, int ScoinToEarn, String DeveloperRank)
+    public SProjectInformation(String Name, int ScoinToEarn, String DeveloperRank, int progressValue)
     {
         super(new GridBagLayout());
-        setPanel(Name,ScoinToEarn);
+        setPanel(Name,ScoinToEarn, progressValue);
 
         this.setOpaque(false); // Panelin arka planı şeffaf olacak
         this.setPreferredSize(new Dimension(250, 50));
@@ -44,9 +44,9 @@ public class SProjectInformation extends JPanel
         }
     }
 
-    private void setPanel(String Name, int ScoinToEarn)
+    private void setPanel(String Name, int ScoinToEarn, int progressValue)
     {
-        setContents(Name,ScoinToEarn);
+        setContents(Name,ScoinToEarn, progressValue);
 
         GridBagConstraints constraintsName = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 0);
         GridBagConstraints constraintsSCoinToEarn = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,1,1,0);
@@ -57,7 +57,7 @@ public class SProjectInformation extends JPanel
         this.add(this.appProgress, constraintsProgressBar);
     }
 
-    private void setContents(String Name, int ScoinToEarn)
+    private void setContents(String Name, int ScoinToEarn, int progressValue)
     {
         this.name = new JLabel(Name);
         this.name.setFont(get_Font("BAŞLIK"));
@@ -77,6 +77,8 @@ public class SProjectInformation extends JPanel
         this.SCoinPanel.setOpaque(false);
         this.SCoinPanel.add(this.SCoinImage);
         this.SCoinPanel.add(this.SCoinToEarn);
+
+        this.appProgress.setValue(progressValue);
     }
 
     public void setAppProgressValue(int value)
