@@ -31,9 +31,9 @@ public class SaveController
         return SaveSevices.GetAllSaves();
     }
 
-    @DeleteMapping(value = "/delete")
+    @DeleteMapping(value = "/delete/{id}")
     @ResponseBody
-    public String Delete(@RequestBody String id)
+    public String Delete(@PathVariable String id)
     {
         SaveSevices.DeleteSave(id);
         return "başarılı";
