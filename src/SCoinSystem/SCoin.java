@@ -22,6 +22,19 @@ public class SCoin
     static public int SCoin_count = 0;
     //Projects Created.
     static public SProject Beginner_C_Project = new SProject(100000, 10, 10, "C", "Beginner", 20,false,false,false, 0);
+    static public SProject Beginner_CSharp_Project = new SProject(100000, 10, 10, "CSharp", "Beginner", 20,false,false,false, 0);
+    static public SProject Beginner_Dart_Project = new SProject(100000, 10, 10, "Dart", "Beginner", 20,false,false,false, 0);
+    static public SProject Beginner_Java_Project = new SProject(100000, 10, 10, "Java", "Beginner", 20,false,false,false, 0);
+
+    static public SProject Intermediate_C_Project = new SProject(100000, 10, 10, "C", "Intermediate", 20,false,false,false, 0);
+    static public SProject Intermediate_CSharp_Project = new SProject(100000, 10, 10, "CSharp", "Intermediate", 20,false,false,false, 0);
+    static public SProject Intermediate_Dart_Project = new SProject(100000, 10, 10, "Dart", "Intermediate", 20,false,false,false, 0);
+    static public SProject Intermediate_Java_Project = new SProject(100000, 10, 10, "Java", "Intermediate", 20,false,false,false, 0);
+
+    static public SProject Advanced_C_Project = new SProject(100000, 10, 10, "C", "Advanced", 20,false,false,false, 0);
+    static public SProject Advanced_CSharp_Project = new SProject(100000, 10, 10, "CSharp", "Advanced", 20,false,false,false, 0);
+    static public SProject Advanced_Dart_Project = new SProject(100000, 10, 10, "Dart", "Advanced", 20,false,false,false, 0);
+    static public SProject Advanced_Java_Project = new SProject(100000, 10, 10, "Java", "Advanced", 20,false,false,false, 0);
 
     /**
      * When buying employee this function decreases the SCoin_count and set label to new value

@@ -62,7 +62,20 @@ public class SoftvoperMain
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                GUI_Elements.Beginner_C_Project.setEnabledByLOCandDevelopers(SCoin.Beginner_C_Project, LOC.loc_cnt, LOC.Beginner_C_Developer);
+                GUI_Elements.Beginner_C_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Beginner_C_Project, LOC.loc_cnt, LOC.Beginner_C_Developer);
+                GUI_Elements.Beginner_CSharp_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Beginner_CSharp_Project, LOC.loc_cnt, LOC.Beginner_CSharp_Developer);
+                GUI_Elements.Beginner_Dart_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Beginner_Dart_Project, LOC.loc_cnt, LOC.Beginner_Dart_Developer);
+                GUI_Elements.Beginner_Java_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Beginner_Java_Project, LOC.loc_cnt, LOC.Beginner_Java_Developer);
+
+                GUI_Elements.Intermediate_C_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Intermediate_C_Project, LOC.loc_cnt, LOC.Intermediate_C_Developer);
+                GUI_Elements.Intermediate_CSharp_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Intermediate_CSharp_Project, LOC.loc_cnt, LOC.Intermediate_CSharp_Developer);
+                GUI_Elements.Intermediate_Dart_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Intermediate_Dart_Project, LOC.loc_cnt, LOC.Intermediate_Dart_Developer);
+                GUI_Elements.Intermediate_Java_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Intermediate_Java_Project, LOC.loc_cnt, LOC.Intermediate_Java_Developer);
+
+                GUI_Elements.Advanced_C_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Advanced_C_Project, LOC.loc_cnt, LOC.Advanced_C_Developer);
+                GUI_Elements.Advanced_CSharp_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Advanced_CSharp_Project, LOC.loc_cnt, LOC.Advanced_CSharp_Developer);
+                GUI_Elements.Advanced_Dart_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Advanced_Dart_Project, LOC.loc_cnt, LOC.Advanced_Dart_Developer);
+                GUI_Elements.Advanced_Java_ProjectButton.setEnabledByLOCandDevelopers(SCoin.Advanced_Java_Project, LOC.loc_cnt, LOC.Advanced_Java_Developer);
             }
         });
         timer.start();

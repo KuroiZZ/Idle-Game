@@ -507,12 +507,70 @@ public class GUI_Elements
         StorePanel.getVerticalScrollBar().setUnitIncrement(6);
     }
 
-    public static SProjectButton Beginner_C_Project;
+    public static SProjectButton Beginner_C_ProjectButton;
+    public static SProjectButton Beginner_CSharp_ProjectButton;
+    public static SProjectButton Beginner_Dart_ProjectButton;
+    public static SProjectButton Beginner_Java_ProjectButton;
     public static void InitializeBeginnerProjects()
     {
-        Beginner_C_Project = new SProjectButton("League of Losers", SCoin.Beginner_C_Project);
-        Beginner_C_Project.setActionCommand("Beginner_C_Project");
-        Beginner_C_Project.addActionListener(SCoin_handler);
+        Beginner_C_ProjectButton = new SProjectButton(SCoin.Beginner_C_Project);
+        Beginner_CSharp_ProjectButton = new SProjectButton(SCoin.Beginner_CSharp_Project);
+        Beginner_Dart_ProjectButton = new SProjectButton(SCoin.Beginner_Dart_Project);
+        Beginner_Java_ProjectButton = new SProjectButton(SCoin.Beginner_Java_Project);
+
+        Beginner_C_ProjectButton.setActionCommand("Beginner_C_Project");
+        Beginner_CSharp_ProjectButton.setActionCommand("Beginner_CSharp_Project");
+        Beginner_Dart_ProjectButton.setActionCommand("Beginner_Dart_Project");
+        Beginner_Java_ProjectButton.setActionCommand("Beginner_Java_Project");
+
+        Beginner_C_ProjectButton.addActionListener(SCoin_handler);
+        Beginner_CSharp_ProjectButton.addActionListener(SCoin_handler);
+        Beginner_Dart_ProjectButton.addActionListener(SCoin_handler);
+        Beginner_Java_ProjectButton.addActionListener(SCoin_handler);
+    }
+
+    public static SProjectButton Intermediate_C_ProjectButton;
+    public static SProjectButton Intermediate_CSharp_ProjectButton;
+    public static SProjectButton Intermediate_Dart_ProjectButton;
+    public static SProjectButton Intermediate_Java_ProjectButton;
+    public static void InitializeIntermediateProjects()
+    {
+        Intermediate_C_ProjectButton = new SProjectButton(SCoin.Intermediate_C_Project);
+        Intermediate_CSharp_ProjectButton = new SProjectButton(SCoin.Intermediate_CSharp_Project);
+        Intermediate_Dart_ProjectButton = new SProjectButton(SCoin.Intermediate_Dart_Project);
+        Intermediate_Java_ProjectButton = new SProjectButton(SCoin.Intermediate_Java_Project);
+
+        Intermediate_C_ProjectButton.setActionCommand("Intermediate_C_Project");
+        Intermediate_CSharp_ProjectButton.setActionCommand("Intermediate_CSharp_Project");
+        Intermediate_Dart_ProjectButton.setActionCommand("Intermediate_Dart_Project");
+        Intermediate_Java_ProjectButton.setActionCommand("Intermediate_Java_Project");
+
+        Intermediate_C_ProjectButton.addActionListener(SCoin_handler);
+        Intermediate_CSharp_ProjectButton.addActionListener(SCoin_handler);
+        Intermediate_Dart_ProjectButton.addActionListener(SCoin_handler);
+        Intermediate_Java_ProjectButton.addActionListener(SCoin_handler);
+    }
+
+    public static SProjectButton Advanced_C_ProjectButton;
+    public static SProjectButton Advanced_CSharp_ProjectButton;
+    public static SProjectButton Advanced_Dart_ProjectButton;
+    public static SProjectButton Advanced_Java_ProjectButton;
+    public static void InitializeAdvancedProjects()
+    {
+        Advanced_C_ProjectButton = new SProjectButton(SCoin.Advanced_C_Project);
+        Advanced_CSharp_ProjectButton = new SProjectButton(SCoin.Advanced_CSharp_Project);
+        Advanced_Dart_ProjectButton = new SProjectButton(SCoin.Advanced_Dart_Project);
+        Advanced_Java_ProjectButton = new SProjectButton(SCoin.Advanced_Java_Project);
+
+        Advanced_C_ProjectButton.setActionCommand("Advanced_C_Project");
+        Advanced_CSharp_ProjectButton.setActionCommand("Advanced_CSharp_Project");
+        Advanced_Dart_ProjectButton.setActionCommand("Advanced_Dart_Project");
+        Advanced_Java_ProjectButton.setActionCommand("Advanced_Java_Project");
+
+        Advanced_C_ProjectButton.addActionListener(SCoin_handler);
+        Advanced_CSharp_ProjectButton.addActionListener(SCoin_handler);
+        Advanced_Dart_ProjectButton.addActionListener(SCoin_handler);
+        Advanced_Java_ProjectButton.addActionListener(SCoin_handler);
     }
 
     public static JButton Tester_CheckButton;
@@ -567,10 +625,25 @@ public class GUI_Elements
         SupporterButtonsPanel.add(ProjectManager_CheckButton);
 
         InitializeBeginnerProjects();
+        InitializeIntermediateProjects();
+        InitializeAdvancedProjects();
 
         ProjectPanel.add(goToStorePanel);
         ProjectPanel.add(SupporterButtonsPanel);
-        ProjectPanel.add(Beginner_C_Project);
+        ProjectPanel.add(Beginner_C_ProjectButton);
+        ProjectPanel.add(Beginner_CSharp_ProjectButton);
+        ProjectPanel.add(Beginner_Dart_ProjectButton);
+        ProjectPanel.add(Beginner_Java_ProjectButton);
+
+        ProjectPanel.add(Intermediate_C_ProjectButton);
+        ProjectPanel.add(Intermediate_CSharp_ProjectButton);
+        ProjectPanel.add(Intermediate_Dart_ProjectButton);
+        ProjectPanel.add(Intermediate_Java_ProjectButton);
+
+        ProjectPanel.add(Advanced_C_ProjectButton);
+        ProjectPanel.add(Advanced_CSharp_ProjectButton);
+        ProjectPanel.add(Advanced_Dart_ProjectButton);
+        ProjectPanel.add(Advanced_Java_ProjectButton);
 
     }
 

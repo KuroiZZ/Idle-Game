@@ -50,14 +50,13 @@ public class SProjectButton extends JButton
 
     /**
      * This constructor, construct SProjectButton for new projects.
-     * @param Name
      * @param project
      */
-    public SProjectButton(String Name, SProject project)
+    public SProjectButton(SProject project)
     {
         super();
         this.Project = project;
-        setbuttonContentsPanel(Name);
+        setbuttonContentsPanel();
 
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(250, 50));
@@ -68,9 +67,8 @@ public class SProjectButton extends JButton
 
     /**
      * Set buttonContentsPanel's contents.
-     * @param Name
      */
-    private void setbuttonContents(String Name)
+    private void setbuttonContents()
     {
         this.buttonContentsPanel = new JPanel(new GridBagLayout());
         this.buttonContentsPanel.setOpaque(false);
@@ -106,11 +104,10 @@ public class SProjectButton extends JButton
 
     /**
      * Add contents to buttonContentsPanel with constraints.
-     * @param Name
      */
-    private void setbuttonContentsPanel(String Name)
+    private void setbuttonContentsPanel()
     {
-        setbuttonContents(Name);
+        setbuttonContents();
 
         GridBagConstraints constraintsneededLOCPanel = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1, 1, 0 , 1);
         GridBagConstraints constraintsDeveloperTypeRank = setConstraints(GridBagConstraints.CENTER, GridBagConstraints.NONE, 1,2,0,0);
