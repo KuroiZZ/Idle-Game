@@ -1,6 +1,8 @@
 package GUI;
 
+import Handlers.SupporterCheckbox_Handler;
 import LOCSystem.Developers;
+import LOCSystem.LOC;
 import SCoinSystem.SProject;
 
 import javax.swing.*;
@@ -124,8 +126,35 @@ public class SProjectButton extends JButton
 
     public void setEnabledByLOCandDevelopers(SProject project, int loc_count, Developers developer)
     {
-        this.setEnabled(project.getNecessaryLOC() <= loc_count &&
-                project.getNecessaryDeveloperCount() <= developer.getNofNonProjectEmp());
+        boolean isTesterEnough = true;
+        boolean isArchitectEnough = true;
+        boolean isProjectManagerEnough = true;
+
+        if(SupporterCheckbox_Handler.is_Tester_Selected)
+        {
+            isTesterEnough = LOC.Tester.getNofNonProjectEmp() > 0;
+        }
+        if(SupporterCheckbox_Handler.is_Architect_Selected)
+        {
+            isArchitectEnough = LOC.Architect.getNofNonProjectEmp() > 0;
+        }
+        if(SupporterCheckbox_Handler.is_ProjectManager_Selected)
+        {
+            isProjectManagerEnough = LOC.ProjectManager.getNofNonProjectEmp() > 0;
+        }
+
+        if(SupporterCheckbox_Handler.is_ProjectManager_Selected || SupporterCheckbox_Handler.is_Architect_Selected ||
+                SupporterCheckbox_Handler.is_Tester_Selected)
+        {
+            this.setEnabled((project.getNecessaryLOC() <= loc_count) &&
+                    (project.getNecessaryDeveloperCount() <= developer.getNofNonProjectEmp()) &&
+                    isTesterEnough && isArchitectEnough && isProjectManagerEnough);
+        }
+        else
+        {
+            this.setEnabled(project.getNecessaryLOC() <= loc_count &&
+                    project.getNecessaryDeveloperCount() <= developer.getNofNonProjectEmp());
+        }
     }
 
     private Font get_Font(String fontName)
