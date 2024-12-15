@@ -131,8 +131,8 @@ public class ProjectServices
     public static void UpdateProject(Document ProjectDoc)
     {
         String SaveID = ProjectDoc.get("_id", String.class);
-        InsertProject(ProjectDoc);
         DeleteProject(SaveID);
+        InsertProject(ProjectDoc);
     }
 
     /**
