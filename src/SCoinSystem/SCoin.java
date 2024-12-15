@@ -7,6 +7,7 @@ import GUI.SoftvoperMain;
 import Handlers.SupporterCheckbox_Handler;
 import LOCSystem.*;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.TimerTask;
 import java.util.Timer;
@@ -18,6 +19,8 @@ public class SCoin
     //This need because we want to know all the projects at that time.
     static public ArrayList<SProjectInformation> ActiveProjectInformations = new ArrayList<SProjectInformation>(10);
     static public ArrayList<SProject> ActiveProject = new ArrayList<SProject>();
+    static public ArrayList<Timer> ActiveTimers = new ArrayList<Timer>();
+    static public ArrayList<TimerTask> ActiveTasks = new ArrayList<TimerTask>();
     //Global SCoin_count variable defined.
     static public int SCoin_count = 0;
     //Projects Created.
@@ -122,6 +125,8 @@ public class SCoin
             }
         };
         timer.schedule(task, ((100 - newProject.getProgressValue())*newProject.getTimeSecond())*10);
+        ActiveTimers.add(timer);
+        ActiveTasks.add(task);
     }
 
 
@@ -180,6 +185,8 @@ public class SCoin
                 }
             };
             timer.schedule(task, ((100 - newProject.getProgressValue())*newProject.getTimeSecond())*10);
+            ActiveTimers.add(timer);
+            ActiveTasks.add(task);
         }
     }
 

@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -116,6 +118,14 @@ public class GUI_Handler implements ActionListener
                 GUI_Elements.window.getContentPane().removeAll();
                 SoftvoperMain.CreateMainMenu();
                 SaveSystem.instant_save = null;
+                for (Timer t : SCoin.ActiveTimers)
+                {
+                    t.cancel();
+                }
+                for (TimerTask ts : SCoin.ActiveTasks)
+                {
+                    ts.cancel();
+                }
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 break;
