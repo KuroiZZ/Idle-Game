@@ -130,32 +130,10 @@ public class SupporterServices
      */
     public static void UpdateSupporter(Document SupporterDoc)
     {
-        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
-        {
-            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
-            MongoCollection<Document> collection = database.getCollection("Supporter");
+        String SaveID = SupporterDoc.get("_id", String.class);
 
-            String SaveID = SupporterDoc.get("_id", String.class);
-
-            List<Document> SupporterDocLisT = GetSupporterDocumentList(SupporterDoc);
-            List<Document> NewSupporterDocLisT = AddSaveIDtoSupporter(SupporterDocLisT, SaveID);
-            try
-            {
-                for(Document DocSupporter: NewSupporterDocLisT)
-                {
-                    List<Supporter> ListSupporter = new ArrayList<Supporter>();
-                    Supporter supporter = new Supporter(DocSupporter);
-                    ListSupporter.add(supporter);
-                }
-            }
-            catch (IllegalArgumentException e)
-            {
-                e.printStackTrace();
-            }
-
-            DeleteSupporter(SaveID);
-            InsertSupporter(SupporterDoc);
-        }
+        DeleteSupporter(SaveID);
+        InsertSupporter(SupporterDoc);
     }
 
     /**

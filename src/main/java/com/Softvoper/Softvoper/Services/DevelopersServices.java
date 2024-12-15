@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class DevelopersServices
 {
-    /** Inserts developers to database from given save document.
-     *
+    /**
+     * Inserts developers to database from given save document.
      * @param SaveDoc is a Document typed save.
      * @param SaveID is a ObjectId typed Id of save from database.
      */
@@ -133,34 +133,10 @@ public class DevelopersServices
      */
     public static void UpdateDeveloper(Document DeveloperDoc)
     {
-        try ( MongoClient mongoClient = MongoClients.create(Client.getUrl()) )
-        {
-            MongoDatabase database = mongoClient.getDatabase(Client.getDatabase());
-            MongoCollection<Document> collection = database.getCollection("Developers");
+        String SaveID = DeveloperDoc.get("_id", String.class);
 
-            String SaveID = DeveloperDoc.get("_id", String.class);
-
-            List<Document> DeveloperDocLisT = GetDeveloperDocumentList(DeveloperDoc);
-            List<Document> NewDeveloperDocLisT = AddSaveIDtoDevelopers(DeveloperDocLisT, SaveID);
-            try
-            {
-                for(Document DocDeveloper: NewDeveloperDocLisT)
-                {
-                    List<Developers> ListDevelopers = new ArrayList<Developers>();
-                    System.out.println(DocDeveloper);
-                    Developers developer = new Developers(DocDeveloper);
-                    ListDevelopers.add(developer);
-                }
-            }
-            catch (IllegalArgumentException e)
-            {
-                e.printStackTrace();
-            }
-
-            DeleteDeveloper(SaveID);
-            InsertDeveloper(DeveloperDoc, SaveID);
-
-        }
+        DeleteDeveloper(SaveID);
+        InsertDeveloper(DeveloperDoc, SaveID);
     }
 
     /**
