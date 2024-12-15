@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Save class' purpose is to validate the save data coming from game.
- * A save object must have 3 field.
+ * A save object must have 6 field.
  */
 public class Save
 {
@@ -21,6 +21,11 @@ public class Save
     /**
         DeveloperList is a Document type list of developers from game */
     private List<Document> DeveloperList;
+
+    /**
+     * Document type list of supporter employees player hired in game.
+     */
+    private List<Document> SupporterList;
 
     /**
         LOCCount is an int type counter of Line Of Code(LOC)*/
@@ -41,5 +46,6 @@ public class Save
         this.LOCCount = SaveDocument.get("loc_count_js", Integer.class);
         this.SCoinCount = SaveDocument.get("scoin_count_js", Integer.class);
         this.DeveloperList = SaveDocument.getList("developer", Document.class);
+        this.SupporterList = SaveDocument.getList("supporter", Document.class);
     }
 }
