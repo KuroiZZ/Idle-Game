@@ -58,6 +58,10 @@ public class Project
      */
     private boolean hasProjectManager;
 
+    /**
+     * Progress percentage of the project.
+     */
+    private int ProgressValue;
 
     /**
      * Constructs project from given Document object.
@@ -66,14 +70,15 @@ public class Project
     public Project(Document ProjeDoc)
     {
         this.SaveID = ProjeDoc.get("SaveID", String.class);
-        this.NecessaryLOC = ProjeDoc.get("NecessaryLOC", Integer.class);
-        this.SCoinToEarn = ProjeDoc.get("SCoinToEarn", Integer.class);
-        this.TimeSecond = ProjeDoc.get("TimeSecond", Integer.class);
-        this.LanguageType = ProjeDoc.get("LanguageType", String.class);
-        this.RankType = ProjeDoc.get("RankType", String.class);
-        this.NecessaryDeveloperCount = ProjeDoc.get("NecessaryDeveloperCount", Integer.class);
-        this.hasTester = ProjeDoc.get("hasTester", Boolean.class);
-        this.hasArchitect = ProjeDoc.get("hasArchitect", Boolean.class);
-        this.hasProjectManager = ProjeDoc.get("hasProjectManager", Boolean.class);
+        this.NecessaryLOC = ProjeDoc.get("necessaryLOC", Integer.class);
+        this.SCoinToEarn = ProjeDoc.get("scoinToEarn", Integer.class);
+        this.TimeSecond = ProjeDoc.get("timeSecond", Integer.class);
+        this.LanguageType = ProjeDoc.get("languageType", String.class);
+        this.RankType = ProjeDoc.get("rankType", String.class);
+        this.NecessaryDeveloperCount = ProjeDoc.get("necessaryDeveloperCount", Integer.class);
+        this.ProgressValue = ProjeDoc.get("progressValue", Integer.class);
+        //this.hasTester = ProjeDoc.get("hasTester", Boolean.class);
+        //this.hasArchitect = ProjeDoc.get("hasArchitect", Boolean.class);
+        //this.hasProjectManager = ProjeDoc.get("hasProjectManager", Boolean.class);
     }
 }
