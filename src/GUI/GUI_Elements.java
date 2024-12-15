@@ -138,8 +138,6 @@ public class GUI_Elements
     public static JFrame InputFrame;
     public static void InitializeInputFrame()
     {
-
-
         InputFrame = new JFrame();
         InputFrame.setSize(new Dimension(300, 100));
         InputFrame.setLayout(new FlowLayout());
@@ -164,10 +162,9 @@ public class GUI_Elements
                     ArrayList<Developers> Developers = LOC.CreateEmptyDevelopers();
                     ArrayList<Supporter> Supporters = LOC.CreateEmptySupporters();
                     SoftvoperMain.CreateGameMenu();
-                    SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters);
+                    SaveSystem.instant_save = new Save(GUI_Handler.save_name, Developers, Supporters, null);
                     try
                     {
-                        System.out.println(SaveSystem.instant_save.CreateJSON());
                         SaveSystem.SendSave(SaveSystem.instant_save.CreateJSON());
                     }
                     catch (JsonProcessingException ex)
