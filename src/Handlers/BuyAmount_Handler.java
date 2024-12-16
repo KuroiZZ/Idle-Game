@@ -9,10 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Control action to change Buy amount and reset price paramater's of employee's
+ * This class controls the actions to change the buy amount and reset price parameters of employees.
+ * It listens for actions related to selecting different buy amounts (1, 10, 100) and updates the
+ * corresponding icons and price text for the employees' buttons.
  */
 public class BuyAmount_Handler implements ActionListener
 {
+    /**
+     * This method is triggered when an action event occurs.
+     * It processes the action command and updates the buy amount as well as the price display
+     * for various employee buttons. It also changes the price text for the selected buy amount.
+     *
+     * @param event the action event that triggered this method.
+     */
     public void actionPerformed(ActionEvent event) {
         String action = event.getActionCommand();
         ImageIcon Rollovericon1 = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton1.png"));

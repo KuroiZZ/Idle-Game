@@ -15,10 +15,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 
-public class LOC //Line of Code
+/**
+ * Manages the creation, buying, and updating of developers, supporters, and projects.
+ * The `LOC` class handles initialization of employees
+ * keeps track of the total Line of Code (LOC), and updates it over time as developers work.
+ * It also manages the interaction between the game’s GUI and its underlying logic for developer and supporter purchases.
+ */
+public class LOC
 {
-    //
+    /**
+     * The amount of developers or supporters to be bought at once.
+     */
     static public int buy_amount = 1;
+
+    /**
+     * The total number of lines of code (LOC) accumulated in the game.
+     * This value is updated periodically based on the total LOC produced by all developers.
+     */
     static public float loc_cnt = 0f;
 
     //Define all employees in game.
@@ -42,8 +55,9 @@ public class LOC //Line of Code
     static public Supporter ProjectManager;
 
     /**
-     * Initialize Developers with empty input for new game.
-     * @return
+     * Initializes all developers with empty input for a new game.
+     *
+     * @return A list of developers created for the new game.
      */
     static public ArrayList<Developers> CreateEmptyDevelopers()
     {
@@ -66,9 +80,10 @@ public class LOC //Line of Code
     }
 
     /**
-     * Initialize Developers with saved game's developer jsonstring list.
-     * @param Developers
-     * @return
+     * Initializes all developers using a saved game's developer JSON string list.
+     *
+     * @param Developers A list of JSON strings representing saved developers.
+     * @return A list of developers loaded from the saved game.
      */
     static public ArrayList<Developers> CreateSavedDevelopers(ArrayList<String> Developers)
     {
@@ -99,8 +114,9 @@ public class LOC //Line of Code
     }
 
     /**
-     * Initialize Supporters with empty input for new game.
-     * @return
+     * Initializes all supporters with empty input for a new game.
+     *
+     * @return A list of supporters created for the new game.
      */
     static public ArrayList<Supporter> CreateEmptySupporters()
     {
@@ -111,10 +127,12 @@ public class LOC //Line of Code
         return SaveSystem.CreateSupporterList();
     }
 
+
     /**
-     * Initialize Supporters with saved game's supporter jsonstring list.
-     * @param Supporters
-     * @return
+     * Initializes all supporters using a saved game's supporter JSON string list.
+     *
+     * @param Supporters A list of JSON strings representing saved supporters.
+     * @return A list of supporters loaded from the saved game.
      */
     static public ArrayList<Supporter> CreateSavedSupporters(ArrayList<String> Supporters)
     {
@@ -135,9 +153,10 @@ public class LOC //Line of Code
     }
 
     /**
-     * Initialize Projects with saved game's project jsonstring list
-     * @param Projects
-     * @return
+     * Initializes projects using a saved game's project JSON string list.
+     *
+     * @param Projects A list of JSON strings representing saved projects.
+     * @return A list of projects loaded from the saved game.
      */
     static public ArrayList<SProject> CreateSavedProjects(ArrayList<String> Projects)
     {
@@ -160,10 +179,11 @@ public class LOC //Line of Code
     }
 
     /**
-     * Returns choosed Developer linked to Type and Rank paramaters
+     * Returns the chosen developer linked to the given type and rank.
+     *
      * @param Type
      * @param Rank
-     * @return
+     * @return The chosen developer based on the type and rank, or null if not found.
      */
     static public Developers ChooseDeveloper(String Type, String Rank)
     {
@@ -231,10 +251,11 @@ public class LOC //Line of Code
     }
 
     /**
-     * Returns choosed DeveloperButton linked to Type and Rank paramaters
+     * Returns the chosen developer button linked to the given type and rank.
+     *
      * @param Type
      * @param Rank
-     * @return
+     * @return The chosen developer button based on the type and rank, or null if not found.
      */
     static public DeveloperButton ChooseDeveloperButton(String Type, String Rank)
     {
@@ -302,10 +323,11 @@ public class LOC //Line of Code
     }
 
     /**
-     * Changes Developer's Total, Project , NonProject employees number and Number of Total LOC.
-     * Changes Developer button's Developer count and price text.
-     * @param Developer
-     * @param Button
+     * Updates the Developer's Total, Project, NonProject employees count, and Total LOC.
+     * Also updates the Developer button's developer count and price text.
+     *
+     * @param Developer The developer being bought.
+     * @param Button The corresponding developer button.
      */
     static public void BuyDeveloper(Developers Developer, DeveloperButton Button)
     {
@@ -317,10 +339,11 @@ public class LOC //Line of Code
     }
 
     /**
-     * Changes Supporter's Total, Project and NonProject employees number.
-     * Changes Supporter button's Supporter count and price text.
-     * @param Supporter
-     * @param Button
+     * Updates the Supporter's Total, Project, and NonProject employees count.
+     * Also updates the Supporter button's count and price text.
+     *
+     * @param Supporter The supporter being bought.
+     * @param Button The corresponding supporter button.
      */
     static public void BuySupporter(Supporter Supporter, DeveloperButton Button)
     {
@@ -333,7 +356,8 @@ public class LOC //Line of Code
 
 
     /**
-     * Creates process which update loc_count's value with Developer's Number of Total LOC.
+     * Creates a process that updates the loc_count value with the total LOC from all developers.
+     * The update occurs periodically using a timer.
      */
     public static void UpdateLOC()
     {
