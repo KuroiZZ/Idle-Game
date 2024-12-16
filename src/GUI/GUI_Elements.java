@@ -40,7 +40,8 @@ public class GUI_Elements
 
     public static void InitializeMainScreen()
     {
-        window.setLayout(new GridBagLayout());
+        MainMenuPanel MainPanel = new MainMenuPanel();
+        MainPanel.setLayout(new GridBagLayout());
         GridBagConstraints Title_Constraint = new GridBagConstraints();
 
         Title_Constraint.fill = GridBagConstraints.NONE;
@@ -55,7 +56,7 @@ public class GUI_Elements
         JLabel Game_Title = new JLabel("Softvoper Idle Game");
         Game_Title.setFont(new Font(Font.SERIF, Font.BOLD, 70));
         Game_Title.setForeground(Color.GREEN);
-        window.add(Game_Title, Title_Constraint);
+        MainPanel.add(Game_Title, Title_Constraint);
 
         GridBagConstraints New_Game_Constraint = new GridBagConstraints();
 
@@ -75,7 +76,7 @@ public class GUI_Elements
         New_Game.addActionListener(GUI_handler);
         New_Game.setActionCommand("CreateGame_New");
         New_Game.setPreferredSize(new Dimension(500, 100));
-        window.add(New_Game, New_Game_Constraint);
+        MainPanel.add(New_Game, New_Game_Constraint);
 
         GridBagConstraints Load_Game_Constraint = new GridBagConstraints();
 
@@ -95,8 +96,9 @@ public class GUI_Elements
         Load_Game.addActionListener(GUI_handler);
         Load_Game.setActionCommand("Load_Game");
         Load_Game.setPreferredSize(new Dimension(500, 100));
-        window.add(Load_Game, Load_Game_Constraint);
+        MainPanel.add(Load_Game, Load_Game_Constraint);
 
+        window.add(MainPanel);
         GUI_Elements.window.setVisible(true);
     }
 
