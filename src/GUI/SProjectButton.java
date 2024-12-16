@@ -82,11 +82,11 @@ public class SProjectButton extends JButton
         this.developerTypeRank = new JLabel(this.Project.getLanguageType()+" "+this.Project.getRankType() + " Project");
         this.neededDeveloper = new JLabel(String.valueOf(this.Project.getNecessaryDeveloperCount())); //Initialize number of developer
 
-        ImageIcon LocImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        ImageIcon LocImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/LOC.png"));
         Image limage = LocImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
         LOCImage = new JLabel(new ImageIcon(limage));
 
-        ImageIcon DeveloperImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        ImageIcon DeveloperImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/Developer.png"));
         Image dimage = DeveloperImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
         DeveloperImage = new JLabel(new ImageIcon(dimage));
 
