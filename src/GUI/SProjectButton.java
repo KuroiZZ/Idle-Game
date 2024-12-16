@@ -146,9 +146,9 @@ public class SProjectButton extends JButton
                 RolloverImagePath = "images/DeveloperButton/RolloverAdvancedButton.png";
                 break;
             default:
-                BackgroundImagePath = "";
-                DisabledImagePath = "";
-                RolloverImagePath = "";
+                BackgroundImagePath = "images/DeveloperButton/Karton.png";
+                DisabledImagePath = "images/DeveloperButton/Karton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverKarton.png";
         }
         ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
         Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
