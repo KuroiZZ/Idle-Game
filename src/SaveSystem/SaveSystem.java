@@ -18,14 +18,22 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class handles the save system functionality, including creating, updating, sending, retrieving, and parsing saves.
+ * It interacts with an external API to store and fetch game save data.
+ */
 public class SaveSystem
 {
-    //Creates instant_save variable for game to know which save is using right now.
+    /**
+     * Represents the current active save in the game.
+     * This variable holds the save data that the game is using at any given time.
+     */
     static public Save instant_save;
 
     /**
-     * Creates developers list that the game currently has
-     * @return
+     * Creates a list of developers that the game currently has.
+     *
+     * @return A list of developers currently available in the game.
      */
     static public ArrayList<Developers> CreateDeveloperList()
     {
@@ -47,8 +55,9 @@ public class SaveSystem
     }
 
     /**
-     * Creates supporters list that the game currently has
-     * @return
+     * Creates a list of supporters that the game currently has.
+     *
+     * @return A list of supporters available in the game.
      */
     static public ArrayList<Supporter> CreateSupporterList()
     {
@@ -61,8 +70,9 @@ public class SaveSystem
     }
 
     /**
-     * Creates projects list that the game currently has
-     * @return
+     * Creates a list of active projects in the game.
+     *
+     * @return A list of active projects with their respective progress values.
      */
     static public ArrayList<SProject> CreateProjectList()
     {
@@ -76,7 +86,9 @@ public class SaveSystem
     }
 
     /**
-     * Updates instant save that game currently has
+     * Updates the instant save data with the current game state,
+     * including LOC count, SCoin count,
+     * developers, supporters, and active projects.
      */
     static public void UpdateInstantSave()
     {
@@ -91,8 +103,9 @@ public class SaveSystem
     }
 
     /**
-     * Send save data to API
-     * @param save
+     * Sends the current save data to the API to store it on the server.
+     *
+     * @param save The save data to be sent (in JSON string format).
      */
     static public void SendSave(String save)
     {
@@ -119,9 +132,10 @@ public class SaveSystem
     }
 
     /**
-     * Get save from API with desired id
-     * @param Id
-     * @return
+     * Retrieves the save data from the API for a specific save ID.
+     *
+     * @param Id The unique identifier of the save to retrieve.
+     * @return The save data in JSON string format.
      */
     static public String GetSave(String Id)
     {
@@ -147,8 +161,10 @@ public class SaveSystem
     }
 
     /**
-     * Get all saves from API
-     * @return
+     * Retrieves all save data from the API.
+     * Except developers, supporters and projects.
+     *
+     * @return A JSON string containing all saves.
      */
     static public String GetAllSaves()
     {
@@ -175,8 +191,9 @@ public class SaveSystem
     }
 
     /**
-     * Modify save with API
-     * @param save
+     * Modifies the existing save on the API server.
+     *
+     * @param save The save data to be modified (in JSON string format).
      */
     static public void ModifySave(String save)
     {
@@ -202,10 +219,12 @@ public class SaveSystem
     }
 
     /**
-     * Delete saves from database with desired id
-     * @param id
+     * Deletes a save from the API based on the provided save ID.
+     *
+     * @param id The unique identifier of the save to be deleted.
      */
-    static public void DeleteSave(String id) {
+    static public void DeleteSave(String id)
+    {
         URI url = URI.create("http://localhost:8080/save/delete/" + id);
 
 
@@ -224,9 +243,10 @@ public class SaveSystem
     }
 
     /**
-     * Parse save json String coming from API
-     * @param jsonString
-     * @return
+     * Parses a JSON string representing a single save from the API and returns its components as an array.
+     *
+     * @param jsonString The JSON string representing the save data.
+     * @return An array of strings representing the parsed save data components.
      */
     static public String[] ParseJsonStringOneSave(String jsonString)
     {
@@ -280,9 +300,10 @@ public class SaveSystem
     }
 
     /**
-     * Parse allSaves json String coming from API
-     * @param jsonString
-     * @return
+     * Parses a JSON string representing all saves from the API and returns them as a list of strings.
+     *
+     * @param jsonString The JSON string representing all saves.
+     * @return A list of strings representing each save in the response.
      */
     static public List<String> ParseJsonStringAllSaves(String jsonString)
     {

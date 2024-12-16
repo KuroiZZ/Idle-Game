@@ -3,10 +3,17 @@ package LOCSystem;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents a supporter in the game.
+ * The `Supporter` class extends the `Employee` class.
+ */
 public class Supporter extends Employee
 {
     /**
-     * This constructor, constructs Supporter objects when creating empty supporters.
+     * Constructs a `Supporter` object when creating empty supporters.
+     * Initializes the supporter with a given type and price,
+     * and sets the number of employees for total, project, and non-project employees to zero.
+     *
      * @param Type
      * @param Price
      */
@@ -19,7 +26,9 @@ public class Supporter extends Employee
     }
 
     /**
-     * This constructor, construct Supporter object when creating object with json string in LOC.CreateSavedSupporters
+     * Constructs a `Supporter` object when creating an object from a JSON string.
+     * This constructor is used when deserializing data from a saved game or a database.
+     *
      * @param Price
      * @param Type
      * @param NofNonProjectEmp
@@ -39,7 +48,9 @@ public class Supporter extends Employee
     }
 
     /**
-     * Changes supporters price after buying.
+     * Updates the price of the supporter after purchasing.
+     * Each time the supporter is bought, their price increases by 5% for each purchase.
+     *
      * @param BuyAmount
      */
     @Override
@@ -52,9 +63,11 @@ public class Supporter extends Employee
     }
 
     /**
-     * Get supporters buying price with buyamount paramater.
+     * Calculates the total price for purchasing a certain number of supporters.
+     * The price increases by 5% with each purchase.
+     *
      * @param BuyAmount
-     * @return
+     * @return The total price for buying the specified number of supporters.
      */
     @Override
     public float getTotalPrice(int BuyAmount)
@@ -70,8 +83,9 @@ public class Supporter extends Employee
     }
 
     /**
-     * Set supporter's Number of Total Employee and Number of non Project Employee
-     * @param nofTotalEmp
+     * Sets the supporter's number of total employees and non-project employees.
+     *
+     * @param nofTotalEmp The total number of employees for this supporter.
      */
     public void setNTEandNNPE(int nofTotalEmp)
     {
@@ -80,8 +94,9 @@ public class Supporter extends Employee
     }
 
     /**
-     * Set supporter's Number of Project Employee and Number of non Project Employee
-     * @param nofProjectEmp
+     * Sets the supporter's number of project employees and recalculates the number of non-project employees.
+     *
+     * @param nofProjectEmp The number of employees assigned to projects for this supporter.
      */
     public void setNPEandNNPE(int nofProjectEmp)
     {

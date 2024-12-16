@@ -2,10 +2,17 @@ package LOCSystem;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents an intermediate-level developer in the game.
+ * This class extends the `Developers` class.
+ * including methods to adjust their price and calculate the total cost based on the number of units purchased.
+ */
 public class Intermediate extends Developers
 {
     /**
-     * This constructor, constructs Intermediate developer objects when creating empty intermediate developer.
+     * Constructs an empty Intermediate developer object with default values.
+     * This constructor is used when creating a new intermediate developer with no data.
+     *
      * @param type
      * @param rank
      */
@@ -20,7 +27,9 @@ public class Intermediate extends Developers
     }
 
     /**
-     * This constructor, construct Intermediate developer object when creating object with json string in LOC.CreateSavedDevelopers
+     * Constructs an Intermediate developer object with the provided data, typically used for loading saved game data.
+     * This constructor is used when creating an intermediate developer object from a JSON string.
+     *
      * @param Rank
      * @param Price
      * @param Type
@@ -45,7 +54,9 @@ public class Intermediate extends Developers
     }
 
     /**
-     * Changes Intermediate developer's price after buying.
+     * Adjusts the price of the Intermediate developer after a purchase.
+     * The price is increased by 5% for each unit purchased.
+     *
      * @param BuyAmount
      */
     @Override
@@ -58,9 +69,11 @@ public class Intermediate extends Developers
     }
 
     /**
-     * Get Intermediate developer's buying price with buyamount paramater.
+     * Calculates the total price of purchasing a certain number of Intermediate developers.
+     * The price increases by 5% with each additional purchase.
+     *
      * @param BuyAmount
-     * @return
+     * @return The total price for the specified number of units.
      */
     @Override
     public float getTotalPrice(int BuyAmount)
