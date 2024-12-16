@@ -272,7 +272,8 @@ public class GUI_Elements
         SCoinPanel.setPreferredSize(new Dimension(910,60));
         SCoinPanel.setBackground(Color.getHSBColor(0,0,0.25f));
         SCoinPanel.setOpaque(true);
-        SCoinLabel = new JLabel(String.valueOf(SCoin.SCoin_count));
+        String sCoin_count = String.format("%.02f", SCoin.SCoin_count);
+        SCoinLabel = new JLabel(sCoin_count);
         SCoinLabel.setForeground(Color.white);
         SCoinLabel.setFont(font1);
         SCoinPanel.add(SCoinImage);
@@ -479,10 +480,6 @@ public class GUI_Elements
         GUI_Elements.InitializeAdvanced_Buttons();
         GUI_Elements.InitializeSupporter_Buttons();
 
-        JButton Temporary_Money = new JButton("Temporary_Money");
-        Temporary_Money.setActionCommand("Temporary_Money");
-        Temporary_Money.addActionListener(SCoin_handler);
-
         StorePanel_Inside.add(goToAppPanel);
         StorePanel_Inside.add(AmountButtonsPanel);
         StorePanel_Inside.add(GUI_Elements.Beginner_C_Button);
@@ -500,7 +497,6 @@ public class GUI_Elements
         StorePanel_Inside.add(GUI_Elements.Tester_Button);
         StorePanel_Inside.add(GUI_Elements.Architect_Button);
         StorePanel_Inside.add(GUI_Elements.ProjectManager_Button);
-        StorePanel_Inside.add(Temporary_Money);
 
         StorePanel = new JScrollPane(StorePanel_Inside);
         StorePanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

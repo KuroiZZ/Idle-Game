@@ -1,5 +1,6 @@
 package GUI;
 
+import SCoinSystem.SCoin;
 import SaveSystem.Save;
 
 import javax.swing.*;
@@ -140,7 +141,8 @@ public class SavePanel extends JButton
         Image SCoinScaledImage = SCoinImageIcon.getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
         this.SCoin_Image = new JLabel(new ImageIcon(SCoinScaledImage),SwingConstants.CENTER);
 
-        this.SCoin_Count = new JLabel(String.valueOf(scoin_count));
+
+        this.SCoin_Count = new JLabel(scoin_count);
         this.SCoin_Count.setForeground(Color.white);
         this.SCoin_Count.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 40));
 

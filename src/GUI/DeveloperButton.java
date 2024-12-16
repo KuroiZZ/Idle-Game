@@ -212,7 +212,7 @@ public class DeveloperButton extends JButton
         return LogoImagePath;
     }
 
-    public void setEnabledByScoin(int SCoin)
+    public void setEnabledByScoin(float SCoin)
     {
         this.setEnabled(Employee.getTotalPrice(LOC.buy_amount) <= SCoin);
     }
