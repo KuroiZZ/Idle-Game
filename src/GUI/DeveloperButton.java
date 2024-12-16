@@ -41,7 +41,7 @@ public class DeveloperButton extends JButton
         super();
 
         this.Employee = employee;
-        setButtonContentsPanel(name,setLogoImagePath("Dart"));
+        setButtonContentsPanel(name,setLogoImagePath(employee.getType()));
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(250,50));
         this.add(ButtonContentsPanel);
@@ -204,6 +204,15 @@ public class DeveloperButton extends JButton
                 break;
             case "Java":
                 LogoImagePath = "images/DeveloperLogo/JavaLogo.png";
+                break;
+            case "Tester":
+                LogoImagePath = "images/SupporterLogo/Tester.png";
+                break;
+            case "Architect":
+                LogoImagePath = "images/SupporterLogo/Architect.png";
+                break;
+            case "ProjectManager":
+                LogoImagePath = "images/SupporterLogo/PManager.png";
                 break;
             default:
                 LogoImagePath = "";

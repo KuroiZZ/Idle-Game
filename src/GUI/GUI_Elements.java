@@ -602,24 +602,24 @@ public class GUI_Elements
         SupporterButtonsPanel.setPreferredSize(new Dimension(250,50));
         SupporterButtonsPanel.setOpaque(false);
 
-        ImageIcon iconTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button1.png"));
-        ImageIcon RollovericonTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton1.png"));
+        ImageIcon iconTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ButtonTester.png"));
+        ImageIcon RollovericonTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButtonTester.png"));
         Tester_CheckButton = new JButton(iconTester);
         Tester_CheckButton.setBorder(BorderFactory.createEmptyBorder());
         Tester_CheckButton.setRolloverIcon(RollovericonTester);
         Tester_CheckButton.setActionCommand("Tester");
         Tester_CheckButton.addActionListener(SupporterCheckbox_handler);
 
-        ImageIcon iconArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button10.png"));
-        ImageIcon RollovericonArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton10.png"));
+        ImageIcon iconArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ButtonArchitect.png"));
+        ImageIcon RollovericonArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButtonArchitect.png"));
         Architect_CheckButton = new JButton(iconArchitect);
         Architect_CheckButton.setBorder(BorderFactory.createEmptyBorder());
         Architect_CheckButton.setRolloverIcon(RollovericonArchitect);
         Architect_CheckButton.setActionCommand("Architect");
         Architect_CheckButton.addActionListener(SupporterCheckbox_handler);
 
-        ImageIcon iconProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button100.png"));
-        ImageIcon RollovericonProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton100.png"));
+        ImageIcon iconProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ButtonProjectManager.png"));
+        ImageIcon RollovericonProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButtonProjectManager.png"));
         ProjectManager_CheckButton = new JButton(iconProjectManager);
         ProjectManager_CheckButton.setBorder(BorderFactory.createEmptyBorder());
         ProjectManager_CheckButton.setRolloverIcon(RollovericonProjectManager);
