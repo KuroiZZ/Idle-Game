@@ -42,32 +42,20 @@ public class GUI_Elements
     {
         MainMenuPanel MainPanel = new MainMenuPanel();
         MainPanel.setLayout(new GridBagLayout());
-        GridBagConstraints Title_Constraint = new GridBagConstraints();
-
-        Title_Constraint.fill = GridBagConstraints.NONE;
-        Title_Constraint.anchor = GridBagConstraints.CENTER;
-        Title_Constraint.weightx = 0.5;
-        Title_Constraint.weighty = 0.5;
-        Title_Constraint.gridwidth = 2;
-        Title_Constraint.gridheight = 1;
-        Title_Constraint.gridx = 1;
-        Title_Constraint.gridy = 0;
-
-        JLabel Game_Title = new JLabel("Softvoper Idle Game");
-        Game_Title.setFont(new Font(Font.SERIF, Font.BOLD, 70));
-        Game_Title.setForeground(Color.GREEN);
-        MainPanel.add(Game_Title, Title_Constraint);
+        JPanel  butonlarPanel = new JPanel(new GridBagLayout());
+        butonlarPanel.setPreferredSize(new Dimension(960, 750));
+        butonlarPanel.setOpaque(false);
 
         GridBagConstraints New_Game_Constraint = new GridBagConstraints();
 
         New_Game_Constraint.fill = GridBagConstraints.NONE;
-        New_Game_Constraint.anchor = GridBagConstraints.PAGE_START;
+        New_Game_Constraint.anchor = GridBagConstraints.CENTER;
         New_Game_Constraint.weightx = 0.5;
         New_Game_Constraint.weighty = 0.5;
-        New_Game_Constraint.gridwidth = 2;
+        New_Game_Constraint.gridwidth = 1;
         New_Game_Constraint.gridheight = 1;
-        New_Game_Constraint.gridx = 1;
-        New_Game_Constraint.gridy = 1;
+        New_Game_Constraint.gridx = 0;
+        New_Game_Constraint.gridy = 0;
 
         ImageIcon NewGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/NewGame.png"));
         ImageIcon RolloverNewGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverNewGame.png"));
@@ -76,18 +64,18 @@ public class GUI_Elements
         New_Game.addActionListener(GUI_handler);
         New_Game.setActionCommand("CreateGame_New");
         New_Game.setPreferredSize(new Dimension(500, 100));
-        MainPanel.add(New_Game, New_Game_Constraint);
+        butonlarPanel.add(New_Game, New_Game_Constraint);
 
         GridBagConstraints Load_Game_Constraint = new GridBagConstraints();
 
         Load_Game_Constraint.fill = GridBagConstraints.NONE;
-        Load_Game_Constraint.anchor = GridBagConstraints.PAGE_START;
+        Load_Game_Constraint.anchor = GridBagConstraints.CENTER;
         Load_Game_Constraint.weightx = 0.5;
         Load_Game_Constraint.weighty = 0.5;
-        Load_Game_Constraint.gridwidth = 2;
+        Load_Game_Constraint.gridwidth = 1;
         Load_Game_Constraint.gridheight = 1;
-        Load_Game_Constraint.gridx = 1;
-        Load_Game_Constraint.gridy = 2;
+        Load_Game_Constraint.gridx = 0;
+        Load_Game_Constraint.gridy = 1;
 
         ImageIcon LoadGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/LoadGame.png"));
         ImageIcon RolloverLoadGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverLoadGame.png"));
@@ -96,8 +84,19 @@ public class GUI_Elements
         Load_Game.addActionListener(GUI_handler);
         Load_Game.setActionCommand("Load_Game");
         Load_Game.setPreferredSize(new Dimension(500, 100));
-        MainPanel.add(Load_Game, Load_Game_Constraint);
+        butonlarPanel.add(Load_Game, Load_Game_Constraint);
 
+        GridBagConstraints butonlarPanelConstraints = new GridBagConstraints();
+        butonlarPanelConstraints.fill = GridBagConstraints.NONE;
+        butonlarPanelConstraints.anchor = GridBagConstraints.SOUTHEAST;
+        butonlarPanelConstraints.weightx = 0.5;
+        butonlarPanelConstraints.weighty = 0.5;
+        butonlarPanelConstraints.gridwidth = 1;
+        butonlarPanelConstraints.gridheight = 1;
+        butonlarPanelConstraints.gridx = 0;
+        butonlarPanelConstraints.gridy = 0;
+
+        MainPanel.add(butonlarPanel, butonlarPanelConstraints);
         window.add(MainPanel);
         GUI_Elements.window.setVisible(true);
     }
