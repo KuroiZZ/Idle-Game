@@ -70,10 +70,9 @@ public class SProjectInformation extends JPanel
                 break;
             case "Advanced":
                 BackgroundImagePath = "images/DeveloperButton/AdvancedButton.png";
-;
                 break;
             default:
-                BackgroundImagePath = "";
+                BackgroundImagePath = "images/DeveloperButton/Karton.png";
         }
         ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
         Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
