@@ -22,7 +22,7 @@ public class SCoin
     static public ArrayList<Timer> ActiveTimers = new ArrayList<Timer>();
     static public ArrayList<TimerTask> ActiveTasks = new ArrayList<TimerTask>();
     //Global SCoin_count variable defined.
-    static public int SCoin_count = 0;
+    static public float SCoin_count = 0;
     //Projects Created.
     static public SProject User_Project = new SProject(25, 1, 5, "User", "", 0, false, false, false, 0);
     static public SProject Beginner_C_Project = new SProject(1000, 10, 10, "C", "Beginner", 5,false,false,false, 0);
@@ -47,77 +47,10 @@ public class SCoin
     static public void BuyEmployee(Employee Employee)
     {
         SCoin_count -= Employee.getTotalPrice(LOC.buy_amount);
-        GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
+        String sCoin_count = String.format("%.02f", SCoin_count);
+        GUI_Elements.SCoinLabel.setText(sCoin_count);
     }
 
-
-    static public void DevelopUserProject(SProject Project)
-    {
-        SProject newProject = new SProject(Project);
-        newProject.setHasTester(SupporterCheckbox_Handler.is_Tester_Selected);
-        newProject.setSCoinToEarn();
-        newProject.setHasArchitect(SupporterCheckbox_Handler.is_Architect_Selected);
-        newProject.setNecessaryLOC();
-        newProject.setHasProjectManager(SupporterCheckbox_Handler.is_ProjectManager_Selected);
-        newProject.setTimeSecond();
-
-        if(newProject.HasTester())
-        {
-            LOC.Tester.setNPEandNNPE(1 + LOC.Tester.getNofProjectEmp());
-            GUI_Elements.Tester_Button.setNofDeveloperText();
-        }
-        if(newProject.HasArchitect())
-        {
-            LOC.Architect.setNPEandNNPE(1 + LOC.Architect.getNofProjectEmp());
-            GUI_Elements.Architect_Button.setNofDeveloperText();
-        }
-        if(newProject.HasProjectManager())
-        {
-            LOC.ProjectManager.setNPEandNNPE(1 + LOC.ProjectManager.getNofProjectEmp());
-            GUI_Elements.ProjectManager_Button.setNofDeveloperText();
-        }
-
-        LOC.loc_cnt -= newProject.getNecessaryLOC();
-        String loc_count = String.format("%.02f", LOC.loc_cnt);
-        GUI_Elements.LOCLabel.setText(loc_count);
-        SProjectInformation Project_Information =  CreateAppInformation(newProject);
-
-        ActiveProjectInformations.add(Project_Information);
-        ActiveProject.add(newProject);
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run()
-            {
-                SCoin_count += newProject.getSCoinToEarn();
-                GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
-
-                if(newProject.HasTester())
-                {
-                    LOC.Tester.setNPEandNNPE(LOC.Tester.getNofProjectEmp() - 1);
-                    GUI_Elements.Tester_Button.setNofDeveloperText();
-                }
-                if(newProject.HasArchitect())
-                {
-                    LOC.Architect.setNPEandNNPE(LOC.Architect.getNofProjectEmp() - 1);
-                    GUI_Elements.Architect_Button.setNofDeveloperText();
-                }
-                if(newProject.HasProjectManager())
-                {
-                    LOC.ProjectManager.setNPEandNNPE(LOC.ProjectManager.getNofProjectEmp() - 1);
-                    GUI_Elements.ProjectManager_Button.setNofDeveloperText();
-                }
-
-                SoftvoperMain.ControlButtons();
-                ActiveProjectInformations.remove(Project_Information);
-                ActiveProject.remove(newProject);
-                timer.cancel();
-
-            }
-        };
-        timer.schedule(task, ((100 - newProject.getProgressValue())*newProject.getTimeSecond())*10);
-        ActiveTimers.add(timer);
-    }
     /**
      * Creates Project, ProjectInformation panel,
      * Decreases the used employees count and texts, decreases LOC count and text.
@@ -154,8 +87,9 @@ public class SCoin
             GUI_Elements.ProjectManager_Button.setNofDeveloperText();
         }
 
-        Developer.setNPEandNNPEandNTL(newProject.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
-        Button.setNofDeveloperText();
+        if (Developer != null) Developer.setNPEandNNPEandNTL(newProject.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
+
+        if (Button != null) Button.setNofDeveloperText();
 
         LOC.loc_cnt -= newProject.getNecessaryLOC();
         String loc_count = String.format("%.02f", LOC.loc_cnt);
@@ -168,8 +102,9 @@ public class SCoin
             @Override
             public void run()
             {
-                SCoin_count += newProject.getSCoinToEarn(); //2.Katlama
-                GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
+                SCoin_count += newProject.getSCoinToEarn();
+                String sCoin_count = String.format("%.02f", SCoin_count);
+                GUI_Elements.SCoinLabel.setText(sCoin_count);
 
                 if(newProject.HasTester())
                 {
@@ -187,8 +122,10 @@ public class SCoin
                     GUI_Elements.ProjectManager_Button.setNofDeveloperText();
                 }
 
-                Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
-                Button.setNofDeveloperText();
+                if (Developer != null) Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
+
+                if (Button != null) Button.setNofDeveloperText();
+
 
                 SoftvoperMain.ControlButtons();
                 ActiveProjectInformations.remove(Project_Information);
@@ -230,7 +167,8 @@ public class SCoin
                 public void run()
                 {
                     SCoin_count += newProject.getSCoinToEarn();
-                    GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
+                    String sCoin_count = String.format("%.02f", SCoin_count);
+                    GUI_Elements.SCoinLabel.setText(sCoin_count);
 
                     if(newProject.HasTester())
                     {
@@ -248,8 +186,10 @@ public class SCoin
                         GUI_Elements.ProjectManager_Button.setNofDeveloperText();
                     }
 
-                    Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
-                    Button.setNofDeveloperText();
+                    if (Developer != null) Developer.setNPEandNNPEandNTL(Developer.getNofProjectEmp() - newProject.getNecessaryDeveloperCount());
+
+                    if (Button != null) Button.setNofDeveloperText();
+
                     SoftvoperMain.ControlButtons();
                     ActiveProjectInformations.remove(Project_Information);
                     ActiveProject.remove(newProject);

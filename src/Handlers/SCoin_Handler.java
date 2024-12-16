@@ -64,13 +64,8 @@ public class SCoin_Handler implements ActionListener
             case "ProjectManager":
                 SCoin.BuyEmployee(LOC.ProjectManager);
                 break;
-            case "Temporary_Money":
-                SCoin.SCoin_count += 10;
-                GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin.SCoin_count));
-                SoftvoperMain.ControlButtons();
-                break;
             case "User_Project":
-                SCoin.DevelopUserProject(SCoin.User_Project);
+                SCoin.DevelopApp(null, null, SCoin.User_Project);
                 break;
             case "Beginner_C_Project":
                 SCoin.DevelopApp(LOC.Beginner_C_Developer, GUI_Elements.Beginner_C_Button, SCoin.Beginner_C_Project);

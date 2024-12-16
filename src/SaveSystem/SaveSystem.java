@@ -81,7 +81,7 @@ public class SaveSystem
     static public void UpdateInstantSave()
     {
         float instant_loc_count = LOC.loc_cnt;
-        int instant_scoin_count = SCoin.SCoin_count;
+        float instant_scoin_count = SCoin.SCoin_count;
 
         ArrayList<Developers> developers = CreateDeveloperList();
         ArrayList<Supporter> supporter = CreateSupporterList();

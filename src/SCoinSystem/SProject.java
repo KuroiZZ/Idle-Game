@@ -93,10 +93,7 @@ public class SProject
 
     public void setNecessaryLOC()
     {
-        if(hasArchitect)
-        {
-            this.NecessaryLOC = this.NecessaryLOC - (this.NecessaryLOC / 10);
-        }
+        if(hasArchitect) this.NecessaryLOC = this.NecessaryLOC - (this.NecessaryLOC / 10);
     }
 
     public int getSCoinToEarn()
@@ -106,25 +103,17 @@ public class SProject
 
     public void setSCoinToEarn()
     {
-        System.out.println(hasTester);
-        if(hasTester)
-        {
-            System.out.println("A");
-            this.SCoinToEarn = this.SCoinToEarn * 2;
-        }
+        if(hasTester) this.SCoinToEarn = this.SCoinToEarn * 2;
     }
 
     public int getTimeSecond()
     {
-        return SCoinToEarn;
+        return this.TimeSecond;
     }
 
     public void setTimeSecond()
     {
-        if(hasProjectManager)
-        {
-            this.TimeSecond = this.TimeSecond - (this.TimeSecond / 2);
-        }
+        if(hasProjectManager) this.TimeSecond = this.TimeSecond - (this.TimeSecond / 2);
     }
 
     public String getLanguageType()
