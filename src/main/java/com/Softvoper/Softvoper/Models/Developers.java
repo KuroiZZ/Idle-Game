@@ -26,7 +26,7 @@ public class Developers
 
     /**
         LinePerSecond is an int typed line written by employee per second. */
-    private int LinePerSecond;
+    private double LinePerSecond;
 
     /**
         Type is a string typed type of programming language employee works with.*/
@@ -46,7 +46,7 @@ public class Developers
         this.NofTotalEmp = DeveloperDocument.get("nofTotalEmp", Integer.class);
         this.NofProjectEmp = DeveloperDocument.get("nofProjectEmp", Integer.class);
         this.Price = DeveloperDocument.get("price", Double.class);
-        this.LinePerSecond = DeveloperDocument.get("linePerSecond", Integer.class);
+        this.LinePerSecond = DeveloperDocument.get("linePerSecond", Double.class);
         this.Type = DeveloperDocument.get("type", String.class);
         this.Rank = DeveloperDocument.get("rank", String.class);
     }

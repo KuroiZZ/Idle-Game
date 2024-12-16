@@ -29,11 +29,11 @@ public class Save
 
     /**
         LOCCount is an int type counter of Line Of Code(LOC)*/
-    private int LOCCount;
+    private double LOCCount;
 
     /**
         SCoinCount is an int type counter of SCoin*/
-    private int SCoinCount;
+    private double SCoinCount;
 
     /**
      * Constructs from given Document object.
@@ -43,8 +43,8 @@ public class Save
     {
         this.Id = SaveDocument.get("_id", String.class);
         this.Name = SaveDocument.get("name", String.class);
-        this.LOCCount = SaveDocument.get("loc_count_js", Integer.class);
-        this.SCoinCount = SaveDocument.get("scoin_count_js", Integer.class);
+        this.LOCCount = SaveDocument.get("loc_count_js", Double.class);
+        this.SCoinCount = SaveDocument.get("scoin_count_js", Double.class);
         this.DeveloperList = SaveDocument.getList("developer", Document.class);
         this.SupporterList = SaveDocument.getList("supporter", Document.class);
     }
