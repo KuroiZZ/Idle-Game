@@ -40,7 +40,6 @@ public class DevelopersServices
                 for(Document DocDeveloper: DeveloperDocLisT)
                 {
                     List<Developers> ListDevelopers = new ArrayList<Developers>();
-                    System.out.println(DocDeveloper);
                     Developers developer = new Developers(DocDeveloper);
                     ListDevelopers.add(developer);
                 }
