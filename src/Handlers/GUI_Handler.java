@@ -58,7 +58,7 @@ public class GUI_Handler implements ActionListener
                 break;
             case "Load_Game":
                 GUI_Elements.window.getContentPane().removeAll();
-                SoftvoperMain.CreateSaveMenu("Load");
+                SoftvoperMain.CreateSaveMenu();
                 GUI_Elements.window.revalidate();
                 GUI_Elements.window.repaint();
                 break;

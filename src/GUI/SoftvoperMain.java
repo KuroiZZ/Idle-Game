@@ -8,13 +8,24 @@ import java.awt.event.ActionListener;
 import LOCSystem.LOC;
 import SCoinSystem.SCoin;
 
+/**
+ * The SoftvoperMain class handles the creation and management of different menu screens in the application.
+ * It interacts with GUI elements, enables/disables buttons based on certain conditions, and controls project logic.
+ */
 public class SoftvoperMain
 {
+    /**
+     * Initializes the main menu by calling the appropriate method from GUI_Elements.
+     */
     static public void CreateMainMenu()
     {
         GUI_Elements.InitializeMainScreen();
     }
 
+    /**
+     * Initializes the game menu, including various panels and controls for the game screen.
+     * Adds the panels to the window and controls button behavior.
+     */
     static public void CreateGameMenu()
     {
         GUI_Elements.InitializeGameScreen();
@@ -31,11 +42,19 @@ public class SoftvoperMain
         ControlProjects();
     }
 
-    static public void CreateSaveMenu(String LoadOrNew)
+    /**
+     * Initializes the save menu screen by calling the appropriate method from GUI_Elements.
+     * This method sets up the UI elements for saving a project or loading an existing one.
+     */
+    static public void CreateSaveMenu()
     {
-        GUI_Elements.InitializeSaveScreen(LoadOrNew);
+        GUI_Elements.InitializeSaveScreen();
     }
 
+    /**
+     * Controls the enabling/disabling of buttons based on the available SCoin count.
+     * This method adjusts the state of buttons for various projects and actions.
+     */
     static public void ControlButtons()
     {
         GUI_Elements.Beginner_C_Button.setEnabledByScoin(SCoin.SCoin_count);
@@ -55,6 +74,10 @@ public class SoftvoperMain
         GUI_Elements.ProjectManager_Button.setEnabledByScoin(SCoin.SCoin_count);
     }
 
+    /**
+     * Controls the enabling/disabling of project buttons based on the number of lines of code (LOC)
+     * and the number of developers available for each project.
+     */
     static public void ControlProjects()
     {
         Timer timer = new Timer(100, new ActionListener()

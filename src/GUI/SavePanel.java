@@ -8,6 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * SavePanel is a custom button class that represents a panel containing information about a saved game.
+ * This panel displays information like the save's title, lines of code (LOC), SCoin count, and provides
+ * functionality to delete or load the saved game.
+ */
 public class SavePanel extends JButton
 {
     /**
@@ -55,8 +60,9 @@ public class SavePanel extends JButton
     private JButton Delete_Button;
 
     /**
-     * This constructor, construct Save panel for saved games.
-     * @param save
+     * Constructor to create a SavePanel for a saved game.
+     * Initializes the panel based on the given save object.
+     * @param save The Save object containing data for this saved game
      */
     public SavePanel(Save save)
     {
@@ -70,10 +76,11 @@ public class SavePanel extends JButton
     }
 
     /**
-     * Add contents to ContentPanel with constraints.
-     * @param title
-     * @param loc_count
-     * @param scoin_count
+     * Adds content to the ContentPanel with specific layout constraints.
+     * This method configures the layout and arranges the UI components within the ContentPanel.
+     * @param title The title of the save (project or game name)
+     * @param loc_count The number of lines of code (LOC) for the save
+     * @param scoin_count The number of SCoin accumulated in the save
      */
     public void setContentPanel(String title, String loc_count, String scoin_count)
     {
@@ -103,10 +110,11 @@ public class SavePanel extends JButton
     }
 
     /**
-     * Set SavePanel's contents.
-     * @param title
-     * @param loc_count
-     * @param scoin_count
+     * Sets the contents of the SavePanel, including the title, LOC count, and SCoin count.
+     * It also initializes and configures the panels and labels for these components.
+     * @param title The title of the saved game
+     * @param loc_count The number of lines of code (LOC)
+     * @param scoin_count The number of SCoin associated with the save
      */
     public void setContents(String title, String loc_count, String scoin_count)
     {
@@ -163,13 +171,14 @@ public class SavePanel extends JButton
     }
 
     /**
-     * Set constraints for GridBagLayout
-     * @param anchor
-     * @param gridheight
-     * @param gridwidth
-     * @param gridx
-     * @param gridy
-     * @return
+     * Sets the constraints for components in a GridBagLayout.
+     *
+     * @param anchor The anchor value for component positioning.
+     * @param gridheight The grid height for the component.
+     * @param gridwidth The grid width for the component.
+     * @param gridx The x-coordinate in the grid.
+     * @param gridy The y-coordinate in the grid.
+     * @return A GridBagConstraints object with the specified properties.
      */
     private GridBagConstraints setConstraints(int anchor,  int gridheight, int gridwidth, int gridx, int gridy)
     {
