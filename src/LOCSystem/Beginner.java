@@ -16,7 +16,7 @@ public class Beginner extends Developers
         setNofProjectEmp(0);
         setNofNonProjectEmp();
         setPrice(5);
-        setLinePerSecond(1000);
+        setLinePerSecond(10);
     }
 
     /**

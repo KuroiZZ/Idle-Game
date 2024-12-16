@@ -170,7 +170,7 @@ public class SProjectButton extends JButton
      * @param loc_count
      * @param developer
      */
-    public void setEnabledByLOCandDevelopers(SProject project, int loc_count, Developers developer)
+    public void setEnabledByLOCandDevelopers(SProject project, float loc_count, Developers developer)
     {
         boolean isTesterEnough = true;
         boolean isArchitectEnough = true;
@@ -200,6 +200,37 @@ public class SProjectButton extends JButton
         {
             this.setEnabled(project.getNecessaryLOC() <= loc_count &&
                     project.getNecessaryDeveloperCount() <= developer.getNofNonProjectEmp());
+        }
+    }
+
+    public void setEnabledByLOC(SProject project, float loc_count)
+    {
+        boolean isTesterEnough = true;
+        boolean isArchitectEnough = true;
+        boolean isProjectManagerEnough = true;
+
+        if(SupporterCheckbox_Handler.is_Tester_Selected)
+        {
+            isTesterEnough = LOC.Tester.getNofNonProjectEmp() > 0;
+        }
+        if(SupporterCheckbox_Handler.is_Architect_Selected)
+        {
+            isArchitectEnough = LOC.Architect.getNofNonProjectEmp() > 0;
+        }
+        if(SupporterCheckbox_Handler.is_ProjectManager_Selected)
+        {
+            isProjectManagerEnough = LOC.ProjectManager.getNofNonProjectEmp() > 0;
+        }
+
+        if(SupporterCheckbox_Handler.is_ProjectManager_Selected || SupporterCheckbox_Handler.is_Architect_Selected ||
+                SupporterCheckbox_Handler.is_Tester_Selected)
+        {
+            this.setEnabled((project.getNecessaryLOC() <= loc_count) &&
+                    isTesterEnough && isArchitectEnough && isProjectManagerEnough);
+        }
+        else
+        {
+            this.setEnabled(project.getNecessaryLOC() <= loc_count);
         }
     }
 

@@ -14,7 +14,7 @@ public class Save
 {
     public String name;
     public String _id;
-    public int loc_count_js;
+    public float loc_count_js;
     public int scoin_count_js;
     public ArrayList<Developers> developers;
     public ArrayList<Supporter> supporter;
@@ -30,7 +30,7 @@ public class Save
      * @param supporter
      * @param project
      */
-    public Save(String name,String id,  int loc_count, int scoin_count, ArrayList<Developers> developers, ArrayList<Supporter> supporter, ArrayList<SProject> project)
+    public Save(String name,String id,  float loc_count, int scoin_count, ArrayList<Developers> developers, ArrayList<Supporter> supporter, ArrayList<SProject> project)
     {
         this.name = name;
         this._id = id;

@@ -16,7 +16,7 @@ public class Intermediate extends Developers
         setNofProjectEmp(0);
         setNofNonProjectEmp();
         setPrice(10);
-        setLinePerSecond(5000);
+        setLinePerSecond(25);
     }
 
     /**

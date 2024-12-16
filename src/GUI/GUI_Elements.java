@@ -254,7 +254,8 @@ public class GUI_Elements
         LOCPanel.setPreferredSize(new Dimension(910,60));
         LOCPanel.setBackground(Color.getHSBColor(0,0,0.25f));
         LOCPanel.setOpaque(true);
-        LOCLabel = new JLabel(String.valueOf(LOC.loc_cnt));
+        String loc_count = String.format("%.02f", LOC.loc_cnt);
+        LOCLabel = new JLabel(loc_count);
         LOCLabel.setForeground(Color.white);
         LOCLabel.setFont(font1);
         LOCPanel.add(LOCImage);
@@ -507,6 +508,14 @@ public class GUI_Elements
         StorePanel.getVerticalScrollBar().setUnitIncrement(6);
     }
 
+    public static SProjectButton User_ProjectButton;
+    public static void InitializeUserProject()
+    {
+        User_ProjectButton = new SProjectButton(SCoin.User_Project);
+        User_ProjectButton.setActionCommand("User_Project");
+        User_ProjectButton.addActionListener(SCoin_handler);
+    }
+
     public static SProjectButton Beginner_C_ProjectButton;
     public static SProjectButton Beginner_CSharp_ProjectButton;
     public static SProjectButton Beginner_Dart_ProjectButton;
@@ -624,12 +633,14 @@ public class GUI_Elements
         SupporterButtonsPanel.add(Architect_CheckButton);
         SupporterButtonsPanel.add(ProjectManager_CheckButton);
 
+        InitializeUserProject();
         InitializeBeginnerProjects();
         InitializeIntermediateProjects();
         InitializeAdvancedProjects();
 
         ProjectPanel.add(goToStorePanel);
         ProjectPanel.add(SupporterButtonsPanel);
+        ProjectPanel.add(User_ProjectButton);
         ProjectPanel.add(Beginner_C_ProjectButton);
         ProjectPanel.add(Beginner_CSharp_ProjectButton);
         ProjectPanel.add(Beginner_Dart_ProjectButton);

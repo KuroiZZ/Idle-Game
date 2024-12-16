@@ -16,7 +16,7 @@ public class Advanced extends Developers
         setNofProjectEmp(0);
         setNofNonProjectEmp();
         setPrice(20);
-        setLinePerSecond(10000);
+        setLinePerSecond(60);
     }
 
     /**

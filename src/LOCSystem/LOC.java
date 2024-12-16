@@ -19,7 +19,7 @@ public class LOC //Line of Code
 {
     //
     static public int buy_amount = 1;
-    static public int loc_cnt = 0;
+    static public float loc_cnt = 0f;
 
     //Define all employees in game.
     static public Beginner Beginner_C_Developer;
@@ -342,7 +342,7 @@ public class LOC //Line of Code
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                int increment = 0;
+                float increment = 0f;
                 increment += Beginner_C_Developer.getNofTotalLOC() + Beginner_CSharp_Developer.getNofTotalLOC();
                 increment += Beginner_Dart_Developer.getNofTotalLOC() + Beginner_Java_Developer.getNofTotalLOC();
                 increment += Intermediate_C_Developer.getNofTotalLOC() + Intermediate_CSharp_Developer.getNofTotalLOC();
@@ -352,7 +352,8 @@ public class LOC //Line of Code
                 increment = increment/16;
                 loc_cnt += increment;
 
-                GUI_Elements.LOCLabel.setText(String.valueOf(loc_cnt));
+                String loc_count = String.format("%.02f", LOC.loc_cnt);
+                GUI_Elements.LOCLabel.setText(loc_count);
             }
         });
         timer.start();

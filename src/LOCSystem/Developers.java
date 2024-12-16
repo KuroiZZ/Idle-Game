@@ -5,11 +5,11 @@ public abstract class Developers extends Employee
     /**
      * Developer's LOC create amount in one second (LPS)
      */
-    protected int LinePerSecond;
+    protected float LinePerSecond;
     /**
      * Number of total loc written by NonProject employee (NTL)
      */
-    protected int NofTotalLOC;
+    protected float NofTotalLOC;
     /**
      * Rank of Developer
      */
@@ -61,7 +61,7 @@ public abstract class Developers extends Employee
         Price = price;
     }
 
-    public int getLinePerSecond()
+    public float getLinePerSecond()
     {
         return LinePerSecond;
     }
@@ -71,7 +71,7 @@ public abstract class Developers extends Employee
          LinePerSecond = linePerSecond;
      }
 
-    public int getNofTotalLOC()
+    public float getNofTotalLOC()
     {
         return NofTotalLOC;
     }

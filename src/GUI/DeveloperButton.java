@@ -61,7 +61,8 @@ public class DeveloperButton extends JButton
 
     public void setPriceText()
     {
-        Price.setText(String.valueOf(Employee.getTotalPrice(LOC.buy_amount)));
+        String price = String.format("%.02f", Employee.getTotalPrice(LOC.buy_amount));
+        Price.setText(price);
     }
 
     private void setButtonContentsPanel(String name,String LogoImagePath)
@@ -95,7 +96,9 @@ public class DeveloperButton extends JButton
         this.SCoinImage = SCoinImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
         this.SCoin = new JLabel(new ImageIcon(SCoinImage),SwingConstants.CENTER); //Initialize coin image
 
-        this.Price = new JLabel(String.valueOf(Employee.getPrice())); //Initialize price
+
+        String price = String.format("%.02f", Employee.getPrice());
+        this.Price = new JLabel(price); //Initialize price
         this.Name = new JLabel(name); //Initialize name
         this.NofDeveloper = new JLabel(String.valueOf(Employee.getNofNonProjectEmp())); //Initialize number of developer
 

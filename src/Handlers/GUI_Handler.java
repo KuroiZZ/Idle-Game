@@ -87,9 +87,9 @@ public class GUI_Handler implements ActionListener
                 ArrayList<Developers> developers = LOC.CreateSavedDevelopers(developer_strings);
                 ArrayList<Supporter> supporter = LOC.CreateSavedSupporters(supporter_strings);
                 ArrayList<SProject> project = LOC.CreateSavedProjects(project_strings);
-                LOC.loc_cnt = Integer.parseInt(contents[2]);
+                LOC.loc_cnt = Float.parseFloat(contents[2]);
                 SCoin.SCoin_count = Integer.parseInt(contents[3]);
-                SaveSystem.instant_save = new Save(contents[0], contents[1], Integer.parseInt(contents[2]), Integer.parseInt(contents[3]), developers, supporter, project);
+                SaveSystem.instant_save = new Save(contents[0], contents[1], Float.parseFloat(contents[2]), Integer.parseInt(contents[3]), developers, supporter, project);
                 SoftvoperMain.CreateGameMenu();
                 SCoin.DevelopSavedApp(SaveSystem.instant_save.project);
                 GUI_Elements.window.revalidate();

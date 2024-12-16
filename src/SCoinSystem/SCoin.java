@@ -24,20 +24,21 @@ public class SCoin
     //Global SCoin_count variable defined.
     static public int SCoin_count = 0;
     //Projects Created.
-    static public SProject Beginner_C_Project = new SProject(100000, 10, 10, "C", "Beginner", 20,false,false,false, 0);
-    static public SProject Beginner_CSharp_Project = new SProject(100000, 10, 10, "CSharp", "Beginner", 20,false,false,false, 0);
-    static public SProject Beginner_Dart_Project = new SProject(100000, 10, 10, "Dart", "Beginner", 20,false,false,false, 0);
-    static public SProject Beginner_Java_Project = new SProject(100000, 10, 10, "Java", "Beginner", 20,false,false,false, 0);
+    static public SProject User_Project = new SProject(25, 1, 5, "User", "", 0, false, false, false, 0);
+    static public SProject Beginner_C_Project = new SProject(1000, 10, 10, "C", "Beginner", 5,false,false,false, 0);
+    static public SProject Beginner_CSharp_Project = new SProject(1000, 10, 10, "CSharp", "Beginner", 5,false,false,false, 0);
+    static public SProject Beginner_Dart_Project = new SProject(1000, 10, 10, "Dart", "Beginner", 5,false,false,false, 0);
+    static public SProject Beginner_Java_Project = new SProject(1000, 10, 10, "Java", "Beginner", 5,false,false,false, 0);
 
-    static public SProject Intermediate_C_Project = new SProject(100000, 10, 10, "C", "Intermediate", 20,false,false,false, 0);
-    static public SProject Intermediate_CSharp_Project = new SProject(100000, 10, 10, "CSharp", "Intermediate", 20,false,false,false, 0);
-    static public SProject Intermediate_Dart_Project = new SProject(100000, 10, 10, "Dart", "Intermediate", 20,false,false,false, 0);
-    static public SProject Intermediate_Java_Project = new SProject(100000, 10, 10, "Java", "Intermediate", 20,false,false,false, 0);
+    static public SProject Intermediate_C_Project = new SProject(5000, 30, 25, "C", "Intermediate", 5,false,false,false, 0);
+    static public SProject Intermediate_CSharp_Project = new SProject(5000, 30, 25, "CSharp", "Intermediate", 5,false,false,false, 0);
+    static public SProject Intermediate_Dart_Project = new SProject(5000, 30, 25, "Dart", "Intermediate", 5,false,false,false, 0);
+    static public SProject Intermediate_Java_Project = new SProject(5000, 30, 25, "Java", "Intermediate", 5,false,false,false, 0);
 
-    static public SProject Advanced_C_Project = new SProject(100000, 10, 10, "C", "Advanced", 20,false,false,false, 0);
-    static public SProject Advanced_CSharp_Project = new SProject(100000, 10, 10, "CSharp", "Advanced", 20,false,false,false, 0);
-    static public SProject Advanced_Dart_Project = new SProject(100000, 10, 10, "Dart", "Advanced", 20,false,false,false, 0);
-    static public SProject Advanced_Java_Project = new SProject(100000, 10, 10, "Java", "Advanced", 20,false,false,false, 0);
+    static public SProject Advanced_C_Project = new SProject(20000, 70, 60, "C", "Advanced", 5,false,false,false, 0);
+    static public SProject Advanced_CSharp_Project = new SProject(20000, 70, 60, "CSharp", "Advanced", 5,false,false,false, 0);
+    static public SProject Advanced_Dart_Project = new SProject(20000, 70, 60, "Dart", "Advanced", 5,false,false,false, 0);
+    static public SProject Advanced_Java_Project = new SProject(20000, 70, 60, "Java", "Advanced", 5,false,false,false, 0);
 
     /**
      * When buying employee this function decreases the SCoin_count and set label to new value
@@ -49,6 +50,74 @@ public class SCoin
         GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
     }
 
+
+    static public void DevelopUserProject(SProject Project)
+    {
+        SProject newProject = new SProject(Project);
+        newProject.setHasTester(SupporterCheckbox_Handler.is_Tester_Selected);
+        newProject.setSCoinToEarn();
+        newProject.setHasArchitect(SupporterCheckbox_Handler.is_Architect_Selected);
+        newProject.setNecessaryLOC();
+        newProject.setHasProjectManager(SupporterCheckbox_Handler.is_ProjectManager_Selected);
+        newProject.setTimeSecond();
+
+        if(newProject.HasTester())
+        {
+            LOC.Tester.setNPEandNNPE(1 + LOC.Tester.getNofProjectEmp());
+            GUI_Elements.Tester_Button.setNofDeveloperText();
+        }
+        if(newProject.HasArchitect())
+        {
+            LOC.Architect.setNPEandNNPE(1 + LOC.Architect.getNofProjectEmp());
+            GUI_Elements.Architect_Button.setNofDeveloperText();
+        }
+        if(newProject.HasProjectManager())
+        {
+            LOC.ProjectManager.setNPEandNNPE(1 + LOC.ProjectManager.getNofProjectEmp());
+            GUI_Elements.ProjectManager_Button.setNofDeveloperText();
+        }
+
+        LOC.loc_cnt -= newProject.getNecessaryLOC();
+        String loc_count = String.format("%.02f", LOC.loc_cnt);
+        GUI_Elements.LOCLabel.setText(loc_count);
+        SProjectInformation Project_Information =  CreateAppInformation(newProject);
+
+        ActiveProjectInformations.add(Project_Information);
+        ActiveProject.add(newProject);
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run()
+            {
+                SCoin_count += newProject.getSCoinToEarn();
+                GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
+
+                if(newProject.HasTester())
+                {
+                    LOC.Tester.setNPEandNNPE(LOC.Tester.getNofProjectEmp() - 1);
+                    GUI_Elements.Tester_Button.setNofDeveloperText();
+                }
+                if(newProject.HasArchitect())
+                {
+                    LOC.Architect.setNPEandNNPE(LOC.Architect.getNofProjectEmp() - 1);
+                    GUI_Elements.Architect_Button.setNofDeveloperText();
+                }
+                if(newProject.HasProjectManager())
+                {
+                    LOC.ProjectManager.setNPEandNNPE(LOC.ProjectManager.getNofProjectEmp() - 1);
+                    GUI_Elements.ProjectManager_Button.setNofDeveloperText();
+                }
+
+                SoftvoperMain.ControlButtons();
+                ActiveProjectInformations.remove(Project_Information);
+                ActiveProject.remove(newProject);
+                timer.cancel();
+
+            }
+        };
+        timer.schedule(task, ((100 - newProject.getProgressValue())*newProject.getTimeSecond())*10);
+        ActiveTimers.add(timer);
+    }
     /**
      * Creates Project, ProjectInformation panel,
      * Decreases the used employees count and texts, decreases LOC count and text.
@@ -88,8 +157,9 @@ public class SCoin
         Developer.setNPEandNNPEandNTL(newProject.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
         Button.setNofDeveloperText();
 
-        LOC.loc_cnt -= newProject.getNecessaryLOC(); //2.Katlama
-        GUI_Elements.LOCLabel.setText(String.valueOf(LOC.loc_cnt));
+        LOC.loc_cnt -= newProject.getNecessaryLOC();
+        String loc_count = String.format("%.02f", LOC.loc_cnt);
+        GUI_Elements.LOCLabel.setText(loc_count);
         SProjectInformation Project_Information =  CreateAppInformation(newProject);
         ActiveProjectInformations.add(Project_Information);
         ActiveProject.add(newProject);

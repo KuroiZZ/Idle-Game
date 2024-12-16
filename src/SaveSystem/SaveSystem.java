@@ -80,7 +80,7 @@ public class SaveSystem
      */
     static public void UpdateInstantSave()
     {
-        int instant_loc_count = LOC.loc_cnt;
+        float instant_loc_count = LOC.loc_cnt;
         int instant_scoin_count = SCoin.SCoin_count;
 
         ArrayList<Developers> developers = CreateDeveloperList();
