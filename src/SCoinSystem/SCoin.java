@@ -63,8 +63,11 @@ public class SCoin
     {
         SProject newProject = new SProject(Project);
         newProject.setHasTester(SupporterCheckbox_Handler.is_Tester_Selected);
+        newProject.setSCoinToEarn();
         newProject.setHasArchitect(SupporterCheckbox_Handler.is_Architect_Selected);
+        newProject.setNecessaryLOC();
         newProject.setHasProjectManager(SupporterCheckbox_Handler.is_ProjectManager_Selected);
+        newProject.setTimeSecond();
 
         if(newProject.HasTester())
         {
@@ -85,7 +88,7 @@ public class SCoin
         Developer.setNPEandNNPEandNTL(newProject.getNecessaryDeveloperCount() + Developer.getNofProjectEmp());
         Button.setNofDeveloperText();
 
-        LOC.loc_cnt -= newProject.getNecessaryLOC();
+        LOC.loc_cnt -= newProject.getNecessaryLOC(); //2.Katlama
         GUI_Elements.LOCLabel.setText(String.valueOf(LOC.loc_cnt));
         SProjectInformation Project_Information =  CreateAppInformation(newProject);
         ActiveProjectInformations.add(Project_Information);
@@ -95,7 +98,7 @@ public class SCoin
             @Override
             public void run()
             {
-                SCoin_count += newProject.getSCoinToEarn();
+                SCoin_count += newProject.getSCoinToEarn(); //2.Katlama
                 GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin_count));
 
                 if(newProject.HasTester())
@@ -142,7 +145,7 @@ public class SCoin
     {
         for (SProject project : Project)
         {
-            SProject newProject = new SProject(project);
+            SProject newProject = new SProject(project, project.getProgressValue());
             Developers Developer = LOC.ChooseDeveloper(newProject.getLanguageType(), newProject.getRankType());
             DeveloperButton Button = LOC.ChooseDeveloperButton(newProject.getLanguageType(), newProject.getRankType());
 

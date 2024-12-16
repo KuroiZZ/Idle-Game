@@ -50,7 +50,7 @@ public class SProject
     }
 
     /**
-     * This consturctor construct SProject object when craeting or loading into game.
+     * This constructor construct SProject object when creating or loading into game.
      * @param sProject
      */
     public SProject(SProject sProject)
@@ -88,37 +88,42 @@ public class SProject
 
     public int getNecessaryLOC()
     {
+        return NecessaryLOC;
+    }
+
+    public void setNecessaryLOC()
+    {
         if(hasArchitect)
         {
-            return NecessaryLOC - (NecessaryLOC / 10);
-        }
-        else
-        {
-            return NecessaryLOC;
+            this.NecessaryLOC = this.NecessaryLOC - (this.NecessaryLOC / 10);
         }
     }
 
     public int getSCoinToEarn()
     {
+        return SCoinToEarn;
+    }
+
+    public void setSCoinToEarn()
+    {
+        System.out.println(hasTester);
         if(hasTester)
         {
-            return SCoinToEarn * 2;
-        }
-        else
-        {
-            return SCoinToEarn;
+            System.out.println("A");
+            this.SCoinToEarn = this.SCoinToEarn * 2;
         }
     }
 
     public int getTimeSecond()
     {
+        return SCoinToEarn;
+    }
+
+    public void setTimeSecond()
+    {
         if(hasProjectManager)
         {
-            return TimeSecond - (TimeSecond / 2);
-        }
-        else
-        {
-            return TimeSecond;
+            this.TimeSecond = this.TimeSecond - (this.TimeSecond / 2);
         }
     }
 
