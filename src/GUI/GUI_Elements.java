@@ -18,18 +18,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class manages and initializes the GUI elements for the game.
+ */
 public class GUI_Elements
 {
+    /**
+     * Handler for general GUI events.
+     */
     public static GUI_Handler GUI_handler = new GUI_Handler();
+
+    /**
+     * Handler for Buy Amount related events.
+     */
     public static BuyAmount_Handler Buyamount_handler = new BuyAmount_Handler();
+
+    /**
+     * Handler for LOC related events.
+     */
     public static LOC_Handler LOC_handler = new LOC_Handler();
+
+    /**
+     * Handler for SCoin related events.
+     */
     public static SCoin_Handler SCoin_handler = new SCoin_Handler();
+
+    /**
+     * Handler for Supporter Checkbox events.
+     */
     public static SupporterCheckbox_Handler SupporterCheckbox_handler = new SupporterCheckbox_Handler();
 
+    /**
+     * Label for displaying LOC count.
+     */
     public static JLabel LOCLabel = new JLabel();
+
+    /**
+     * Label for displaying SCoin count.
+     */
     public static JLabel SCoinLabel;
 
+    /**
+     * Main application window.
+     */
     public static JFrame window = new JFrame();
+
+    /**
+     * Initializes the properties of the main application window.
+     */
     public static void InitializeWindowProperties()
     {
         window.setSize(1920, 1080);
@@ -38,35 +74,27 @@ public class GUI_Elements
         window.getContentPane().setBackground(Color.BLACK);
     }
 
+    /**
+     * Sets up the main menu of the application.
+     */
     public static void InitializeMainScreen()
     {
-        window.setLayout(new GridBagLayout());
-        GridBagConstraints Title_Constraint = new GridBagConstraints();
-
-        Title_Constraint.fill = GridBagConstraints.NONE;
-        Title_Constraint.anchor = GridBagConstraints.CENTER;
-        Title_Constraint.weightx = 0.5;
-        Title_Constraint.weighty = 0.5;
-        Title_Constraint.gridwidth = 2;
-        Title_Constraint.gridheight = 1;
-        Title_Constraint.gridx = 1;
-        Title_Constraint.gridy = 0;
-
-        JLabel Game_Title = new JLabel("Softvoper Idle Game");
-        Game_Title.setFont(new Font(Font.SERIF, Font.BOLD, 70));
-        Game_Title.setForeground(Color.GREEN);
-        window.add(Game_Title, Title_Constraint);
+        MainMenuPanel MainPanel = new MainMenuPanel();
+        MainPanel.setLayout(new GridBagLayout());
+        JPanel  butonlarPanel = new JPanel(new GridBagLayout());
+        butonlarPanel.setPreferredSize(new Dimension(960, 750));
+        butonlarPanel.setOpaque(false);
 
         GridBagConstraints New_Game_Constraint = new GridBagConstraints();
 
         New_Game_Constraint.fill = GridBagConstraints.NONE;
-        New_Game_Constraint.anchor = GridBagConstraints.PAGE_START;
+        New_Game_Constraint.anchor = GridBagConstraints.CENTER;
         New_Game_Constraint.weightx = 0.5;
         New_Game_Constraint.weighty = 0.5;
-        New_Game_Constraint.gridwidth = 2;
+        New_Game_Constraint.gridwidth = 1;
         New_Game_Constraint.gridheight = 1;
-        New_Game_Constraint.gridx = 1;
-        New_Game_Constraint.gridy = 1;
+        New_Game_Constraint.gridx = 0;
+        New_Game_Constraint.gridy = 0;
 
         ImageIcon NewGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/NewGame.png"));
         ImageIcon RolloverNewGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverNewGame.png"));
@@ -75,18 +103,18 @@ public class GUI_Elements
         New_Game.addActionListener(GUI_handler);
         New_Game.setActionCommand("CreateGame_New");
         New_Game.setPreferredSize(new Dimension(500, 100));
-        window.add(New_Game, New_Game_Constraint);
+        butonlarPanel.add(New_Game, New_Game_Constraint);
 
         GridBagConstraints Load_Game_Constraint = new GridBagConstraints();
 
         Load_Game_Constraint.fill = GridBagConstraints.NONE;
-        Load_Game_Constraint.anchor = GridBagConstraints.PAGE_START;
+        Load_Game_Constraint.anchor = GridBagConstraints.CENTER;
         Load_Game_Constraint.weightx = 0.5;
         Load_Game_Constraint.weighty = 0.5;
-        Load_Game_Constraint.gridwidth = 2;
+        Load_Game_Constraint.gridwidth = 1;
         Load_Game_Constraint.gridheight = 1;
-        Load_Game_Constraint.gridx = 1;
-        Load_Game_Constraint.gridy = 2;
+        Load_Game_Constraint.gridx = 0;
+        Load_Game_Constraint.gridy = 1;
 
         ImageIcon LoadGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/LoadGame.png"));
         ImageIcon RolloverLoadGameIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/RolloverLoadGame.png"));
@@ -95,17 +123,35 @@ public class GUI_Elements
         Load_Game.addActionListener(GUI_handler);
         Load_Game.setActionCommand("Load_Game");
         Load_Game.setPreferredSize(new Dimension(500, 100));
-        window.add(Load_Game, Load_Game_Constraint);
+        butonlarPanel.add(Load_Game, Load_Game_Constraint);
 
+        GridBagConstraints butonlarPanelConstraints = new GridBagConstraints();
+        butonlarPanelConstraints.fill = GridBagConstraints.NONE;
+        butonlarPanelConstraints.anchor = GridBagConstraints.SOUTHEAST;
+        butonlarPanelConstraints.weightx = 0.5;
+        butonlarPanelConstraints.weighty = 0.5;
+        butonlarPanelConstraints.gridwidth = 1;
+        butonlarPanelConstraints.gridheight = 1;
+        butonlarPanelConstraints.gridx = 0;
+        butonlarPanelConstraints.gridy = 0;
+
+        MainPanel.add(butonlarPanel, butonlarPanelConstraints);
+        window.add(MainPanel);
         GUI_Elements.window.setVisible(true);
     }
 
+    /**
+     * Sets up the game screen layout.
+     */
     public static void InitializeGameScreen()
     {
         window.setLayout(new BorderLayout());
     }
 
-    public static void InitializeSaveScreen(String LoadOrNew)
+    /**
+     * Initializes the save screen, allowing users to view, select and delete the saved games.
+     */
+    public static void InitializeSaveScreen()
     {
         //window.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 100));
         ImageIcon BacktoMainMenuIcon = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/Menu/BacktoMain.png"));
@@ -159,7 +205,14 @@ public class GUI_Elements
         window.add(scrollablePanel, BorderLayout.CENTER);
     }
 
+    /**
+     * Input frame used for creating new save names.
+     */
     public static JFrame InputFrame;
+    /**
+     * Initializes the input frame for creating new save names.
+     * Action listener
+     */
     public static void InitializeInputFrame()
     {
         InputFrame = new JFrame();
@@ -171,6 +224,12 @@ public class GUI_Elements
 
         validate_button.addActionListener(new ActionListener()
         {
+            /**
+             * This method is called when the validate_button is clicked.
+             * It validates the input, saves the data, creates a new game, and transitions to the game menu.
+             *
+             * @param e The ActionEvent triggered by clicking the validate_button.
+             */
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -217,6 +276,9 @@ public class GUI_Elements
 
     private static JLabel SCoinImage;
     private static JLabel LOCImage;
+    /**
+     * Creates SCoin and LOC images for display in the UI.
+     */
     private void CreateScoinAndLOCImage()
     {
         ImageIcon LOCImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/LOC.png"));
@@ -228,7 +290,14 @@ public class GUI_Elements
         SCoinImage = new JLabel(new ImageIcon(SCoinScaledImage),SwingConstants.CENTER);
     }
 
+    /**
+     * Panel displaying coder related UI elements.
+     * This is the center panel of the game.
+     */
     public static JPanel CoderPanel;
+    /**
+     * Initializes the coder panel, including LOC and SCoin displays and buttons for saving and returning to the main menu.
+     */
     public static void InitializeCoderPanel()
     {
         CoderPanel = new JPanel(new GridBagLayout());
@@ -272,7 +341,8 @@ public class GUI_Elements
         SCoinPanel.setPreferredSize(new Dimension(910,60));
         SCoinPanel.setBackground(Color.getHSBColor(0,0,0.25f));
         SCoinPanel.setOpaque(true);
-        SCoinLabel = new JLabel(String.valueOf(SCoin.SCoin_count));
+        String sCoin_count = String.format("%.02f", SCoin.SCoin_count);
+        SCoinLabel = new JLabel(sCoin_count);
         SCoinLabel.setForeground(Color.white);
         SCoinLabel.setFont(font1);
         SCoinPanel.add(SCoinImage);
@@ -324,6 +394,10 @@ public class GUI_Elements
     static public DeveloperButton Beginner_CSharp_Button;
     static public DeveloperButton Beginner_Dart_Button;
     static public DeveloperButton Beginner_Java_Button;
+
+    /**
+     * Initializes all buttons for beginner-level developers by assigning commands and action listeners to each button.
+     */
     public static void InitializeBeginner_Buttons()
     {
         Beginner_C_Button = new DeveloperButton(LOC.Beginner_C_Developer, "Beginner C Developer");
@@ -351,6 +425,10 @@ public class GUI_Elements
     static public DeveloperButton Intermediate_CSharp_Button;
     static public DeveloperButton Intermediate_Dart_Button;
     static public DeveloperButton Intermediate_Java_Button;
+    /**
+     * Initializes all buttons for intermediate-level developers by assigning commands
+     * and action listeners to each button.
+     */
     public static void InitializeIntermediate_Buttons()
     {
         Intermediate_C_Button = new DeveloperButton(LOC.Intermediate_C_Developer, "Intermediate C Developer");
@@ -378,6 +456,10 @@ public class GUI_Elements
     static public DeveloperButton Advanced_CSharp_Button;
     static public DeveloperButton Advanced_Dart_Button;
     static public DeveloperButton Advanced_Java_Button;
+    /**
+     * Initializes all buttons for advanced-level developers by assigning commands
+     * and action listeners to each button.
+     */
     public static void InitializeAdvanced_Buttons()
     {
         Advanced_C_Button = new DeveloperButton(LOC.Advanced_C_Developer,"Advanced C Developer");
@@ -404,6 +486,10 @@ public class GUI_Elements
     public static DeveloperButton Tester_Button;
     public static DeveloperButton Architect_Button;
     public static DeveloperButton ProjectManager_Button;
+    /**
+     * Initializes all buttons for supporter roles by assigning commands
+     * and action listeners to each button.
+     */
     public static void InitializeSupporter_Buttons()
     {
         Tester_Button = new DeveloperButton(LOC.Tester, "Tester");
@@ -427,6 +513,9 @@ public class GUI_Elements
     public static JButton amount_10;
     public static JButton amount_100;
     public static JScrollPane StorePanel;
+    /**
+     * Initializes the store panel including developer buttons and other UI components.
+     */
     public static void InitializeStorePanel()
     {
         JPanel StorePanel_Inside = new JPanel();
@@ -479,10 +568,6 @@ public class GUI_Elements
         GUI_Elements.InitializeAdvanced_Buttons();
         GUI_Elements.InitializeSupporter_Buttons();
 
-        JButton Temporary_Money = new JButton("Temporary_Money");
-        Temporary_Money.setActionCommand("Temporary_Money");
-        Temporary_Money.addActionListener(SCoin_handler);
-
         StorePanel_Inside.add(goToAppPanel);
         StorePanel_Inside.add(AmountButtonsPanel);
         StorePanel_Inside.add(GUI_Elements.Beginner_C_Button);
@@ -500,7 +585,6 @@ public class GUI_Elements
         StorePanel_Inside.add(GUI_Elements.Tester_Button);
         StorePanel_Inside.add(GUI_Elements.Architect_Button);
         StorePanel_Inside.add(GUI_Elements.ProjectManager_Button);
-        StorePanel_Inside.add(Temporary_Money);
 
         StorePanel = new JScrollPane(StorePanel_Inside);
         StorePanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -509,6 +593,9 @@ public class GUI_Elements
     }
 
     public static SProjectButton User_ProjectButton;
+    /**
+     * Initializes button for user project.
+     */
     public static void InitializeUserProject()
     {
         User_ProjectButton = new SProjectButton(SCoin.User_Project);
@@ -520,6 +607,9 @@ public class GUI_Elements
     public static SProjectButton Beginner_CSharp_ProjectButton;
     public static SProjectButton Beginner_Dart_ProjectButton;
     public static SProjectButton Beginner_Java_ProjectButton;
+    /**
+     * Initializes buttons for beginner-level projects.
+     */
     public static void InitializeBeginnerProjects()
     {
         Beginner_C_ProjectButton = new SProjectButton(SCoin.Beginner_C_Project);
@@ -542,6 +632,9 @@ public class GUI_Elements
     public static SProjectButton Intermediate_CSharp_ProjectButton;
     public static SProjectButton Intermediate_Dart_ProjectButton;
     public static SProjectButton Intermediate_Java_ProjectButton;
+    /**
+     * Initializes buttons for intermediate-level projects.
+     */
     public static void InitializeIntermediateProjects()
     {
         Intermediate_C_ProjectButton = new SProjectButton(SCoin.Intermediate_C_Project);
@@ -564,6 +657,9 @@ public class GUI_Elements
     public static SProjectButton Advanced_CSharp_ProjectButton;
     public static SProjectButton Advanced_Dart_ProjectButton;
     public static SProjectButton Advanced_Java_ProjectButton;
+    /**
+     * Initializes buttons for advanced-level projects.
+     */
     public static void InitializeAdvancedProjects()
     {
         Advanced_C_ProjectButton = new SProjectButton(SCoin.Advanced_C_Project);
@@ -586,6 +682,9 @@ public class GUI_Elements
     public static JButton Architect_CheckButton;
     public static JButton ProjectManager_CheckButton;
     public static JPanel ProjectPanel;
+    /**
+     * Initializes the project panel including project information buttons.
+     */
     public static void InitializeProjectPanel()
     {
         ProjectPanel = new JPanel();
@@ -605,24 +704,24 @@ public class GUI_Elements
         SupporterButtonsPanel.setPreferredSize(new Dimension(250,50));
         SupporterButtonsPanel.setOpaque(false);
 
-        ImageIcon iconTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button1.png"));
-        ImageIcon RollovericonTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton1.png"));
+        ImageIcon iconTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ButtonTester.png"));
+        ImageIcon RollovericonTester = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButtonTester.png"));
         Tester_CheckButton = new JButton(iconTester);
         Tester_CheckButton.setBorder(BorderFactory.createEmptyBorder());
         Tester_CheckButton.setRolloverIcon(RollovericonTester);
         Tester_CheckButton.setActionCommand("Tester");
         Tester_CheckButton.addActionListener(SupporterCheckbox_handler);
 
-        ImageIcon iconArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button10.png"));
-        ImageIcon RollovericonArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton10.png"));
+        ImageIcon iconArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ButtonArchitect.png"));
+        ImageIcon RollovericonArchitect = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButtonArchitect.png"));
         Architect_CheckButton = new JButton(iconArchitect);
         Architect_CheckButton.setBorder(BorderFactory.createEmptyBorder());
         Architect_CheckButton.setRolloverIcon(RollovericonArchitect);
         Architect_CheckButton.setActionCommand("Architect");
         Architect_CheckButton.addActionListener(SupporterCheckbox_handler);
 
-        ImageIcon iconProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/Button100.png"));
-        ImageIcon RollovericonProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButton100.png"));
+        ImageIcon iconProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/ButtonProjectManager.png"));
+        ImageIcon RollovericonProjectManager = new ImageIcon(GUI_Elements.class.getClassLoader().getResource("images/StoreButtons/RolloverButtonProjectManager.png"));
         ProjectManager_CheckButton = new JButton(iconProjectManager);
         ProjectManager_CheckButton.setBorder(BorderFactory.createEmptyBorder());
         ProjectManager_CheckButton.setRolloverIcon(RollovericonProjectManager);
@@ -659,15 +758,14 @@ public class GUI_Elements
     }
 
     public static JPanel ProjectInfoPanel;
+    /**
+     * Initializes the project info panel to display details about selected projects.
+     */
     public static void InitializeProjectInfoPanel()
     {
         ProjectInfoPanel = new JPanel();
         ProjectInfoPanel.setPreferredSize(new Dimension(250, 1080));
         ProjectInfoPanel.setBackground(Color.getHSBColor(0,0,0.60f));
     }
-
-
-
-
 }
 

@@ -1,7 +1,6 @@
 package Handlers;
 
 import GUI.GUI_Elements;
-import GUI.SoftvoperMain;
 import LOCSystem.LOC;
 import SCoinSystem.SCoin;
 
@@ -10,10 +9,19 @@ import java.awt.event.ActionListener;
 
 
 /**
- * Controls actions to change SCoin and Employee's parameters
+ * This class handles actions related to SCoin and employee parameter changes.
+ * It listens for action events (such as button clicks) and performs corresponding actions,
+ * including buying employees or starting projects, based on the action commands received.
  */
 public class SCoin_Handler implements ActionListener
 {
+    /**
+     * This method is called when an action event is triggered.
+     * It determines which action has occurred based on the action command
+     * and executes the corresponding functionality such as buying employees or starting a project.
+     *
+     * @param event the action event that triggered this method.
+     */
     public void actionPerformed(ActionEvent event)
     {
         String action = event.getActionCommand();
@@ -64,13 +72,8 @@ public class SCoin_Handler implements ActionListener
             case "ProjectManager":
                 SCoin.BuyEmployee(LOC.ProjectManager);
                 break;
-            case "Temporary_Money":
-                SCoin.SCoin_count += 10;
-                GUI_Elements.SCoinLabel.setText(String.valueOf(SCoin.SCoin_count));
-                SoftvoperMain.ControlButtons();
-                break;
             case "User_Project":
-                SCoin.DevelopUserProject(SCoin.User_Project);
+                SCoin.DevelopApp(null, null, SCoin.User_Project);
                 break;
             case "Beginner_C_Project":
                 SCoin.DevelopApp(LOC.Beginner_C_Developer, GUI_Elements.Beginner_C_Button, SCoin.Beginner_C_Project);

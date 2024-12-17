@@ -7,10 +7,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Controls actions to change LOC and Employee's parameters
+ * This class handles actions related to LOC (Lines of Code) and employee parameters.
+ * It listens for action events (such as button clicks) and performs corresponding actions,
+ * such as buying developers or supporters, or incrementing the LOC counter.
  */
 public class LOC_Handler implements ActionListener
 {
+    /**
+     * This method is triggered when an action event occurs.
+     * It determines the action based on the action command and executes the corresponding functionality.
+     * The actions include incrementing the LOC count or buying developers or supporters.
+     *
+     * @param event the action event that triggered this method.
+     */
     public void actionPerformed(ActionEvent event)
     {
         String action = event.getActionCommand();

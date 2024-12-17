@@ -2,10 +2,17 @@ package LOCSystem;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents a "Beginner" developer in the system, extending the `Developers` class.
+ * This class models a developer with beginner-level skills and defines the behavior of how their price changes
+ * and how their total price for purchasing is calculated.
+ */
 public class Beginner extends Developers
 {
     /**
-     * This constructor, constructs Beginner developer objects when creating empty beginner developer.
+     * Constructs a "Beginner" developer object with the specified type and rank.
+     * This constructor is used when creating an empty beginner developer.
+     *
      * @param type
      * @param rank
      */
@@ -20,7 +27,9 @@ public class Beginner extends Developers
     }
 
     /**
-     * This constructor, construct Beginner developer object when creating object with json string in LOC.CreateSavedDevelopers
+     * Constructs a "Beginner" developer object using data from a JSON string.
+     * This constructor is used for loading a saved beginner developer from a stored JSON string.
+     *
      * @param Rank
      * @param Price
      * @param Type
@@ -45,7 +54,9 @@ public class Beginner extends Developers
     }
 
     /**
-     * Changes Beginner developer's price after buying.
+     * Adjusts the price of a beginner developer after purchasing.
+     * The price increases by 2% for each developer purchased.
+     *
      * @param BuyAmount
      */
     @Override
@@ -58,9 +69,11 @@ public class Beginner extends Developers
     }
 
     /**
-     * Get Beginner developer's buying price with buyamount paramater.
+     * Calculates the total price to buy a given number of beginner developers.
+     * The price for each additional developer is increased by 2% compared to the previous developer.
+     *
      * @param BuyAmount
-     * @return
+     * @return The total price for purchasing the specified number of developers.
      */
     @Override
     public float getTotalPrice(int BuyAmount)

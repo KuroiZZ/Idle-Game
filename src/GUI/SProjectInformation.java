@@ -6,6 +6,10 @@ import java.util.*;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * A JPanel that displays information about a specific project.
+ * It includes the project's name, progress bar, SCoin to earn, and a background image that reflects the developer's rank.
+ */
 public class SProjectInformation extends JPanel
 {
     /**
@@ -34,9 +38,9 @@ public class SProjectInformation extends JPanel
     private Image backgroundImage;
 
 
-/**
-     * This constructor, cosntruct SProjectInformation panel for new projects.
-     * @param Name
+    /**
+     * Constructor that initializes the SProjectInformation panel for a new project.
+     *
      * @param ScoinToEarn
      * @param DeveloperRank
      * @param progressValue
@@ -54,7 +58,8 @@ public class SProjectInformation extends JPanel
     }
 
     /**
-     * Select and set background image by DeveloperRank
+     * Select and set the background image based on the developer's rank.
+     *
      * @param DeveloperRank
      */
     private void loadBackgroundImage(String DeveloperRank)
@@ -70,10 +75,9 @@ public class SProjectInformation extends JPanel
                 break;
             case "Advanced":
                 BackgroundImagePath = "images/DeveloperButton/AdvancedButton.png";
-;
                 break;
             default:
-                BackgroundImagePath = "";
+                BackgroundImagePath = "images/DeveloperButton/Karton.png";
         }
         ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
         Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
@@ -82,8 +86,9 @@ public class SProjectInformation extends JPanel
     }
 
     /**
-     * Paint background with selected image.
-     * @param g the <code>Graphics</code> object to protect
+     * Paints the background with the selected image.
+     *
+     * @param g The Graphics object used for painting the component.
      */
     @Override
     protected void paintComponent(Graphics g)
@@ -98,8 +103,8 @@ public class SProjectInformation extends JPanel
     }
 
     /**
-     * Add contents to SProjectInformation with constraints.
-     * @param Name
+     * Adds contents to the SProjectInformation panel using GridBagLayout constraints.
+     *
      * @param ScoinToEarn
      * @param progressValue
      */
@@ -117,10 +122,10 @@ public class SProjectInformation extends JPanel
     }
 
     /**
-     * Set SProjectInformation's contents.
-     * @param Name
-     * @param ScoinToEarn
-     * @param progressValue
+     * Sets the contents for the SProjectInformation panel, including the project's name, SCoin to earn, and progress bar.
+     *
+     * @param ScoinToEarn The amount of SCoin to be earned.
+     * @param progressValue The current progress value of the project.
      */
     private void setContents(int ScoinToEarn, int progressValue)
     {
@@ -152,9 +157,10 @@ public class SProjectInformation extends JPanel
     }
 
     /**
-     * Font selector for labels
-     * @param fontName
-     * @return
+     * Returns a Font object based on the provided font name.
+     *
+     * @param fontName The name of the font ("SMALL", "BAŞLIK", or other).
+     * @return A Font object corresponding to the specified font name.
      */
     private Font get_Font(String fontName)
     {
@@ -175,14 +181,15 @@ public class SProjectInformation extends JPanel
     }
 
     /**
-     * Set constraints for GridBagLayout
-     * @param anchor
-     * @param fill
-     * @param gridheight
-     * @param gridwidth
-     * @param gridx
-     * @param gridy
-     * @return
+     * Sets the constraints for components in a GridBagLayout.
+     *
+     * @param anchor The anchor value for component positioning.
+     * @param fill The fill value for component resizing.
+     * @param gridheight The grid height for the component.
+     * @param gridwidth The grid width for the component.
+     * @param gridx The x-coordinate in the grid.
+     * @param gridy The y-coordinate in the grid.
+     * @return A GridBagConstraints object with the specified properties.
      */
     private GridBagConstraints setConstraints(int anchor,int fill,  int gridheight, int gridwidth, int gridx, int gridy)
     {
@@ -200,6 +207,11 @@ public class SProjectInformation extends JPanel
         return constraints;
     }
 
+    /**
+     * Generates a random project name by combining a title and a type.
+     *
+     * @return A randomly generated project name.
+     */
     private String createName()
     {
         List<String> TitleNames = new ArrayList<String>(Arrays.asList(

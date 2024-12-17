@@ -8,7 +8,10 @@ import SCoinSystem.SProject;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * SProjectButton class represents a button for a project with its relevant information.
+ * This includes project LOC (Lines of Code), Developer count, and project rank.
+ */
 public class SProjectButton extends JButton
 {
     /**
@@ -44,12 +47,13 @@ public class SProjectButton extends JButton
      */
     private JLabel DeveloperImage;
     /**
-     *  Project to get Button's parameter
+     *  The project associated with this button.
      */
     private SProject Project;
 
     /**
-     * This constructor, construct SProjectButton for new projects.
+     * Constructor to initialize the SProjectButton for new projects.
+     *
      * @param project
      */
     public SProjectButton(SProject project)
@@ -66,7 +70,7 @@ public class SProjectButton extends JButton
     }
 
     /**
-     * Set buttonContentsPanel's contents.
+     * Set the contents of the button's panel.
      */
     private void setbuttonContents()
     {
@@ -82,11 +86,11 @@ public class SProjectButton extends JButton
         this.developerTypeRank = new JLabel(this.Project.getLanguageType()+" "+this.Project.getRankType() + " Project");
         this.neededDeveloper = new JLabel(String.valueOf(this.Project.getNecessaryDeveloperCount())); //Initialize number of developer
 
-        ImageIcon LocImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        ImageIcon LocImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/LOC.png"));
         Image limage = LocImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
         LOCImage = new JLabel(new ImageIcon(limage));
 
-        ImageIcon DeveloperImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/SCoin.png"));
+        ImageIcon DeveloperImageIcon = new ImageIcon(getClass().getClassLoader().getResource("images/Developer.png"));
         Image dimage = DeveloperImageIcon.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH);
         DeveloperImage = new JLabel(new ImageIcon(dimage));
 
@@ -103,7 +107,7 @@ public class SProjectButton extends JButton
     }
 
     /**
-     * Add contents to buttonContentsPanel with constraints.
+     * Add contents to the button's panel using GridBagLayout constraints.
      */
     private void setbuttonContentsPanel()
     {
@@ -120,8 +124,9 @@ public class SProjectButton extends JButton
     }
 
     /**
-     * Select and set background image by rank
-     * @param rank
+     * Select and set the background image based on the developer's rank.
+     *
+     * @param rank The rank of the developer (Beginner, Intermediate, Advanced, etc.).
      */
     private void setBackgroundImage(String rank)
     {
@@ -146,9 +151,9 @@ public class SProjectButton extends JButton
                 RolloverImagePath = "images/DeveloperButton/RolloverAdvancedButton.png";
                 break;
             default:
-                BackgroundImagePath = "";
-                DisabledImagePath = "";
-                RolloverImagePath = "";
+                BackgroundImagePath = "images/DeveloperButton/Karton.png";
+                DisabledImagePath = "images/DeveloperButton/Karton.png";
+                RolloverImagePath = "images/DeveloperButton/RolloverKarton.png";
         }
         ImageIcon backgroundImageIcon = new ImageIcon(getClass().getClassLoader().getResource(BackgroundImagePath));
         Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(250,50,Image.SCALE_SMOOTH);
@@ -165,10 +170,11 @@ public class SProjectButton extends JButton
     }
 
     /**
-     * Set buttons enable state with given parameters
-     * @param project
-     * @param loc_count
-     * @param developer
+     * Set the button's enabled state based on the project's LOC requirements and developer availability.
+     *
+     * @param project The project associated with the button.
+     * @param loc_count The available LOC.
+     * @param developer The developer object with available developers.
      */
     public void setEnabledByLOCandDevelopers(SProject project, float loc_count, Developers developer)
     {
@@ -203,6 +209,12 @@ public class SProjectButton extends JButton
         }
     }
 
+    /**
+     * Set the button's enabled state based on the project's LOC requirements.
+     *
+     * @param project The project associated with the button.
+     * @param loc_count The available LOC.
+     */
     public void setEnabledByLOC(SProject project, float loc_count)
     {
         boolean isTesterEnough = true;
@@ -235,9 +247,10 @@ public class SProjectButton extends JButton
     }
 
     /**
-     * Font selector for labels
-     * @param fontName
-     * @return
+     * Font selector for labels.
+     *
+     * @param fontName The font style to be used.
+     * @return The selected font.
      */
     private Font get_Font(String fontName)
     {
@@ -261,14 +274,15 @@ public class SProjectButton extends JButton
     }
 
     /**
-     * Set constraints for GridBagLayout
-     * @param anchor
-     * @param fill
-     * @param gridheight
-     * @param gridwidth
-     * @param gridx
-     * @param gridy
-     * @return
+     * Sets the constraints for components in a GridBagLayout.
+     *
+     * @param anchor The anchor value for component positioning.
+     * @param fill The fill value for component resizing.
+     * @param gridheight The grid height for the component.
+     * @param gridwidth The grid width for the component.
+     * @param gridx The x-coordinate in the grid.
+     * @param gridy The y-coordinate in the grid.
+     * @return A GridBagConstraints object with the specified properties.
      */
     private GridBagConstraints setConstraints(int anchor,int fill,  int gridheight, int gridwidth, int gridx, int gridy)
     {
